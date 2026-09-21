@@ -9,6 +9,8 @@ Schema documentation: https://github.com/brightway-lca/pyecospold/blob/main/pyec
 The flag is read from the raw XML because the Sentier import drops it. The dataset UUID in
 the file name is the activity code in Brightway, so each hit is joined with the installed
 database to add how it is used there (inputs, elementary flows, consuming processes).
+Flagged datasets without a single exchange (empty placeholders) are dropped: there is
+nothing to disaggregate.
 
 Usage:
     uv run python scripts/list_system_terminated.py [--ecospold data/ecospold]
@@ -37,6 +39,11 @@ def read_flagged(folder: Path) -> dict[str, dict]:
         ds = ET.parse(f).getroot().find("dataset")
         pi = ds.find("metaInformation/processInformation")
         if pi.find("dataSetInformation").get("type") != "2":
+            continue
+        exchanges = ds.find("flowData").findall("exchange")
+        # the reference product is listed as an exchange too, so 1 means "empty"
+        if len(exchanges) <= 1:
+            print(f"  skipping empty dataset {f.name}", file=sys.stderr)
             continue
         rf = pi.find("referenceFunction")
         src = ds.find("metaInformation/modellingAndValidation/source")

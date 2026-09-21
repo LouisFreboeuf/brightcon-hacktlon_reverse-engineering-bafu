@@ -83,8 +83,9 @@ The type-2 datasets are the explicitly aggregated ones to rebuild as unit proces
 The flag is read from the unzipped XML in `data/` (the Sentier import drops it); the file-name
 UUID is the Brightway activity code, so each row is joined with the installed database for the
 number of technosphere inputs, elementary flows and consuming processes. BAFU-2026 v1 has
-**102** such datasets ([results/system_terminated.csv](results/system_terminated.csv)); 88 have
-no technosphere inputs at all, the 14 PlasticsEurope polymers keep a few disposal inputs.
+**101** such datasets ([results/system_terminated.csv](results/system_terminated.csv)); 87 have
+no technosphere inputs at all, the 14 PlasticsEurope polymers keep a few disposal inputs. (A
+102nd flagged dataset, `Disposal, rectangular straw bale`, has no exchanges and is skipped.)
 Sorted by consumers: HDPE granulate (533), PP (173), LDPE (122), ethylene glycol (76), ethylene (72).
 
 ## Data
