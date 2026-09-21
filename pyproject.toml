@@ -1,0 +1,26 @@
+[project]
+name = "bafu-reverse-engineering"
+version = "0.1.0"
+description = "Brightcon 2026 hackathon: replace aggregated BAFU-2026 datasets with unit process data"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # installs BAFU-2026 v1 + EF 3.1 biosphere/methods into a Brightway project
+    "sentier-brightway",
+    # Brightway 2.5 (bw2data is only a testing extra of sentier-brightway, so we add it here)
+    "bw2data>=4.0",
+    "bw2calc>=2.0",
+]
+
+[project.optional-dependencies]
+# faster matrix solves for `sentier-brightway backtest`
+fast = ["pypardiso>=0.4"]
+
+[dependency-groups]
+dev = [
+    "jupyterlab>=4",
+    "ipykernel",
+]
+
+[tool.uv.sources]
+sentier-brightway = { git = "https://github.com/sentier-dev/sentier-brightway", branch = "main" }

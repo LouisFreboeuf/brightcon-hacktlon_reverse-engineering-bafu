@@ -1,0 +1,23 @@
+# BAFU source data: distributed by BAFU, not redistributable here
+*.zip
+ecoSpold files/
+data/
+
+# generated outputs (sentier-brightway files/backtest, notebooks, ...)
+output/
+
+# python / uv
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# editors
+.vscode/
+.idea/
+*.swp
