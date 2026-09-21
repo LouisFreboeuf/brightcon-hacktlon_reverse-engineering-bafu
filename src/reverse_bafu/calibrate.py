@@ -1,0 +1,74 @@
+"""Step 2 - amounts for the inputs marked ``free``, by NNLS against the target's cumulative
+inventory, with every other input held at its spec amount. The input *list* is never changed
+here: with a free structure the fit reproduces the scores and invents the process (see
+docs/disaggregation_strategies.md §4); with the list fixed it recovers amounts to ~10 %."""
+
+from __future__ import annotations
+
+import numpy as np
+import scipy.optimize as so
+import bw2data as bd
+
+from . import db
+from .lci import System
+from .spec import Spec
+
+
+def run(spec: Spec, apply: bool = False) -> None:
+    target = bd.get_node(database=db.INVENTORY_DB, code=spec.target_code)
+    node = spec.node
+    inputs = [i for i in node.inputs if i.code]
+    if any(i.node for i in node.inputs):
+        print("note: nested nodes are not calibrated; only the top node's free inputs are")
+    free = [i for i in inputs if i.free]
+    fixed = [i for i in inputs if not i.free]
+    if not free:
+        print("no inputs marked \"free\": nothing to calibrate")
+        return
+    # the matrices must contain the sandbox when inputs link to rebuilt nodes
+    demand = target
+    if any(i.sandbox for i in inputs):
+        demand = bd.get_node(database=db.SANDBOX_DB, code=next(i.sandbox for i in inputs if i.sandbox))
+    sys_ = System(demand)
+    ids = {i.code: bd.get_node(database=db.SANDBOX_DB if i.sandbox else db.INVENTORY_DB, code=i.code).id for i in inputs}
+    b = sys_.cumulative([target.id])[:, 0]
+    M_fixed = sys_.cumulative([ids[i.code] for i in fixed]) if fixed else np.zeros((sys_.n_flows, 0))
+    M_free = sys_.cumulative([ids[i.code] for i in free])
+    # direct flows of the node itself are part of the fixed contribution too
+    direct = np.zeros(sys_.n_flows)
+    for f in node.emissions + node.resources:
+        if f.code:
+            row = sys_.lca.dicts.biosphere.get(bd.get_node(database=f.database, code=f.code).id)
+            if row is not None:
+                direct[row] += f.amount
+    residual_target = b - M_fixed @ np.array([i.amount for i in fixed]) - direct
+    w = sys_.flow_weights(b, node.category_weights)
+    rows = np.where(w > 0)[0]
+    A = w[rows, None] * M_free[rows]
+    y = w[rows] * residual_target[rows]
+    lo = np.array([i.bounds[0] if i.bounds else 0.0 for i in free])
+    hi = np.array([i.bounds[1] if i.bounds else np.inf for i in free])
+    if node.mass_sum is not None:
+        # one heavily weighted row: the free kilogram inputs add up to mass_sum
+        kg = np.array([1.0 if i.unit.startswith("kilo") else 0.0 for i in free])
+        wt = 1e3 * np.linalg.norm(y)
+        A = np.vstack([A, wt * kg])
+        y = np.append(y, wt * node.mass_sum)
+    # normalise columns (a "unit" of plant vs a kg of material differ by many orders of magnitude)
+    scale = np.linalg.norm(A, axis=0)
+    scale[scale == 0] = 1.0
+    res = so.lsq_linear(A / scale, y, bounds=(lo * scale, hi * scale), max_iter=20000)
+    x, rnorm = res.x / scale, float(np.linalg.norm(A @ (res.x / scale) - y))
+    print(f"fit over {len(rows)} characterised flows; {len(free)} free input(s)"
+          f"{'; bounds from the report' if any(i.bounds for i in free) else ''}"
+          f"{f'; mass sum = {node.mass_sum}' if node.mass_sum is not None else ''}; residual norm {rnorm:.3g}\n")
+    print(f"{'spec amount':>12s} {'fitted':>12s} {'ratio':>7s}  input")
+    for i, v in zip(free, x):
+        ratio = v / i.amount if i.amount else float("inf")
+        print(f"{i.amount:12.4g} {v:12.4g} {ratio:7.2f}  {i.name} [{i.location}]")
+        if apply:
+            i.amount = float(v)
+    if apply:
+        from .spec import save
+        save(spec)
+        print("\namounts written back to", spec.path)

@@ -1,0 +1,159 @@
+<title>Burnt Shale Rebuilt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f7f8f5;--bg2:#eceee8;--ink:#171a1c;--ink2:#555d68;--rule:#d5d9d0;--after:#2a78d6;--before:#eb6834;--good:#008300;--warn:#a86f00;--band:#e6ebe0;--card:#ffffff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171a1c;--bg2:#1f2326;--ink:#f1f2ee;--ink2:#b7bec5;--rule:#353b40;--after:#3987e5;--before:#d95926;--good:#4fbf4f;--warn:#e0a83a;--band:#22282a;--card:#1c2023}}
+:root[data-theme="dark"]{--bg:#171a1c;--bg2:#1f2326;--ink:#f1f2ee;--ink2:#b7bec5;--rule:#353b40;--after:#3987e5;--before:#d95926;--good:#4fbf4f;--warn:#e0a83a;--band:#22282a;--card:#1c2023}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.5;padding-inline:16px;padding-block:8px 48px}
+main{max-width:880px;margin:0 auto}
+h1,h2,h3{font-family:Spectral,Georgia,serif;font-weight:500;text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:2.1rem;margin-top:24px} h2{font-size:1.45rem;margin-top:48px;padding-top:14px;border-top:1px solid var(--rule)} h3{font-size:1.1rem;margin-top:22px}
+p{max-width:68ch;margin:10px 0} .muted{color:var(--ink2)} .lede{font-size:1.08rem;color:var(--ink2);max-width:62ch}
+.eyebrow{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink2);font-weight:500}
+.num,.mono,td.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch;margin-top:26px}
+.box{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;min-width:0}
+.box .eyebrow{margin-bottom:6px} .box .big{font-family:Spectral,serif;font-size:1.9rem;line-height:1.05;margin:2px 0 4px}
+.box.orig{border-color:var(--before)} .box.new{border-color:var(--after)} .box ul{list-style:none;padding:0;margin:8px 0 0;font-size:.8rem;color:var(--ink2)} .box li{display:flex;gap:6px;flex-wrap:wrap;padding:2px 0;border-top:1px dashed var(--rule)}
+.arrow{align-self:center;color:var(--ink2);font-size:1.4rem}
+.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--rule)}
+.steps li::before{content:counter(s);font-family:"IBM Plex Mono",monospace;color:var(--ink2);font-size:.9rem;padding-top:2px}
+.steps b{display:block;font-weight:600} .steps span.s{display:inline-block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--after);font-weight:600;margin-left:6px}
+.tbl{overflow-x:auto;margin-top:12px} table{border-collapse:collapse;width:100%;font-size:.88rem} th{text-align:left;font-weight:500;color:var(--ink2);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--rule)}
+td{padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:top} td.num{text-align:right;white-space:nowrap} td.u{color:var(--ink2);white-space:nowrap} td.n{min-width:220px}
+.loc{display:inline-block;margin-left:6px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2);background:var(--bg2);padding:0 5px;border-radius:3px}
+.tag{display:inline-block;margin-left:6px;font-size:.72rem;color:var(--warn);border:1px solid var(--warn);padding:0 5px;border-radius:3px}
+td.bar{position:relative;min-width:150px} td.bar .fill{position:absolute;left:8px;top:9px;height:14px;background:var(--after);border-radius:0 3px 3px 0;opacity:.85} td.bar .v{position:relative;font-family:"IBM Plex Mono",monospace;font-size:.78rem;margin-left:4px;color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.stat{background:var(--bg2);padding:10px 12px;border-radius:6px} .stat .k{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)} .stat .v{font-family:Spectral,serif;font-size:1.5rem;line-height:1.1}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.82rem;color:var(--ink2);margin:12px 0 4px} .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.legend .b i{border:2px solid var(--before);box-sizing:border-box} .legend .a i{background:var(--after)}
+figure{margin:0} .chart{overflow-x:auto} svg text{font-family:"IBM Plex Sans",system-ui,sans-serif;fill:var(--ink)} svg .ax{fill:var(--ink2);font-size:11px} svg .cat{font-size:12px} svg .val{font-family:"IBM Plex Mono",monospace;font-size:11px;fill:var(--ink2)}
+svg .grid{stroke:var(--rule);stroke-width:1} svg .zero{stroke:var(--ink2);stroke-width:1.5} svg .band{fill:var(--band)} svg .link{stroke:var(--rule);stroke-width:2} svg .row:hover .link{stroke:var(--ink2)}
+svg .before{fill:var(--bg);stroke:var(--before);stroke-width:2} svg .after{fill:var(--after);stroke:var(--bg);stroke-width:2}
+#tip{position:fixed;pointer-events:none;background:var(--card);border:1px solid var(--rule);border-radius:5px;padding:8px 10px;font-size:.8rem;line-height:1.4;box-shadow:0 4px 14px rgba(0,0,0,.12);max-width:280px}
+.checks{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:6px} .checks li{display:grid;grid-template-columns:22px 1fr;gap:8px} .checks .ok{color:var(--good);font-weight:600}
+.miss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:12px} .miss .box h3{margin-top:0;font-size:1rem} .miss ul{margin:6px 0 0;padding-left:18px;font-size:.85rem}
+.ev li{margin-bottom:8px;font-size:.9rem}
+@media (max-width:640px){.flow{grid-template-columns:1fr} .arrow{transform:rotate(90deg);justify-self:center} h1{font-size:1.7rem}}
+@media (prefers-reduced-motion:no-preference){svg .row circle{transition:r .12s}} svg .row:hover circle{r:7}
+</style>
+<main>
+<div class="eyebrow">reverse-bafu · pilot 1 of 101 · ecoSpold type = 2</div>
+<h1>Burnt shale, at plant — rebuilt as a unit process</h1>
+<p class="lede">BAFU‑2026 ships this dataset as a <em>system terminated</em> inventory: no supplier links, 1,659 elementary flows. The treeze concrete report (2020) prints its gate‑to‑gate inventory, so it was rebuilt by transcription, calibrated on one input, and wrapped as a hybrid so results stay identical by construction.</p>
+
+<div class="flow">
+ <div class="box orig"><div class="eyebrow">Original · bafu‑2026</div><div class="big">0 inputs<br>1,659 flows</div><div class="muted">Burnt shale, at plant · DE · per 1 kg</div><ul><li><span class="num">3.66</span> <span class="u">megajoule</span> Crude Oil <span class="loc">Resources from ground</span></li><li><span class="num">0.963</span> <span class="u">kilogram</span> Shale <span class="loc">soil</span></li><li><span class="num">0.424</span> <span class="u">kilogram</span> Carbon Dioxide (fossil) <span class="loc">Emissions to air</span></li><li><span class="num">0.413</span> <span class="u">kilo Becquerel</span> Radon-222 <span class="loc">Emissions to air</span></li><li><span class="num">0.354</span> <span class="u">megajoule</span> Waste Heat <span class="loc">air</span></li><li><span class="num">0.264</span> <span class="u">megajoule</span> Crude Oil <span class="loc">Resources from ground</span></li><li><span class="num">0.217</span> <span class="u">kilo Becquerel</span> Noble Gases, Radioactive, Unspecified <span class="loc">air</span></li><li><span class="num">0.113</span> <span class="u">megajoule</span> Waste Heat <span class="loc">water</span></li></ul></div>
+ <div class="arrow">→</div>
+ <div class="box new"><div class="eyebrow">Rebuilt · reverse‑bafu‑sandbox</div><div class="big">12 inputs<br>7 direct flows</div><div class="muted">links to existing BAFU unit processes; no new intermediate nodes were needed</div><ul><li>12 technosphere inputs → all resolve to type‑1 datasets</li><li>5 direct emissions to air (table)</li><li>2 direct resources (shale mass, shale energy content)</li></ul></div>
+ <div class="arrow">→</div>
+ <div class="box"><div class="eyebrow">Hybrid · S5</div><div class="big">12 inputs<br>+ 1,426 residual flows</div><div class="muted">residual = original − Σ inputs' LCI; scores equal the original to 1.000 in all 25 categories</div><ul><li>464 residual entries negative (over‑explained)</li><li>962 positive (still unexplained)</li></ul></div>
+</div>
+
+<h2>Strategy used</h2>
+<ol class="steps">
+ <li><div><b>Evidence: report transcription <span class="s">S1</span></b>Tab. 3.9 of <i>Ökobilanz ausgewählter Betonsorten</i> (Tschümperlin, Ramseier, Frischknecht 2020) lists the inventory per tonne with the 71.3 % economic‑allocation column (electricity co‑product takes 28.7 %). Tab. 3.10 gives transport distances. Litres of diesel and heating oil were converted at 36 MJ/l.</div></li>
+ <li><div><b>Terminate on the database <span class="s">resolve</span></b>Each line item was mapped to an existing BAFU unit process by name and location — blasting, diesel in building machines, DE medium‑voltage grid, light fuel oil furnace, tap water, HCl, NaOH, hypochlorite, organic chemicals, rail and lorry transport, sewage treatment. All 12 resolved; none is itself aggregated, so no new nodes and no dependency ordering.</div></li>
+ <li><div><b>Direct flows from the target vector</b>Two resource flows no upstream node can emit — 0.96 kg raw shale and 3.66 MJ crude‑oil resource (the ecoinvent convention for the shale's own energy content) — were taken from the original vector. This is legitimate exactly because they are direct: they cannot be an artefact of the supply chain.</div></li>
+ <li><div><b>Calibrate one amount, list fixed <span class="s">NNLS</span></b>Only grid electricity was marked free. The fit against the original vector (1,398 characterised flows, every EF category weighted equally) put it at 0.14 kWh/t instead of the table's 68.6 kWh/t — the plant co‑generates 183.8 kWh/t, so the original model nets its own generation. A convention the report does not state; the harness found it.</div></li>
+ <li><div><b>Build explicit + hybrid <span class="s">S5</span></b>The explicit node is the model. The hybrid adds the residual as direct flows so its cumulative inventory equals the original; the residual's share per category measures how much is still unexplained.</div></li>
+</ol>
+
+<h2>The rebuilt inventory</h2>
+<div class="eyebrow">Technosphere inputs · per 1 kg burnt shale · bar = contribution to climate change, scaled to the largest input (all 12 together: 3.5 g against 422 g of direct CO₂)</div>
+<div class="tbl"><table><thead><tr><th>Input (BAFU unit process)</th><th style="text-align:right">Amount</th><th>Unit</th><th>Climate change, kg CO₂‑eq per kg</th></tr></thead><tbody><tr><td class="n">Diesel, burned in building machine, average<span class="loc">CH</span></td>
+<td class="num">0.0139</td><td class="u">megajoule</td>
+<td class="bar"><span class="fill" style="width:100.0%"></span><span class="v">1.5 g</span></td></tr><tr><td class="n">Electricity, medium voltage, at grid<span class="loc">DE</span><span class="tag">calibrated from 0.06863</span></td>
+<td class="num">0.000136</td><td class="u">kilowatt hour</td>
+<td class="bar"><span class="fill" style="width:73.4%"></span><span class="v">1.1 g</span></td></tr><tr><td class="n">Light fuel oil, burned in industrial furnace 1MW, non-modulating<span class="loc">RER</span></td>
+<td class="num">0.00512</td><td class="u">megajoule</td>
+<td class="bar"><span class="fill" style="width:33.6%"></span><span class="v">0.49 g</span></td></tr><tr><td class="n">Blasting<span class="loc">RER</span></td>
+<td class="num">6.74e-5</td><td class="u">kilogram</td>
+<td class="bar"><span class="fill" style="width:10.1%"></span><span class="v">0.15 g</span></td></tr><tr><td class="n">Chemicals organic, at plant<span class="loc">GLO</span></td>
+<td class="num">5.70e-5</td><td class="u">kilogram</td>
+<td class="bar"><span class="fill" style="width:7.8%"></span><span class="v">0.11 g</span></td></tr><tr><td class="n">Tap water, at user<span class="loc">RER</span></td>
+<td class="num">0.499</td><td class="u">kilogram</td>
+<td class="bar"><span class="fill" style="width:6.9%"></span><span class="v">0.1 g</span></td></tr><tr><td class="n">Sodium hydroxide, 50% in H2O, production mix, at plant<span class="loc">RER</span></td>
+<td class="num">7.13e-5</td><td class="u">kilogram</td>
+<td class="bar"><span class="fill" style="width:3.0%"></span><span class="v">0.044 g</span></td></tr><tr><td class="n">Sodium hypochlorite, 15% in H2O, at plant<span class="loc">RER</span></td>
+<td class="num">7.13e-5</td><td class="u">kilogram</td>
+<td class="bar"><span class="fill" style="width:3.0%"></span><span class="v">0.043 g</span></td></tr><tr><td class="n">Hydrochloric acid, 30% in H2O, at plant<span class="loc">RER</span></td>
+<td class="num">7.13e-5</td><td class="u">kilogram</td>
+<td class="bar"><span class="fill" style="width:2.7%"></span><span class="v">0.04 g</span></td></tr><tr><td class="n">Treatment, sewage, unpolluted, to wastewater treatment, class 3<span class="loc">CH</span></td>
+<td class="num">1.07e-4</td><td class="u">cubic meter</td>
+<td class="bar"><span class="fill" style="width:2.1%"></span><span class="v">0.03 g</span></td></tr><tr><td class="n">Transport, freight, lorry, 16t-32t gross weight, fleet average<span class="loc">RER</span></td>
+<td class="num">2.14e-5</td><td class="u">ton kilometer</td>
+<td class="bar"><span class="fill" style="width:0.5%"></span><span class="v">0.0047 g</span></td></tr><tr><td class="n">Transport, freight, rail<span class="loc">DE</span></td>
+<td class="num">1.72e-4</td><td class="u">ton kilometer</td>
+<td class="bar"><span class="fill" style="width:0.5%"></span><span class="v">0.0032 g</span></td></tr></tbody></table></div>
+<div class="eyebrow" style="margin-top:22px">Direct elementary flows · per 1 kg</div>
+<div class="tbl"><table><thead><tr><th>Flow</th><th style="text-align:right">Amount</th><th>Unit</th></tr></thead><tbody><tr><td class="n">Particles (PM10)<span class="loc">Emissions/Emissions to air</span></td><td class="num">9.48e-7</td><td class="u">kilogram</td></tr><tr><td class="n">Nitrogen Oxides<span class="loc">Emissions/Emissions to air</span></td><td class="num">5.19e-4</td><td class="u">kilogram</td></tr><tr><td class="n">Sulfur Dioxide<span class="loc">Emissions/Emissions to air</span></td><td class="num">4.54e-4</td><td class="u">kilogram</td></tr><tr><td class="n">Carbon Dioxide (fossil)<span class="loc">Emissions/Emissions to air</span></td><td class="num">0.422</td><td class="u">kilogram</td></tr><tr><td class="n">Carbon Monoxide (fossil)<span class="loc">Emissions/Emissions to air</span></td><td class="num">4.09e-4</td><td class="u">kilogram</td></tr><tr><td class="n">Shale<span class="loc">soil</span></td><td class="num">0.963</td><td class="u">kilogram</td></tr><tr><td class="n">Crude Oil<span class="loc">Resources/Resources from ground</span></td><td class="num">3.66</td><td class="u">megajoule</td></tr></tbody></table></div>
+<p class="muted" style="font-size:.85rem">CO₂ combines 256 g fossil and 166 g geogenic (carbonate) — both characterised as fossil in EF 3.1. The direct CO₂ alone gives 0.422 kg CO₂‑eq against the original's 0.429: burnt shale's climate impact is almost entirely its own stack.</p>
+
+<h2>Does it reproduce the original?</h2>
+<p>Deviation of the explicit model from the original, per EF 3.1 category, before and after calibrating the electricity input. Symmetric‑log axis; the shaded band is ±10 %.</p>
+<div class="stats">
+ <div class="stat"><div class="k">within ±10 % · gross electricity</div><div class="v">6 / 25</div></div>
+ <div class="stat"><div class="k">within ±10 % · calibrated</div><div class="v">9 / 25</div></div>
+ <div class="stat"><div class="k">climate change · calibrated</div><div class="v">-1.1 %</div></div>
+ <div class="stat"><div class="k">hybrid vs original</div><div class="v">1.000</div></div>
+</div>
+<div class="legend"><span class="b"><i></i>gross electricity from the table (68.6 kWh/t)</span><span class="a"><i></i>calibrated electricity (0.14 kWh/t)</span></div>
+<figure><div class="chart" id="chart"></div></figure>
+<div id="tip" hidden></div>
+
+<h2>What is still missing</h2>
+<p>The energy‑driven categories agree. The small‑score categories do not, and the flow diff says why — each points at a flow the table does not print:</p>
+<div class="miss">
+ <div class="box"><h3>Water use <span class="num muted">+146 %</span></h3><ul><li>Original emits 0.0108 m³ water to water and draws 0.0103 m³ turbine water — a water balance the "unpolluted wastewater" route does not reproduce.</li></ul></div>
+ <div class="box"><h3>Ecotoxicity, freshwater (organics) <span class="num muted">−93 %</span></h3><ul><li>Aromatic hydrocarbons and PAH to water in the original — crude‑oil handling in a fuel chain modelled differently from the ones linked here.</li></ul></div>
+ <div class="box"><h3>Toxicity, land use, ozone <span class="num muted">−35 … −70 %</span></h3><ul><li>Metals from shale burning, land occupation of the quarry, and halogenated flows — none in Tab. 3.9; candidates for the next iteration with the flow diff as the guide.</li></ul></div>
+</div>
+
+<h2>Structural checks</h2>
+<ul class="checks">
+ <li><span class="ok">✓</span><span>12 explicit inputs over 1 node — plausible for a quarry‑plus‑kiln process</span></li>
+ <li><span class="ok">✓</span><span>no decomposed grid mixes (the free fit had replaced the grid with individual power plants)</span></li>
+ <li><span class="ok">✓</span><span>no dependency on another aggregated dataset</span></li>
+ <li><span class="ok">✓</span><span>mass in: 0.57 kg technosphere + 0.96 kg resources per kg product — consistent with 1.35 kg raw shale × 71.3 % allocation</span></li>
+ <li><span class="ok">✓</span><span>all inputs and flows resolved to existing BAFU / EF 3.1 objects</span></li>
+</ul>
+<p class="muted" style="font-size:.85rem">Why these matter: with a free input list, least squares reproduced all 25 scores of a known unit process to 1.000 while choosing 116 wrong inputs. Score agreement is necessary, not sufficient.</p>
+
+<h2>Evidence</h2>
+<ul class="ev"><li><b>2020 - LCA selected types of concrete - Tschuemperlin.pdf</b> — section 3.6, Tab. 3.9 (inventory per t, 71.3 % economic allocation column) and Tab. 3.10 (transport distances)<br><span class="muted">Werner (2013) inventory, allocation electricity 28.7 % / burnt shale 71.3 % per Werner (2018). 1 t burnt shale co-produces 183.8 kWh electricity. Diesel and heating oil converted from litres at 36 MJ/l; per-t values divided by 1000.</span></li><li><b>target dataset cumulative vector</b> — direct resource flows unique to this process<br><span class="muted">raw shale (0.9626 kg/kg = ~1.35 kg raw shale x 71.3 %) and the shale&#x27;s energy content booked as crude-oil resource (3.658 MJ/kg), which no upstream node emits</span></li></ul>
+<p class="muted" style="font-size:.85rem">Spec: <span class="mono">specs/d8ec4be3-burnt-shale.json</span> · report: <span class="mono">results/checks/d8ec4be3-c410-3806-98f5-a2ec5a284fee.md</span> · Source: Life Cycle Inventory database of the Swiss Federal Administration, BAFU:2026.</p>
+</main>
+<script>
+const S = [{"cat": "EF-particulate Matter", "unit": "disease incidence", "target": 4.749e-09, "calibrated": 4.778e-09, "d_cal": 0.6, "transcribed": 5.022e-09, "d_raw": 5.7}, {"cat": "Acidification", "unit": "mol H+ eq", "target": 0.001025, "calibrated": 0.001015, "d_cal": -1.1, "transcribed": 0.001059, "d_raw": 3.3}, {"cat": "Climate change", "unit": "kg CO2 eq", "target": 0.4291, "calibrated": 0.4245, "d_cal": -1.1, "transcribed": 0.454, "d_raw": 5.8}, {"cat": "Climate change-Fossil", "unit": "kg CO2 eq", "target": 0.4291, "calibrated": 0.4245, "d_cal": -1.1, "transcribed": 0.4536, "d_raw": 5.7}, {"cat": "Photochemical ozone formation - human health", "unit": "kg NMVOC eq", "target": 0.0006214, "calibrated": 0.0006121, "d_cal": -1.5, "transcribed": 0.0006568, "d_raw": 5.7}, {"cat": "Eutrophication marine", "unit": "kg N eq", "target": 0.000209, "calibrated": 0.0002136, "d_cal": 2.2, "transcribed": 0.0002311, "d_raw": 10.6}, {"cat": "Eutrophication, terrestrial", "unit": "mol N eq", "target": 0.00228, "calibrated": 0.002389, "d_cal": 4.8, "transcribed": 0.002518, "d_raw": 10.4}, {"cat": "Resource use, fossils", "unit": "MJ", "target": 3.965, "calibrated": 3.693, "d_cal": -6.9, "transcribed": 4.029, "d_raw": 1.6}, {"cat": "Human toxicity, cancer_organics", "unit": "CTUh", "target": 8.003e-13, "calibrated": 7.239e-13, "d_cal": -9.5, "transcribed": 2.92e-11, "d_raw": 3548.2}, {"cat": "Human toxicity, non-cancer_organics", "unit": "CTUh", "target": 9.044e-12, "calibrated": 5.629e-12, "d_cal": -37.8, "transcribed": 1.2e-11, "d_raw": 32.7}, {"cat": "Human toxicity, cancer", "unit": "CTUh", "target": 2.342e-12, "calibrated": 1.332e-12, "d_cal": -43.1, "transcribed": 3.322e-11, "d_raw": 1318.3}, {"cat": "Ionising radiation, human health", "unit": "kBq U-235 eq", "target": 0.000719, "calibrated": 0.0003197, "d_cal": -55.5, "transcribed": 0.005136, "d_raw": 614.3}, {"cat": "Human toxicity, non-cancer", "unit": "CTUh", "target": 6.432e-11, "calibrated": 2.686e-11, "d_cal": -58.2, "transcribed": 1.612e-10, "d_raw": 150.7}, {"cat": "Human toxicity, cancer_inorganics", "unit": "CTUh", "target": 1.542e-12, "calibrated": 6.078e-13, "d_cal": -60.6, "transcribed": 4.018e-12, "d_raw": 160.7}, {"cat": "Human toxicity, non-cancer_inorganics", "unit": "CTUh", "target": 5.527e-11, "calibrated": 2.123e-11, "d_cal": -61.6, "transcribed": 1.492e-10, "d_raw": 170.0}, {"cat": "Climate change-Biogenic", "unit": "kg CO2 eq", "target": 4.14e-06, "calibrated": 6.897e-06, "d_cal": 66.6, "transcribed": 0.0004087, "d_raw": 9772.1}, {"cat": "Resource use, minerals and metals", "unit": "kg Sb eq", "target": 9.929e-09, "calibrated": 3.165e-09, "d_cal": -68.1, "transcribed": 3.513e-08, "d_raw": 253.8}, {"cat": "Eutrophication, freshwater", "unit": "kg P eq", "target": 1.098e-06, "calibrated": 3.372e-07, "d_cal": -69.3, "transcribed": 3.278e-05, "d_raw": 2886.3}, {"cat": "Ozone depletion", "unit": "kg CFC-11 eq", "target": 4.009e-10, "calibrated": 1.148e-10, "d_cal": -71.4, "transcribed": 5.54e-10, "d_raw": 38.2}, {"cat": "Ecotoxicity, freshwater_inorganics", "unit": "CTUe", "target": 0.1481, "calibrated": 0.04121, "d_cal": -72.2, "transcribed": 0.119, "d_raw": -19.7}, {"cat": "Ecotoxicity, freshwater", "unit": "CTUe", "target": 0.153, "calibrated": 0.04153, "d_cal": -72.8, "transcribed": 0.1199, "d_raw": -21.6}, {"cat": "Climate change-Land use and land use change", "unit": "kg CO2 eq", "target": 2.502e-06, "calibrated": 5.655e-07, "d_cal": -77.4, "transcribed": 1.059e-05, "d_raw": 323.3}, {"cat": "Land use", "unit": "Pt", "target": 0.03701, "calibrated": 0.006623, "d_cal": -82.1, "transcribed": 0.1343, "d_raw": 262.8}, {"cat": "Ecotoxicity, freshwater_organics", "unit": "CTUe", "target": 0.004871, "calibrated": 0.0003254, "d_cal": -93.3, "transcribed": 0.0009662, "d_raw": -80.2}, {"cat": "Water use", "unit": "m3 world eq deprived", "target": 0.002471, "calibrated": 0.00597, "d_cal": 141.6, "transcribed": 0.009306, "d_raw": 276.7}];
+const sl = x => Math.sign(x) * Math.log10(1 + Math.abs(x));
+const ticks = [-100,-10,0,10,100,1000,10000];
+const W = 860, L = 250, R = 70, rowH = 22, T = 26, B = 30;
+const H = T + S.length * rowH + B;
+const x0 = L, x1 = W - R, dmin = sl(-100), dmax = sl(10000);
+const X = v => x0 + (sl(Math.max(-100, Math.min(10000, v))) - dmin) / (dmax - dmin) * (x1 - x0);
+let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:640px;display:block" role="img" aria-label="Deviation from the original per EF 3.1 category, before and after calibration">`;
+svg += `<rect class="band" x="${X(-10)}" y="${T-8}" width="${X(10)-X(-10)}" height="${S.length*rowH+8}"/>`;
+for (const t of ticks) { svg += `<line class="${t===0?'zero':'grid'}" x1="${X(t)}" x2="${X(t)}" y1="${T-8}" y2="${T+S.length*rowH}"/><text class="ax" x="${X(t)}" y="${T+S.length*rowH+16}" text-anchor="middle">${t>0?'+':''}${t.toLocaleString()}%</text>`; }
+S.forEach((s, i) => {
+  const y = T + i * rowH + rowH / 2;
+  svg += `<g class="row" data-i="${i}"><rect x="0" y="${y-rowH/2}" width="${W}" height="${rowH}" fill="transparent"/>`;
+  svg += `<text class="cat" x="${L-10}" y="${y+4}" text-anchor="end">${s.cat.replace('Climate change-','CC · ').replace('Human toxicity','HT').replace('Photochemical ozone formation - human health','Photochem. ozone formation').replace('Ecotoxicity, freshwater','Ecotox. fw').replace('_',' · ')}</text>`;
+  svg += `<line class="link" x1="${X(s.d_raw)}" x2="${X(s.d_cal)}" y1="${y}" y2="${y}"/>`;
+  svg += `<circle class="before" cx="${X(s.d_raw)}" cy="${y}" r="5"/><circle class="after" cx="${X(s.d_cal)}" cy="${y}" r="5.5"/>`;
+  svg += `<text class="val" x="${x1+8}" y="${y+4}">${s.d_cal>0?'+':''}${s.d_cal.toFixed(1)}%</text></g>`;
+});
+svg += '</svg>';
+document.getElementById('chart').innerHTML = svg;
+const tip = document.getElementById('tip');
+document.querySelectorAll('.row').forEach(g => {
+  g.addEventListener('mousemove', e => {
+    const s = S[+g.dataset.i];
+    tip.innerHTML = `<b>${s.cat}</b><br>original ${s.target.toPrecision(3)} ${s.unit}<br>gross electricity: ${s.transcribed.toPrecision(3)} (${s.d_raw>0?'+':''}${s.d_raw.toFixed(1)}%)<br>calibrated: ${s.calibrated.toPrecision(3)} (${s.d_cal>0?'+':''}${s.d_cal.toFixed(1)}%)`;
+    tip.hidden = false; tip.style.left = Math.min(e.clientX + 14, window.innerWidth - 300) + 'px'; tip.style.top = (e.clientY + 14) + 'px';
+  });
+  g.addEventListener('mouseleave', () => tip.hidden = true);
+});
+</script>

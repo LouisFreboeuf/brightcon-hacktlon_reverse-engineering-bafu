@@ -87,6 +87,71 @@ number of technosphere inputs, elementary flows and consuming processes. BAFU-20
 no technosphere inputs at all, the 14 PlasticsEurope polymers keep a few disposal inputs. (A
 102nd flagged dataset, `Disposal, rectangular straw bale`, has no exchanges and is skipped.)
 Sorted by consumers: HDPE granulate (533), PP (173), LDPE (122), ethylene glycol (76), ethylene (72).
+The `family` column groups them by data origin (PlasticsEurope eco-profiles, confidential
+ecoinvent-v2 industry data, treeze/KBOB reports, French bio-based FDES studies, manufacturer KBOB
+datasets); `unit_sibling` names a unit process of the same product already in BAFU.
+[docs/disaggregation_strategies.md](docs/disaggregation_strategies.md) discusses what is behind
+each family and how it could be disaggregated.
+
+## Disaggregation pipeline (`reverse-bafu`)
+
+One aggregated dataset at a time, driven by a JSON *spec* holding the evidence-derived unit process
+(see [specs/d8ec4be3-burnt-shale.json](specs/d8ec4be3-burnt-shale.json) and the docstring in
+[src/reverse_bafu/spec.py](src/reverse_bafu/spec.py)):
+
+```bash
+uv run reverse-bafu resolve   specs/<spec>.json   # map every input to a BAFU unit process; flag missing / aggregated ones
+uv run reverse-bafu calibrate specs/<spec>.json   # NNLS amounts for inputs marked "free", list held fixed (--apply writes back)
+uv run reverse-bafu build     specs/<spec>.json   # write <code>-disagg and <code>-hybrid into the sandbox database
+uv run reverse-bafu check     specs/<spec>.json   # harness: score diff, flow diff, residual share, structural checks
+uv run reverse-bafu run       specs/<spec>.json   # all four
+```
+
+`--project` defaults to `reverse-bafu`. Nodes land in the Brightway database `reverse-bafu-sandbox`
+(depends on `bafu-2026` and the two biosphere databases); the original dataset is never touched.
+`<code>-disagg` is the explicit model, `<code>-hybrid` adds a residual block of elementary flows so
+its cumulative inventory equals the original exactly (the S5 representation). Check reports go to
+`results/checks/<code>.md`.
+
+Why the harness has a structural section: with a free input list, NNLS reproduces all 25 EF scores
+to 1.000 while choosing 116 wrong inputs (see the strategy doc §4); score agreement is necessary,
+not sufficient. Inputs may carry a nested `"node"` for intermediate processes BAFU lacks; they are
+built first and linked ("terminate on the database").
+
+Pilot — `Burnt shale, at plant` from the concrete 2020 report, Tab. 3.9: 12 inputs, all resolved
+to existing unit processes; direct CO₂ alone reproduces the climate score; the table's gross grid
+electricity (68.6 kWh/t) overshoots ionising radiation by +614 % and the fit puts it at 2.5 kWh/t —
+the plant co-generates 183.8 kWh/t, so the original nets its own generation. With that one amount
+calibrated: climate, acidification, particulates, photochemical ozone and fossil resources within
+±7 %; the toxicity / land / water categories still miss flows the table does not list (metals from
+burning, water) — that is what the flow diff in the report is for.
+
+### Benchmark with known answers
+
+```bash
+uv run reverse-bafu benchmark --n 40 --seed 7          # ~12 min; results/benchmark/n40-seed7.{csv,md}
+uv run reverse-bafu benchmark --n 5 --scenarios blind  # the field-agnostic control, slow
+```
+
+Turns BAFU unit processes into synthetic system-terminated datasets (their cumulative inventory)
+and scores the calibration against the real inputs under five evidence packages — correct list,
+list with ranges, list with 30 % missing, list with 10 distractors, no list. Latest run: correct
+list → 37/40 cases match all 25 categories, 92 % of material amounts within ±20 %; with distractors
+4/40 cases choose a wrong input while scores still match. Details in
+[docs/disaggregation_strategies.md](docs/disaggregation_strategies.md) §4.
+
+## Sources and reports
+
+```bash
+uv run python scripts/list_sources.py     # writes results/sources.csv and results/dois.csv
+```
+
+Every dataset cites one source in its ecoSpold metadata (author, year, title, publisher, full
+citation); [results/sources.csv](results/sources.csv) lists the 125 distinct ones with how many
+datasets (and how many aggregated ones) cite each, and [results/dois.csv](results/dois.csv) the 36
+DOIs embedded in dataset comments. If the official `BAFU-2026 v1_Documentation` bundle is unzipped
+next to the repo (gitignored), the `pdf` column links each source to its report PDF — 108 of 125
+sources, 11,541 of 11,947 datasets.
 
 ## Data
 
