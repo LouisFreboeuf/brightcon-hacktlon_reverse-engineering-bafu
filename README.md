@@ -68,6 +68,25 @@ print(lca.score)  # 0.0969623 kg CO2 eq per kWh
 The backtest is our regression check for the hackathon: after swapping an aggregated dataset for
 unit processes, the scores of everything downstream should stay within tolerance.
 
+## Aggregated datasets: the ecoSpold "system terminated" list
+
+```bash
+uv run python scripts/list_system_terminated.py      # ~15 s, writes results/system_terminated.csv
+```
+
+In the EcoSpold01 schema every dataset carries `dataSetInformation@type`: 1 = unit process
+(direct flows + links to suppliers), 2 = *system terminated* — the cumulative elementary flows
+of the whole upstream chain, i.e. an LCI result
+([schema documentation](https://github.com/brightway-lca/pyecospold/blob/main/pyecospold/schemas/v1/EcoSpold01MetaInformation.xsd#L26-L60)).
+The type-2 datasets are the explicitly aggregated ones to rebuild as unit processes.
+
+The flag is read from the unzipped XML in `data/` (the Sentier import drops it); the file-name
+UUID is the Brightway activity code, so each row is joined with the installed database for the
+number of technosphere inputs, elementary flows and consuming processes. BAFU-2026 v1 has
+**102** such datasets ([results/system_terminated.csv](results/system_terminated.csv)); 88 have
+no technosphere inputs at all, the 14 PlasticsEurope polymers keep a few disposal inputs.
+Sorted by consumers: HDPE granulate (533), PP (173), LDPE (122), ethylene glycol (76), ethylene (72).
+
 ## Data
 
 `BAFU-2026 v1_ecoSpold v1.zip` (11,948 ecoSpold v1 XML files, one `process_<uuid>.xml` per dataset)
