@@ -27,13 +27,13 @@ This installs `sentier-brightway` from its GitHub `main` (pinned to a commit in 
 #    cached in ~/.cache/sentier-brightway/, no Brightway project touched)
 uv run sentier-brightway coverage
 
-# 2. write the databases + methods into the Brightway project "bafu-2026" (~3-4 min)
-uv run sentier-brightway db --project bafu-2026
+# 2. write the databases + methods into the Brightway project "reverse-bafu" (~3-4 min)
+uv run sentier-brightway db --project reverse-bafu
 ```
 
 `run_bafu.sh` runs both.
 
-Afterwards the project `bafu-2026` contains:
+Afterwards the project `reverse-bafu` contains:
 
 | Object | Content |
 |---|---|
@@ -42,7 +42,7 @@ Afterwards the project `bafu-2026` contains:
 | database `bafu-2026-residual` | the 113 BAFU flows with no EF 3.1 counterpart (kept, no characterization factor) |
 | methods `("sentier", "EF v3.1", <category>)` | 25 EF 3.1 impact categories |
 
-Re-run with `--overwrite` to replace a previous install. In Activity Browser, open the `bafu-2026`
+Re-run with `--overwrite` to replace a previous install. In Activity Browser, open the `reverse-bafu`
 project; the methods sit under `sentier` › `EF v3.1`.
 
 Quick check that everything works:
@@ -50,7 +50,7 @@ Quick check that everything works:
 ```python
 import bw2data as bd, bw2calc as bc
 
-bd.projects.set_current("bafu-2026")
+bd.projects.set_current("reverse-bafu")
 act = bd.Database("bafu-2026").get("c4a92617-9f99-3d7b-95c0-15fb110b80ad")  # Electricity, low voltage, at grid | CH
 lca = bc.LCA({act: 1}, ("sentier", "EF v3.1", "Climate change"))
 lca.lci(); lca.lcia()
