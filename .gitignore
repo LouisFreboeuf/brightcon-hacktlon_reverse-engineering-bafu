@@ -1,7 +1,8 @@
-# BAFU source data: distributed by BAFU, not redistributable here
+# BAFU source data and documentation bundle: distributed by BAFU under its terms of use, not redistributable here
 *.zip
 ecoSpold files/
 data/
+BAFU-2026 v1_Documentation/
 
 # generated outputs (sentier-brightway files/backtest, notebooks, ...)
 output/
