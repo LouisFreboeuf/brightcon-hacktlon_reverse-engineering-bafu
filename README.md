@@ -68,30 +68,6 @@ print(lca.score)  # 0.0969623 kg CO2 eq per kWh
 The backtest is our regression check for the hackathon: after swapping an aggregated dataset for
 unit processes, the scores of everything downstream should stay within tolerance.
 
-## Screening for aggregated datasets
-
-```bash
-uv run python scripts/screen_aggregated.py            # ~20 s, writes output/aggregated_screening.csv
-```
-
-Screens every process in the `bafu-2026` database and ranks it into a tier. Three independent
-signals are combined and each is kept as its own CSV column:
-
-| Signal | Where it comes from | What it catches |
-|---|---|---|
-| `ecospold_type` = 2 ("system terminated") | raw ecoSpold XML in `data/ecospold/` (the Sentier import drops this flag) | 102 datasets explicitly exported as aggregated |
-| 0 technosphere inputs + ≥ 50 elementary flows | Brightway exchanges | cumulative LCIs by construction |
-| background-chain fingerprint: ≥ 3 of {crude oil, natural gas, coal, uranium *in ground*, Radon-222, Carbon-14}, incl. the nuclear chain | Brightway exchanges | cradle-to-gate LCIs pasted in with a token set of inputs (PlasticsEurope eco-profiles, ecoinvent-v2 solvents) |
-
-Tiers: `system-flagged` (101) › `cumulative-lci` › `partially-aggregated` (40) › `unit` › `empty`
-(111 placeholder datasets with no exchanges at all). Without the unzipped XML the same 141
-candidates are found from structure alone, just without the explicit flag. `n_used_by` counts the
-processes consuming each dataset — start with the widely used ones (HDPE granulate: 533 consumers).
-
-The tier rules are deliberately conservative: emission-only unit processes (tyre wear, ash
-leachate) and extraction datasets (coal mines emit coal ore, mine gas and radon directly) are kept
-as `unit`. `--min-elementary` and the regexes at the top of the script are the knobs.
-
 ## Data
 
 `BAFU-2026 v1_ecoSpold v1.zip` (11,948 ecoSpold v1 XML files, one `process_<uuid>.xml` per dataset)
