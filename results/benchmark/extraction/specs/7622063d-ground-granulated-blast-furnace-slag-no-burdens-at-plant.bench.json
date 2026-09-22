@@ -469,7 +469,7 @@
           "mapping_reason": "Same substance in the air compartment stated by the table; the soil and water entries are the wrong compartment and 'Sulfide ion' is a different species.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-94af-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-94a8-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -544,7 +544,7 @@
           "mapping_reason": "Same substance group in the air compartment; the other entries differ only in compartment (soil, water).",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "d86c3abb-6555-11dd-ad8b-0800200c9a66",
+        "code": "08a91e70-3ddc-11dd-a302-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -594,7 +594,7 @@
           "mapping_reason": "The table's 'Water' to air is evaporated quench water, i.e. water vapour, and this candidate is the only air-compartment water flow whose unit is kilogram, matching the table's 1.38E-1 kg; 'Water [air]' is in cubic metres and would be off by a factor 1000.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "2905ed3b-6556-11dd-ad8b-0800200c9a66",
+        "code": "fe0acd60-3ddc-11dd-ac04-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -644,7 +644,7 @@
           "mapping_reason": "Waste heat released to air in megajoules, matching the table's unit; the soil and water variants are the wrong compartment and 'Energy, waste heat, air' sits in the residual database under resources.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
         "database": "ef-3.1-biosphere"
       }
     ],
