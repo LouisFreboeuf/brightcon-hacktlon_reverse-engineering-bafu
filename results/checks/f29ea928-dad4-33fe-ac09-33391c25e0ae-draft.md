@@ -8,19 +8,19 @@ target `bafu-2026` vs explicit model `f29ea928-dad4-33fe-ac09-33391c25e0ae-draft
 
 ## Flow agreement (explicit vs target, per elementary flow)
 
-- the 50 largest kilogram flows: 11/50 within ±10 %, median |Δ| 36.9%
+- the 50 largest kilogram flows: 11/50 within ±10 %, median |Δ| 41.6%
 - kilogram mass covered within ±10 %: 13.3% of the target's total kg mass
 - of the 1148 flows of the target, 1148 are determined by the solve (0 are round-off and are not scored; see lci.determined_flows)
-- 117 of those 1148 within ±10 % (10%), median |Δ| 74.8%, 0 missing from the model, 626 extra
+- 117 of those 1148 within ±10 % (10%), median |Δ| 75.2%, 0 missing from the model, 639 extra
 - hybrid vs target: identical on every flow
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
 | ≤ 10 % | 117 | 10% |
 | 10–20 % | 108 | 9% |
-| 20–50 % | 240 | 21% |
-| 50–100 % | 264 | 23% |
-| > 100 % | 419 | 36% |
+| 20–50 % | 238 | 21% |
+| 50–100 % | 265 | 23% |
+| > 100 % | 420 | 37% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
@@ -36,7 +36,7 @@ target `bafu-2026` vs explicit model `f29ea928-dad4-33fe-ac09-33391c25e0ae-draft
 | Calcite [resources/in ground] (kilogram) | 0.546 | 0.274 | -49.8% | +0.272 |
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.337 | 0.291 | -13.6% | +0.046 |
 | Sodium chloride [resources/in ground] (kilogram) | 0.246 | 0.00794 | -96.8% | +0.238 |
-| Sulfate Ion [water] (kilogram) | 0.15 | 0.2 | +33.4% | -0.0501 |
+| Sulfate Ion [water] (kilogram) | 0.15 | 0.00022 | -99.9% | +0.15 |
 | Clay [soil] (kilogram) | 0.128 | 0.0437 | -65.9% | +0.0843 |
 | Sulfate [emissions to water/groundwater, long-term] (kilogram) | 0.111 | 0.107 | -3.0% | +0.00332 |
 | Silicon [Emissions/Emissions to water] (kilogram) | 0.0991 | 0.0947 | -4.4% | +0.00438 |
@@ -110,16 +110,16 @@ target `bafu-2026` vs explicit model `f29ea928-dad4-33fe-ac09-33391c25e0ae-draft
 
 | flow | target | explicit | Δ |
 |---|---|---|---|
+| Sulfate Ion [water] (kilogram) | 0.00447 | 0.204 | +4447.7% |
 | Sodium [water] (kilogram) | 0.00138 | 0.0136 | +887.6% |
 | Chloride [Emissions/Emissions to water] (kilogram) | 0.00218 | 0.0195 | +793.5% |
 | Carbon Dioxide (biogenic) [Emissions/Emissions to air] (kilogram) | 0.00376 | 0.0143 | +280.3% |
 | Carbon Dioxide (biogenic) [Emissions/Emissions to air] (kilogram) | 0.0039 | 0.012 | +208.9% |
 | Chloride [Emissions/Emissions to water] (kilogram) | 0.0103 | 0.0234 | +127.4% |
+| Sulfate Ion [water] (kilogram) | 0.15 | 0.00022 | -99.9% |
 | Particles (PM10) [Emissions/Emissions to air] (kilogram) | 0.00702 | 0.000159 | -97.7% |
 | Sodium chloride [resources/in ground] (kilogram) | 0.246 | 0.00794 | -96.8% |
 | Barite [resources/in ground] (kilogram) | 0.00326 | 0.00637 | +95.6% |
-| Chemical Oxygen Demand [water] (kilogram) | 0.00243 | 0.000135 | -94.4% |
-| Biological Oxygen Demand [water] (kilogram) | 0.00238 | 0.000144 | -94.0% |
 
 ## Structural checks
 
@@ -129,7 +129,7 @@ target `bafu-2026` vs explicit model `f29ea928-dad4-33fe-ac09-33391c25e0ae-draft
 - ✓ mass in: 5.5 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 553 flows under-explained, 1221 over-explained (negative residual)
+residual: 534 flows under-explained, 1253 over-explained (negative residual)
 
 ## Evidence
 

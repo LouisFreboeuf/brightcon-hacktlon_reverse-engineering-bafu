@@ -18,7 +18,7 @@ EF 3.1 biosphere databases you already have.
 | file | what it is |
 |---|---|
 | `disaggregated_bafu2026.json` | the export. Plain, documented JSON — one object per rebuilt dataset, with every exchange, its supplier's BAFU code, every elementary flow with its EF 3.1 code **and** database, the residual block, and the provenance (report, page, quoted line) wherever the pipeline recorded it. |
-| `disaggregated_bafu2026_exchanges.csv` | the **explicit** exchanges flattened to one row each, for reading in a spreadsheet. It is a *view*; the JSON is the source of truth (the CSV drops the derivation detail, the gaps, the evidence list and the ~31,000 residual rows, which would bury the 332 explicit ones). |
+| `disaggregated_bafu2026_exchanges.csv` | the **explicit** exchanges flattened to one row each, for reading in a spreadsheet. It is a *view*; the JSON is the source of truth (the CSV drops the derivation detail, the gaps, the evidence list and the ~49,000 residual rows, which would bury the 451 explicit ones). |
 | `README.md` | this file. |
 
 Both files are generated — never hand-edited — by:
@@ -248,28 +248,40 @@ them it is small.
 
 | BAFU dataset | strategy | flows within +-10 % | of the 50 largest kg flows | kg mass covered | median deviation |
 |---|---|---|---|---|---|
-| Cement ZN, D, at plant (draft) | S1 | 249/1326 (19%) | 8/50 | 0.5 % | 28.7 % |
-| Cement ZN, D, at plant | S1 | 249/1326 (19%) | 8/50 | 0.5 % | 28.7 % |
+| Polyvinylchloride, suspension polymerised, at plant | S3 | 1379/1669 (83%) | 36/50 | 34.1 % | 1.2 % |
+| Polyethylene, LLDPE, granulate, at plant | S3 | 1283/1671 (77%) | 26/50 | 7.7 % | 1.9 % |
+| Polyethylene, HDPE, granulate, at plant | S3 | 1274/1669 (76%) | 26/50 | 7.6 % | 1.9 % |
+| Polyethylene, LDPE, granulate, at plant | S3 | 1170/1672 (70%) | 24/50 | 7.4 % | 2.6 % |
+| Polypropylene, granulate, at plant | S3 | 1080/1670 (65%) | 17/50 | 4.0 % | 8.9 % |
+| Purified terephthalic acid, at plant | S3 | 547/1669 (33%) | 3/50 | 0.3 % | 11.4 % |
+| Polyvinylchloride, emulsion polymerised, at plant | S3 | 269/1670 (16%) | 14/50 | 25.9 % | 79.5 % |
+| Cement ZN, D, at plant (draft) | S1 | 249/1326 (19%) | 8/50 | 0.5 % | 28.6 % |
+| Cement ZN, D, at plant | S1 | 249/1326 (19%) | 8/50 | 0.5 % | 28.6 % |
 | Particle board, cement bonded, at plant (draft) | S1 | 140/1149 (12%) | 8/50 | 42.7 % | 63.0 % |
 | Burnt shale, at plant | S1 | 128/1326 (10%) | 9/50 | 99.5 % | 66.2 % |
-| Titanium dioxide at plant, sulphate process, at plant (draft) | S1 | 117/1148 (10%) | 11/50 | 13.3 % | 74.8 % |
+| Polyethylene terephthalate, granulate, bottle grade, at plant | S2 | 126/1681 (7%) | 9/50 | 4.7 % | 70.0 % |
+| Titanium dioxide at plant, sulphate process, at plant (draft) | S1 | 117/1148 (10%) | 11/50 | 13.3 % | 75.2 % |
 | xxx Wood wool boards, cement bonded, at plant (draft) | S1 | 111/1149 (10%) | 7/50 | 30.6 % | 63.0 % |
-| Burnt shale, at plant (draft) | S1 | 81/1326 (6%) | 3/50 | 30.4 % | 148.2 % |
-| xx Packaging glass, white, at regional storage | S2 | 76/1146 (7%) | 5/50 | 0.1 % | 87.9 % |
+| Ethylene glycol, at plant | S2 | 105/1673 (6%) | 8/50 | 4.6 % | 180.3 % |
+| Burnt shale, at plant (draft) | S1 | 81/1326 (6%) | 3/50 | 30.4 % | 144.5 % |
+| xx Packaging glass, white, at regional storage | S2 | 76/1146 (7%) | 5/50 | 0.1 % | 88.1 % |
 | Anthraquinone, at plant (draft) | S1 | 75/1149 (7%) | 5/50 | 8.3 % | 68.1 % |
-| xx Packaging glass, green, at regional storage | S2 | 72/1146 (6%) | 4/50 | 0.1 % | 88.9 % |
+| xx Packaging glass, green, at regional storage | S2 | 72/1146 (6%) | 4/50 | 0.1 % | 89.5 % |
 | xx Packaging glass, brown, at regional storage | S2 | 69/1146 (6%) | 3/50 | 0.1 % | 86.3 % |
+| Xylene, at plant | S3 | 62/1670 (4%) | 2/50 | 0.6 % | 120.7 % |
 | Gypsum plaster board, at plant | S2 | 59/1171 (5%) | 2/50 | 1.0 % | 99.9 % |
-| xx Packaging glass, brown, at plant | S2 | 51/1146 (4%) | 3/50 | 0.1 % | 128.7 % |
-| xx Packaging glass, white, at plant | S2 | 51/1146 (4%) | 4/50 | 0.2 % | 150.8 % |
-| xx Packaging glass, green, at plant | S2 | 45/1146 (4%) | 4/50 | 0.6 % | 176.5 % |
+| xx Packaging glass, white, at plant | S2 | 51/1146 (4%) | 4/50 | 0.2 % | 150.3 % |
+| xx Packaging glass, brown, at plant | S2 | 51/1146 (4%) | 3/50 | 0.1 % | 127.7 % |
+| xx Packaging glass, green, at plant | S2 | 45/1146 (4%) | 4/50 | 0.6 % | 170.4 % |
 | Titanium dioxide, chloride process, at plant (draft) | S1 | 42/1147 (4%) | 5/50 | 38.2 % | 70.7 % |
+| Vinyl chloride, at plant | S3 | 32/1669 (2%) | 0/50 | 0.0 % | 191.2 % |
 | Wood preservative, inorganic salt, containing Cr, at plant (draft) | S1 | 28/1148 (2%) | 0/50 | 0.0 % | 89.2 % |
 | Gypsum fibre board, at plant | S2 | 27/1172 (2%) | 2/50 | 0.5 % | 245.9 % |
 | xxx Wood wool boards, cement bonded, at plant | S2 | 26/1149 (2%) | 2/50 | 0.0 % | 70.1 % |
+| Polystyrene, expandable, at plant | S3 | 20/1671 (1%) | 0/50 | 0.0 % | 100.0 % |
 | Wood preservative, organic salt, Cr-free, at plant (draft) | S1 | 8/1149 (1%) | 0/50 | 0.0 % | 86.0 % |
 
-Sorted worst-last. "flows within ±10 %" counts the elementary flows of the original aggregated
+Sorted best-first. "flows within ±10 %" counts the elementary flows of the original aggregated
 dataset that the **explicit** node reproduces within ±10 %, out of the flows the solve determines.
 Source: `results/rebuild_status.csv`, and the per-dataset report named in each dataset's
 `quality.report`.
@@ -293,6 +305,45 @@ the original's flows, because the template unit process they borrow their struct
 different plant with a different supply chain, and calibration can only move amounts, not add or
 remove inputs. The `kg_mass_covered` column shows the same thing from the mass side: for several
 of them well under 1 % of the original's kilogram mass is explained.
+
+### The PlasticsEurope family, and why its numbers are not comparable with the rest
+
+Twelve of the rows above (the polyolefins, the two PVCs, EPS, PET bottle grade, vinyl chloride,
+PTA, xylene, ethylene glycol) are the PlasticsEurope eco-profiles that BAFU-2026 carries as system
+processes. They hold both the best and the worst scores in the table, and the spread has almost
+nothing to do with how good the evidence behind each one is. Three things drive it, and all three
+are properties of BAFU-2026 rather than of the rebuilds:
+
+1. **One exchange dominates three quarters of every vector.** ESU added `4.0E-10 units of
+   Chemical plant, organics` to each of the 14 datasets when implementing them ("the standard
+   amount for production of chemicals", Rajabihamedani et al. 2025 sec. 3.6). That one exchange
+   supplies more than 90 % of the value of 1244–1464 of the 1790 flows in their cumulative
+   inventories — PET bottle grade is the clean control, since it has *no other* technosphere
+   exchange at all and still has 1790 cumulative flows against the 393 it declares. Run
+   `scripts/plasticseurope_infrastructure_diagnostic.py` to see it per dataset. The practical
+   consequence for a rebuild: ESU added one chemical plant per *dataset*, i.e. one per
+   cradle-to-gate chain, so a rebuilt unit process that links to a precursor which already carries
+   one and then adds its own doubles ~1300 flows. Every spec in this family therefore carries the
+   infrastructure as a free input bounded by `[0, 4.0E-10]`, and the fit drives it to zero. Getting
+   this one exchange right moved HDPE from 4 % to 76 %.
+2. **A high score here mostly means "the precursor is another PlasticsEurope dataset".** The five
+   best rows — S-PVC, LLDPE, HDPE, LDPE, PP — are all a monomer at 1 kg per kg of polymer plus
+   calibrated energy, and the monomer is itself a PlasticsEurope (or APME-derived) aggregate, so
+   the two vectors share a background by construction. That is a genuine disaggregation — the
+   polymer's burden is now traceable to its monomer's dataset — but 83 % is not a statement about
+   the quality of the polymerisation model, whose fitted electricity and steam come out at
+   essentially zero.
+3. **Sub-compartments split across data vintages.** The 2025 PlasticsEurope implementations put
+   CO₂ in `Emissions to air, unspecified`; the older ecoinvent-v2-nomenclature datasets they link
+   to (Styrene, Propylene, Benzene, Toluene) put it in `Emissions to urban air close to ground`.
+   These are different EF 3.1 flows, so a model whose substance total is within 10 % can score two
+   entries at −98 % and +6370 %. Polypropylene and expandable polystyrene are both affected;
+   EPS, at 1 %, is the extreme case.
+
+Two of the fourteen — **Ethylene, average** and **Pyrolysis gasoline** — are deliberately absent
+from the export. Both are steam-cracker products, the cracker is a multi-output process whose
+allocation nothing in the documentation bundle quantifies, and no report in the bundle prints a
+yield or an energy figure for it. `results/drafting_status.csv` records the reason.
 
 Specific things to keep in mind:
 
