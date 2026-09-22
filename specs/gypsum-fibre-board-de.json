@@ -87,7 +87,7 @@
       },
       {
         "name": "Tap water, at user",
-        "amount": 6.359999991222472,
+        "amount": 6.359999991222471,
         "unit": "kilogram",
         "location": "RER",
         "note": "CH template x 10 kg/m2 = 3.18",
@@ -100,7 +100,7 @@
       },
       {
         "name": "Stucco, at plant",
-        "amount": 14.199999979325295,
+        "amount": 14.199999979325296,
         "unit": "kilogram",
         "location": "CH",
         "note": "CH template x 10 kg/m2 = 7.1",
@@ -113,7 +113,7 @@
       },
       {
         "name": "Electricity, medium voltage, at grid",
-        "amount": 1.7299999976152538,
+        "amount": 1.7299999976152536,
         "unit": "kilowatt hour",
         "location": "DE",
         "note": "CH template x 10 kg/m2 = 0.865; grid switched to DE",
@@ -154,7 +154,7 @@
         "amount": 3.11,
         "unit": "megajoule",
         "note": "CH template",
-        "code": "d86bec83-6555-11dd-ad8b-0800200c9a66",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {

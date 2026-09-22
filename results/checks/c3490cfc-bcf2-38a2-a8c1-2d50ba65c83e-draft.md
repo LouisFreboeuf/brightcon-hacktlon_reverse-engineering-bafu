@@ -10,16 +10,16 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 
 - the 50 largest kilogram flows: 8/50 within ±10 %, median |Δ| 44.2%
 - kilogram mass covered within ±10 %: 0.5% of the target's total kg mass
-- all 1326 flows of the target: 249 within ±10 % (19%), median |Δ| 28.6%, 0 missing from the model, 465 extra
+- all 1326 flows of the target: 249 within ±10 % (19%), median |Δ| 28.7%, 0 missing from the model, 450 extra
 - hybrid vs target: identical on every flow
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
 | ≤ 10 % | 249 | 19% |
 | 10–20 % | 186 | 14% |
-| 20–50 % | 404 | 30% |
+| 20–50 % | 403 | 30% |
 | 50–100 % | 299 | 23% |
-| > 100 % | 188 | 14% |
+| > 100 % | 189 | 14% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
@@ -32,14 +32,14 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.483 | 0.584 | +20.9% | -0.101 |
 | Shale [soil] (kilogram) | 0.13 | 0.144 | +10.7% | -0.014 |
 | Clay [soil] (kilogram) | 0.0547 | 0.0605 | +10.5% | -0.00572 |
-| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.58e-06 | -100.0% | +0.0303 |
+| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.54e-06 | -100.0% | +0.0303 |
 | Carbon Dioxide (biogenic) [Emissions/Emissions to air] (kilogram) | 0.0263 | 0.0428 | +62.7% | -0.0165 |
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.0229 | 0.0253 | +10.7% | -0.00245 |
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.0161 | 0.0124 | -22.8% | +0.00366 |
 | Gravel [soil] (kilogram) | 0.0102 | 0.0162 | +58.8% | -0.00601 |
 | Waste mass, total, placed in landfill [resources/in ground] (kilogram) | 0.00705 | 0.00765 | +8.4% | -0.000593 |
 | Sulfate [emissions to water/groundwater, long-term] (kilogram) | 0.00443 | 0.00665 | +50.0% | -0.00221 |
-| carbon dioxide (biogenic) [Resources/Resources from air] (kilogram) | 0.00259 | 0.00378 | +46.2% | -0.0012 |
+| carbon dioxide (biogenic) [Resources/Resources from air] (kilogram) | 0.00259 | 0.00379 | +46.2% | -0.0012 |
 | calcium [Emissions/Emissions to water] (kilogram) | 0.00202 | 0.00261 | +29.4% | -0.000593 |
 | Carbon Dioxide (biogenic) [Emissions/Emissions to air] (kilogram) | 0.00178 | 0.00296 | +65.7% | -0.00117 |
 | Carbon Monoxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.000985 | 0.00179 | +81.6% | -0.000804 |
@@ -95,7 +95,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 |---|---|---|---|---|
 | Forest, Intensive [Land use/Land occupation] (square meter-year) | 0.00215 | 0.00337 | +56.8% | -0.00122 |
 | Forest [Land use/Land occupation] (square meter-year) | 0.00128 | 0.00146 | +14.0% | -0.00018 |
-| Industrial Area [Land use/Land occupation] (square meter-year) | 0.000426 | 0.000374 | -12.3% | +5.26e-05 |
+| Industrial Area [Land use/Land occupation] (square meter-year) | 0.000426 | 0.000374 | -12.3% | +5.25e-05 |
 | Mineral Extraction Site [Land use/Land occupation] (square meter-year) | 0.000197 | 0.00017 | -14.0% | +2.76e-05 |
 | Traffic Area, Road Network [Land use/Land occupation] (square meter-year) | 0.000195 | 0.000223 | +14.3% | -2.8e-05 |
 
@@ -129,7 +129,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 
 | flow | target | explicit | Δ |
 |---|---|---|---|
-| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.58e-06 | -100.0% |
+| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.54e-06 | -100.0% |
 | Non-methane Volatile Organic Compounds [Emissions/Emissions to air] (kilogram) | 5.23e-05 | 2.58e-06 | -95.1% |
 | Platinum [air] (kilogram) | 0.00047 | 0.000868 | +84.7% |
 | Solids, Inorganic [water] (kilogram) | 6.44e-05 | 0.000118 | +83.8% |
@@ -148,7 +148,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 - ✓ mass in: 1.05 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 584 flows under-explained, 1207 over-explained (negative residual)
+residual: 598 flows under-explained, 1178 over-explained (negative residual)
 
 ## Evidence
 

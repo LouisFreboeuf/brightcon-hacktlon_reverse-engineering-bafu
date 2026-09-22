@@ -46,7 +46,7 @@
       {
         "name": "Electricity, medium voltage, at grid",
         "location": "DE",
-        "amount": 0.002718765916157699,
+        "amount": 0.0027191923250123166,
         "unit": "kilowatt hour",
         "free": true,
         "note": "crusher 1.16 + conveyors 0.501 + comminution 3.47 + burnt-shale production 30.7 + power generation own use 11.4 + milling 21.4 kWh/t",
