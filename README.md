@@ -26,14 +26,13 @@ uv sync --extra llm             # optional: the anthropic SDK, for `reverse-bafu
 
 ### The BAFU files
 
-Two BAFU downloads, both gitignored under BAFU's terms of use (citation at the end). They are
-distributed via openLCA Nexus (the "Context and Content" note in the documentation bundle names it
-as the download site).
+Download **both** of these from openLCA Nexus, <https://nexus.openlca.org/downloads> (free account;
+accept BAFU's terms of use). Both stay gitignored (citation at the end).
 
-| File | Unzip to | Needed by |
-|---|---|---|
-| `BAFU-2026 v1_ecoSpold v1.zip` (11,948 `process_<uuid>.xml`) | `data/ecospold/` — the zip's inner folder is `ecoSpold files/`, rename it | steps 3 and 5 (the ecoSpold metadata, incl. the `type=2` flag the Brightway import drops) |
-| `BAFU-2026 v1_Documentation.zip` (114 LCI report PDFs) | `BAFU-2026 v1_Documentation/` next to this README, keeping the inner `BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports/` layout | step 3 (`pdf` column) and step 5 (`--report`) |
+| Nexus download | Zip you get | Unzip to | Needed by |
+|---|---|---|---|
+| **BAFU:2026 Version 1 - ecoSpold1** | `BAFU-2026 v1_ecoSpold v1.zip` (11,948 `process_<uuid>.xml`) | `data/ecospold/` — the zip's inner folder is `ecoSpold files/`, rename it | steps 3 and 5 (the ecoSpold metadata, incl. the `type=2` flag the Brightway import drops) |
+| **BAFU:2026 Version 1 - Documentation** | `BAFU-2026 v1_Documentation.zip` (114 LCI report PDFs) | `BAFU-2026 v1_Documentation/` next to this README, keeping the inner `BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports/` layout | step 3 (`pdf` column) and step 5 (`--report`) |
 
 ```bash
 unzip "BAFU-2026 v1_ecoSpold v1.zip" -d data/ && mv "data/ecoSpold files" data/ecospold
