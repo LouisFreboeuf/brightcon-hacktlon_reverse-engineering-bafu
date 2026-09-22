@@ -14,7 +14,7 @@ explainer, the evidence page on the 101, the rebuilt inventories, and the develo
 
 Steps 1–3 reproduce `results/system_terminated.csv`, `sources.csv` and `dois.csv`; step 4 makes the specs
 (`results/drafting_status.csv` records where each of the 101 stands); step 5 rebuilds every spec
-(`results/rebuild_status.csv`, `results/checks/`); step 6 is the benchmark.
+(`results/rebuild_status.csv`, `results/checks/`); step 6 benchmarks the calibration step.
 
 ## 1. Setup
 
@@ -204,16 +204,67 @@ for one dataset):
 | build | the explicit node `<code>-disagg` and the hybrid `<code>-hybrid` (explicit + residual flows = original exactly) | `reverse-bafu-sandbox` |
 | check | 25‑category score diff, flow diff, residual share, structural checks | `results/checks/<code>.md` |
 
-## 6. Benchmark on synthetic aggregated datasets
+## 6. Benchmark: how well does the calibration recover a unit process?
 
 ```bash
 uv run reverse-bafu benchmark --n 40 --seed 7 --scenarios oracle,bounded,partial,distractors   # ~12 min -> results/benchmark/n40-seed7.{csv,md}
 uv run reverse-bafu benchmark --n 5 --seed 7 --scenarios blind --name blind-n5-seed7           # the no-list control, slow
 ```
 
-BAFU unit processes are turned into system-terminated lookalikes (their cumulative inventory) and
-the calibration is scored against the real inputs under five evidence packages. Results and
-interpretation: `results/benchmark/n40-seed7.md` and the method explainer, §7.
+**What it tests — and what it does not.** The benchmark tests one step of the pipeline: step 5's
+`calibrate`, the least‑squares recovery of input *amounts* from an aggregated flow vector given an
+input *list*. It does **not** test step 4 — locating the table in a PDF, extracting line items,
+mapping them to BAFU names — nor `resolve`. The reason is ground truth: for calibration, ground
+truth is free (below); for extraction it would need report tables paired with the unit processes
+they describe, which is a different benchmark (see the end of this section).
+
+**How it works, step by step.**
+
+1. *Test set.* BAFU unit processes with 3–30 technosphere inputs, not among the 101, name not
+   starting with `xx`; grouped by BAFU top‑level category, each group sorted by code and shuffled
+   with the seed, then drawn round‑robin over the categories until `--n` — so 40 cases span 40
+   categories (transport, chemicals, agriculture, …). Their real inputs and amounts are the answer key.
+2. *Synthetic aggregated dataset.* For each case the cumulative inventory `B·A⁻¹·e` is computed —
+   exactly what an ecoSpold `type=2` export of that process would contain — and becomes the
+   target vector. The process's own direct emissions are known too (given in every scenario but
+   `blind`).
+3. *Evidence packages.* The same fit is run five times per case with different candidate lists and
+   bounds, mimicking evidence of decreasing quality:
+
+   | Scenario | Candidate inputs | Bounds | Stands for |
+   |---|---|---|---|
+   | `oracle` | exactly the true inputs, amounts unknown | 0…∞ | a complete, correct table |
+   | `bounded` | the true inputs | 0.5×–2× the true amount | a table with ranges |
+   | `partial` | the true inputs minus the 30 % with the smallest climate contribution | 0…∞ | a report that omits minor lines |
+   | `distractors` | the true inputs plus 10 random processes used ≥ 30 times in BAFU | 0…∞ | an over‑proposed list (an LLM guessing inputs) |
+   | `blind` | every process used ≥ 30 times (~675), no direct flows | 0…∞ | no evidence at all (field‑agnostic fitting) |
+
+4. *Fit.* Exactly the pipeline's calibration: rows = characterised flows, each EF 3.1 category
+   weighted equally by the sum of its absolute contributions in the target, columns normalised;
+   NNLS when unbounded, BVLS when bounded (both run and the smaller residual kept when ≤ 150
+   columns).
+5. *Metrics per case and scenario* (`results/benchmark/<name>.csv`): score deviation over the 25
+   EF categories (median |Δ|, categories within ±10 %, climate Δ); amount recovery — the share of
+   *material* inputs (true contribution ≥ 1 % of some category score) fitted within ±20 %; structure —
+   false positives (candidates given a material amount that are not true inputs), false negatives
+   (material true inputs dropped); residual share; runtime. `<name>.md` holds the medians per scenario.
+
+**What the latest run says** (`results/benchmark/n40-seed7.md`): with the correct list, 37/40
+cases match all 25 categories and 92 % of material amounts come back within ±20 %; with ranges
+93 %; with 30 % of the inputs missing the headline scores hold (27/40) but small‑score categories
+drift; with 10 distractors the scores still match in 35/40 cases while **4 cases swap a true input
+for a wrong one** — the identifiability trap measured; with no list at all, nothing is recovered
+(0/5, 22–27 wrong inputs per case). Interpretation on the method explainer page, §7.
+
+**Benchmarking the extraction (step 4) — not built yet.** Ground truth would be BAFU *unit*
+processes whose report in the bundle prints their inventory table: run `locate → extract → map`
+on them and compare the drafted spec with the real exchanges — page range found, line items
+recovered, names mapped to the right dataset, amounts within tolerance, and the `gaps` the model
+reports versus what was actually missing. The caption indexes from `draft-all --dry-run` are the
+starting point for choosing such cases; the concrete 2020 report alone prints tables for clinker,
+blast‑furnace slag, ground slag and the CEM cements, all unit processes in BAFU. This benchmark
+needs model calls (or a session answering the prompts) for every case and a reviewer's tolerance
+per field, which is why it is listed here rather than shipped.
 
 ## Layout
 
