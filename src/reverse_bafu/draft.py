@@ -64,10 +64,11 @@ EXTRACTION_SCHEMA = {
         "basis": {"type": "string", "description": "the excerpt's reference basis, e.g. 'per t burnt shale, 71.3 % allocation column'"},
         "basis_amount": {"type": "number", "description": "how many target units one basis corresponds to, e.g. 1000 for per-t values of a per-kg target"},
         "allocation": {"type": "string"},
+        "mass_sum": {"type": ["number", "null"], "description": "if the excerpt states that the composition items add up to a mass per basis (e.g. 'adds up to 1.00 kg'), that mass; else null"},
         "items": {"type": "array", "items": LINE_ITEM},
         "gaps": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["basis", "basis_amount", "allocation", "items", "gaps"],
+    "required": ["basis", "basis_amount", "allocation", "mass_sum", "items", "gaps"],
     "additionalProperties": False,
 }
 MAPPING_SCHEMA = {
@@ -90,6 +91,47 @@ MAPPING_SCHEMA = {
     "required": ["mappings"],
     "additionalProperties": False,
 }
+
+
+LOCATE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "found": {"type": "boolean"},
+        "first_page": {"type": ["integer", "null"]},
+        "last_page": {"type": ["integer", "null"]},
+        "captions": {"type": "array", "items": {"type": "string"}},
+        "reason": {"type": "string"},
+    },
+    "required": ["found", "first_page", "last_page", "captions", "reason"],
+    "additionalProperties": False,
+}
+CAPTION_RX = re.compile(r"^\s*((?:Tab\.?|Table|Tabelle|Tableau|Fig\.?|Figure|Abb\.)\s*\d+[\.\d]*\s*[:.]?\s+.{6,140})", re.M)
+CACHE = Path(".cache/pdftext")
+
+
+def pdf_pages(pdf: Path) -> list[str]:
+    """Text of every page (pdftotext -layout), cached under .cache/pdftext/<sha256>/."""
+    d = CACHE / sha256(pdf)
+    if not (d / "n").exists():
+        d.mkdir(parents=True, exist_ok=True)
+        n = int(next(l for l in subprocess.run(["pdfinfo", str(pdf)], capture_output=True, text=True).stdout.splitlines() if l.startswith("Pages:")).split()[1])
+        for i in range(1, n + 1):
+            subprocess.run(["pdftotext", "-layout", "-f", str(i), "-l", str(i), str(pdf), str(d / f"{i}.txt")], check=True)
+        (d / "n").write_text(str(n))
+    n = int((d / "n").read_text())
+    return [(d / f"{i}.txt").read_text() for i in range(1, n + 1)]
+
+
+def captions_index(pdf: Path) -> list[dict]:
+    """Every table/figure caption with its PDF page - deterministic, language-neutral in form."""
+    out, seen = [], set()
+    for i, text in enumerate(pdf_pages(pdf), 1):
+        for m in CAPTION_RX.finditer(text):
+            cap = re.sub(r"\s+", " ", m.group(1)).strip()
+            if cap not in seen:
+                seen.add(cap)
+                out.append({"page": i, "caption": cap})
+    return out
 
 
 def sha256(path: Path) -> str:
@@ -156,6 +198,47 @@ def render(template: Path, **kw) -> str:
     if missing:
         raise SystemExit(f"unfilled placeholders in {template}: {missing}")
     return text
+
+
+def target_meta(code: str, ecospold_dir: Path) -> dict:
+    ds = ET.parse(ecospold_dir / f"process_{code}.xml").getroot().find("dataset")
+    pi = ds.find("metaInformation/processInformation")
+    rf = pi.find("referenceFunction")
+    return {"name": rf.get("name"), "unit": rf.get("unit"), "location": pi.find("geography").get("location"),
+            "category": f"{rf.get('category')} / {rf.get('subCategory')}", "includedProcesses": rf.get("includedProcesses", ""),
+            "generalComment": rf.get("generalComment", ""),
+            "technology": pi.find("technology").get("text", "") if pi.find("technology") is not None else ""}
+
+
+def locate_prompt(code: str, pdf: Path, ecospold_dir: Path) -> tuple[str, list[dict]]:
+    meta = target_meta(code, ecospold_dir)
+    caps = captions_index(pdf)
+    listing = "\n".join(f"- p.{c['page']}: {c['caption']}" for c in caps) or "- (no captions found)"
+    n_pages = len(pdf_pages(pdf))
+    return render(PROMPTS / "locate_pages.md", target_name=meta["name"], target_location=meta["location"], target_unit=meta["unit"],
+                  target_category=meta["category"], included_processes=(meta["includedProcesses"] or "—")[:300],
+                  technology=(meta["technology"] or "—")[:200], general_comment=(meta["generalComment"] or "—")[:300],
+                  report_name=pdf.name, n_pages=n_pages, captions=listing), caps
+
+
+def locate(code: str, pdf: Path, ecospold_dir: Path, dry_run: bool, from_response: Path | None, by: str) -> dict | None:
+    """Pass 0: which PDF pages hold the dataset's inventory. Returns the validated response or None (dry run)."""
+    ev = Path("specs/evidence") / code
+    ev.mkdir(parents=True, exist_ok=True)
+    prompt, caps = locate_prompt(code, pdf, ecospold_dir)
+    (ev / "prompt-0-locate.md").write_text(prompt)
+    (ev / "schema-0-locate.json").write_text(json.dumps(LOCATE_SCHEMA, indent=1))
+    (ev / "captions-0-locate.json").write_text(json.dumps({"pdf": pdf.name, "sha256": sha256(pdf), "captions": caps}, indent=1, ensure_ascii=False))
+    if from_response:
+        resp = _load_response(from_response, LOCATE_SCHEMA, "locate")
+        prov = {"model": "manual", "by": by, "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(), "at": _now()}
+    elif dry_run:
+        return None
+    else:
+        resp, prov = call_model(prompt, LOCATE_SCHEMA, "locate")
+    (ev / "response-0-locate.json").write_text(json.dumps(resp, indent=1, ensure_ascii=False))
+    (ev / "provenance-0-locate.json").write_text(json.dumps(prov, indent=1))
+    return resp
 
 
 def extraction_prompt(ev: Path) -> str:
@@ -314,12 +397,81 @@ def draft(code: str, dry_run: bool, from_response: dict[str, Path] | None, proje
     assemble(code, project)
 
 
+# ---------------------------------------------------------------- batch: every row of the CSV
+def draft_all(project: str, ecospold_dir: Path, reports: Path, dry_run: bool, only: set[str] | None, by: str,
+              status_path: Path = Path("results/drafting_status.csv")) -> None:
+    """One entry point for all system-terminated datasets: find the report, locate the pages, extract,
+    map, assemble - recording per dataset how far it got and why it stopped."""
+    import csv
+
+    rows = list(csv.DictReader(open("results/system_terminated.csv")))
+    pdf_by_title = {r["title"]: r["pdf"] for r in csv.DictReader(open("results/sources.csv"))}
+    status: list[dict] = []
+    for r in rows:
+        code, name = r["code"], r["name"]
+        if only and code not in only and code[:8] not in only:
+            continue
+        rec = {"code": code, "name": name, "family": r["family"], "pdf": "", "pages": "", "status": "", "note": ""}
+        status.append(rec)
+        title = r["source"].split(" | ")[-1] if r["source"] else ""
+        pdf_name = pdf_by_title.get(title, "")
+        if not pdf_name:
+            rec["status"], rec["note"] = "no-pdf", f"family {r['family']}: no report in the documentation bundle for '{title or 'no source'}'"
+            continue
+        pdf = reports / pdf_name
+        rec["pdf"] = pdf_name
+        ev = Path("specs/evidence") / code
+        try:
+            resp0 = None
+            if (ev / "response-0-locate.json").exists():
+                resp0 = json.loads((ev / "response-0-locate.json").read_text())
+            else:
+                resp0 = locate(code, pdf, ecospold_dir, dry_run, None, by)
+            if resp0 is None:
+                rec["status"], rec["note"] = "prompt-0-written", "answer prompt-0-locate.md, save as response-0-locate.json, rerun"
+                continue
+            if not resp0["found"]:
+                rec["status"], rec["note"] = "pages-not-found", resp0["reason"]
+                continue
+            pages = f"{resp0['first_page']}-{resp0['last_page']}"
+            rec["pages"] = pages
+            if not (ev / "manifest.json").exists():
+                evidence(code, pdf, pages, ecospold_dir, project)
+            fr = {}
+            if (ev / "response-1-extract.json").exists():
+                fr["extract"] = ev / "response-1-extract.json"
+            if (ev / "response-2-map.json").exists():
+                fr["map"] = ev / "response-2-map.json"
+            fr["by"] = by
+            if dry_run and "extract" not in fr:
+                draft(code, True, None, project)
+                rec["status"], rec["note"] = "prompt-1-written", "answer prompt-1-extract.md, save as response-1-extract.json, rerun"
+                continue
+            if dry_run and "map" not in fr:
+                draft(code, False, fr, project)  # renders prompt 2 from the extract response, stops
+                rec["status"], rec["note"] = "prompt-2-written", "answer prompt-2-map.md, save as response-2-map.json, rerun"
+                continue
+            draft(code, False, fr if len(fr) > 1 else None, project)
+            rec["status"], rec["note"] = "drafted", f"specs/{code[:8]}-{slug(name)}.draft.json"
+        except SystemExit as exc:
+            rec["status"], rec["note"] = "error", str(exc)[:200]
+    status_path.parent.mkdir(parents=True, exist_ok=True)
+    with status_path.open("w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(status[0]))
+        w.writeheader(); w.writerows(status)
+    from collections import Counter
+    print(f"\n{len(status)} datasets -> {status_path}")
+    for k, n in Counter(x["status"] for x in status).most_common():
+        print(f"  {n:3d}  {k}")
+
+
 # ---------------------------------------------------------------- layer 3: assemble the spec
 UNITS = {"kg": "kilogram", "MJ": "megajoule", "kWh": "kilowatt hour", "m3": "cubic meter", "tkm": "ton kilometer", "l": "litre",
          "unit": "unit", "m2": "square meter", "m": "meter", "t": "ton", "kBq": "kilo Becquerel"}
 
 
 def assemble(code: str, project: str) -> Path:
+    db.set_project(project)
     ev = Path("specs/evidence") / code
     meta = json.loads((ev / "target.json").read_text())
     man = json.loads((ev / "manifest.json").read_text())
@@ -328,7 +480,23 @@ def assemble(code: str, project: str) -> Path:
     prov1 = json.loads((ev / "provenance-1-extract.json").read_text())
     prov2 = json.loads((ev / "provenance-2-map.json").read_text())
     chosen = {m["item"]: m for m in mp["mappings"]}
+    cands = json.loads((ev / "candidates-2-map.json").read_text()) if (ev / "candidates-2-map.json").exists() else {}
     scale = 1.0 / float(ext["basis_amount"] or 1.0)  # per basis -> per 1 target unit
+
+    def rebuilt_node(item: str, name: str, location: str) -> str:
+        """If the chosen dataset is itself aggregated and a rebuilt node of it exists in the sandbox,
+        link that node ("terminate on the database" prefers a unit process over a sealed one)."""
+        import bw2data as bd
+        for e in cands.get(item, []):
+            if e.get("name") == name and e.get("aggregated") and (not location or e.get("location") == location):
+                for suffix in ("-disagg", "-draft-disagg"):
+                    try:
+                        bd.get_node(database=db.SANDBOX_DB, code=e["code"] + suffix)
+                        return e["code"] + suffix
+                    except Exception:
+                        continue
+        return ""
+
     inputs, emissions, resources, skipped = [], [], [], []
     for it in ext["items"]:
         amount = it["raw_value"] * it["factor"] * scale
@@ -343,6 +511,10 @@ def assemble(code: str, project: str) -> Path:
                 continue
             entry = {"name": m["chosen"], "amount": amount, "unit": unit, "location": m["location"], "note": it["note"],
                      "derivation": {**deriv, "search": it["search"], "mapping_reason": m["reason"], "mapping_by": prov2.get("by", "llm")}}
+            sb = rebuilt_node(it["name"], m["chosen"], m["location"]) if m.get("dependency") else ""
+            if sb:
+                entry["sandbox"] = sb
+                entry["derivation"]["linked_rebuilt_node"] = sb
             if it["raw_min"] is not None and it["raw_max"] is not None and it["raw_min"] != it["raw_max"]:
                 entry["free"] = True
                 entry["bounds"] = [it["raw_min"] * it["factor"] * scale, it["raw_max"] * it["factor"] * scale]
@@ -369,6 +541,7 @@ def assemble(code: str, project: str) -> Path:
                        "gaps_reported_by_model": ext["gaps"], "skipped_items": skipped, "assembled_at": _now()},
         "node": {"name": f"{meta['name']}, disaggregated", "unit": meta["unit"], "location": meta["location"],
                  "comment": f"drafted from {man['report']['file']} pp. {man['report']['pages']}",
+                 **({"mass_sum": ext["mass_sum"] * scale} if ext.get("mass_sum") else {}),
                  "inputs": inputs, "emissions": emissions, "resources": resources},
     }
     out = Path("specs") / f"{code[:8]}-{slug(meta['name'])}.draft.json"

@@ -11,14 +11,18 @@ from . import db, spec as spec_mod
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="reverse-bafu", description=__doc__)
-    p.add_argument("command", choices=["resolve", "calibrate", "build", "check", "run", "benchmark", "evidence", "draft", "assemble"])
+    p.add_argument("command", choices=["resolve", "calibrate", "build", "check", "run", "benchmark", "evidence", "draft", "assemble", "locate", "draft-all"])
     p.add_argument("spec", nargs="?", help="spec JSON (see src/reverse_bafu/spec.py); for evidence/draft/assemble: the target code")
     p.add_argument("--report", help="evidence: the report PDF")
     p.add_argument("--pages", help="evidence: page range in the PDF, e.g. 16-17")
     p.add_argument("--ecospold", default="data/ecospold", help="evidence: unzipped BAFU XML folder")
     p.add_argument("--dry-run", action="store_true", help="draft: write the prompts, call no model")
     p.add_argument("--from-response", action="append", default=[], metavar="STEP=FILE",
-                   help="draft: ingest a response obtained elsewhere; STEP is extract or map; add by=<who> to record the author")
+                   help="draft/locate: ingest a response obtained elsewhere; STEP is locate, extract or map; add by=<who> to record the author")
+    p.add_argument("--reports", default="BAFU-2026 v1_Documentation/BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports",
+                   help="locate/draft-all: folder with the report PDFs")
+    p.add_argument("--only", default="", help="draft-all: comma-separated dataset codes (or 8-char prefixes) to process")
+    p.add_argument("--by", default="", help="draft-all: author label for responses answered outside the API")
     p.add_argument("--n", type=int, default=30, help="benchmark: number of synthetic cases")
     p.add_argument("--seed", type=int, default=1)
     p.add_argument("--scenarios", default="oracle,bounded,partial,distractors,blind")
@@ -34,12 +38,25 @@ def main(argv: list[str] | None = None) -> int:
         from . import benchmark
         benchmark.run(args.n, args.seed, args.scenarios.split(","), args.name or f"n{args.n}-seed{args.seed}")
         return 0
-    if args.command in ("evidence", "draft", "assemble"):
+    if args.command == "draft-all":
+        from pathlib import Path
+        from . import draft as draft_mod
+        only = {x.strip() for x in args.only.split(",") if x.strip()} or None
+        draft_mod.draft_all(args.project, Path(args.ecospold), Path(args.reports), args.dry_run, only, args.by or "manual")
+        return 0
+    if args.command in ("evidence", "draft", "assemble", "locate"):
         from pathlib import Path
         from . import draft as draft_mod
         if not args.spec:
             p.error("the target code is required")
-        if args.command == "evidence":
+        if args.command == "locate":
+            if not args.report:
+                p.error("locate needs --report")
+            fr = dict(kv.split("=", 1) for kv in args.from_response)
+            r = draft_mod.locate(args.spec, Path(args.report), Path(args.ecospold), args.dry_run,
+                                 Path(fr["locate"]) if "locate" in fr else None, fr.get("by", "manual"))
+            print(r if r else "prompt written (dry run)")
+        elif args.command == "evidence":
             if not (args.report and args.pages):
                 p.error("evidence needs --report and --pages")
             draft_mod.evidence(args.spec, Path(args.report), args.pages, Path(args.ecospold), args.project)

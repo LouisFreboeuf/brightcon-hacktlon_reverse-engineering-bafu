@@ -501,5 +501,6 @@
   "The raw material (oil shale) is not listed in Tab. 3.9; the aggregated vector shows 0.9626 kg 'Shale' (soil) and 3.658 MJ 'Crude Oil' resource per kg — the ecoinvent convention for the shale's own energy content — which would be direct resource flows of this process.",
   "No infrastructure (plant, quarry) line item in the excerpt.",
   "The table does not say whether the electricity items are purchased from the grid or supplied by the on-site co-generation (183.8 kWh/t)."
- ]
+ ],
+ "mass_sum": null
 }

@@ -7,6 +7,9 @@ BAFU-2026 v1_Documentation/
 # generated outputs (sentier-brightway files/backtest, notebooks, ...)
 output/
 
+# pdf text cache of reverse-bafu locate/draft-all
+.cache/
+
 # python / uv
 .venv/
 __pycache__/

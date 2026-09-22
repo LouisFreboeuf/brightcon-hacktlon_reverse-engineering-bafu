@@ -12,8 +12,9 @@ draft such specs from report PDFs; and a benchmark on synthetic aggregated datas
 answers. The documentation is the set of pages under [artifacts/](artifacts/): the method
 explainer, the evidence page on the 101, the rebuilt inventories, and the developer walkthrough.
 
-Steps 1–3 reproduce `results/system_terminated.csv`, `sources.csv` and `dois.csv`; step 5 reproduces
-`results/checks/` from the committed specs; steps 4 and 6 are how new specs and the benchmark are made.
+Steps 1–3 reproduce `results/system_terminated.csv`, `sources.csv` and `dois.csv`; step 4 makes the specs
+(`results/drafting_status.csv` records where each of the 101 stands); step 5 reproduces `results/checks/`
+from the committed specs; step 6 is the benchmark.
 
 ## 1. Setup
 
@@ -89,68 +90,91 @@ from the metadata. A 102nd flagged dataset has no exchanges and is skipped.
 `sources.csv`: the 129 distinct source citations, with the report PDF for 112 of them when the
 documentation bundle is present; `dois.csv`: the 36 DOIs embedded in dataset comments.
 
-## 4. Make a spec for one aggregated dataset
+## 4. Make the specs
 
 A spec is one JSON file per dataset holding the evidence-derived unit process — target, strategy,
 evidence, inputs (with `free`/`bounds`/`sandbox`/nested `node` flags), direct emissions and
 resources. Format: docstring of [src/reverse_bafu/spec.py](src/reverse_bafu/spec.py); examples in
-[specs/](specs/). Pick the dataset from `results/system_terminated.csv` and the report from the
-`pdf` column of `results/sources.csv`. Three commands make the spec; each reads what the previous
-one wrote under `specs/evidence/<code>/`.
+[specs/](specs/). One entry point makes them for every row of `results/system_terminated.csv`:
 
-**`reverse-bafu evidence <code> --report <pdf> --pages <a-b>`** — collects the evidence, deterministically.
+```bash
+uv run reverse-bafu draft-all                     # API route (uv sync --extra llm + an Anthropic API key or `ant auth login`)
+uv run reverse-bafu draft-all --dry-run           # no model: writes the pending prompts, records where each dataset stands
+```
 
-| Reads | Does | Writes to `specs/evidence/<code>/` |
-|---|---|---|
-| the report PDF, PDF pages `a-b` (not the printed page numbers — check with `pdftotext -f a -l b`) | `pdftotext -layout` of those pages | `report-p<a>-<b>.txt` |
-| `data/ecospold/process_<code>.xml` | name, unit, location, category, `includedProcesses`, `technology`, `generalComment`, source, time period, number of flows | `target.json` |
-| the aggregated dataset in Brightway | its resource flows, largest first — candidates for the process's own direct resources (e.g. shale ore, the shale's energy content) that no upstream dataset would emit | `target.json` (`direct_resource_candidates`) |
-| — | SHA‑256 of the PDF, the text and the XML, the pdftotext version, the project name | `manifest.json` |
+or, inside Claude Code with a subscription, `/draft-all` — the session answers the prompts itself
+and loops until nothing is pending ([.claude/commands/draft-all.md](.claude/commands/draft-all.md)).
+`--only <codes>` restricts the run. Nothing else is typed by hand: the report comes from the `pdf`
+column of `results/sources.csv`, the pages are located by the pipeline. The result is
+`results/drafting_status.csv` — one row per dataset with `status` = `drafted` (spec written),
+`pages-not-found` (the report has no inventory table for it, with the reason), `no-pdf` (no report
+in the bundle: the French, manufacturer and PlasticsEurope families) or `error` — and one
+`specs/<code>-<slug>.draft.json` per drafted dataset. Reruns are incremental: every response
+already on disk is reused, so a batch can be continued after an interruption or a fix.
 
-**`reverse-bafu draft <code>`** — the model step, in two passes. Pass 1 reads the excerpt, pass 2 maps its
-line items onto BAFU. Everything the model sees and returns is saved.
+### How a spec is extracted, step by step
 
-| Pass | Prompt | Input | Output (JSON, schema‑validated) |
-|---|---|---|---|
-| 1 · extract | [prompts/draft_spec.md](prompts/draft_spec.md) + the metadata, resource candidates and excerpt filled in → `prompt-1-extract.md` | the report text | `response-1-extract.json`: one line item per table row — verbatim `quote`, `raw_value`/`raw_unit` as printed, `per` (the table's basis), an optional conversion `factor` with `factor_source`, `kind` (input / emission / resource / co‑product / ignore), a `search` phrase, `confidence`; plus `basis_amount` (how many target units one table row refers to, e.g. 1000 for per‑tonne values of a per‑kg dataset), `allocation`, `gaps` (what the excerpt does not cover — the model may not add inputs on its own) |
-| — · candidates | (no model) for each line item, a keyword search over the 11,947 dataset names (inputs) or the EF 3.1 flow list (emissions, resources): words matched at word starts, ranked by matches, then the target's location / RER / CH / DE / GLO, then name length — deterministic | `candidates-2-map.json` |
-| 2 · map | [prompts/map_inputs.md](prompts/map_inputs.md) + the line items with their candidates → `prompt-2-map.md` | pass 1 + candidates | `response-2-map.json`: per line item the `chosen` candidate (or null), `location`, `compartment`, whether it is itself an aggregated dataset (`dependency`), and a one‑sentence `reason` |
+For each dataset the batch runs four stages; every stage leaves its files under
+`specs/evidence/<code>/`, so each number in the spec can be traced back to a quoted line.
 
-Who runs the model:
+1. **Locate** (one model prompt). Every table and figure caption of the report PDF is extracted
+   with its PDF page number — deterministic, cached in `.cache/pdftext/` — and listed in
+   `prompt-0-locate.md` ([prompts/locate_pages.md](prompts/locate_pages.md)) together with the
+   dataset's name, category and metadata. The model names the caption(s) holding the dataset's
+   inventory table and returns the PDF page range (at most four pages), or `found: false` with the
+   reason (e.g. the production data sit in a confidential annex). Reports may be in German or French;
+   the dataset names are English, so this match is by meaning — which is why it is a model step and
+   not a text search.
+2. **Evidence** (deterministic). `pdftotext -layout` of those pages → `report-p<a>-<b>.txt`; the
+   dataset's ecoSpold metadata (name, unit, location, category, `includedProcesses`, `technology`,
+   comment, source, period) and the resource flows of its aggregated vector, largest first — the
+   candidates for the process's own direct resources — → `target.json`; SHA‑256 of the PDF, the text
+   and the XML plus the pdftotext version → `manifest.json`.
+3. **Extract** (one model prompt). `prompt-1-extract.md` ([prompts/draft_spec.md](prompts/draft_spec.md))
+   holds the metadata, the resource candidates and the excerpt. The model returns one line item per
+   table row: a verbatim `quote`, `raw_value` and `raw_unit` as printed, the table's basis (`per`),
+   an optional conversion `factor` with `factor_source` (e.g. litres of diesel → MJ), `kind` (input /
+   emission / resource / co‑product / ignore), a `search` phrase for the supplying dataset or flow,
+   and a `confidence`; plus `basis_amount` (how many target units one table row refers to),
+   `allocation`, `mass_sum` (when the excerpt says the composition adds up to a mass) and `gaps` —
+   what the excerpt does not cover. The rules forbid the two things that need judgement: inventing
+   inputs the excerpt does not mention (they go into `gaps`) and converting beyond a stated factor.
+   A range in the table (`raw_min`/`raw_max`) becomes a `free` input with `bounds`.
+4. **Map** (deterministic candidates, one model prompt). For each line item a keyword search over
+   the 11,947 dataset names (inputs) or the EF 3.1 flow list (emissions, resources) — words matched
+   at word starts, ranked by matches, then the target's location / RER / CH / DE / GLO, then name
+   length — writes `candidates-2-map.json`. `prompt-2-map.md` ([prompts/map_inputs.md](prompts/map_inputs.md))
+   asks the model to pick, per item, one candidate or none, with location, compartment, whether the
+   candidate is itself an aggregated dataset, and a one‑sentence reason.
+5. **Assemble** (deterministic). `amount = raw_value × factor / basis_amount`, unit names normalised;
+   inputs take the chosen dataset, emissions and resources the chosen flow; an aggregated dependency
+   is linked to its rebuilt sandbox node when one exists (cement → the rebuilt burnt shale);
+   co‑products and ignored rows go to `provenance.skipped_items`, the model's gaps to
+   `provenance.gaps_reported_by_model`. Every entry carries a `derivation` — quote, raw value,
+   factor with source, search phrase, mapping reason, author, `reviewed_by: null` — and the spec
+   carries a `provenance` block with model, prompt hashes and authors for all three model passes.
+   The file gets `"variant": "draft"` so its sandbox nodes never collide with a hand‑written rebuild.
 
-| Route | Command | Needs | Provenance |
-|---|---|---|---|
-| Anthropic API | `reverse-bafu draft <code>` | `uv sync --extra llm` and an **API** key (`ANTHROPIC_API_KEY` from console.anthropic.com) or an `ant auth login` profile — a claude.ai subscription is not an API key | model id, message id, tokens, prompt SHA‑256 (`provenance-*.json`) |
-| Claude Code (subscription) | `/draft-spec <code> --report "<pdf>" --pages <a-b>` | the session answers both prompts itself ([.claude/commands/draft-spec.md](.claude/commands/draft-spec.md)) | `by=claude-code:<model>` |
-| any model or a person | `reverse-bafu draft <code> --dry-run`, answer the prompt files, then `reverse-bafu draft <code> --from-response extract=<json> --from-response map=<json> --from-response "by=<who>"` | nothing else | `by=<who>` |
+Model routes and what they record: the API route (`claude-opus-5`, structured output against the
+saved JSON schemas) stores model id, message id, token usage and prompt hash; the Claude Code route
+records `by=claude-code:<model>`; any other model or a person can answer the prompt files written by
+`--dry-run` and continue with `draft-all` (responses are validated against the same schemas on
+ingest). A claude.ai subscription is not an API key. Reproducible means: locate‑captions, evidence,
+candidates and assembly regenerate bit‑for‑bit, the prompts and the model are pinned, every number
+is auditable — not that the model returns identical JSON.
 
-Ingested responses are validated against the same JSON schemas (`schema-*.json`) the API enforces;
-a rejected file is named with the failing path. `draft` runs `assemble` automatically once both
-responses are in.
+The per‑dataset commands behind the batch — `reverse-bafu locate|evidence|draft|assemble <code>` —
+exist for debugging one dataset; `reverse-bafu draft <code> --dry-run` / `--from-response …` and
+`/draft-spec <code> --report … --pages …` are their manual forms.
 
-**`reverse-bafu assemble <code>`** — turns the two responses into a spec, deterministically. For each line
-item: `amount = raw_value × factor / basis_amount`, unit names normalised (`kg` → `kilogram`, `MJ` →
-`megajoule`, …); inputs take the chosen dataset name and location, emissions and resources the
-chosen flow and compartment; a table range (`raw_min` ≠ `raw_max`) becomes `free: true` with
-`bounds`; co‑products and ignored rows are listed under `provenance.skipped_items`, the model's
-`gaps` under `provenance.gaps_reported_by_model`. Every entry carries a `derivation` (quote, raw
-value and unit, factor with source, search phrase, mapping reason, author, `reviewed_by: null`).
-Output: `specs/<code>-<slug>.draft.json`, with `"variant": "draft"` so its sandbox nodes do not
-collide with a hand‑written rebuild of the same dataset. It is the input to step 5 — after a
-reviewer has looked at the `gaps`, the low‑confidence items and the `free` amounts.
-
-Reproducible means: the evidence, the candidates and the assembly regenerate bit‑for‑bit (two
-runs give identical files), the prompts and the model are pinned, and every number is auditable
-to a quoted line — not that the model returns identical JSON.
-
-How the committed specs were made: `specs/d8ec4be3-burnt-shale-at-plant.draft.json` is the output
-of this route (the two prompts answered by a Claude Code session, labelled so in its provenance).
-The three others — `d8ec4be3-burnt-shale.json`, `c3490cfc-cement-zn-d.json` (both transcribed from
-the concrete 2020 report) and `gypsum-fibre-board-de.json` (the CH unit process of the same product
-copied and scaled to 10 kg/m², strategy S2) — were written by hand in a chat session before the
-drafting route existed; their `evidence` and `note` fields record the sources, but they have no
-per-input `derivation`. There is no command yet for the S2 template route; the gypsum spec is the
-pattern to copy.
+How the committed specs were made: `specs/*.draft.json` (burnt shale, cement ZN/D) are outputs of
+this route, the three model prompts answered by a Claude Code session and labelled so in their
+provenance; the drafted cement converges on the same calibrated composition as the hand‑written
+spec. `d8ec4be3-burnt-shale.json`, `c3490cfc-cement-zn-d.json` and `gypsum-fibre-board-de.json`
+were written by hand in a chat session before the route existed; their `evidence` and `note`
+fields record the sources, but they have no per‑input `derivation`. For the gypsum board the
+batch correctly stops at `pages-not-found`: the report keeps the board's production inventory in a
+confidential annex, so that dataset needs the S2 template route, for which there is no command yet.
 
 ## 5. Rebuild the dataset from the spec
 
@@ -158,6 +182,7 @@ pattern to copy.
 uv run reverse-bafu run specs/d8ec4be3-burnt-shale.json      # resolve → calibrate (report only) → build → check
 uv run reverse-bafu run specs/c3490cfc-cement-zn-d.json      # links the rebuilt burnt shale ("sandbox" input): run burnt shale first
 uv run reverse-bafu run specs/gypsum-fibre-board-de.json
+uv run reverse-bafu run specs/c3490cfc-cement-zn-d-at-plant.draft.json   # the drafted variant; sandbox nodes <code>-draft-…
 ```
 
 The four steps, also available individually (`resolve`, `calibrate`, `build`, `check`):
@@ -190,12 +215,12 @@ interpretation: `results/benchmark/n40-seed7.md` and the method explainer, §7.
 ```
 src/reverse_bafu/   pipeline: cli, spec, db, lci, resolve, calibrate, build, check, benchmark, draft
 scripts/            list_system_terminated.py, list_sources.py, render_pages.py (+ templates/)
-prompts/            the two fixed LLM prompt templates
+prompts/            the three fixed LLM prompt templates (locate, extract, map)
 specs/              one JSON per rebuilt dataset; specs/evidence/<code>/ = drafting records
-results/            system_terminated.csv, sources.csv, dois.csv, checks/, benchmark/
+results/            system_terminated.csv, sources.csv, dois.csv, drafting_status.csv, checks/, benchmark/
 artifacts/          the documentation: method-explainer, the-101, rebuilt-inventories, burnt-shale-rebuilt, code-walkthrough
 references.txt      the two papers referenced, with their role for this project
-.claude/commands/   /draft-spec
+.claude/commands/   /draft-all, /draft-spec
 ```
 
 ## Data licence and citation
