@@ -303,7 +303,8 @@ def run_extraction(n: int, seed: int, name: str, project: str, ecospold_dir: Pat
             rec["status"], rec["note"] = "error", str(exc)[:200]
     root.mkdir(parents=True, exist_ok=True)
     csv_path = out_dir / f"extraction-{name}.csv"
-    fields = ["code", "name", "category", "pdf", "pages", "status", "note", "flows_within_10pct", "flows_within_10pct_share", "flow_median_abs_delta_pct", "flows_missing",
+    fields = ["code", "name", "category", "pdf", "pages", "status", "note", "top_flows_within_10pct", "top_flow_median_abs_delta_pct", "kg_mass_covered_pct",
+              "flows_within_10pct", "flows_within_10pct_share", "flow_median_abs_delta_pct", "flows_missing",
               "true_inputs", "drafted_inputs", "inputs_matched", "inputs_missed", "inputs_extra", "input_amounts_within_20pct",
               "input_amount_ratio_median", "true_direct_flows", "drafted_direct_flows", "direct_flows_matched", "direct_amounts_within_20pct", "gaps_reported"]
     with csv_path.open("w", newline="") as fh:
