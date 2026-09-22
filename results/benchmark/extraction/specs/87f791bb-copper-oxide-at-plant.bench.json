@@ -274,7 +274,7 @@
           "mapping_reason": "Waste heat released to air in megajoules, matching the table's unit and its 'Air emission' label; the soil and water variants are the wrong compartment.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9137-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -299,7 +299,7 @@
           "mapping_reason": "Exact substance in the air compartment the table states; the soil and water entries are the wrong compartment and acetaldehyde--ammonia is a different compound.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-a2a9-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-954a-0050c2490048",
         "database": "ef-3.1-biosphere"
       }
     ],

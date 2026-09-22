@@ -1,14 +1,35 @@
 {
   "v": 4,
-  "createdOnFiles": { "v": 1, "at": "2026-09-22T14:00:00Z" },
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-09-22T14:00:00Z"
+  },
   "title": "Dis-aggregating System Processes",
-  "order": ["cover", "the-101", "approach", "real-cases", "benchmark"],
+  "order": [
+    "cover",
+    "the-101",
+    "approach",
+    "real-cases",
+    "benchmark"
+  ],
   "cover": "cover",
   "sections": {
-    "problem": { "description": "What a system process is, why it exists and why we want it dis-aggregated", "start": "cover" },
-    "survey": { "description": "How many of BAFU's system processes can be dis-aggregated at all", "start": "the-101" },
-    "method": { "description": "The four routes and where the optimiser comes in", "start": "approach" },
-    "results": { "description": "Three system processes rebuilt, and how far the method can be trusted", "start": "real-cases" }
+    "problem": {
+      "description": "What a system process is, why it exists and why we want it dis-aggregated",
+      "start": "cover"
+    },
+    "survey": {
+      "description": "How many of BAFU's system processes can be dis-aggregated at all",
+      "start": "the-101"
+    },
+    "method": {
+      "description": "The four routes and where the optimiser comes in",
+      "start": "approach"
+    },
+    "results": {
+      "description": "Eleven system processes rebuilt, and how far the method can be trusted",
+      "start": "real-cases"
+    }
   },
   "faces": {
     "eb-garamond": {
