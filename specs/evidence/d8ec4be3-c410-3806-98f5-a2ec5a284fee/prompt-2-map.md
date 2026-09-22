@@ -28,7 +28,7 @@ Line items and their candidates:
     - Diesel, burned in building machine, with particle filter, without building machine and lubricating oil [CH] (megajoule, 1 inputs)
     - Diesel, burned in building machine, with particle filter [GLO] (megajoule, 4 inputs)
     - Diesel, burned in agricultural machine [CH] (kilogram, 4 inputs)
-    - Petrol, burned in building machine, with particle filter [CH] (megajoule, 4 inputs)
+    - Diesel, burned in auxillary machines at concrete crusher [CH] (kilogram, 4 inputs)
 - item: Electricity, crusher  (input)
   quote: Stromverbrauch Brecher               kWh       1.62E+00    1.16E+00
   search: electricity medium voltage grid
@@ -40,7 +40,7 @@ Line items and their candidates:
     - Electricity, medium voltage, production RER, at grid [RER] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, at grid [CH] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, SBB, at grid [CH] (kilowatt hour, 3 inputs)
-    - Electricity, medium voltage, import FR, at grid [CH] (kilowatt hour, 3 inputs)
+    - Electricity, medium voltage, import AT, at grid [CH] (kilowatt hour, 3 inputs)
 - item: Electricity, conveyor belts  (input)
   quote: Stromverbrauch Förderbänder          kWh       7.02E-01     5.01E-01
   search: electricity medium voltage grid
@@ -52,7 +52,7 @@ Line items and their candidates:
     - Electricity, medium voltage, production RER, at grid [RER] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, at grid [CH] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, SBB, at grid [CH] (kilowatt hour, 3 inputs)
-    - Electricity, medium voltage, import FR, at grid [CH] (kilowatt hour, 3 inputs)
+    - Electricity, medium voltage, import AT, at grid [CH] (kilowatt hour, 3 inputs)
 - item: Electricity, comminution  (input)
   quote: Stromverbrauch Zerkleinern           kWh       4.86E+00    3.47E+00
   search: electricity medium voltage grid
@@ -64,7 +64,7 @@ Line items and their candidates:
     - Electricity, medium voltage, production RER, at grid [RER] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, at grid [CH] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, SBB, at grid [CH] (kilowatt hour, 3 inputs)
-    - Electricity, medium voltage, import FR, at grid [CH] (kilowatt hour, 3 inputs)
+    - Electricity, medium voltage, import AT, at grid [CH] (kilowatt hour, 3 inputs)
 - item: Heating oil EL, mill  (input)
   quote: Heizöl EL, Mühle                     l         2.00E-01     1.43E-01
   search: light fuel oil burned industrial furnace
@@ -88,7 +88,7 @@ Line items and their candidates:
     - Electricity, medium voltage, production RER, at grid [RER] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, at grid [CH] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, SBB, at grid [CH] (kilowatt hour, 3 inputs)
-    - Electricity, medium voltage, import FR, at grid [CH] (kilowatt hour, 3 inputs)
+    - Electricity, medium voltage, import AT, at grid [CH] (kilowatt hour, 3 inputs)
 - item: Electricity, power generation own use  (input)
   quote: Stromverbrauch Stromerzeugung        kWh       1.60E+01    1.14E+01
   search: electricity medium voltage grid
@@ -100,7 +100,7 @@ Line items and their candidates:
     - Electricity, medium voltage, production RER, at grid [RER] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, at grid [CH] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, SBB, at grid [CH] (kilowatt hour, 3 inputs)
-    - Electricity, medium voltage, import FR, at grid [CH] (kilowatt hour, 3 inputs)
+    - Electricity, medium voltage, import AT, at grid [CH] (kilowatt hour, 3 inputs)
 - item: Water  (input)
   quote: Wasserverbrauch                      m3        7.00E-01     4.99E-01
   search: tap water user
@@ -139,9 +139,9 @@ Line items and their candidates:
     - Sodium cyanide, at plant [RER] (kilogram, 7 inputs)
     - Sodium phosphate, at plant [RER] (kilogram, 8 inputs)
     - Sodium dichromate, at plant [RER] (kilogram, 12 inputs)
-    - Sodium tripolyphosphate, at plant [RER] (kilogram, 4 inputs)
-    - Sodium chloride, powder, at plant [RER] (kilogram, 10 inputs)
     - Sodium chlorate, powder, at plant [RER] (kilogram, 13 inputs)
+    - Sodium chloride, powder, at plant [RER] (kilogram, 10 inputs)
+    - Sodium tripolyphosphate, at plant [RER] (kilogram, 4 inputs)
     - Sodium percarbonate, powder, at plant [RER] (kilogram, 0 inputs, aggregated)
 - item: Organic chemicals  (input)
   quote: Chemikalien, org.                    kg        8.00E-02     5.70E-02
@@ -166,7 +166,7 @@ Line items and their candidates:
     - Electricity, medium voltage, production RER, at grid [RER] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, at grid [CH] (kilowatt hour, 3 inputs)
     - Electricity, medium voltage, SBB, at grid [CH] (kilowatt hour, 3 inputs)
-    - Electricity, medium voltage, import FR, at grid [CH] (kilowatt hour, 3 inputs)
+    - Electricity, medium voltage, import AT, at grid [CH] (kilowatt hour, 3 inputs)
 - item: Dust  (emission to air)
   quote: Staub                                kg        1.33E-03     9.48E-04
   candidates (flow name [compartment]):
@@ -174,10 +174,10 @@ Line items and their candidates:
     - particles (PM10)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
     - Particles (> PM10)  [air] (kilogram, ef-3.1-biosphere)
     - Particles (PM2.5 - PM10)  [air] (kilogram, ef-3.1-biosphere)
-    - Particles (PM10)  [water] (kilogram, ef-3.1-biosphere)
     - Particles (PM10)  [soil] (kilogram, ef-3.1-biosphere)
-    - Particles (> PM10)  [water] (kilogram, ef-3.1-biosphere)
+    - Particles (PM10)  [water] (kilogram, ef-3.1-biosphere)
     - Particles (> PM10)  [soil] (kilogram, ef-3.1-biosphere)
+    - Particles (> PM10)  [water] (kilogram, ef-3.1-biosphere)
 - item: Nitrogen oxides  (emission to air)
   quote: Nox                                  kg        7.28E-01     5.19E-01
   candidates (flow name [compartment]):
@@ -194,56 +194,56 @@ Line items and their candidates:
   candidates (flow name [compartment]):
     - Sulfur Dioxide  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
     - Sulfur Dioxide  [air] (kilogram, ef-3.1-biosphere)
-    - Sulfur Dioxide  [water] (kilogram, ef-3.1-biosphere)
     - Sulfur Dioxide  [soil] (kilogram, ef-3.1-biosphere)
+    - Sulfur Dioxide  [water] (kilogram, ef-3.1-biosphere)
     - Sulfur  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
     - Lead Dioxide  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
-    - Sulfuric acid  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
     - Sulfur Oxides  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
+    - Sulfur Oxides  [air] (kilogram, ef-3.1-biosphere)
 - item: Carbon dioxide, fossil  (emission to air)
   quote: davon fossil                         kg        3.59E+02     2.56E+02
   candidates (flow name [compartment]):
     - Carbon Dioxide (fossil)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
-    - carbon dioxide (fossil)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
     - Carbon Dioxide (fossil)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
+    - carbon dioxide (fossil)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
     - Carbon Dioxide (biogenic)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
     - carbon dioxide (biogenic)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
     - Carbon Dioxide (biogenic-100yr)  [air] (kilogram, ef-3.1-biosphere)
-    - Carbon Dioxide (land Use Change)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
     - Carbon Dioxide (land Use Change)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
+    - Carbon Dioxide (land Use Change)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
 - item: Carbon dioxide, geogenic (carbonate)  (emission to air)
   quote: davon geogen                         kg        2.33E+02     1.66E+02
   candidates (flow name [compartment]):
     - Carbon Dioxide (fossil)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
-    - carbon dioxide (fossil)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
     - Carbon Dioxide (fossil)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
+    - carbon dioxide (fossil)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
     - Carbon Dioxide (biogenic)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
     - carbon dioxide (biogenic)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
     - Carbon Dioxide (biogenic-100yr)  [air] (kilogram, ef-3.1-biosphere)
-    - Carbon Dioxide (land Use Change)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
     - Carbon Dioxide (land Use Change)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
+    - Carbon Dioxide (land Use Change)  [Resources / Resources from air] (kilogram, ef-3.1-biosphere)
 - item: Carbon monoxide  (emission to air)
   quote: CO                                   kg        5.73E-01     4.09E-01
   candidates (flow name [compartment]):
     - Carbon Monoxide (fossil)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
     - Carbon Monoxide (biogenic)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
     - Carbon Monoxide (land Use Change)  [Emissions / Emissions to air] (kilogram, ef-3.1-biosphere)
-    - carbon monoxide  [Emissions / Emissions to water] (kilogram, ef-3.1-biosphere)
+    - Carbon Monoxide  [Emissions / Emissions to soil] (kilogram, ef-3.1-biosphere)
     - Carbon Monoxide  [Emissions / Emissions to water] (kilogram, ef-3.1-biosphere)
     - carbon monoxide  [Emissions / Emissions to soil] (kilogram, ef-3.1-biosphere)
-    - Carbon Monoxide  [Emissions / Emissions to soil] (kilogram, ef-3.1-biosphere)
-    - Carbon black  [emissions to air / unspecified] (kilogram, bafu-2026-residual)
+    - carbon monoxide  [Emissions / Emissions to water] (kilogram, ef-3.1-biosphere)
+    - Black carbon  [emissions to air / unspecified] (kilogram, bafu-2026-residual)
 - item: Wastewater, unpolluted  (input)
   quote: Abwasser, unbelastet                 m3        1.50E-01     1.07E-01
   search: treatment sewage unpolluted
   candidates:
     - Treatment, sewage, unpolluted, to wastewater treatment, class 3 [CH] (cubic meter, 8 inputs)
     - Treatment, sewage, unpolluted, from residence, to wastewater treatment, class 2 [CH] (cubic meter, 9 inputs)
-    - Treatment, sewage, to wastewater treatment, class 5 [CH] (cubic meter, 30 inputs)
+    - Treatment, sewage, to wastewater treatment, class 1 [CH] (cubic meter, 30 inputs)
     - Treatment, sewage, to wastewater treatment, class 2 [CH] (cubic meter, 30 inputs)
     - Treatment, sewage, to wastewater treatment, class 3 [CH] (cubic meter, 30 inputs)
     - Treatment, sewage, to wastewater treatment, class 4 [CH] (cubic meter, 30 inputs)
-    - Treatment, sewage, to wastewater treatment, class 1 [CH] (cubic meter, 30 inputs)
+    - Treatment, sewage, to wastewater treatment, class 5 [CH] (cubic meter, 30 inputs)
     - Treatment, sewage grass refinery, to wastewater treatment, class 3 [CH] (cubic meter, 20 inputs)
 - item: Transport, heating oil by rail  (input)
   quote: Heizöl                                       km                 600               0
@@ -254,8 +254,8 @@ Line items and their candidates:
     - Transport, freight, rail [RER] (ton kilometer, 10 inputs)
     - Transport, freight, rail, electricity only [RER] (ton kilometer, 9 inputs)
     - Transport, freight, rail, electricity with shunting [CH] (ton kilometer, 10 inputs)
-    - Transport, freight, rail, electricity without shunting [CH] (ton kilometer, 9 inputs)
     - Transport, freight, rail, diesel, with particle filter [CH] (ton kilometer, 9 inputs)
+    - Transport, freight, rail, electricity without shunting [CH] (ton kilometer, 9 inputs)
     - Transport, freight, rail, diesel, without particle filter [CH] (ton kilometer, 9 inputs)
 - item: Transport, hydrochloric acid by rail  (input)
   quote: Salzsäure                                    km                 200              100
@@ -266,8 +266,8 @@ Line items and their candidates:
     - Transport, freight, rail [RER] (ton kilometer, 10 inputs)
     - Transport, freight, rail, electricity only [RER] (ton kilometer, 9 inputs)
     - Transport, freight, rail, electricity with shunting [CH] (ton kilometer, 10 inputs)
-    - Transport, freight, rail, electricity without shunting [CH] (ton kilometer, 9 inputs)
     - Transport, freight, rail, diesel, with particle filter [CH] (ton kilometer, 9 inputs)
+    - Transport, freight, rail, electricity without shunting [CH] (ton kilometer, 9 inputs)
     - Transport, freight, rail, diesel, without particle filter [CH] (ton kilometer, 9 inputs)
 - item: Transport, hydrochloric acid by lorry  (input)
   quote: Salzsäure                                    km                 200              100
@@ -290,8 +290,8 @@ Line items and their candidates:
     - Transport, freight, rail [RER] (ton kilometer, 10 inputs)
     - Transport, freight, rail, electricity only [RER] (ton kilometer, 9 inputs)
     - Transport, freight, rail, electricity with shunting [CH] (ton kilometer, 10 inputs)
-    - Transport, freight, rail, electricity without shunting [CH] (ton kilometer, 9 inputs)
     - Transport, freight, rail, diesel, with particle filter [CH] (ton kilometer, 9 inputs)
+    - Transport, freight, rail, electricity without shunting [CH] (ton kilometer, 9 inputs)
     - Transport, freight, rail, diesel, without particle filter [CH] (ton kilometer, 9 inputs)
 - item: Transport, sodium hydroxide by lorry  (input)
   quote: Natronlauge                                  km                 600              100
@@ -314,8 +314,8 @@ Line items and their candidates:
     - Transport, freight, rail [RER] (ton kilometer, 10 inputs)
     - Transport, freight, rail, electricity only [RER] (ton kilometer, 9 inputs)
     - Transport, freight, rail, electricity with shunting [CH] (ton kilometer, 10 inputs)
-    - Transport, freight, rail, electricity without shunting [CH] (ton kilometer, 9 inputs)
     - Transport, freight, rail, diesel, with particle filter [CH] (ton kilometer, 9 inputs)
+    - Transport, freight, rail, electricity without shunting [CH] (ton kilometer, 9 inputs)
     - Transport, freight, rail, diesel, without particle filter [CH] (ton kilometer, 9 inputs)
 - item: Transport, hypochlorite by lorry  (input)
   quote: Chlorbleichlauge                             km                 600              100

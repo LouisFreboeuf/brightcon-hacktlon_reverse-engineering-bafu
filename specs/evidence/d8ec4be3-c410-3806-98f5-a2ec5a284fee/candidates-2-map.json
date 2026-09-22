@@ -75,10 +75,10 @@
    "aggregated": false
   },
   {
-   "name": "Petrol, burned in building machine, with particle filter",
-   "code": "ce890b07-c419-41bf-83b9-ff19734f38f6",
+   "name": "Diesel, burned in auxillary machines at concrete crusher",
+   "code": "c023e201-b139-4ff6-85df-52edb6415f3b",
    "location": "CH",
-   "unit": "megajoule",
+   "unit": "kilogram",
    "n_inputs": 4,
    "aggregated": false
   }
@@ -141,8 +141,8 @@
    "aggregated": false
   },
   {
-   "name": "Electricity, medium voltage, import FR, at grid",
-   "code": "1cf78a24-91fd-3655-a21f-363098b182c9",
+   "name": "Electricity, medium voltage, import AT, at grid",
+   "code": "92431b15-bc02-3ba7-afab-5f14d171c38c",
    "location": "CH",
    "unit": "kilowatt hour",
    "n_inputs": 3,
@@ -207,8 +207,8 @@
    "aggregated": false
   },
   {
-   "name": "Electricity, medium voltage, import FR, at grid",
-   "code": "1cf78a24-91fd-3655-a21f-363098b182c9",
+   "name": "Electricity, medium voltage, import AT, at grid",
+   "code": "92431b15-bc02-3ba7-afab-5f14d171c38c",
    "location": "CH",
    "unit": "kilowatt hour",
    "n_inputs": 3,
@@ -273,8 +273,8 @@
    "aggregated": false
   },
   {
-   "name": "Electricity, medium voltage, import FR, at grid",
-   "code": "1cf78a24-91fd-3655-a21f-363098b182c9",
+   "name": "Electricity, medium voltage, import AT, at grid",
+   "code": "92431b15-bc02-3ba7-afab-5f14d171c38c",
    "location": "CH",
    "unit": "kilowatt hour",
    "n_inputs": 3,
@@ -405,8 +405,8 @@
    "aggregated": false
   },
   {
-   "name": "Electricity, medium voltage, import FR, at grid",
-   "code": "1cf78a24-91fd-3655-a21f-363098b182c9",
+   "name": "Electricity, medium voltage, import AT, at grid",
+   "code": "92431b15-bc02-3ba7-afab-5f14d171c38c",
    "location": "CH",
    "unit": "kilowatt hour",
    "n_inputs": 3,
@@ -471,8 +471,8 @@
    "aggregated": false
   },
   {
-   "name": "Electricity, medium voltage, import FR, at grid",
-   "code": "1cf78a24-91fd-3655-a21f-363098b182c9",
+   "name": "Electricity, medium voltage, import AT, at grid",
+   "code": "92431b15-bc02-3ba7-afab-5f14d171c38c",
    "location": "CH",
    "unit": "kilowatt hour",
    "n_inputs": 3,
@@ -663,11 +663,11 @@
    "aggregated": false
   },
   {
-   "name": "Sodium tripolyphosphate, at plant",
-   "code": "49141f50-671f-33a9-96d2-33acbcaafa7c",
+   "name": "Sodium chlorate, powder, at plant",
+   "code": "5bb4ee23-6c19-33ee-bc4a-1afebcafefac",
    "location": "RER",
    "unit": "kilogram",
-   "n_inputs": 4,
+   "n_inputs": 13,
    "aggregated": false
   },
   {
@@ -679,11 +679,11 @@
    "aggregated": false
   },
   {
-   "name": "Sodium chlorate, powder, at plant",
-   "code": "5bb4ee23-6c19-33ee-bc4a-1afebcafefac",
+   "name": "Sodium tripolyphosphate, at plant",
+   "code": "49141f50-671f-33a9-96d2-33acbcaafa7c",
    "location": "RER",
    "unit": "kilogram",
-   "n_inputs": 13,
+   "n_inputs": 4,
    "aggregated": false
   },
   {
@@ -819,8 +819,8 @@
    "aggregated": false
   },
   {
-   "name": "Electricity, medium voltage, import FR, at grid",
-   "code": "1cf78a24-91fd-3655-a21f-363098b182c9",
+   "name": "Electricity, medium voltage, import AT, at grid",
+   "code": "92431b15-bc02-3ba7-afab-5f14d171c38c",
    "location": "CH",
    "unit": "kilowatt hour",
    "n_inputs": 3,
@@ -831,11 +831,11 @@
   {
    "name": "Particles (PM10)",
    "database": "ef-3.1-biosphere",
-   "code": "64b1f56e-6556-11dd-ad8b-0800200c9a66",
+   "code": "08a91e70-3ddc-11dd-91be-0050c2490048",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to lower stratosphere and upper troposphere"
+    "Emissions to air, unspecified"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -843,11 +843,11 @@
   {
    "name": "particles (PM10)",
    "database": "ef-3.1-biosphere",
-   "code": "9fbb5258-ed5b-11e6-bc64-92361f002671",
+   "code": "9fbb53e8-ed5b-11e6-bc64-92361f002671",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to urban air very high stack"
+    "Emissions to non-urban air close to ground"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -855,7 +855,7 @@
   {
    "name": "Particles (> PM10)",
    "database": "ef-3.1-biosphere",
-   "code": "08a91e70-3ddc-11dd-94fe-0050c2490048",
+   "code": "08a91e70-3ddc-11dd-94fd-0050c2490048",
    "categories": [
     "air"
    ],
@@ -865,12 +865,22 @@
   {
    "name": "Particles (PM2.5 - PM10)",
    "database": "ef-3.1-biosphere",
-   "code": "08a91e70-3ddc-11dd-9504-0050c2490048",
+   "code": "08a91e70-3ddc-11dd-9501-0050c2490048",
    "categories": [
     "air"
    ],
    "unit": "kilogram",
    "cats": "air"
+  },
+  {
+   "name": "Particles (PM10)",
+   "database": "ef-3.1-biosphere",
+   "code": "d86b9e77-6555-11dd-ad8b-0800200c9a66",
+   "categories": [
+    "soil"
+   ],
+   "unit": "kilogram",
+   "cats": "soil"
   },
   {
    "name": "Particles (PM10)",
@@ -883,9 +893,9 @@
    "cats": "water"
   },
   {
-   "name": "Particles (PM10)",
+   "name": "Particles (> PM10)",
    "database": "ef-3.1-biosphere",
-   "code": "d86bec9b-6555-11dd-ad8b-0800200c9a66",
+   "code": "fe0acd60-3ddc-11dd-a710-0050c2490048",
    "categories": [
     "soil"
    ],
@@ -901,27 +911,17 @@
    ],
    "unit": "kilogram",
    "cats": "water"
-  },
-  {
-   "name": "Particles (> PM10)",
-   "database": "ef-3.1-biosphere",
-   "code": "fe0acd60-3ddc-11dd-a711-0050c2490048",
-   "categories": [
-    "soil"
-   ],
-   "unit": "kilogram",
-   "cats": "soil"
   }
  ],
  "Nitrogen oxides": [
   {
    "name": "Nitrogen Oxides",
    "database": "ef-3.1-biosphere",
-   "code": "1c952836-ea05-43db-9063-0c5e1ee65fa8",
+   "code": "f79d0f8f-2b0e-49cb-bed0-b1ea0fbd8625",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to lower stratosphere and upper troposphere"
+    "Emissions to air, unspecified"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -929,7 +929,7 @@
   {
    "name": "Nitrogen",
    "database": "ef-3.1-biosphere",
-   "code": "fe0acd60-3ddc-11dd-aad3-0050c2490048",
+   "code": "2905ed38-6556-11dd-ad8b-0800200c9a66",
    "categories": [
     "air"
    ],
@@ -961,11 +961,11 @@
   {
    "name": "Nitrogen Dioxide",
    "database": "ef-3.1-biosphere",
-   "code": "08a91e70-3ddc-11dd-96e8-0050c2490048",
+   "code": "08a91e70-3ddc-11dd-96e5-0050c2490048",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to non-urban air or from high stacks"
+    "Emissions to air, unspecified"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -973,7 +973,7 @@
   {
    "name": "Nitrogen Mustard",
    "database": "ef-3.1-biosphere",
-   "code": "d86c61ce-6555-11dd-ad8b-0800200c9a66",
+   "code": "08a91e70-3ddc-11dd-a284-0050c2490048",
    "categories": [
     "air"
    ],
@@ -995,11 +995,11 @@
   {
    "name": "Nitrogen oxide (N2O4)",
    "database": "ef-3.1-biosphere",
-   "code": "c828b427-1333-4861-ada3-9bf71761c7dc",
+   "code": "38901dcd-82d8-4a3a-b736-8cdd72c05164",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to non-urban air or from high stacks"
+    "Emissions to air, indoor"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -1031,17 +1031,7 @@
   {
    "name": "Sulfur Dioxide",
    "database": "ef-3.1-biosphere",
-   "code": "fe0acd60-3ddc-11dd-ac4e-0050c2490048",
-   "categories": [
-    "water"
-   ],
-   "unit": "kilogram",
-   "cats": "water"
-  },
-  {
-   "name": "Sulfur Dioxide",
-   "database": "ef-3.1-biosphere",
-   "code": "2905c637-6556-11dd-ad8b-0800200c9a66",
+   "code": "2905c633-6556-11dd-ad8b-0800200c9a66",
    "categories": [
     "soil"
    ],
@@ -1049,13 +1039,23 @@
    "cats": "soil"
   },
   {
+   "name": "Sulfur Dioxide",
+   "database": "ef-3.1-biosphere",
+   "code": "fe0acd60-3ddc-11dd-ac4d-0050c2490048",
+   "categories": [
+    "water"
+   ],
+   "unit": "kilogram",
+   "cats": "water"
+  },
+  {
    "name": "Sulfur",
    "database": "ef-3.1-biosphere",
-   "code": "2905ed31-6556-11dd-ad8b-0800200c9a66",
+   "code": "1039f58f-3936-4aa5-a99b-fa328c1b5210",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to non-urban air or from high stacks"
+    "Emissions to air, indoor"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -1063,23 +1063,11 @@
   {
    "name": "Lead Dioxide",
    "database": "ef-3.1-biosphere",
-   "code": "fe0acd60-3ddc-11dd-9f5c-0050c2490048",
+   "code": "2a6a0b3e-dc7b-4de2-ae91-940b50ee64cc",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to urban air close to ground"
-   ],
-   "unit": "kilogram",
-   "cats": "Emissions / Emissions to air"
-  },
-  {
-   "name": "Sulfuric acid",
-   "database": "ef-3.1-biosphere",
-   "code": "d1e249b9-59b4-45c4-b1cb-ad89a2dd167b",
-   "categories": [
-    "Emissions",
-    "Emissions to air",
-    "Emissions to air, unspecified"
+    "Emissions to air, indoor"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -1095,32 +1083,30 @@
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
+  },
+  {
+   "name": "Sulfur Oxides",
+   "database": "ef-3.1-biosphere",
+   "code": "7b9eafb5-ae0b-4092-9af3-6a848d0451aa",
+   "categories": [
+    "air"
+   ],
+   "unit": "kilogram",
+   "cats": "air"
   }
  ],
  "Carbon dioxide, fossil": [
   {
    "name": "Carbon Dioxide (fossil)",
    "database": "ef-3.1-biosphere",
-   "code": "08a91e70-3ddc-11dd-9c13-0050c2490048",
+   "code": "d0f8056e-dc09-45eb-9590-ed4c7b5ed3f5",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to non-urban air or from high stacks"
+    "Emissions to air, indoor"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
-  },
-  {
-   "name": "carbon dioxide (fossil)",
-   "database": "ef-3.1-biosphere",
-   "code": "e99843b7-e598-447a-ab73-d01f179f0f8c",
-   "categories": [
-    "Resources",
-    "Resources from air",
-    "Renewable material resources from air"
-   ],
-   "unit": "kilogram",
-   "cats": "Resources / Resources from air"
   },
   {
    "name": "Carbon Dioxide (fossil)",
@@ -1135,13 +1121,25 @@
    "cats": "Resources / Resources from air"
   },
   {
+   "name": "carbon dioxide (fossil)",
+   "database": "ef-3.1-biosphere",
+   "code": "e99843b7-e598-447a-ab73-d01f179f0f8c",
+   "categories": [
+    "Resources",
+    "Resources from air",
+    "Renewable material resources from air"
+   ],
+   "unit": "kilogram",
+   "cats": "Resources / Resources from air"
+  },
+  {
    "name": "Carbon Dioxide (biogenic)",
    "database": "ef-3.1-biosphere",
-   "code": "08a91e70-3ddc-11dd-923f-0050c2490048",
+   "code": "1e6f64b4-4077-4d2d-8185-ad5e9cd7150d",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to air, unspecified (long-term)"
+    "Emissions to air, indoor"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -1171,6 +1169,18 @@
   {
    "name": "Carbon Dioxide (land Use Change)",
    "database": "ef-3.1-biosphere",
+   "code": "2430229e-2303-478b-88ec-2129890fad44",
+   "categories": [
+    "Emissions",
+    "Emissions to air",
+    "Emissions to air, indoor"
+   ],
+   "unit": "kilogram",
+   "cats": "Emissions / Emissions to air"
+  },
+  {
+   "name": "Carbon Dioxide (land Use Change)",
+   "database": "ef-3.1-biosphere",
    "code": "b3d7c693-6465-4aec-86cb-68b4e457fc98",
    "categories": [
     "Resources",
@@ -1179,44 +1189,20 @@
    ],
    "unit": "kilogram",
    "cats": "Resources / Resources from air"
-  },
-  {
-   "name": "Carbon Dioxide (land Use Change)",
-   "database": "ef-3.1-biosphere",
-   "code": "1bf31577-1939-49f0-9606-9c7b8fd3021c",
-   "categories": [
-    "Emissions",
-    "Emissions to air",
-    "Emissions to urban air close to ground"
-   ],
-   "unit": "kilogram",
-   "cats": "Emissions / Emissions to air"
   }
  ],
  "Carbon dioxide, geogenic (carbonate)": [
   {
    "name": "Carbon Dioxide (fossil)",
    "database": "ef-3.1-biosphere",
-   "code": "08a91e70-3ddc-11dd-9c13-0050c2490048",
+   "code": "d0f8056e-dc09-45eb-9590-ed4c7b5ed3f5",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to non-urban air or from high stacks"
+    "Emissions to air, indoor"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
-  },
-  {
-   "name": "carbon dioxide (fossil)",
-   "database": "ef-3.1-biosphere",
-   "code": "e99843b7-e598-447a-ab73-d01f179f0f8c",
-   "categories": [
-    "Resources",
-    "Resources from air",
-    "Renewable material resources from air"
-   ],
-   "unit": "kilogram",
-   "cats": "Resources / Resources from air"
   },
   {
    "name": "Carbon Dioxide (fossil)",
@@ -1231,13 +1217,25 @@
    "cats": "Resources / Resources from air"
   },
   {
+   "name": "carbon dioxide (fossil)",
+   "database": "ef-3.1-biosphere",
+   "code": "e99843b7-e598-447a-ab73-d01f179f0f8c",
+   "categories": [
+    "Resources",
+    "Resources from air",
+    "Renewable material resources from air"
+   ],
+   "unit": "kilogram",
+   "cats": "Resources / Resources from air"
+  },
+  {
    "name": "Carbon Dioxide (biogenic)",
    "database": "ef-3.1-biosphere",
-   "code": "08a91e70-3ddc-11dd-923f-0050c2490048",
+   "code": "1e6f64b4-4077-4d2d-8185-ad5e9cd7150d",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to air, unspecified (long-term)"
+    "Emissions to air, indoor"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -1267,6 +1265,18 @@
   {
    "name": "Carbon Dioxide (land Use Change)",
    "database": "ef-3.1-biosphere",
+   "code": "2430229e-2303-478b-88ec-2129890fad44",
+   "categories": [
+    "Emissions",
+    "Emissions to air",
+    "Emissions to air, indoor"
+   ],
+   "unit": "kilogram",
+   "cats": "Emissions / Emissions to air"
+  },
+  {
+   "name": "Carbon Dioxide (land Use Change)",
+   "database": "ef-3.1-biosphere",
    "code": "b3d7c693-6465-4aec-86cb-68b4e457fc98",
    "categories": [
     "Resources",
@@ -1275,29 +1285,17 @@
    ],
    "unit": "kilogram",
    "cats": "Resources / Resources from air"
-  },
-  {
-   "name": "Carbon Dioxide (land Use Change)",
-   "database": "ef-3.1-biosphere",
-   "code": "1bf31577-1939-49f0-9606-9c7b8fd3021c",
-   "categories": [
-    "Emissions",
-    "Emissions to air",
-    "Emissions to urban air close to ground"
-   ],
-   "unit": "kilogram",
-   "cats": "Emissions / Emissions to air"
   }
  ],
  "Carbon monoxide": [
   {
    "name": "Carbon Monoxide (fossil)",
    "database": "ef-3.1-biosphere",
-   "code": "0c86331f-bdc6-4933-a679-0664eee45d0c",
+   "code": "173c2b4f-6466-4f45-820e-02f3392a4129",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to lower stratosphere and upper troposphere"
+    "Emissions to air, indoor"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
@@ -1317,26 +1315,26 @@
   {
    "name": "Carbon Monoxide (land Use Change)",
    "database": "ef-3.1-biosphere",
-   "code": "7126de37-7d78-48d1-819b-7c973fc63670",
+   "code": "59cfeed3-e2f1-42ca-9472-fc02bee2d0e3",
    "categories": [
     "Emissions",
     "Emissions to air",
-    "Emissions to air, unspecified (long-term)"
+    "Emissions to air, indoor"
    ],
    "unit": "kilogram",
    "cats": "Emissions / Emissions to air"
   },
   {
-   "name": "carbon monoxide",
+   "name": "Carbon Monoxide",
    "database": "ef-3.1-biosphere",
-   "code": "08a91e70-3ddc-11dd-9254-0050c2490048",
+   "code": "172a64e0-6556-11dd-ad8b-0800200c9a66",
    "categories": [
     "Emissions",
-    "Emissions to water",
-    "Emissions to water, unspecified (long-term)"
+    "Emissions to soil",
+    "Emissions to agricultural soil"
    ],
    "unit": "kilogram",
-   "cats": "Emissions / Emissions to water"
+   "cats": "Emissions / Emissions to soil"
   },
   {
    "name": "Carbon Monoxide",
@@ -1363,21 +1361,21 @@
    "cats": "Emissions / Emissions to soil"
   },
   {
-   "name": "Carbon Monoxide",
+   "name": "carbon monoxide",
    "database": "ef-3.1-biosphere",
-   "code": "172a64e0-6556-11dd-ad8b-0800200c9a66",
+   "code": "08a91e70-3ddc-11dd-9254-0050c2490048",
    "categories": [
     "Emissions",
-    "Emissions to soil",
-    "Emissions to agricultural soil"
+    "Emissions to water",
+    "Emissions to water, unspecified (long-term)"
    ],
    "unit": "kilogram",
-   "cats": "Emissions / Emissions to soil"
+   "cats": "Emissions / Emissions to water"
   },
   {
-   "name": "Carbon black",
+   "name": "Black carbon",
    "database": "bafu-2026-residual",
-   "code": "74875f9c-a23c-5bf9-b3b0-2899c7a8ee4d",
+   "code": "cc96b588-d23b-5b19-9239-1ed1aaa2f057",
    "categories": [
     "emissions to air",
     "unspecified"
@@ -1404,8 +1402,8 @@
    "aggregated": false
   },
   {
-   "name": "Treatment, sewage, to wastewater treatment, class 5",
-   "code": "0face651-26f9-401b-8ead-4062d9df0dc3",
+   "name": "Treatment, sewage, to wastewater treatment, class 1",
+   "code": "67f2f405-ebb6-4818-9450-a9bdba5c44df",
    "location": "CH",
    "unit": "cubic meter",
    "n_inputs": 30,
@@ -1436,8 +1434,8 @@
    "aggregated": false
   },
   {
-   "name": "Treatment, sewage, to wastewater treatment, class 1",
-   "code": "67f2f405-ebb6-4818-9450-a9bdba5c44df",
+   "name": "Treatment, sewage, to wastewater treatment, class 5",
+   "code": "0face651-26f9-401b-8ead-4062d9df0dc3",
    "location": "CH",
    "unit": "cubic meter",
    "n_inputs": 30,
@@ -1494,16 +1492,16 @@
    "aggregated": false
   },
   {
-   "name": "Transport, freight, rail, electricity without shunting",
-   "code": "d78d71e3-e455-3377-8606-599681966753",
+   "name": "Transport, freight, rail, diesel, with particle filter",
+   "code": "66f5b1f6-22d2-3230-96ca-411aa1d5b6c4",
    "location": "CH",
    "unit": "ton kilometer",
    "n_inputs": 9,
    "aggregated": false
   },
   {
-   "name": "Transport, freight, rail, diesel, with particle filter",
-   "code": "66f5b1f6-22d2-3230-96ca-411aa1d5b6c4",
+   "name": "Transport, freight, rail, electricity without shunting",
+   "code": "d78d71e3-e455-3377-8606-599681966753",
    "location": "CH",
    "unit": "ton kilometer",
    "n_inputs": 9,
@@ -1560,16 +1558,16 @@
    "aggregated": false
   },
   {
-   "name": "Transport, freight, rail, electricity without shunting",
-   "code": "d78d71e3-e455-3377-8606-599681966753",
+   "name": "Transport, freight, rail, diesel, with particle filter",
+   "code": "66f5b1f6-22d2-3230-96ca-411aa1d5b6c4",
    "location": "CH",
    "unit": "ton kilometer",
    "n_inputs": 9,
    "aggregated": false
   },
   {
-   "name": "Transport, freight, rail, diesel, with particle filter",
-   "code": "66f5b1f6-22d2-3230-96ca-411aa1d5b6c4",
+   "name": "Transport, freight, rail, electricity without shunting",
+   "code": "d78d71e3-e455-3377-8606-599681966753",
    "location": "CH",
    "unit": "ton kilometer",
    "n_inputs": 9,
@@ -1692,16 +1690,16 @@
    "aggregated": false
   },
   {
-   "name": "Transport, freight, rail, electricity without shunting",
-   "code": "d78d71e3-e455-3377-8606-599681966753",
+   "name": "Transport, freight, rail, diesel, with particle filter",
+   "code": "66f5b1f6-22d2-3230-96ca-411aa1d5b6c4",
    "location": "CH",
    "unit": "ton kilometer",
    "n_inputs": 9,
    "aggregated": false
   },
   {
-   "name": "Transport, freight, rail, diesel, with particle filter",
-   "code": "66f5b1f6-22d2-3230-96ca-411aa1d5b6c4",
+   "name": "Transport, freight, rail, electricity without shunting",
+   "code": "d78d71e3-e455-3377-8606-599681966753",
    "location": "CH",
    "unit": "ton kilometer",
    "n_inputs": 9,
@@ -1824,16 +1822,16 @@
    "aggregated": false
   },
   {
-   "name": "Transport, freight, rail, electricity without shunting",
-   "code": "d78d71e3-e455-3377-8606-599681966753",
+   "name": "Transport, freight, rail, diesel, with particle filter",
+   "code": "66f5b1f6-22d2-3230-96ca-411aa1d5b6c4",
    "location": "CH",
    "unit": "ton kilometer",
    "n_inputs": 9,
    "aggregated": false
   },
   {
-   "name": "Transport, freight, rail, diesel, with particle filter",
-   "code": "66f5b1f6-22d2-3230-96ca-411aa1d5b6c4",
+   "name": "Transport, freight, rail, electricity without shunting",
+   "code": "d78d71e3-e455-3377-8606-599681966753",
    "location": "CH",
    "unit": "ton kilometer",
    "n_inputs": 9,

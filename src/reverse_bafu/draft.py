@@ -190,9 +190,9 @@ def candidates_for(search: str, prefer_location: str = "", k: int = 8) -> list[d
         if n < need:
             continue
         for e in entries:
-            hits.append((-n, order.get(e["location"], 99), len(e["name"]), e))
-    hits.sort(key=lambda t: t[:3])
-    return [t[3] for t in hits[:k]]
+            hits.append((-n, order.get(e["location"], 99), len(e["name"]), e["name"], e["location"], e["code"], e))
+    hits.sort(key=lambda t: t[:6])  # full key: ties never fall back to database iteration order
+    return [t[6] for t in hits[:k]]
 
 
 def flow_candidates_for(name: str, compartment: str, search: str = "", k: int = 8) -> list[dict]:
@@ -201,20 +201,26 @@ def flow_candidates_for(name: str, compartment: str, search: str = "", k: int = 
     categories)."""
     words = [w for w in re.findall(r"[a-z0-9]+", (search or name).lower()) if len(w) > 1 and w not in ("fossil", "geogenic", "carbonate", "to")]
     need = max(1, len(words) - 1)
-    seen, hits = set(), []
+    hits = []
     for norm, entries in db.flow_index().items():
         n = _matched(words, norm)
         if n < need:
             continue
         for e in entries:
-            key = (e["name"], e["categories"][:2])
-            if key in seen:
-                continue
-            seen.add(key)
             cats = " / ".join(e["categories"][:2])
-            hits.append((-n, 0 if compartment and compartment in cats.lower() else 1, 0 if "unspecified" in cats.lower() else 1, len(e["name"]), {**e, "cats": cats}))
-    hits.sort(key=lambda t: t[:4])
-    return [t[4] for t in hits[:k]]
+            hits.append((-n, 0 if compartment and compartment in cats.lower() else 1, 0 if "unspecified" in cats.lower() else 1,
+                         len(e["name"]), e["name"], cats, " / ".join(e["categories"]), e["database"], e["code"], {**e, "cats": cats}))
+    hits.sort(key=lambda t: t[:9])  # full key, then dedupe: the representative of a (name, compartment) is fixed
+    seen, out = set(), []
+    for t in hits:
+        key = (t[4], t[5])
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(t[9])
+        if len(out) == k:
+            break
+    return out
 
 
 def mapping_prompt(extraction: dict, target_location: str) -> tuple[str, dict]:

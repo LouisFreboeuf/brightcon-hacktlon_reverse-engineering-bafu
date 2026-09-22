@@ -24,13 +24,13 @@
       "model": "manual",
       "by": "llm:claude-opus-5 (interactive session, not API)",
       "prompt_sha256": "afb7c02e90054157e756a5f391b47a26093caea29f29b06946716094bb9cb840",
-      "at": "2026-09-22T07:43:20Z"
+      "at": "2026-09-22T08:22:16Z"
     },
     "mapping": {
       "model": "manual",
       "by": "llm:claude-opus-5 (interactive session, not API)",
-      "prompt_sha256": "4ff672d439493ba737fd36833255a180be903cf422b9a6f2fa356e2b3a2ca166",
-      "at": "2026-09-22T07:43:29Z"
+      "prompt_sha256": "49da69bd9219be6d58ddee514a9ab0d1c01b5d313ae2306113f845ee3dafa807",
+      "at": "2026-09-22T08:22:26Z"
     },
     "gaps_reported_by_model": [
       "The raw material (oil shale) is not listed in Tab. 3.9; the aggregated vector shows 0.9626 kg 'Shale' (soil) and 3.658 MJ 'Crude Oil' resource per kg — the ecoinvent convention for the shale's own energy content — which would be direct resource flows of this process.",
@@ -40,7 +40,7 @@
     "skipped_items": [
       "Electricity, co-generated: co-product — co-product; economic allocation 28.7 % to electricity, 71.3 % to burnt shale; already applied in the 71.30 % column"
     ],
-    "assembled_at": "2026-09-22T07:43:29Z"
+    "assembled_at": "2026-09-22T08:22:26Z"
   },
   "node": {
     "name": "Burnt shale, at plant, disaggregated",
