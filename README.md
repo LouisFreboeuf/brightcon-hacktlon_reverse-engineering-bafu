@@ -20,6 +20,26 @@ uv sync
 This installs `sentier-brightway` from its GitHub `main` (pinned to a commit in `uv.lock`),
 `bw2data` 4.x and `bw2calc` 2.x into `.venv/`.
 
+## Data setup (the BAFU files)
+
+Two BAFU downloads are used, both gitignored (BAFU's terms of use; cite as below). Get them from
+the BAFU LCA data page / openLCA Nexus (the "Context and Content" note in the documentation bundle
+names openLCA Nexus as the download site) and put them here:
+
+| File | Unzip to | Needed by |
+|---|---|---|
+| `BAFU-2026 v1_ecoSpold v1.zip` (11,948 `process_<uuid>.xml`) | `data/ecospold/` — the zip's inner folder is `ecoSpold files/`, rename it | `scripts/list_system_terminated.py`, `scripts/list_sources.py`, `reverse-bafu evidence` (metadata, the type=2 flag) |
+| `BAFU-2026 v1_Documentation.zip` (114 LCI report PDFs, change log, terms of use) | `BAFU-2026 v1_Documentation/` next to this README, keeping the inner `BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports/` layout | `scripts/list_sources.py --reports` (the `pdf` column), `reverse-bafu evidence --report` |
+
+```bash
+unzip "BAFU-2026 v1_ecoSpold v1.zip" -d data/ && mv "data/ecoSpold files" data/ecospold
+unzip "BAFU-2026 v1_Documentation.zip"        # creates BAFU-2026 v1_Documentation/
+```
+
+The Brightway import itself (`sentier-brightway`, next section) needs neither: it downloads the
+Sentier parquet files. Everything that reads the ecoSpold XML takes `--ecospold <folder>` if you
+keep it elsewhere; the report folder is `--reports` / `--report`.
+
 ## Import into Brightway 2.5
 
 ```bash
@@ -189,13 +209,9 @@ DOIs embedded in dataset comments. If the official `BAFU-2026 v1_Documentation` 
 next to the repo (gitignored), the `pdf` column links each source to its report PDF — 108 of 125
 sources, 11,541 of 11,947 datasets.
 
-## Data
+## Data licence and citation
 
-`BAFU-2026 v1_ecoSpold v1.zip` (11,948 ecoSpold v1 XML files, one `process_<uuid>.xml` per dataset)
-is the original export from BAFU. It is gitignored (`*.zip`, `data/`) and is **not** needed for the
-import above — keep it around as the reference for the reverse-engineering work. Unzip it into
-`data/` if you want to read the raw XML.
-
+Both BAFU files stay out of the repository (`.gitignore`: `*.zip`, `data/`, `BAFU-2026 v1_Documentation/`).
 Citation required for anything derived from the installed data:
 
 > Source: Life Cycle Inventory database of the Swiss Federal Administration, BAFU:2026.
