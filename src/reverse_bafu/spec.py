@@ -78,6 +78,7 @@ class Spec:
     target_code: str
     target_name: str
     strategy: dict          # {"code": "S1", "label": ..., "note": ...}
+    variant: str            # "" or e.g. "draft": suffix for the sandbox node codes
     evidence: list[dict]
     node: Node
     raw: dict[str, Any]
@@ -109,7 +110,8 @@ def load(path: str | Path) -> Spec:
     path = Path(path)
     raw = json.loads(path.read_text())
     return Spec(path=path, target_code=raw["target"]["code"], target_name=raw["target"].get("name", ""),
-                strategy=raw.get("strategy", {}), evidence=raw.get("evidence", []), node=_node(raw["node"]), raw=raw)
+                strategy=raw.get("strategy", {}), variant=raw.get("variant", ""), evidence=raw.get("evidence", []),
+                node=_node(raw["node"]), raw=raw)
 
 
 def save(spec: Spec) -> None:
@@ -127,6 +129,11 @@ def save(spec: Spec) -> None:
                     df["code"], df["database"] = f.code, f.database
     sync_node(spec.node, spec.raw["node"])
     spec.path.write_text(json.dumps(spec.raw, indent=2, ensure_ascii=False) + "\n")
+
+
+def node_prefix(spec: "Spec") -> str:
+    """<target code>[-<variant>] - the stem of every sandbox node code this spec writes."""
+    return spec.target_code + (f"-{spec.variant}" if spec.variant else "")
 
 
 def slug(name: str) -> str:

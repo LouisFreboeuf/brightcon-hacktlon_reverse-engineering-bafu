@@ -11,8 +11,14 @@ from . import db, spec as spec_mod
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="reverse-bafu", description=__doc__)
-    p.add_argument("command", choices=["resolve", "calibrate", "build", "check", "run", "benchmark"])
-    p.add_argument("spec", nargs="?", help="spec JSON (see src/reverse_bafu/spec.py); not used by benchmark")
+    p.add_argument("command", choices=["resolve", "calibrate", "build", "check", "run", "benchmark", "evidence", "draft", "assemble"])
+    p.add_argument("spec", nargs="?", help="spec JSON (see src/reverse_bafu/spec.py); for evidence/draft/assemble: the target code")
+    p.add_argument("--report", help="evidence: the report PDF")
+    p.add_argument("--pages", help="evidence: page range in the PDF, e.g. 16-17")
+    p.add_argument("--ecospold", default="data/ecospold", help="evidence: unzipped BAFU XML folder")
+    p.add_argument("--dry-run", action="store_true", help="draft: write the prompts, call no model")
+    p.add_argument("--from-response", action="append", default=[], metavar="STEP=FILE",
+                   help="draft: ingest a response obtained elsewhere; STEP is extract or map; add by=<who> to record the author")
     p.add_argument("--n", type=int, default=30, help="benchmark: number of synthetic cases")
     p.add_argument("--seed", type=int, default=1)
     p.add_argument("--scenarios", default="oracle,bounded,partial,distractors,blind")
@@ -27,6 +33,22 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "benchmark":
         from . import benchmark
         benchmark.run(args.n, args.seed, args.scenarios.split(","), args.name or f"n{args.n}-seed{args.seed}")
+        return 0
+    if args.command in ("evidence", "draft", "assemble"):
+        from pathlib import Path
+        from . import draft as draft_mod
+        if not args.spec:
+            p.error("the target code is required")
+        if args.command == "evidence":
+            if not (args.report and args.pages):
+                p.error("evidence needs --report and --pages")
+            draft_mod.evidence(args.spec, Path(args.report), args.pages, Path(args.ecospold), args.project)
+        elif args.command == "draft":
+            fr = dict(kv.split("=", 1) for kv in args.from_response)
+            fr = {k: (Path(v) if k != "by" else v) for k, v in fr.items()}
+            draft_mod.draft(args.spec, args.dry_run, fr or None, args.project)
+        else:
+            draft_mod.assemble(args.spec, args.project)
         return 0
     if not args.spec:
         p.error("spec is required")

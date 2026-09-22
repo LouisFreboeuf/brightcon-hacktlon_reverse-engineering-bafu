@@ -28,6 +28,8 @@ packages = ["src/reverse_bafu"]
 [project.optional-dependencies]
 # faster matrix solves for `sentier-brightway backtest`
 fast = ["pypardiso>=0.4"]
+# `reverse-bafu draft` calling Claude directly (otherwise use --dry-run / --from-response)
+llm = ["anthropic>=1.0"]
 
 [dependency-groups]
 dev = [

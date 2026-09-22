@@ -13,16 +13,16 @@ import bw2data as bd
 
 from . import db
 from .lci import System
-from .spec import Spec, walk
+from .spec import Spec, node_prefix, walk
 
 POWER_PLANT = re.compile(r"at power plant|power plant$|at run-of-river|at reservoir", re.I)
 
 
 def run(spec: Spec, out_dir: Path = Path("results/checks")) -> Path:
     target = bd.get_node(database=db.INVENTORY_DB, code=spec.target_code)
-    explicit = bd.get_node(database=db.SANDBOX_DB, code=f"{spec.target_code}-disagg")
+    explicit = bd.get_node(database=db.SANDBOX_DB, code=f"{node_prefix(spec)}-disagg")
     try:
-        hybrid = bd.get_node(database=db.SANDBOX_DB, code=f"{spec.target_code}-hybrid")
+        hybrid = bd.get_node(database=db.SANDBOX_DB, code=f"{node_prefix(spec)}-hybrid")
     except Exception:
         hybrid = None
     sys_ = System(explicit)
@@ -88,7 +88,7 @@ def run(spec: Spec, out_dir: Path = Path("results/checks")) -> Path:
     L += ["## Evidence", ""] + [f"- {e.get('source', '')} — {e.get('where', '')} {e.get('note', '')}".rstrip() for e in spec.evidence]
 
     out_dir.mkdir(parents=True, exist_ok=True)
-    out = out_dir / f"{spec.target_code}.md"
+    out = out_dir / f"{node_prefix(spec)}.md"
     out.write_text("\n".join(L) + "\n")
     # console summary
     med = float(np.nanmedian([abs(w) for w, _ in worst]))

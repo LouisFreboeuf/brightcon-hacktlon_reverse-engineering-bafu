@@ -224,6 +224,17 @@ weighting categories by their net score explodes when the score is tiny through 
 (biogenic CO₂ uptake vs release) — categories are now weighted by the sum of absolute
 contributions.
 
+### Reproducibility of the specs
+
+The specs are the evidence step, so they are where reproducibility matters most. `reverse-bafu
+evidence / draft / assemble` (README) splits the work: deterministic evidence extraction with
+hashes, a pinned two-pass LLM step (extraction with verbatim quotes; mapping against
+deterministically generated candidate lists) whose prompts and raw responses are stored, and a
+deterministic assembly that writes a `derivation` on every entry. The prompt rules keep the
+model from doing the two things that need judgement — inventing inputs the excerpt does not
+mention (reported as `gaps`) and deciding amounts it is unsure of (flagged, calibrated later).
+On burnt shale the drafted spec equals the hand-written one on every transcribed number.
+
 ## 5. Open questions
 
 - The 2022 French *rapports méthodologiques* are not in the BAFU documentation bundle; ask

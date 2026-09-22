@@ -126,6 +126,34 @@ calibrated: climate, acidification, particulates, photochemical ozone and fossil
 ±7 %; the toxicity / land / water categories still miss flows the table does not list (metals from
 burning, water) — that is what the flow diff in the report is for.
 
+### Drafting a spec reproducibly (`evidence` → `draft` → `assemble`)
+
+The three hand-written specs were produced by reading reports in a chat session. The reproducible
+route separates what is deterministic from what is not and records both:
+
+```bash
+# 1. evidence (deterministic): report pages as text + target metadata + direct-resource candidates + manifest with SHA-256s
+uv run reverse-bafu evidence <code> --report "<report>.pdf" --pages 19-21      # PDF page numbers, not printed ones
+# 2. draft (the LLM step): two fixed prompts, prompts/draft_spec.md (extraction) and prompts/map_inputs.md (mapping)
+uv run reverse-bafu draft <code>                       # calls claude-opus-5 with structured output (uv sync --extra llm; needs credentials)
+uv run reverse-bafu draft <code> --dry-run             # writes the exact prompts + JSON schemas; run them with any model
+uv run reverse-bafu draft <code> --from-response extract=response-1-extract.json --from-response map=response-2-map.json --from-response "by=<who>"
+# 3. assemble (deterministic): line items × factors × basis → specs/<code>-<slug>.draft.json with a derivation on every entry
+```
+
+Everything lands in `specs/evidence/<code>/`: the report text (hashed), the rendered prompts, the
+schemas, the deterministic candidate lists for the mapping pass, the raw responses and a
+provenance record (model, effort, prompt hash, author). Every input of the assembled spec carries
+a `derivation`: the quoted line, raw value and unit, conversion factor with its source, the search
+phrase, the chosen candidate and why, and `reviewed_by: null` until a person signs it off.
+Reproducible means: the evidence and candidates regenerate bit-for-bit, the prompt and model are
+pinned, and every number is auditable — not that the model returns identical JSON.
+
+First result (burnt shale, the session's own answer to the exact prompts, labelled as such): the
+draft matches the hand-written spec on all 12 inputs and 6 emissions; it leaves the electricity at
+the table's gross value (flagged low confidence) and reports the missing raw-shale flows as `gaps`
+instead of inventing them — the two decisions a reviewer has to make.
+
 ### Benchmark with known answers
 
 ```bash

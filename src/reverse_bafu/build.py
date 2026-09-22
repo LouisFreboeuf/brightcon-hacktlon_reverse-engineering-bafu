@@ -13,13 +13,13 @@ import bw2data as bd
 
 from . import db
 from .lci import System
-from .spec import Node, Spec, slug, walk
+from .spec import Node, Spec, node_prefix, slug, walk
 
 RESIDUAL_MIN = 1e-15  # drop residual entries below this (numerical noise)
 
 
 def _node_code(spec: Spec, node: Node) -> str:
-    return f"{spec.target_code}-disagg" if node is spec.node else f"{spec.target_code}-{slug(node.name)}"
+    return f"{node_prefix(spec)}-disagg" if node is spec.node else f"{node_prefix(spec)}-{slug(node.name)}"
 
 
 def _exchanges(spec: Spec, node: Node, code: str) -> list[dict]:
@@ -57,7 +57,7 @@ def run(spec: Spec, hybrid: bool = True) -> dict:
             "exchanges": _exchanges(spec, node, code),
         }
     _write(sandbox, data)
-    codes = {"disagg": f"{spec.target_code}-disagg"}
+    codes = {"disagg": f"{node_prefix(spec)}-disagg"}
     print(f"wrote {len(data)} node(s) to {db.SANDBOX_DB}: " + ", ".join(k[1] for k in data))
     if not hybrid:
         return codes
@@ -68,7 +68,7 @@ def run(spec: Spec, hybrid: bool = True) -> dict:
     sys_ = System(explicit)
     b_t, b_e = sys_.cumulative([target.id, explicit.id]).T
     r = b_t - b_e
-    hyb_code = f"{spec.target_code}-hybrid"
+    hyb_code = f"{node_prefix(spec)}-hybrid"
     # bw2data's write() consumes the exchange lists it is given, so rebuild from the spec
     hyb = dict(explicit.as_dict())
     hyb.pop("id", None)
