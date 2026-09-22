@@ -358,7 +358,7 @@
           "mapping_reason": "'Heat, waste' to air unspecified; Waste Heat [air] in EF 3.1 is the substance and compartment, beating the soil/water copies and the residual-database groundwater flow.",
           "mapping_by": "claude-code:claude-opus-5[1m]"
         },
-        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9137-0050c2490048",
         "database": "ef-3.1-biosphere"
       }
     ],

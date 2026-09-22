@@ -317,7 +317,9 @@ if a referenced code is missing in the target project, naming every one.
 Format, flags, what the strategies mean and — importantly — the per-dataset quality limits are in
 [exports/README.md](exports/README.md). The short version: import the `*-hybrid` nodes if you need
 results that match BAFU-2026 (they reproduce the originals to 1e-8), the `*-disagg` nodes only if
-you want the evidence-only model, which reproduces between 1 % and 19 % of a dataset's flows.
+you want the evidence-only model, which reproduces between 1 % and 83 % of a dataset's flows (the
+spread is wide and the high end is not what it looks like: see *The PlasticsEurope family* in
+[exports/README.md](exports/README.md)).
 
 ## Layout
 
