@@ -474,25 +474,26 @@ def cited_reports(code: str, csv_source: str, pdf_by_title: dict, ecospold_dir: 
 
 
 def draft_all(project: str, ecospold_dir: Path, reports: Path, dry_run: bool, only: set[str] | None, by: str,
-              status_path: Path = Path("results/drafting_status.csv")) -> None:
+              status_path: Path = Path("results/drafting_status.csv"),
+              datasets: Path = Path("results/system_terminated.csv")) -> None:
     """One entry point for all system-terminated datasets: find the report, locate the pages, extract,
     map, assemble - recording per dataset how far it got and why it stopped."""
     import csv
 
-    rows = list(csv.DictReader(open("results/system_terminated.csv")))
+    rows = list(csv.DictReader(open(datasets)))
     pdf_by_title = {r["title"]: r["pdf"] for r in csv.DictReader(open("results/sources.csv"))}
     status: list[dict] = []
     for r in rows:
         code, name = r["code"], r["name"]
         if only and code not in only and code[:8] not in only:
             continue
-        rec = {"code": code, "name": name, "family": r["family"], "pdf": "", "pages": "", "status": "", "note": ""}
+        rec = {"code": code, "name": name, "family": r.get("family", "") or r.get("detected_by", ""), "pdf": "", "pages": "", "status": "", "note": ""}
         status.append(rec)
         title = r["source"].split(" | ")[-1] if r["source"] else ""
         candidates = [p for p in cited_reports(code, r["source"], pdf_by_title, ecospold_dir) if (reports / p).exists()]
         pdf_name = candidates[0] if candidates else ""
         if not pdf_name and not (SPEC_ROOT / f"{code[:8]}-{slug(name)}.draft.json").exists():
-            rec["status"], rec["note"] = "no-pdf", f"family {r['family']}: no report in the documentation bundle for '{title or 'no source'}'"
+            rec["status"], rec["note"] = "no-pdf", f"family {r.get('family','') or r.get('detected_by','')}: no report in the documentation bundle for '{title or 'no source'}'"
             continue
         rec["pdf"] = pdf_name
         advance(code, name, reports / pdf_name, ecospold_dir, project, dry_run, by, rec)

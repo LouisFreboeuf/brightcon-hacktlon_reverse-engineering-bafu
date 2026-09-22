@@ -22,6 +22,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--reports", default="BAFU-2026 v1_Documentation/BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports",
                    help="locate/draft-all: folder with the report PDFs")
     p.add_argument("--only", default="", help="draft-all: comma-separated dataset codes (or 8-char prefixes) to process")
+    p.add_argument("--datasets", default="results/system_terminated.csv",
+                   help="draft-all: the CSV of aggregated datasets to work through (see scripts/find_system_processes.py)")
     p.add_argument("--by", default="", help="draft-all: author label for responses answered outside the API")
     p.add_argument("--n", type=int, default=30, help="benchmark: number of synthetic cases")
     p.add_argument("--seed", type=int, default=1)
@@ -54,7 +56,8 @@ def main(argv: list[str] | None = None) -> int:
         from pathlib import Path
         from . import draft as draft_mod
         only = {x.strip() for x in args.only.split(",") if x.strip()} or None
-        draft_mod.draft_all(args.project, Path(args.ecospold), Path(args.reports), args.dry_run, only, args.by or "manual")
+        draft_mod.draft_all(args.project, Path(args.ecospold), Path(args.reports), args.dry_run, only, args.by or "manual",
+                            datasets=Path(args.datasets))
         return 0
     if args.command in ("evidence", "draft", "assemble", "locate"):
         from pathlib import Path
