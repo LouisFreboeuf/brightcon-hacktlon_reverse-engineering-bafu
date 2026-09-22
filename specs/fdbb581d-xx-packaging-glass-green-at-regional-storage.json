@@ -38,7 +38,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 1.3143974315725026e-05,
+        "amount": 1.3143973596383976e-05,
         "unit": "ton kilometer",
         "location": "RER",
         "code": "99f8a4b0-99b5-3130-924c-5de4c10b62ef",
@@ -51,7 +51,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 2.607942635210299e-05,
+        "amount": 2.6079425926049556e-05,
         "unit": "ton kilometer",
         "location": "RER",
         "code": "aacc6120-0e68-3835-8303-5ae37d62c030",

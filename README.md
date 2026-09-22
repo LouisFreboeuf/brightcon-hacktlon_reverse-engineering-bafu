@@ -295,14 +295,40 @@ cement` from the concrete 2020 report (answered by a Claude Code session, labell
 found and mapped, 8/9 amounts within ±20 %, the direct flow matched. The one amount miss is a finding about the data, not the pipeline: the
 report prints 2.0E‑2 tkm of lorry transport for that cement, the BAFU dataset carries 4.3E‑4.
 
+## 7. Share the rebuilds: export and import
+
+The rebuilt unit processes live in the Brightway sandbox of whoever ran `run-all`. To let someone
+else enrich *their* BAFU-2026 project with them:
+
+```bash
+PYTHONPATH=src python scripts/export_disaggregated.py --project bafu-2026   # -> exports/
+python scripts/import_disaggregated.py --project <their-project> --dry-run  # resolve, write nothing
+python scripts/import_disaggregated.py --project <their-project>            # add one new database
+PYTHONPATH=src python scripts/verify_import_roundtrip.py --source bafu-2026 --scratch import-test
+```
+
+The export is a plain documented JSON (plus a flat CSV of the explicit exchanges): per dataset the
+name, location, unit, reference product, the BAFU code it replaces, the strategy, every
+technosphere exchange with its supplier's BAFU code, every elementary flow with its EF 3.1 code and
+database, the residual block, and the provenance (report, page, quoted line) where the pipeline
+recorded it. The importer links by code, creates one new database and **refuses to write anything**
+if a referenced code is missing in the target project, naming every one.
+
+Format, flags, what the strategies mean and — importantly — the per-dataset quality limits are in
+[exports/README.md](exports/README.md). The short version: import the `*-hybrid` nodes if you need
+results that match BAFU-2026 (they reproduce the originals to 1e-8), the `*-disagg` nodes only if
+you want the evidence-only model, which reproduces between 1 % and 19 % of a dataset's flows.
+
 ## Layout
 
 ```
 src/reverse_bafu/   pipeline: cli, spec, db, lci, resolve, calibrate, build, check, runall, draft, benchmark
-scripts/            list_system_terminated.py, list_sources.py, render_pages.py (+ templates/)
+scripts/            list_system_terminated.py, list_sources.py, render_pages.py (+ templates/),
+                    export_disaggregated.py, import_disaggregated.py, verify_import_roundtrip.py
 prompts/            the three fixed LLM prompt templates (locate, extract, map)
 specs/              one JSON per rebuilt dataset; specs/evidence/<code>/ = drafting records
 results/            system_terminated.csv, sources.csv, dois.csv, drafting_status.csv, rebuild_status.csv, checks/, benchmark/
+exports/            the shareable export of the rebuilt datasets + its README (format, import, quality limits)
 artifacts/          the documentation: method-explainer, the-101, rebuilt-inventories, burnt-shale-rebuilt, code-walkthrough
 references.txt      the two papers referenced, with their role for this project
 .claude/commands/   /draft-all, /draft-spec, /benchmark-extraction

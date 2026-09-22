@@ -50,7 +50,7 @@
       },
       {
         "name": "Limestone, milled, loose, at plant",
-        "amount": 0.020750022561292037,
+        "amount": 0.020750022561292034,
         "unit": "kilogram",
         "location": "CH",
         "code": "f8e122b3-92fb-37d6-aade-43ee2f2de640",
@@ -63,7 +63,7 @@
       },
       {
         "name": "Silica sand, at plant",
-        "amount": 0.12400011828552616,
+        "amount": 0.12400011828552619,
         "unit": "kilogram",
         "location": "DE",
         "code": "a7511c34-4efb-316c-9d45-3fe6cf13a799",
@@ -92,7 +92,7 @@
       },
       {
         "name": "Glass, from public collection, unsorted",
-        "amount": 0.30250026814612285,
+        "amount": 0.302500268146123,
         "unit": "kilogram",
         "location": "RER",
         "code": "3a36045b-fc25-3ecc-8d54-00ed5a29f230",
@@ -142,7 +142,7 @@
       },
       {
         "name": "Heavy fuel oil, at regional storage",
-        "amount": 0.021650017598238133,
+        "amount": 0.02165001759823814,
         "unit": "kilogram",
         "location": "RER",
         "code": "d3e849a4-c9c1-3474-8b09-a71f4d412130",
@@ -187,7 +187,7 @@
       },
       {
         "name": "Electricity, medium voltage, at grid",
-        "amount": 0.12200013565182297,
+        "amount": 0.12200013565182295,
         "unit": "kilowatt hour",
         "location": "CH",
         "code": "df605f09-34c5-3b3f-94ea-227f7a3c06a7",
@@ -221,7 +221,7 @@
       },
       {
         "name": "Natural gas, high pressure, at consumer",
-        "amount": 1.7850015909446761,
+        "amount": 1.7850015909446766,
         "unit": "megajoule",
         "location": "RER",
         "code": "52167408-1c86-310c-ab50-a92f15e84379",
@@ -247,7 +247,7 @@
         "category": "Emissions",
         "amount": 7.33e-06,
         "unit": "kilogram",
-        "code": "fe0acd60-3ddc-11dd-abf3-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-abf2-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -256,7 +256,7 @@
         "category": "Emissions",
         "amount": 6.74e-08,
         "unit": "kilogram",
-        "code": "fe0acd60-3ddc-11dd-a79f-0050c2490048",
+        "code": "4d9a8790-3ddd-11dd-96cf-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -274,7 +274,7 @@
         "category": "Emissions",
         "amount": 6.74e-08,
         "unit": "kilogram",
-        "code": "08a91e70-3ddc-11dd-9688-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-91d2-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -283,7 +283,7 @@
         "category": "Emissions",
         "amount": 6.74e-08,
         "unit": "kilogram",
-        "code": "08a91e70-3ddc-11dd-9bcc-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9bc7-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -301,7 +301,7 @@
         "category": "Emissions",
         "amount": 6.74e-08,
         "unit": "kilogram",
-        "code": "08a91e70-3ddc-11dd-9283-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-a4f0-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -319,7 +319,7 @@
         "category": "Emissions",
         "amount": 6.74e-08,
         "unit": "kilogram",
-        "code": "08a91e70-3ddc-11dd-9674-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9673-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -328,7 +328,7 @@
         "category": "air",
         "amount": 1.6e-05,
         "unit": "kilogram",
-        "code": "08a91e70-3ddc-11dd-94ff-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-94fe-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -337,7 +337,7 @@
         "category": "air",
         "amount": 8.63,
         "unit": "megajoule",
-        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -355,7 +355,7 @@
         "category": "Emissions",
         "amount": 1.8e-05,
         "unit": "kilogram",
-        "code": "08a91e70-3ddc-11dd-9804-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9803-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -364,7 +364,7 @@
         "category": "Emissions",
         "amount": 4.97e-05,
         "unit": "kilogram",
-        "code": "fe0acd60-3ddc-11dd-aaaf-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-97ff-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -391,7 +391,7 @@
         "category": "Emissions",
         "amount": 7.72e-07,
         "unit": "kilogram",
-        "code": "4d9a8790-3ddd-11dd-91dc-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-a97e-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },
@@ -400,7 +400,7 @@
         "category": "Emissions",
         "amount": 6.74e-08,
         "unit": "kilogram",
-        "code": "08a91e70-3ddc-11dd-91d7-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-91e1-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },

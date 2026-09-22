@@ -50,7 +50,7 @@
       },
       {
         "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
-        "amount": 1.5000009481401269,
+        "amount": 1.500000948140127,
         "unit": "ton kilometer",
         "location": "CH",
         "code": "eb5552ed-63a8-374d-8fa4-296f644c37f8",
@@ -63,7 +63,7 @@
       },
       {
         "name": "Potato starch, at plant",
-        "amount": 0.014500012076835541,
+        "amount": 0.014500012076835543,
         "unit": "kilogram",
         "location": "DE",
         "code": "4cabab9c-da5b-32e6-b114-02a06c1deccb",
@@ -97,7 +97,7 @@
       },
       {
         "name": "Stucco, at plant",
-        "amount": 4.055003407910001,
+        "amount": 4.05500340791,
         "unit": "kilogram",
         "location": "CH",
         "code": "08c050ee-36ba-3999-9fee-24321d6a6787",
@@ -126,7 +126,7 @@
       },
       {
         "name": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
-        "amount": 6.800004130600257,
+        "amount": 6.800004130600254,
         "unit": "megajoule",
         "location": "RER",
         "code": "82c07b68-8bf9-3537-9934-91924132e976",
@@ -152,7 +152,7 @@
         "category": "air",
         "amount": 3.37,
         "unit": "megajoule",
-        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere",
         "note": "direct flow of the template unit process"
       },

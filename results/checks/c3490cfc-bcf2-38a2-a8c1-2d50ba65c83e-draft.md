@@ -11,7 +11,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 - the 50 largest kilogram flows: 8/50 within ±10 %, median |Δ| 44.2%
 - kilogram mass covered within ±10 %: 0.5% of the target's total kg mass
 - of the 1326 flows of the target, 1326 are determined by the solve (0 are round-off and are not scored; see lci.determined_flows)
-- 249 of those 1326 within ±10 % (19%), median |Δ| 28.7%, 0 missing from the model, 449 extra
+- 249 of those 1326 within ±10 % (19%), median |Δ| 28.7%, 0 missing from the model, 447 extra
 - hybrid vs target: identical on every flow
 
 | \|Δ\| bucket | flows | share of target flows |
@@ -33,7 +33,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.483 | 0.584 | +20.9% | -0.101 |
 | Shale [soil] (kilogram) | 0.13 | 0.144 | +10.7% | -0.014 |
 | Clay [soil] (kilogram) | 0.0547 | 0.0605 | +10.5% | -0.00572 |
-| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.54e-06 | -100.0% | +0.0303 |
+| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.45e-06 | -100.0% | +0.0303 |
 | Carbon Dioxide (biogenic) [Emissions/Emissions to air] (kilogram) | 0.0263 | 0.0428 | +62.7% | -0.0165 |
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.0229 | 0.0253 | +10.7% | -0.00245 |
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.0161 | 0.0124 | -22.8% | +0.00366 |
@@ -96,7 +96,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 |---|---|---|---|---|
 | Forest, Intensive [Land use/Land occupation] (square meter-year) | 0.00215 | 0.00337 | +56.8% | -0.00122 |
 | Forest [Land use/Land occupation] (square meter-year) | 0.00128 | 0.00146 | +14.0% | -0.00018 |
-| Industrial Area [Land use/Land occupation] (square meter-year) | 0.000426 | 0.000374 | -12.3% | +5.25e-05 |
+| Industrial Area [Land use/Land occupation] (square meter-year) | 0.000426 | 0.000374 | -12.3% | +5.26e-05 |
 | Mineral Extraction Site [Land use/Land occupation] (square meter-year) | 0.000197 | 0.00017 | -14.0% | +2.76e-05 |
 | Traffic Area, Road Network [Land use/Land occupation] (square meter-year) | 0.000195 | 0.000223 | +14.3% | -2.8e-05 |
 
@@ -130,7 +130,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 
 | flow | target | explicit | Δ |
 |---|---|---|---|
-| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.54e-06 | -100.0% |
+| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.45e-06 | -100.0% |
 | Non-methane Volatile Organic Compounds [Emissions/Emissions to air] (kilogram) | 5.23e-05 | 2.58e-06 | -95.1% |
 | Platinum [air] (kilogram) | 0.00047 | 0.000868 | +84.7% |
 | Solids, Inorganic [water] (kilogram) | 6.44e-05 | 0.000118 | +83.8% |
@@ -149,7 +149,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 - ✓ mass in: 1.05 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 597 flows under-explained, 1178 over-explained (negative residual)
+residual: 538 flows under-explained, 1235 over-explained (negative residual)
 
 ## Evidence
 
