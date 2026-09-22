@@ -1,0 +1,39 @@
+<section id="the-101" data-section="How many of BAFU's system processes can be dis-aggregated at all" data-transition="fade" style="background:#F5F4EF; color:#14212B; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:52px">
+
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-size:28px; letter-spacing:2px; text-transform:uppercase; color:#C8842A">Step one · what are we up against</p>
+    <h2 style="font-family:'EB Garamond', Georgia, serif; font-size:76px; font-weight:500; line-height:1.08">We found 101 system processes. Two thirds cannot be dis-aggregated.</h2>
+  </div>
+
+  <div style="display:flex; gap:32px">
+
+    <div style="flex:1; display:flex; flex-direction:column; gap:20px; background:#FFFFFF; padding:44px; border:1px solid #DDD9D0; border-radius:18px">
+      <p style="font-size:100px; font-weight:600; line-height:1; color:#24695C">34</p>
+      <h3 style="font-size:36px; font-weight:600; line-height:1.2">have a public report behind them</h3>
+      <p style="font-size:28px; line-height:1.45; color:#4E5B66">The system process cites a study, and that study is in the documentation bundle. Something can be read.</p>
+      <ul style="font-size:26px; line-height:1.6; color:#4E5B66">
+        <li>24 · ecoinvent chemicals, detergents, wood</li>
+        <li>10 · treeze / KBOB concrete and binders</li>
+      </ul>
+    </div>
+
+    <div style="flex:1; display:flex; flex-direction:column; gap:20px; background:#FFFFFF; padding:44px; border:1px solid #DDD9D0; border-radius:18px">
+      <p style="font-size:100px; font-weight:600; line-height:1; color:#A8412F">67</p>
+      <h3 style="font-size:36px; font-weight:600; line-height:1.2">have nothing at all</h3>
+      <p style="font-size:28px; line-height:1.45; color:#4E5B66">No report in the bundle. Confidential member data, or a study nobody shipped.</p>
+      <ul style="font-size:26px; line-height:1.6; color:#4E5B66">
+        <li>29 · French bio‑based materials</li>
+        <li>24 · KBOB manufacturer data</li>
+        <li>14 · PlasticsEurope polymers</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background:#EDE9DF; border-left:6px solid #C8842A; padding:32px 40px; border-radius:0px 14px 14px 0px">
+    <p style="font-size:32px; line-height:1.45; color:#14212B">For those 67 the honest answer is not a cleverer algorithm. It is a domain expert writing a new unit process from scratch — out of scope for two days. <b>We worked on the 34 where evidence exists.</b></p>
+  </div>
+
+  <p style="position:absolute; left:128px; bottom:64px; font-size:24px; color:#7A8792">Source: results/system_terminated.csv · 101 datasets flagged type=2 in the BAFU‑2026 ecoSpold export</p>
+
+  <aside>The first job was just counting. 101 datasets in BAFU-2026 are shipped as system processes. We joined every one to its cited source and to the 114 report PDFs in the documentation bundle. Only 34 have a report we can actually read. The 67 without documentation are not a failure of method — PlasticsEurope states explicitly that its data is nowadays only available as system processes. Note the uncomfortable part: the family with the biggest downstream impact, PlasticsEurope polymers, is the one with no public data. Impact and feasibility are anti-correlated here.</aside>
+</section>

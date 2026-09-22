@@ -1,0 +1,47 @@
+<section id="real-cases" data-section="Three system processes rebuilt, and how far the method can be trusted" data-transition="fade" style="background:#F5F4EF; color:#14212B; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:44px">
+
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-size:28px; letter-spacing:2px; text-transform:uppercase; color:#C8842A">Results · the real datasets</p>
+    <h2 style="font-family:'EB Garamond', Georgia, serif; font-size:76px; font-weight:500; line-height:1.08">Three system processes, dis-aggregated</h2>
+  </div>
+
+  <table style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:29px; color:#14212B">
+    <tr style="background:#14212B">
+      <th style="width:26%; color:#F5F4EF; text-align:left; font-size:26px">System process</th>
+      <th style="width:10%; color:#F5F4EF; text-align:left; font-size:26px">Route</th>
+      <th style="width:32%; color:#F5F4EF; text-align:left; font-size:26px">What the report gave us</th>
+      <th style="width:32%; color:#F5F4EF; text-align:left; font-size:26px">The unit process we got</th>
+    </tr>
+    <tr style="background:#FFFFFF">
+      <td><b>Burnt shale</b><br>at plant · DE</td>
+      <td style="color:#24695C"><b>S1</b></td>
+      <td>The full unit process table, per tonne, with transport distances</td>
+      <td>12 inputs. Reproduces <b>99.5 %</b> of the system process's kilogram mass</td>
+    </tr>
+    <tr style="background:#F8F7F3">
+      <td><b>Cement ZN, D</b><br>at plant · CH</td>
+      <td style="color:#24695C"><b>S1</b></td>
+      <td>A table, but the six composition shares are printed as ranges</td>
+      <td>13 inputs. The six shares fitted inside the report's own ranges</td>
+    </tr>
+    <tr style="background:#FFFFFF">
+      <td><b>Gypsum fibre board</b><br>at plant · DE</td>
+      <td style="color:#C8842A"><b>S2</b></td>
+      <td>Inventory sits in a confidential annex — but a Swiss unit process for the same board exists</td>
+      <td>10 inputs taken from the Swiss one. The German plant does not fit that structure</td>
+    </tr>
+  </table>
+
+  <div style="display:flex; gap:28px">
+    <div style="flex:1; background:#FFFFFF; padding:30px 34px; border:1px solid #DDD9D0; border-radius:14px">
+      <p style="font-size:28px; line-height:1.45; color:#4E5B66">Every amount keeps a pointer to the sentence it came from — report, page, quoted line, and the arithmetic in between.</p>
+    </div>
+    <div style="flex:1; background:#EDE9DF; padding:30px 34px; border-radius:14px">
+      <p style="font-size:28px; line-height:1.45; color:#14212B">None of the three is perfect. What is left over is written into the unit process as a residual, so it stays visible instead of being quietly absorbed.</p>
+    </div>
+  </div>
+
+  <p style="position:absolute; left:128px; bottom:64px; font-size:24px; color:#7A8792">results/rebuild_status.csv · per-dataset reports in results/checks/</p>
+
+  <aside>These are the three we took all the way through. Burnt shale is the clean case: the treeze concrete report prints the whole gate-to-gate table, so it is close to pure transcription, and the rebuilt unit process carries essentially all of the system process's mass. Cement ZN/D is the interesting one for the optimiser: the composition is given as ranges, so the six shares were fitted inside those bounds with a one-kilogram mass constraint. Gypsum fibre board is the honest failure — the German inventory is confidential, we reused the structure of the Swiss unit process, and the fit tells us clearly that the German plant is more energy-intensive than that structure allows. That is a useful result too: the method told us it did not work, rather than hiding it.</aside>
+</section>

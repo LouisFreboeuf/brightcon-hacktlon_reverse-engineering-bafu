@@ -1,0 +1,24 @@
+{
+  "v": 4,
+  "createdOnFiles": { "v": 1, "at": "2026-09-22T14:00:00Z" },
+  "title": "Dis-aggregating System Processes",
+  "order": ["cover", "the-101", "approach", "real-cases", "benchmark"],
+  "cover": "cover",
+  "sections": {
+    "problem": { "description": "What a system process is, why it exists and why we want it dis-aggregated", "start": "cover" },
+    "survey": { "description": "How many of BAFU's system processes can be dis-aggregated at all", "start": "the-101" },
+    "method": { "description": "The four routes and where the optimiser comes in", "start": "approach" },
+    "results": { "description": "Three system processes rebuilt, and how far the method can be trusted", "start": "real-cases" }
+  },
+  "faces": {
+    "eb-garamond": {
+      "family": "EB Garamond",
+      "href": "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap"
+    },
+    "ibm-plex-sans": {
+      "family": "IBM Plex Sans",
+      "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    }
+  },
+  "designSystems": []
+}
