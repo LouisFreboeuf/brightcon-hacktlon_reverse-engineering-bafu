@@ -20,7 +20,7 @@ warnings.filterwarnings("ignore")
 
 from reverse_bafu import db, benchmark
 from reverse_bafu.benchmark import Bench, pick_cases
-from reverse_bafu.lci import System, flow_agreement, contribution_breadth
+from reverse_bafu.lci import System, determined_flows, flow_agreement, contribution_breadth
 
 ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 ap.add_argument("-n", "--n", type=int, default=10, help="number of synthetic cases (default 10)")
@@ -63,6 +63,7 @@ out = []
 for case in cases:
     truth = case["inputs"]
     target = bench.sys.cumulative([bench.ids[(db.INVENTORY_DB, case["code"])]])[:, 0]
+    det = determined_flows(bench.sys, bench.ids[(db.INVENTORY_DB, case["code"])])
     rec = {"code": case["code"], "name": case["name"], "category": case["category"],
            "location": case["location"], "unit": bd.get_node(database=db.INVENTORY_DB, code=case["code"]).get("unit", ""),
            "n_true_inputs": len(truth), "n_target_flows": int((target != 0).sum()),
@@ -94,7 +95,7 @@ for case in cases:
         x, M = bench.fit(target, cand, lo, hi, direct)
         secs = time.time() - t0
         model = M @ x + direct
-        ag = flow_agreement(target, model)
+        ag = flow_agreement(target, model, det)
 
         cols = {k: M[:, i] for i, k in enumerate(cand)}
         mat = lambda col, amt: contribution_breadth(target, col * amt) > 0
