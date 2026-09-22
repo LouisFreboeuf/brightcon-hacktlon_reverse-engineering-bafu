@@ -30,7 +30,7 @@ import scipy.optimize as so
 import bw2data as bd
 
 from . import db
-from .lci import System
+from .lci import System, contribution_breadth, flow_agreement
 
 SCENARIOS = ("oracle", "bounded", "partial", "distractors", "blind")
 
@@ -87,7 +87,11 @@ class Bench:
 
     def fit(self, target: np.ndarray, cand: list[tuple], lo: np.ndarray, hi: np.ndarray, direct: np.ndarray) -> np.ndarray:
         M = np.column_stack([self.col(self.ids[k]) for k in cand])
-        w = self.sys.flow_weights(target)
+        # relative weights; the model side of the weight is the unweighted NNLS solution, so flows the
+        # target lacks but a candidate would bring count by their own size
+        scale = np.linalg.norm(M, axis=0); scale[scale == 0] = 1.0
+        x0 = so.nnls(M / scale, target - direct, maxiter=20000)[0] / scale
+        w = self.sys.fit_weights(target, M @ x0 + direct)
         rows = np.where(w > 0)[0]
         res = so.lsq_linear(w[rows, None] * M[rows], w[rows] * (target - direct)[rows], bounds=(lo, hi), max_iter=5000)
         return res.x, M
@@ -102,9 +106,9 @@ class Bench:
         elif scenario == "bounded":
             cand = keys
         elif scenario == "partial":
-            # drop the 30 % of inputs with the smallest climate contribution (what a report omits)
-            cc = self.sys.cf[[i for i, m in enumerate(self.sys.methods) if m[2] == "Climate change"][0]]
-            contrib = {k: abs(cc @ self.col(self.ids[k]) * truth[k]) for k in keys}
+            # drop the 30 % of inputs that explain the least of the inventory (what a report omits):
+            # ranked by the share of target flows to which the input supplies >= 1 %
+            contrib = {k: contribution_breadth(target, self.col(self.ids[k]) * truth[k]) for k in keys}
             keep = sorted(keys, key=lambda k: -contrib[k])[: max(1, round(0.7 * len(keys)))]
             cand = keep
         elif scenario == "distractors":
@@ -119,20 +123,12 @@ class Bench:
         t0 = time.time()
         x, M = self.fit(target, cand, lo, hi, direct)
         explicit = M @ x + direct
-        s_t, s_e = self.sys.scores(target), self.sys.scores(explicit)
-        with np.errstate(divide="ignore", invalid="ignore"):
-            delta = np.where(s_t != 0, s_e / s_t - 1, np.nan) * 100
-        residual = target - explicit
-        s_r = self.sys.scores(residual)
-        with np.errstate(divide="ignore", invalid="ignore"):
-            res_share = np.abs(np.where(s_t != 0, s_r / s_t, np.nan)) * 100
-        # structure: judged by impact, not by coefficient size. An input is "material" when its true
-        # contribution reaches 1 % of the target score in some category; a candidate counts as chosen
-        # when its fitted contribution does.
+        ag = flow_agreement(target, explicit)
+        # structure: judged by the inventory, not by coefficient size. An input is "material" when its
+        # true contribution reaches 1 % of the target amount of some flow; a candidate counts as
+        # chosen when its fitted contribution does.
         def material(col: np.ndarray, amount: float) -> bool:
-            with np.errstate(divide="ignore", invalid="ignore"):
-                share = np.abs(np.where(s_t != 0, (self.sys.cf @ (col * amount)) / s_t, 0))
-            return bool(np.nanmax(share) >= 0.01)
+            return contribution_breadth(target, col * amount) > 0
         cols = {k: M[:, i] for i, k in enumerate(cand)}
         true_material = {k for k in truth if k in cols and material(cols[k], truth[k])} | {k for k in truth if k not in cols}
         chosen = {k for i, k in enumerate(cand) if material(cols[k], x[i])}
@@ -143,9 +139,9 @@ class Bench:
             "code": case["code"], "name": case["name"], "category": case["category"], "n_true_inputs": len(truth), "n_material_inputs": len(true_material),
             "scenario": scenario, "n_candidates": n, "n_chosen": len(chosen), "true_positives": tp, "false_positives": fp, "false_negatives": fn,
             "amounts_within_20pct": f"{within20}/{len(ratios)}", "amount_ratio_median": float(np.median(ratios)) if ratios else float("nan"),
-            "score_median_abs_delta_pct": float(np.nanmedian(np.abs(delta))), "score_max_abs_delta_pct": float(np.nanmax(np.abs(delta))),
-            "categories_within_10pct": int(np.nansum(np.abs(delta) <= 10)), "climate_delta_pct": float(delta[[i for i, m in enumerate(self.sys.methods) if m[2] == "Climate change"][0]]),
-            "residual_share_median_pct": float(np.nanmedian(res_share)), "seconds": round(time.time() - t0, 2),
+            "n_target_flows": ag["n_target"], "flows_within_10pct": ag["within_10pct"], "flows_within_10pct_share": round(ag["within_10pct"] / max(1, ag["n_target"]), 4),
+            "flow_median_abs_delta_pct": round(100 * ag["median_abs_delta"], 3), "flows_missing": ag["n_missing"], "flows_extra": ag["n_extra"],
+            "seconds": round(time.time() - t0, 2),
         }
 
 
@@ -175,16 +171,17 @@ def run(n: int, seed: int, scenarios: list[str], name: str, out_dir: Path = Path
     # summary
     L = [f"# Benchmark `{name}`: {len(cases)} synthetic aggregated datasets, seed {seed}", "",
          "Ground truth = BAFU unit processes (3-30 inputs, stratified over categories); target = their cumulative inventory.", "",
-         "| scenario | median \\|Δ score\\| | categories within ±10 % (of 25) | climate \\|Δ\\| median | material amounts within ±20 % | material inputs chosen / true | false pos. | false neg. | residual share median |",
-         "|---|---|---|---|---|---|---|---|---|"]
+         "| scenario | flows within ±10 % | median \\|Δ flow\\| | flows missing | material amounts within ±20 % | material inputs chosen / true | false pos. | false neg. |",
+         "|---|---|---|---|---|---|---|---|"]
     for sc in scenarios:
         R = [r for r in rows if r["scenario"] == sc]
         w20 = [tuple(map(int, r["amounts_within_20pct"].split("/"))) for r in R]
-        L.append(f"| {sc} | {np.median([r['score_median_abs_delta_pct'] for r in R]):.1f} % | {np.median([r['categories_within_10pct'] for r in R]):.0f} | "
-                 f"{np.median([abs(r['climate_delta_pct']) for r in R]):.1f} % | {sum(a for a, _ in w20)}/{sum(b for _, b in w20)} | "
+        L.append(f"| {sc} | {np.median([r['flows_within_10pct_share'] for r in R]):.0%} | {np.median([r['flow_median_abs_delta_pct'] for r in R]):.1f} % | "
+                 f"{np.median([r['flows_missing'] for r in R]):.0f} | {sum(a for a, _ in w20)}/{sum(b for _, b in w20)} | "
                  f"{np.median([r['n_chosen'] for r in R]):.0f} / {np.median([r['n_material_inputs'] for r in R]):.0f} | {np.median([r['false_positives'] for r in R]):.0f} | "
-                 f"{np.median([r['false_negatives'] for r in R]):.0f} | {np.median([r['residual_share_median_pct'] for r in R]):.1f} % |")
-    L += ["", "Medians over cases. 'Material' inputs are those whose true contribution reaches 1 % of the target score in some category. `partial` removes the 30 % of inputs with the smallest climate contribution before fitting; "
+                 f"{np.median([r['false_negatives'] for r in R]):.0f} |")
+    L += ["", "Medians over cases; no impact assessment — agreement is counted per elementary flow of the target's cumulative inventory. "
+          "'Material' inputs are those whose true contribution reaches 1 % of the target amount of some flow. `partial` removes the 30 % of inputs that explain the fewest flows before fitting; "
           "`distractors` adds 10 random frequently-used processes; `blind` offers every process used ≥ 30 times and no direct flows.", ""]
     md_path = out_dir / f"{name}.md"
     md_path.write_text("\n".join(L) + "\n")
@@ -281,7 +278,7 @@ def run_extraction(n: int, seed: int, name: str, project: str, ecospold_dir: Pat
     rows = []
     for i, case in enumerate(cases, 1):
         rec = {"code": case["code"], "name": case["name"], "category": case["category"], "pdf": case["pdf"], "pages": "",
-               "status": "", "note": "", "climate_delta_pct": "", "categories_within_10pct": ""}
+               "status": "", "note": "", "flows_within_10pct": "", "flows_within_10pct_share": "", "flow_median_abs_delta_pct": "", "flows_missing": ""}
         rows.append(rec)
         draft_mod.advance(case["code"], case["name"], reports / case["pdf"], ecospold_dir, project, dry_run, by, rec, variant="bench")
         print(f"  {i}/{len(cases)} {case['name'][:50]} -> {rec['status']}", file=sys.stderr)
@@ -298,18 +295,15 @@ def run_extraction(n: int, seed: int, name: str, project: str, ecospold_dir: Pat
             sp = spec_mod.load(spec_path)
             build.run(sp, hybrid=True)
             report = check.run(spec_mod.load(spec_path), out_dir=root / "checks")
-            text = report.read_text()
-            table = text[text.index("## Scores"):text.index("## Flow diff")]  # the 25-row score table only
-            deltas = {m.group(1): float(m.group(2)) for m in re.finditer(r"^\| (.+?) \| [-\d.e+]+ \| [-\d.e+]+ \| ([-+\d.]+)% \|", table, re.M)}
-            rec["climate_delta_pct"] = f"{deltas.get('Climate change', float('nan')):+.1f}"
-            rec["categories_within_10pct"] = sum(1 for d in deltas.values() if abs(d) <= 10)
+            from .runall import _summary
+            rec.update(_summary(report))
             rec.update(score_extraction(case, spec_path, project))
             rec["status"] = "scored"
         except SystemExit as exc:
             rec["status"], rec["note"] = "error", str(exc)[:200]
     root.mkdir(parents=True, exist_ok=True)
     csv_path = out_dir / f"extraction-{name}.csv"
-    fields = ["code", "name", "category", "pdf", "pages", "status", "note", "climate_delta_pct", "categories_within_10pct",
+    fields = ["code", "name", "category", "pdf", "pages", "status", "note", "flows_within_10pct", "flows_within_10pct_share", "flow_median_abs_delta_pct", "flows_missing",
               "true_inputs", "drafted_inputs", "inputs_matched", "inputs_missed", "inputs_extra", "input_amounts_within_20pct",
               "input_amount_ratio_median", "true_direct_flows", "drafted_direct_flows", "direct_flows_matched", "direct_amounts_within_20pct", "gaps_reported"]
     with csv_path.open("w", newline="") as fh:
@@ -326,8 +320,8 @@ def run_extraction(n: int, seed: int, name: str, project: str, ecospold_dir: Pat
         rec_bio = sum(r["direct_flows_matched"] for r in scored) / max(1, sum(r["true_direct_flows"] for r in scored))
         L += ["", f"Scored cases: {len(scored)}. Inputs: recall {rec_in:.0%}, precision {prec_in:.0%}, amounts within ±20 % "
               f"{sum(a for a, _ in w20)}/{sum(b for _, b in w20)} of matched; direct flows: recall {rec_bio:.0%}; "
-              f"climate |Δ| median {np.nanmedian([abs(float(r['climate_delta_pct'])) for r in scored if r['climate_delta_pct'] != '']):.1f} %; "
-              f"categories within ±10 % median {np.median([r['categories_within_10pct'] for r in scored]):.0f}/25."]
+              f"rebuilt inventory: flows within ±10 % median {np.median([float(r['flows_within_10pct_share'].rstrip('%')) for r in scored if r['flows_within_10pct_share']]):.0f} %, "
+              f"median |Δ flow| median {np.median([float(r['flow_median_abs_delta_pct']) for r in scored if r['flow_median_abs_delta_pct']]):.1f} %."]
     md_path = out_dir / f"extraction-{name}.md"
     md_path.write_text("\n".join(L) + "\n")
     print("\n".join(L[4:]))

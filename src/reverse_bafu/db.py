@@ -13,7 +13,6 @@ import bw2data as bd
 INVENTORY_DB = "bafu-2026"
 BIOSPHERE_DBS = ("ef-3.1-biosphere", "bafu-2026-residual")
 SANDBOX_DB = "reverse-bafu-sandbox"
-METHOD_PREFIX = ("sentier", "EF v3.1")
 SYSTEM_TERMINATED_CSV = Path("results/system_terminated.csv")
 
 # when a name matches in several locations and the spec does not say which
@@ -25,9 +24,6 @@ def set_project(project: str) -> None:
         raise SystemExit(f"Brightway project {project!r} not found; run `uv run sentier-brightway db --project {project}`")
     bd.projects.set_current(project)
 
-
-def methods() -> list[tuple]:
-    return sorted(m for m in bd.methods if m[:2] == METHOD_PREFIX)
 
 
 @lru_cache(maxsize=1)
