@@ -255,6 +255,19 @@ def call_model(prompt: str, schema: dict, label: str) -> tuple[dict, dict]:
     return json.loads(text), prov
 
 
+def _load_response(path: Path, schema: dict, label: str) -> dict:
+    """A response obtained outside the API (Claude Code, claude.ai, by hand) is validated against
+    the same schema the API would have enforced."""
+    import jsonschema
+
+    data = json.loads(path.read_text())
+    try:
+        jsonschema.validate(data, schema)
+    except jsonschema.ValidationError as exc:
+        raise SystemExit(f"{label}: {path} does not match the schema: {exc.message} (at {'/'.join(map(str, exc.absolute_path))})")
+    return data
+
+
 def draft(code: str, dry_run: bool, from_response: dict[str, Path] | None, project: str) -> None:
     ev = Path("specs/evidence") / code
     if not (ev / "manifest.json").exists():
@@ -267,7 +280,7 @@ def draft(code: str, dry_run: bool, from_response: dict[str, Path] | None, proje
     (ev / "prompt-1-extract.md").write_text(p1)
     (ev / "schema-1-extract.json").write_text(json.dumps(EXTRACTION_SCHEMA, indent=1))
     if from_response and "extract" in from_response:
-        ext = json.loads(from_response["extract"].read_text())
+        ext = _load_response(from_response["extract"], EXTRACTION_SCHEMA, "extraction")
         prov1 = {"model": "manual", "by": from_response.get("by", "manual"), "prompt_sha256": hashlib.sha256(p1.encode()).hexdigest(), "at": _now()}
     elif dry_run:
         print(f"dry run: extraction prompt -> {ev}/prompt-1-extract.md (schema beside it). Run it, save the JSON as response-1-extract.json, then rerun with --from-response")
@@ -283,7 +296,7 @@ def draft(code: str, dry_run: bool, from_response: dict[str, Path] | None, proje
     (ev / "candidates-2-map.json").write_text(json.dumps(cands, indent=1, ensure_ascii=False))
     (ev / "schema-2-map.json").write_text(json.dumps(MAPPING_SCHEMA, indent=1))
     if from_response and "map" in from_response:
-        mp = json.loads(from_response["map"].read_text())
+        mp = _load_response(from_response["map"], MAPPING_SCHEMA, "mapping")
         prov2 = {"model": "manual", "by": from_response.get("by", "manual"), "prompt_sha256": hashlib.sha256(p2.encode()).hexdigest(), "at": _now()}
     elif dry_run or (from_response and "map" not in from_response):
         print(f"mapping prompt -> {ev}/prompt-2-map.md (candidates from a deterministic name search beside it). Run it, save as response-2-map.json, rerun with --from-response")

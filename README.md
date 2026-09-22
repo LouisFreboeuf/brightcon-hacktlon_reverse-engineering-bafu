@@ -141,6 +141,14 @@ uv run reverse-bafu draft <code> --from-response extract=response-1-extract.json
 # 3. assemble (deterministic): line items × factors × basis → specs/<code>-<slug>.draft.json with a derivation on every entry
 ```
 
+Who can run the model step:
+
+| Route | Needs | Records |
+|---|---|---|
+| `reverse-bafu draft <code>` (SDK) | an Anthropic **API** key (`console.anthropic.com`, billed per token, `ANTHROPIC_API_KEY`) or an `ant auth login` profile — a claude.ai subscription is *not* an API key | model id, message id, token usage, prompt hash |
+| `/draft-spec <code> --report … --pages …` in **Claude Code** (a project slash command in `.claude/commands/`) | a Claude Code subscription; the session itself answers the two prompts, and every response is validated against the same JSON schema the API would enforce | `by=claude-code:<model>` |
+| any other model or a person | `--dry-run` for the prompts, `--from-response` to ingest (schema-validated) | `by=<whatever is stated>` |
+
 Everything lands in `specs/evidence/<code>/`: the report text (hashed), the rendered prompts, the
 schemas, the deterministic candidate lists for the mapping pass, the raw responses and a
 provenance record (model, effort, prompt hash, author). Every input of the assembled spec carries
