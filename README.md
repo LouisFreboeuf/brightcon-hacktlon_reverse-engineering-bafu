@@ -1,217 +1,166 @@
 # brightcon-hackathon: reverse-engineering BAFU
 
 Brightcon 2026 hackathon project for [brightcon-2026-material#38](https://github.com/Depart-de-Sentier/brightcon-2026-material/issues/38):
-replace aggregated BAFU-2026 datasets with unit process data and check that the results stay the same.
+replace the aggregated ("system terminated") datasets of BAFU-2026 with unit process data and check
+that the results stay the same.
 
-The BAFU-2026 v1 inventory is installed into Brightway 2.5 with
-[sentier-dev/sentier-brightway](https://github.com/sentier-dev/sentier-brightway). It fetches the
-BAFU processes, the EF 3.1 biosphere, the 25 EF 3.1 methods and the BAFU→EF 3.1 flow mappings from
-pinned commits of the Sentier data repos (`sentier-inventory`, `sentier-vocab`, `sentier-methods`,
-`sentier-mappings`) — nothing needs to be parsed from the ecoSpold zip.
+What is here: the BAFU-2026 v1 inventory installed into Brightway 2.5 via
+[sentier-brightway](https://github.com/sentier-dev/sentier-brightway); scripts that find the 101
+aggregated datasets and the reports behind them; the `reverse-bafu` pipeline that rebuilds one
+aggregated dataset from a JSON *spec* (resolve → calibrate → build → check); a reproducible way to
+draft such specs from report PDFs; and a benchmark on synthetic aggregated datasets with known
+answers. Findings live in [docs/disaggregation_strategies.md](docs/disaggregation_strategies.md);
+the pages under `artifacts/` explain the method.
 
-## Setup
+Steps 1–3 below reproduce everything committed under `results/`; 4–6 are for new work.
 
-Needs [uv](https://docs.astral.sh/uv/). Python 3.12 is picked up automatically (`.python-version`).
+## 1. Setup
+
+Needs [uv](https://docs.astral.sh/uv/) and `pdftotext` (Debian/Ubuntu: `apt install poppler-utils`;
+only used by `reverse-bafu evidence`). Python 3.12 is picked up automatically.
 
 ```bash
-uv sync
+uv sync                         # sentier-brightway (pinned commit), bw2data 4, bw2calc 2, numpy, scipy, jsonschema
+uv sync --extra llm             # optional: the anthropic SDK, for `reverse-bafu draft` against the API
 ```
 
-This installs `sentier-brightway` from its GitHub `main` (pinned to a commit in `uv.lock`),
-`bw2data` 4.x and `bw2calc` 2.x into `.venv/`.
+### The BAFU files
 
-## Data setup (the BAFU files)
-
-Two BAFU downloads are used, both gitignored (BAFU's terms of use; cite as below). Get them from
-the BAFU LCA data page / openLCA Nexus (the "Context and Content" note in the documentation bundle
-names openLCA Nexus as the download site) and put them here:
+Two BAFU downloads, both gitignored under BAFU's terms of use (citation at the end). They are
+distributed via openLCA Nexus (the "Context and Content" note in the documentation bundle names it
+as the download site).
 
 | File | Unzip to | Needed by |
 |---|---|---|
-| `BAFU-2026 v1_ecoSpold v1.zip` (11,948 `process_<uuid>.xml`) | `data/ecospold/` — the zip's inner folder is `ecoSpold files/`, rename it | `scripts/list_system_terminated.py`, `scripts/list_sources.py`, `reverse-bafu evidence` (metadata, the type=2 flag) |
-| `BAFU-2026 v1_Documentation.zip` (114 LCI report PDFs, change log, terms of use) | `BAFU-2026 v1_Documentation/` next to this README, keeping the inner `BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports/` layout | `scripts/list_sources.py --reports` (the `pdf` column), `reverse-bafu evidence --report` |
+| `BAFU-2026 v1_ecoSpold v1.zip` (11,948 `process_<uuid>.xml`) | `data/ecospold/` — the zip's inner folder is `ecoSpold files/`, rename it | steps 3 and 5 (the ecoSpold metadata, incl. the `type=2` flag the Brightway import drops) |
+| `BAFU-2026 v1_Documentation.zip` (114 LCI report PDFs) | `BAFU-2026 v1_Documentation/` next to this README, keeping the inner `BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports/` layout | step 3 (`pdf` column) and step 5 (`--report`) |
 
 ```bash
 unzip "BAFU-2026 v1_ecoSpold v1.zip" -d data/ && mv "data/ecoSpold files" data/ecospold
-unzip "BAFU-2026 v1_Documentation.zip"        # creates BAFU-2026 v1_Documentation/
+unzip "BAFU-2026 v1_Documentation.zip"
 ```
 
-The Brightway import itself (`sentier-brightway`, next section) needs neither: it downloads the
-Sentier parquet files. Everything that reads the ecoSpold XML takes `--ecospold <folder>` if you
-keep it elsewhere; the report folder is `--reports` / `--report`.
+Step 2 needs neither. Other locations: `--ecospold <folder>` on the scripts, `--reports` /
+`--report` for the PDFs.
 
-## Import into Brightway 2.5
+## 2. Import BAFU-2026 into Brightway 2.5
 
 ```bash
-# 1. sanity check: how many BAFU flows link to EF 3.1 (downloads ~40 MB of parquet on first run,
-#    cached in ~/.cache/sentier-brightway/, no Brightway project touched)
-uv run sentier-brightway coverage
-
-# 2. write the databases + methods into the Brightway project "reverse-bafu" (~3-4 min)
-uv run sentier-brightway db --project reverse-bafu
+uv run sentier-brightway coverage                    # downloads ~40 MB of pinned Sentier parquet (cached in ~/.cache/sentier-brightway)
+uv run sentier-brightway db --project reverse-bafu   # ~3-4 min; --overwrite replaces a previous install
 ```
 
-`run_bafu.sh` runs both.
+(`./run_bafu.sh` does both.) The project `reverse-bafu` then holds database `bafu-2026`
+(11,947 processes), `ef-3.1-biosphere` (EF 3.1 flows, BAFU emissions relinked: 95.8 % of flows),
+`bafu-2026-residual` (113 flows without EF counterpart) and the 25 methods
+`("sentier", "EF v3.1", <category>)`. Every command below takes `--project <name>` if you chose
+another name.
 
-Afterwards the project `reverse-bafu` contains:
-
-| Object | Content |
-|---|---|
-| database `bafu-2026` | 11,947 BAFU-2026 v1 processes |
-| database `ef-3.1-biosphere` | EF 3.1 elementary flows, BAFU emissions relinked onto them (95.8 % of flows, 96.8 % of exchanges) |
-| database `bafu-2026-residual` | the 113 BAFU flows with no EF 3.1 counterpart (kept, no characterization factor) |
-| methods `("sentier", "EF v3.1", <category>)` | 25 EF 3.1 impact categories |
-
-Re-run with `--overwrite` to replace a previous install. In Activity Browser, open the `reverse-bafu`
-project; the methods sit under `sentier` › `EF v3.1`.
-
-Quick check that everything works:
+Smoke test:
 
 ```python
 import bw2data as bd, bw2calc as bc
-
 bd.projects.set_current("reverse-bafu")
-act = bd.Database("bafu-2026").get("c4a92617-9f99-3d7b-95c0-15fb110b80ad")  # Electricity, low voltage, at grid | CH
-lca = bc.LCA({act: 1}, ("sentier", "EF v3.1", "Climate change"))
-lca.lci(); lca.lcia()
-print(lca.score)  # 0.0969623 kg CO2 eq per kWh
+act = bd.Database("bafu-2026").get("c4a92617-9f99-3d7b-95c0-15fb110b80ad")   # Electricity, low voltage, at grid | CH
+lca = bc.LCA({act: 1}, ("sentier", "EF v3.1", "Climate change")); lca.lci(); lca.lcia()
+print(lca.score)   # 0.0969623 kg CO2 eq per kWh
 ```
 
-### Other sentier-brightway commands
+`sentier-brightway backtest --out output/backtest --xlsx <BAFU LCIA results>` compares every
+process with BAFU's own openLCA results — the regression check once aggregated datasets get replaced.
 
-| Command | What it does |
-|---|---|
-| `uv run sentier-brightway files --out output/files` | Same build as plain files (parquet registry + `bw_processing` datapackages), no bw2data project needed. |
-| `uv run sentier-brightway backtest --out output/backtest --xlsx <BAFU LCIA results .xlsx/.zip>` | Scores every process in all 25 categories, compares with BAFU's published openLCA results, writes a dashboard. Add `uv sync --extra fast` first for the pypardiso solver. |
-| `uv run sentier-brightway <cmd> --data-root ~/dds` | Read the four Sentier data repos from local clones under `~/dds` instead of downloading (also `$SENTIER_DATA_ROOT`). |
-
-The backtest is our regression check for the hackathon: after swapping an aggregated dataset for
-unit processes, the scores of everything downstream should stay within tolerance.
-
-## Aggregated datasets: the ecoSpold "system terminated" list
+## 3. Find the aggregated datasets and their sources
 
 ```bash
-uv run python scripts/list_system_terminated.py      # ~15 s, writes results/system_terminated.csv
+uv run python scripts/list_system_terminated.py --project reverse-bafu   # -> results/system_terminated.csv  (~15 s)
+uv run python scripts/list_sources.py                                    # -> results/sources.csv, results/dois.csv
 ```
 
-In the EcoSpold01 schema every dataset carries `dataSetInformation@type`: 1 = unit process
-(direct flows + links to suppliers), 2 = *system terminated* — the cumulative elementary flows
-of the whole upstream chain, i.e. an LCI result
-([schema documentation](https://github.com/brightway-lca/pyecospold/blob/main/pyecospold/schemas/v1/EcoSpold01MetaInformation.xsd#L26-L60)).
-The type-2 datasets are the explicitly aggregated ones to rebuild as unit processes.
+`system_terminated.csv`: the **101** datasets whose ecoSpold `dataSetInformation@type` is 2
+("system terminated" = the cumulative LCI, no supplier links;
+[schema](https://github.com/brightway-lca/pyecospold/blob/main/pyecospold/schemas/v1/EcoSpold01MetaInformation.xsd#L26-L60)),
+joined with the Brightway database (inputs, flows, consumers), grouped by data-origin `family`,
+with the unit-process `unit_sibling` where one exists and the people/representativeness fields
+from the metadata. A 102nd flagged dataset has no exchanges and is skipped.
+`sources.csv`: the 129 distinct source citations, with the report PDF for 112 of them when the
+documentation bundle is present; `dois.csv`: the 36 DOIs embedded in dataset comments.
 
-The flag is read from the unzipped XML in `data/` (the Sentier import drops it); the file-name
-UUID is the Brightway activity code, so each row is joined with the installed database for the
-number of technosphere inputs, elementary flows and consuming processes. BAFU-2026 v1 has
-**101** such datasets ([results/system_terminated.csv](results/system_terminated.csv)); 87 have
-no technosphere inputs at all, the 14 PlasticsEurope polymers keep a few disposal inputs. (A
-102nd flagged dataset, `Disposal, rectangular straw bale`, has no exchanges and is skipped.)
-Sorted by consumers: HDPE granulate (533), PP (173), LDPE (122), ethylene glycol (76), ethylene (72).
-The `family` column groups them by data origin (PlasticsEurope eco-profiles, confidential
-ecoinvent-v2 industry data, treeze/KBOB reports, French bio-based FDES studies, manufacturer KBOB
-datasets); `unit_sibling` names a unit process of the same product already in BAFU.
-[docs/disaggregation_strategies.md](docs/disaggregation_strategies.md) discusses what is behind
-each family and how it could be disaggregated.
+## 4. Rebuild an aggregated dataset from a spec
 
-## Disaggregation pipeline (`reverse-bafu`)
-
-One aggregated dataset at a time, driven by a JSON *spec* holding the evidence-derived unit process
-(see [specs/d8ec4be3-burnt-shale.json](specs/d8ec4be3-burnt-shale.json) and the docstring in
-[src/reverse_bafu/spec.py](src/reverse_bafu/spec.py)):
+A spec is one JSON file per dataset holding the evidence-derived unit process — target, strategy,
+evidence, inputs (with `free`/`bounds`/`sandbox`/nested `node` flags), direct emissions and
+resources. Format: docstring of [src/reverse_bafu/spec.py](src/reverse_bafu/spec.py); examples:
+[specs/](specs/).
 
 ```bash
-uv run reverse-bafu resolve   specs/<spec>.json   # map every input to a BAFU unit process; flag missing / aggregated ones
-uv run reverse-bafu calibrate specs/<spec>.json   # NNLS amounts for inputs marked "free", list held fixed (--apply writes back)
-uv run reverse-bafu build     specs/<spec>.json   # write <code>-disagg and <code>-hybrid into the sandbox database
-uv run reverse-bafu check     specs/<spec>.json   # harness: score diff, flow diff, residual share, structural checks
-uv run reverse-bafu run       specs/<spec>.json   # all four
+uv run reverse-bafu run specs/d8ec4be3-burnt-shale.json      # resolve → calibrate (report only) → build → check
+uv run reverse-bafu run specs/c3490cfc-cement-zn-d.json      # links the rebuilt burnt shale ("sandbox" input): run burnt shale first
+uv run reverse-bafu run specs/gypsum-fibre-board-de.json
 ```
 
-`--project` defaults to `reverse-bafu`. Nodes land in the Brightway database `reverse-bafu-sandbox`
-(depends on `bafu-2026` and the two biosphere databases); the original dataset is never touched.
-`<code>-disagg` is the explicit model, `<code>-hybrid` adds a residual block of elementary flows so
-its cumulative inventory equals the original exactly (the S5 representation). Check reports go to
-`results/checks/<code>.md`.
+The four steps, also available individually (`resolve`, `calibrate`, `build`, `check`):
 
-Why the harness has a structural section: with a free input list, NNLS reproduces all 25 EF scores
-to 1.000 while choosing 116 wrong inputs (see the strategy doc §4); score agreement is necessary,
-not sufficient. Inputs may carry a nested `"node"` for intermediate processes BAFU lacks; they are
-built first and linked ("terminate on the database").
-
-Pilot — `Burnt shale, at plant` from the concrete 2020 report, Tab. 3.9: 12 inputs, all resolved
-to existing unit processes; direct CO₂ alone reproduces the climate score; the table's gross grid
-electricity (68.6 kWh/t) overshoots ionising radiation by +614 % and the fit puts it at 2.5 kWh/t —
-the plant co-generates 183.8 kWh/t, so the original nets its own generation. With that one amount
-calibrated: climate, acidification, particulates, photochemical ozone and fossil resources within
-±7 %; the toxicity / land / water categories still miss flows the table does not list (metals from
-burning, water) — that is what the flow diff in the report is for.
-
-### Drafting a spec reproducibly (`evidence` → `draft` → `assemble`)
-
-The three hand-written specs were produced by reading reports in a chat session. The reproducible
-route separates what is deterministic from what is not and records both:
-
-```bash
-# 1. evidence (deterministic): report pages as text + target metadata + direct-resource candidates + manifest with SHA-256s
-uv run reverse-bafu evidence <code> --report "<report>.pdf" --pages 19-21      # PDF page numbers, not printed ones
-# 2. draft (the LLM step): two fixed prompts, prompts/draft_spec.md (extraction) and prompts/map_inputs.md (mapping)
-uv run reverse-bafu draft <code>                       # calls claude-opus-5 with structured output (uv sync --extra llm; needs credentials)
-uv run reverse-bafu draft <code> --dry-run             # writes the exact prompts + JSON schemas; run them with any model
-uv run reverse-bafu draft <code> --from-response extract=response-1-extract.json --from-response map=response-2-map.json --from-response "by=<who>"
-# 3. assemble (deterministic): line items × factors × basis → specs/<code>-<slug>.draft.json with a derivation on every entry
-```
-
-Who can run the model step:
-
-| Route | Needs | Records |
+| Step | Does | Writes |
 |---|---|---|
-| `reverse-bafu draft <code>` (SDK) | an Anthropic **API** key (`console.anthropic.com`, billed per token, `ANTHROPIC_API_KEY`) or an `ant auth login` profile — a claude.ai subscription is *not* an API key | model id, message id, token usage, prompt hash |
-| `/draft-spec <code> --report … --pages …` in **Claude Code** (a project slash command in `.claude/commands/`) | a Claude Code subscription; the session itself answers the two prompts, and every response is validated against the same JSON schema the API would enforce | `by=claude-code:<model>` |
-| any other model or a person | `--dry-run` for the prompts, `--from-response` to ingest (schema-validated) | `by=<whatever is stated>` |
+| resolve | maps every input name to a BAFU dataset: *unit* (link), *aggregated* (link, flag as dependency), *missing* (stop, suggest names); checks units | codes into the spec; exit 2 on anything missing |
+| calibrate | bounded least squares for the inputs marked `free`, input list held fixed | prints spec vs fitted amounts; `--apply` writes them into the spec |
+| build | the explicit node `<code>-disagg` and the hybrid `<code>-hybrid` (explicit + residual flows = original exactly) | Brightway database `reverse-bafu-sandbox`; the original is never touched |
+| check | 25-category score diff, flow diff, residual share, structural checks | `results/checks/<code>.md` |
 
-Everything lands in `specs/evidence/<code>/`: the report text (hashed), the rendered prompts, the
-schemas, the deterministic candidate lists for the mapping pass, the raw responses and a
-provenance record (model, effort, prompt hash, author). Every input of the assembled spec carries
-a `derivation`: the quoted line, raw value and unit, conversion factor with its source, the search
-phrase, the chosen candidate and why, and `reviewed_by: null` until a person signs it off.
-Reproducible means: the evidence and candidates regenerate bit-for-bit, the prompt and model are
-pinned, and every number is auditable — not that the model returns identical JSON.
+The committed specs already carry their calibrated amounts, so `run` reproduces
+`results/checks/`; `calibrate --apply` re-derives the amounts (they change only if the code or the
+category weighting changes). `uv run python scripts/render_pages.py` regenerates
+`artifacts/rebuilt-inventories.html` from the specs, the sandbox and the check reports.
 
-First result (burnt shale, the session's own answer to the exact prompts, labelled as such): the
-draft matches the hand-written spec on all 12 inputs and 6 emissions; it leaves the electricity at
-the table's gross value (flagged low confidence) and reports the missing raw-shale flows as `gaps`
-instead of inventing them — the two decisions a reviewer has to make.
-
-### Benchmark with known answers
+## 5. Draft a new spec reproducibly
 
 ```bash
-uv run reverse-bafu benchmark --n 40 --seed 7          # ~12 min; results/benchmark/n40-seed7.{csv,md}
-uv run reverse-bafu benchmark --n 5 --scenarios blind  # the field-agnostic control, slow
+uv run reverse-bafu evidence <code> --report "BAFU-2026 v1_Documentation/.../<report>.pdf" --pages 19-21   # PDF page numbers
+uv run reverse-bafu draft <code>                 # API route: claude-opus-5, structured output (needs an Anthropic API key or `ant auth login`)
+uv run reverse-bafu draft <code> --dry-run       # writes the exact prompts + JSON schemas for any other model
+uv run reverse-bafu draft <code> --from-response extract=<json> --from-response map=<json> --from-response "by=<who>"
+uv run reverse-bafu assemble <code>              # -> specs/<code>-<slug>.draft.json, then step 4
 ```
 
-Turns BAFU unit processes into synthetic system-terminated datasets (their cumulative inventory)
-and scores the calibration against the real inputs under five evidence packages — correct list,
-list with ranges, list with 30 % missing, list with 10 distractors, no list. Latest run: correct
-list → 37/40 cases match all 25 categories, 92 % of material amounts within ±20 %; with distractors
-4/40 cases choose a wrong input while scores still match. Details in
-[docs/disaggregation_strategies.md](docs/disaggregation_strategies.md) §4.
+Or, inside Claude Code with a subscription: `/draft-spec <code> --report "<pdf>" --pages <a-b>`
+runs the whole chain with the session as the model ([.claude/commands/draft-spec.md](.claude/commands/draft-spec.md)).
 
-## Sources and reports
+What is deterministic and hashed: the report text, the target metadata and direct-resource
+candidates (`evidence`), the candidate lists for the mapping pass, and the assembly. What is
+pinned: the two prompt templates ([prompts/](prompts/)), the schemas, the model. Every ingested
+response is schema-validated. Everything — rendered prompts, candidates, raw responses,
+provenance — lands in `specs/evidence/<code>/`, and every input of the assembled spec carries a
+`derivation` (quoted line, raw value, factor with source, chosen candidate and why, author,
+`reviewed_by`). A claude.ai subscription is not an API key: the SDK route needs a key from
+console.anthropic.com; the Claude Code route needs only the subscription.
+
+## 6. Benchmark on synthetic aggregated datasets
 
 ```bash
-uv run python scripts/list_sources.py     # writes results/sources.csv and results/dois.csv
+uv run reverse-bafu benchmark --n 40 --seed 7 --scenarios oracle,bounded,partial,distractors   # ~12 min -> results/benchmark/n40-seed7.{csv,md}
+uv run reverse-bafu benchmark --n 5 --seed 7 --scenarios blind --name blind-n5-seed7           # the no-list control, slow
 ```
 
-Every dataset cites one source in its ecoSpold metadata (author, year, title, publisher, full
-citation); [results/sources.csv](results/sources.csv) lists the 125 distinct ones with how many
-datasets (and how many aggregated ones) cite each, and [results/dois.csv](results/dois.csv) the 36
-DOIs embedded in dataset comments. If the official `BAFU-2026 v1_Documentation` bundle is unzipped
-next to the repo (gitignored), the `pdf` column links each source to its report PDF — 108 of 125
-sources, 11,541 of 11,947 datasets.
+BAFU unit processes are turned into system-terminated lookalikes (their cumulative inventory) and
+the calibration is scored against the real inputs under five evidence packages. Results and
+interpretation: [docs/disaggregation_strategies.md](docs/disaggregation_strategies.md) §4.
+
+## Layout
+
+```
+src/reverse_bafu/   pipeline: cli, spec, db, lci, resolve, calibrate, build, check, benchmark, draft
+scripts/            list_system_terminated.py, list_sources.py, render_pages.py (+ templates/)
+prompts/            the two fixed LLM prompt templates
+specs/              one JSON per rebuilt dataset; specs/evidence/<code>/ = drafting records
+results/            system_terminated.csv, sources.csv, dois.csv, checks/, benchmark/
+docs/               disaggregation_strategies.md — families, strategies, recommendation, benchmark
+artifacts/          method explainer, rebuilt inventories, burnt shale, developer walkthrough
+.claude/commands/   /draft-spec
+```
 
 ## Data licence and citation
 
-Both BAFU files stay out of the repository (`.gitignore`: `*.zip`, `data/`, `BAFU-2026 v1_Documentation/`).
-Citation required for anything derived from the installed data:
+Both BAFU files stay out of the repository (`.gitignore`: `*.zip`, `data/`,
+`BAFU-2026 v1_Documentation/`). Citation required for anything derived from the installed data:
 
 > Source: Life Cycle Inventory database of the Swiss Federal Administration, BAFU:2026.
