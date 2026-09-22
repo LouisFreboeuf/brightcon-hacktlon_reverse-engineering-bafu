@@ -39,8 +39,12 @@ unzip "BAFU-2026 v1_ecoSpold v1.zip" -d data/ && mv "data/ecoSpold files" data/e
 unzip "BAFU-2026 v1_Documentation.zip"
 ```
 
-Step 2 needs neither. Other locations: `--ecospold <folder>` on the scripts, `--reports` /
-`--report` for the PDFs.
+Note that step 2, the Brightway import, reads **neither** zip: `sentier-brightway` downloads its
+own copy of the BAFU inventory — parquet files in the Sentier data repos, already converted from
+the ecoSpold XML, pinned by commit and SHA-256 — so the import works without the Nexus files. The
+zips are needed for what that conversion does not carry: the ecoSpold metadata (the `type=2` flag,
+comments, sources) and the report PDFs. Other locations: `--ecospold <folder>` on the scripts,
+`--reports` / `--report` for the PDFs.
 
 ## 2. Import BAFU-2026 into Brightway 2.5
 
