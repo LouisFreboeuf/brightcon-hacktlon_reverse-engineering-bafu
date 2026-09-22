@@ -157,6 +157,7 @@ prompts/            the two fixed LLM prompt templates
 specs/              one JSON per rebuilt dataset; specs/evidence/<code>/ = drafting records
 results/            system_terminated.csv, sources.csv, dois.csv, checks/, benchmark/
 artifacts/          the documentation: method-explainer, the-101, rebuilt-inventories, burnt-shale-rebuilt, code-walkthrough
+references.txt      the two papers referenced, with their role for this project
 .claude/commands/   /draft-spec
 ```
 
