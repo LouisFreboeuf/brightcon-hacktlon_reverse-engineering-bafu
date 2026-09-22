@@ -108,7 +108,13 @@ LOCATE_SCHEMA = {
     "required": ["found", "first_page", "last_page", "captions", "reason"],
     "additionalProperties": False,
 }
-CAPTION_RX = re.compile(r"^\s*((?:Tab\.?|Table|Tabelle|Tableau|Fig\.?|Figure|Abb\.)\s*\d+[\.\d]*\s*[:.]?\s+.{6,140})", re.M)
+# `2.1`, `2-1`, `2.1.3` - some reports number with hyphens, and some put the label on its own line
+# with the caption text on the next one (2017 - LCI wood and wood based products - Werner: 255 pages,
+# zero captions before this was widened). LABEL_ONLY_RX catches that second form.
+CAPTION_RX = re.compile(
+    r"^\s*((?:Tab\.?|Table|Tabelle|Tableau|Fig\.?|Figure|Abb\.)\s*\d+(?:[.\-]\d+)*\s*[:.]?\s+.{6,140})", re.M)
+LABEL_ONLY_RX = re.compile(
+    r"^\s*((?:Tab\.?|Table|Tabelle|Tableau|Fig\.?|Figure|Abb\.)\s*\d+(?:[.\-]\d+)*\s*[:.]?)\s*$", re.M)
 CACHE = Path(".cache/pdftext")
 
 
@@ -129,7 +135,21 @@ def captions_index(pdf: Path) -> list[dict]:
     """Every table/figure caption with its PDF page - deterministic, language-neutral in form."""
     out, seen = [], set()
     for i, text in enumerate(pdf_pages(pdf), 1):
-        for m in CAPTION_RX.finditer(text):
+        # a label alone on its line: pull the next non-empty line up so it reads as one caption
+        lines = text.splitlines()
+        merged, skip = [], False
+        for j, line in enumerate(lines):
+            if skip:
+                skip = False
+                continue
+            if LABEL_ONLY_RX.match(line):
+                nxt = next((lines[k] for k in range(j + 1, min(j + 3, len(lines))) if lines[k].strip()), "")
+                if nxt and not LABEL_ONLY_RX.match(nxt):
+                    merged.append(f"{line.strip()} {nxt.strip()}")
+                    skip = True
+                    continue
+            merged.append(line)
+        for m in CAPTION_RX.finditer("\n".join(merged)):
             cap = re.sub(r"\s+", " ", m.group(1)).strip()
             if cap not in seen:
                 seen.add(cap)
