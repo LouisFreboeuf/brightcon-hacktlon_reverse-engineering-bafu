@@ -12,7 +12,8 @@ draft such specs from report PDFs; and a benchmark on synthetic aggregated datas
 answers. The documentation is the set of pages under [artifacts/](artifacts/): the method
 explainer, the evidence page on the 101, the rebuilt inventories, and the developer walkthrough.
 
-Steps 1–3 below reproduce everything committed under `results/`; 4–6 are for new work.
+Steps 1–3 reproduce `results/system_terminated.csv`, `sources.csv` and `dois.csv`; step 5 reproduces
+`results/checks/` from the committed specs; steps 4 and 6 are how new specs and the benchmark are made.
 
 ## 1. Setup
 
@@ -31,8 +32,8 @@ accept BAFU's terms of use). Both stay gitignored (citation at the end).
 
 | Nexus download | Zip you get | Unzip to | Needed by |
 |---|---|---|---|
-| **BAFU:2026 Version 1 - ecoSpold1** | `BAFU-2026 v1_ecoSpold v1.zip` (11,948 `process_<uuid>.xml`) | `data/ecospold/` — the zip's inner folder is `ecoSpold files/`, rename it | steps 3 and 5 (the ecoSpold metadata, incl. the `type=2` flag the Brightway import drops) |
-| **BAFU:2026 Version 1 - Documentation** | `BAFU-2026 v1_Documentation.zip` (114 LCI report PDFs) | `BAFU-2026 v1_Documentation/` next to this README, keeping the inner `BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports/` layout | step 3 (`pdf` column) and step 5 (`--report`) |
+| **BAFU:2026 Version 1 - ecoSpold1** | `BAFU-2026 v1_ecoSpold v1.zip` (11,948 `process_<uuid>.xml`) | `data/ecospold/` — the zip's inner folder is `ecoSpold files/`, rename it | steps 3 and 4 (the ecoSpold metadata, incl. the `type=2` flag the Brightway import drops) |
+| **BAFU:2026 Version 1 - Documentation** | `BAFU-2026 v1_Documentation.zip` (114 LCI report PDFs) | `BAFU-2026 v1_Documentation/` next to this README, keeping the inner `BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports/` layout | step 3 (`pdf` column) and step 4 (`--report`) |
 
 ```bash
 unzip "BAFU-2026 v1_ecoSpold v1.zip" -d data/ && mv "data/ecoSpold files" data/ecospold
@@ -88,12 +89,44 @@ from the metadata. A 102nd flagged dataset has no exchanges and is skipped.
 `sources.csv`: the 129 distinct source citations, with the report PDF for 112 of them when the
 documentation bundle is present; `dois.csv`: the 36 DOIs embedded in dataset comments.
 
-## 4. Rebuild an aggregated dataset from a spec
+## 4. Make a spec for one aggregated dataset
 
 A spec is one JSON file per dataset holding the evidence-derived unit process — target, strategy,
 evidence, inputs (with `free`/`bounds`/`sandbox`/nested `node` flags), direct emissions and
-resources. Format: docstring of [src/reverse_bafu/spec.py](src/reverse_bafu/spec.py); examples:
-[specs/](specs/).
+resources. Format: docstring of [src/reverse_bafu/spec.py](src/reverse_bafu/spec.py); examples in
+[specs/](specs/). Pick the dataset from `results/system_terminated.csv` and the report page from
+the `pdf` column of `results/sources.csv`; the reproducible route is:
+
+```bash
+uv run reverse-bafu evidence <code> --report "BAFU-2026 v1_Documentation/.../<report>.pdf" --pages 19-21   # PDF page numbers
+uv run reverse-bafu draft <code>                 # API route: claude-opus-5, structured output (needs an Anthropic API key or `ant auth login`)
+uv run reverse-bafu draft <code> --dry-run       # writes the exact prompts + JSON schemas for any other model
+uv run reverse-bafu draft <code> --from-response extract=<json> --from-response map=<json> --from-response "by=<who>"
+uv run reverse-bafu assemble <code>              # -> specs/<code>-<slug>.draft.json, the input to step 5
+```
+
+Or, inside Claude Code with a subscription: `/draft-spec <code> --report "<pdf>" --pages <a-b>`
+runs the whole chain with the session as the model ([.claude/commands/draft-spec.md](.claude/commands/draft-spec.md)).
+
+What is deterministic and hashed: the report text, the target metadata and direct-resource
+candidates (`evidence`), the candidate lists for the mapping pass, and the assembly. What is
+pinned: the two prompt templates ([prompts/](prompts/)), the schemas, the model. Every ingested
+response is schema-validated. Everything — rendered prompts, candidates, raw responses,
+provenance — lands in `specs/evidence/<code>/`, and every input of the assembled spec carries a
+`derivation` (quoted line, raw value, factor with source, chosen candidate and why, author,
+`reviewed_by`). A claude.ai subscription is not an API key: the SDK route needs a key from
+console.anthropic.com; the Claude Code route needs only the subscription.
+
+How the committed specs were made: `specs/d8ec4be3-burnt-shale-at-plant.draft.json` is the output
+of this route (the two prompts answered by a Claude Code session, labelled so in its provenance).
+The three others — `d8ec4be3-burnt-shale.json`, `c3490cfc-cement-zn-d.json` (both transcribed from
+the concrete 2020 report) and `gypsum-fibre-board-de.json` (the CH unit process of the same product
+copied and scaled to 10 kg/m², strategy S2) — were written by hand in a chat session before the
+drafting route existed; their `evidence` and `note` fields record the sources, but they have no
+per-input `derivation`. There is no command yet for the S2 template route; the gypsum spec is the
+pattern to copy.
+
+## 5. Rebuild the dataset from the spec
 
 ```bash
 uv run reverse-bafu run specs/d8ec4be3-burnt-shale.json      # resolve → calibrate (report only) → build → check
@@ -114,28 +147,6 @@ The committed specs already carry their calibrated amounts, so `run` reproduces
 `results/checks/`; `calibrate --apply` re-derives the amounts (they change only if the code or the
 category weighting changes). `uv run python scripts/render_pages.py` regenerates
 `artifacts/rebuilt-inventories.html` from the specs, the sandbox and the check reports.
-
-## 5. Draft a new spec reproducibly
-
-```bash
-uv run reverse-bafu evidence <code> --report "BAFU-2026 v1_Documentation/.../<report>.pdf" --pages 19-21   # PDF page numbers
-uv run reverse-bafu draft <code>                 # API route: claude-opus-5, structured output (needs an Anthropic API key or `ant auth login`)
-uv run reverse-bafu draft <code> --dry-run       # writes the exact prompts + JSON schemas for any other model
-uv run reverse-bafu draft <code> --from-response extract=<json> --from-response map=<json> --from-response "by=<who>"
-uv run reverse-bafu assemble <code>              # -> specs/<code>-<slug>.draft.json, then step 4
-```
-
-Or, inside Claude Code with a subscription: `/draft-spec <code> --report "<pdf>" --pages <a-b>`
-runs the whole chain with the session as the model ([.claude/commands/draft-spec.md](.claude/commands/draft-spec.md)).
-
-What is deterministic and hashed: the report text, the target metadata and direct-resource
-candidates (`evidence`), the candidate lists for the mapping pass, and the assembly. What is
-pinned: the two prompt templates ([prompts/](prompts/)), the schemas, the model. Every ingested
-response is schema-validated. Everything — rendered prompts, candidates, raw responses,
-provenance — lands in `specs/evidence/<code>/`, and every input of the assembled spec carries a
-`derivation` (quoted line, raw value, factor with source, chosen candidate and why, author,
-`reviewed_by`). A claude.ai subscription is not an API key: the SDK route needs a key from
-console.anthropic.com; the Claude Code route needs only the subscription.
 
 ## 6. Benchmark on synthetic aggregated datasets
 
