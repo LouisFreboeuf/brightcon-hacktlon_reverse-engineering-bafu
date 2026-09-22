@@ -111,7 +111,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 - ✓ mass in: 1.05 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 868 flows under-explained, 923 over-explained (negative residual)
+residual: 876 flows under-explained, 915 over-explained (negative residual)
 
 ## Evidence
 

@@ -11,7 +11,7 @@ from . import db, spec as spec_mod
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="reverse-bafu", description=__doc__)
-    p.add_argument("command", choices=["resolve", "calibrate", "build", "check", "run", "benchmark", "evidence", "draft", "assemble", "locate", "draft-all"])
+    p.add_argument("command", choices=["resolve", "calibrate", "build", "check", "run", "benchmark", "evidence", "draft", "assemble", "locate", "draft-all", "run-all"])
     p.add_argument("spec", nargs="?", help="spec JSON (see src/reverse_bafu/spec.py); for evidence/draft/assemble: the target code")
     p.add_argument("--report", help="evidence: the report PDF")
     p.add_argument("--pages", help="evidence: page range in the PDF, e.g. 16-17")
@@ -28,7 +28,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--scenarios", default="oracle,bounded,partial,distractors,blind")
     p.add_argument("--name", default=None, help="benchmark: output name (default n<N>-seed<S>)")
     p.add_argument("--project", default="reverse-bafu")
-    p.add_argument("--apply", action="store_true", help="calibrate: write fitted amounts back into the spec")
+    p.add_argument("--apply", action="store_true", help="calibrate / run / run-all: write fitted amounts back into the spec")
     p.add_argument("--no-hybrid", action="store_true", help="build: skip the residual (hybrid) node")
     args = p.parse_args(argv)
 
@@ -37,6 +37,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "benchmark":
         from . import benchmark
         benchmark.run(args.n, args.seed, args.scenarios.split(","), args.name or f"n{args.n}-seed{args.seed}")
+        return 0
+    if args.command == "run-all":
+        from . import runall
+        runall.run_all(args.project, args.apply)
         return 0
     if args.command == "draft-all":
         from pathlib import Path

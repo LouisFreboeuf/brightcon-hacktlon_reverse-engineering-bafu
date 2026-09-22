@@ -43,6 +43,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
   calibrate.py    step 2 · bounded least squares for the free amounts
   build.py        step 3 · explicit + hybrid nodes into the sandbox
   check.py        step 4 · harness → results/checks/&lt;code&gt;.md
+  runall.py       run-all: every specs/*.json in dependency order → results/rebuild_status.csv
   benchmark.py    synthetic aggregated datasets with known answers → results/benchmark/
   draft.py        evidence → draft (two pinned prompts) → assemble: a spec from a report, with provenance
 <b>prompts/</b>                  locate_pages.md, draft_spec.md (extraction), map_inputs.md (mapping) — the fixed LLM prompt templates
@@ -54,6 +55,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <b>results/</b>
   system_terminated.csv       the 101 with family, sibling, people, representativeness
   sources.csv · dois.csv      the bibliography behind the database
+  drafting_status.csv · rebuild_status.csv   where each dataset / spec stands after draft-all / run-all
   checks/&lt;code&gt;.md            one harness report per spec
   benchmark/&lt;name&gt;.{csv,md}  per case × scenario rows, and the summary
 <b>artifacts/</b>                the documentation: method explainer, the 101 (evidence), rebuilt inventories, burnt shale, this page
@@ -197,6 +199,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <tr><td class="mono">reverse-bafu build SPEC [--no-hybrid]</td><td>ladder §6</td><td>writes nodes into reverse-bafu-sandbox</td></tr>
 <tr><td class="mono">reverse-bafu check SPEC</td><td>ladder §7</td><td>writes results/checks/&lt;code&gt;.md</td></tr>
 <tr><td class="mono">reverse-bafu run SPEC [--apply]</td><td>resolve → calibrate → build → check</td><td>stops after resolve on MISSING; calibrated amounts applied only with <code>--apply</code></td></tr>
+<tr><td class="mono">reverse-bafu run-all [--apply]</td><td>the same for every specs/*.json, ordered so that a spec with a <code>sandbox</code> link runs after the spec building that node; an unresolved spec is recorded and skipped</td><td>writes results/rebuild_status.csv (status, climate Δ, categories within ±10 %, worst category, report)</td></tr>
 <tr><td class="mono">reverse-bafu benchmark --n 40 --seed 7 [--scenarios …] [--name …]</td><td>§8</td><td>writes results/benchmark/&lt;name&gt;.{csv,md}</td></tr>
 <tr><td class="mono">reverse-bafu draft-all [--dry-run] [--only CODES] [--by WHO]</td><td>§8b, for every row of results/system_terminated.csv: report from sources.csv, locate → evidence → draft → assemble; incremental</td><td>writes results/drafting_status.csv and specs/*.draft.json</td></tr>
 <tr><td class="mono">reverse-bafu locate CODE --report PDF [--dry-run | --from-response locate=F]</td><td>§8b layer 0: caption index (deterministic, cached in .cache/pdftext/) + one prompt → page range or found=false</td><td>writes prompt-0-locate.md, captions-0-locate.json, response-0-locate.json</td></tr>

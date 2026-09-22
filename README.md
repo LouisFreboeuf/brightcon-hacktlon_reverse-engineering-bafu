@@ -13,8 +13,8 @@ answers. The documentation is the set of pages under [artifacts/](artifacts/): t
 explainer, the evidence page on the 101, the rebuilt inventories, and the developer walkthrough.
 
 Steps 1–3 reproduce `results/system_terminated.csv`, `sources.csv` and `dois.csv`; step 4 makes the specs
-(`results/drafting_status.csv` records where each of the 101 stands); step 5 reproduces `results/checks/`
-from the committed specs; step 6 is the benchmark.
+(`results/drafting_status.csv` records where each of the 101 stands); step 5 rebuilds every spec
+(`results/rebuild_status.csv`, `results/checks/`); step 6 is the benchmark.
 
 ## 1. Setup
 
@@ -176,28 +176,33 @@ fields record the sources, but they have no per‑input `derivation`. For the gy
 batch correctly stops at `pages-not-found`: the report keeps the board's production inventory in a
 confidential annex, so that dataset needs the S2 template route, for which there is no command yet.
 
-## 5. Rebuild the dataset from the spec
+## 5. Rebuild the datasets from the specs
 
 ```bash
-uv run reverse-bafu run specs/d8ec4be3-burnt-shale.json      # resolve → calibrate (report only) → build → check
-uv run reverse-bafu run specs/c3490cfc-cement-zn-d.json      # links the rebuilt burnt shale ("sandbox" input): run burnt shale first
-uv run reverse-bafu run specs/gypsum-fibre-board-de.json
-uv run reverse-bafu run specs/c3490cfc-cement-zn-d-at-plant.draft.json   # the drafted variant; sandbox nodes <code>-draft-…
+uv run reverse-bafu run-all             # every specs/*.json: resolve → calibrate (report only) → build → check
+uv run reverse-bafu run-all --apply     # same, and calibrate writes the fitted amounts into the specs
+uv run python scripts/render_pages.py   # regenerate artifacts/rebuilt-inventories.html from specs, sandbox and reports
 ```
 
-The four steps, also available individually (`resolve`, `calibrate`, `build`, `check`):
+`run-all` orders the specs so that one linking a rebuilt node (an input with `"sandbox"`, e.g.
+cement → burnt shale) runs after the spec that builds it, and writes `results/rebuild_status.csv`:
+per spec the status (`rebuilt` / `unresolved` / `error`), the climate‑change deviation, the number
+of EF 3.1 categories within ±10 %, the worst category and the report path. A spec whose inputs do
+not all resolve is skipped with `unresolved` and does not stop the batch. The committed specs
+already carry their calibrated amounts, so `run-all` without `--apply` reproduces `results/checks/`;
+with `--apply` the amounts are re‑derived (they change only if the code or the category weighting
+changes). The nodes land in the Brightway database `reverse-bafu-sandbox`; the original datasets
+are never touched.
+
+The four steps, per spec (`uv run reverse-bafu run|resolve|calibrate|build|check specs/<spec>.json`
+for one dataset):
 
 | Step | Does | Writes |
 |---|---|---|
 | resolve | maps every input name to a BAFU dataset: *unit* (link), *aggregated* (link, flag as dependency), *missing* (stop, suggest names); checks units | codes into the spec; exit 2 on anything missing |
 | calibrate | bounded least squares for the inputs marked `free`, input list held fixed | prints spec vs fitted amounts; `--apply` writes them into the spec |
-| build | the explicit node `<code>-disagg` and the hybrid `<code>-hybrid` (explicit + residual flows = original exactly) | Brightway database `reverse-bafu-sandbox`; the original is never touched |
-| check | 25-category score diff, flow diff, residual share, structural checks | `results/checks/<code>.md` |
-
-The committed specs already carry their calibrated amounts, so `run` reproduces
-`results/checks/`; `calibrate --apply` re-derives the amounts (they change only if the code or the
-category weighting changes). `uv run python scripts/render_pages.py` regenerates
-`artifacts/rebuilt-inventories.html` from the specs, the sandbox and the check reports.
+| build | the explicit node `<code>-disagg` and the hybrid `<code>-hybrid` (explicit + residual flows = original exactly) | `reverse-bafu-sandbox` |
+| check | 25‑category score diff, flow diff, residual share, structural checks | `results/checks/<code>.md` |
 
 ## 6. Benchmark on synthetic aggregated datasets
 
@@ -213,11 +218,11 @@ interpretation: `results/benchmark/n40-seed7.md` and the method explainer, §7.
 ## Layout
 
 ```
-src/reverse_bafu/   pipeline: cli, spec, db, lci, resolve, calibrate, build, check, benchmark, draft
+src/reverse_bafu/   pipeline: cli, spec, db, lci, resolve, calibrate, build, check, runall, draft, benchmark
 scripts/            list_system_terminated.py, list_sources.py, render_pages.py (+ templates/)
 prompts/            the three fixed LLM prompt templates (locate, extract, map)
 specs/              one JSON per rebuilt dataset; specs/evidence/<code>/ = drafting records
-results/            system_terminated.csv, sources.csv, dois.csv, drafting_status.csv, checks/, benchmark/
+results/            system_terminated.csv, sources.csv, dois.csv, drafting_status.csv, rebuild_status.csv, checks/, benchmark/
 artifacts/          the documentation: method-explainer, the-101, rebuilt-inventories, burnt-shale-rebuilt, code-walkthrough
 references.txt      the two papers referenced, with their role for this project
 .claude/commands/   /draft-all, /draft-spec

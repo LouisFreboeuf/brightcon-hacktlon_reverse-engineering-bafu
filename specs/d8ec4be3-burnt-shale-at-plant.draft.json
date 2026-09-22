@@ -70,7 +70,8 @@
           "search": "blasting explosives",
           "mapping_reason": "'Blasting' models the use of explosives in quarrying including the blast emissions; 'Explosives, tovex, at plant' is only the manufacture.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "f4afe0ed-9682-35b1-8c80-43a0d8bf3898"
       },
       {
         "name": "Diesel, burned in building machine, average",
@@ -94,7 +95,8 @@
           "search": "diesel burned building machine",
           "mapping_reason": "excavation machinery is a building machine; 'average' over the particle-filter variants since the report does not specify; only CH exists.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "e4e7ddc0-f7d1-3fad-bd12-9d6981142800"
       },
       {
         "name": "Electricity, medium voltage, at grid",
@@ -118,7 +120,8 @@
           "search": "electricity medium voltage grid",
           "mapping_reason": "plain grid supply at medium voltage in the process's own country; the DB variant is the railway supply.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "76a85da2-7e4e-3e7e-a3df-f3df5951c9ec"
       },
       {
         "name": "Electricity, medium voltage, at grid",
@@ -142,7 +145,8 @@
           "search": "electricity medium voltage grid",
           "mapping_reason": "as above.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "76a85da2-7e4e-3e7e-a3df-f3df5951c9ec"
       },
       {
         "name": "Electricity, medium voltage, at grid",
@@ -166,7 +170,8 @@
           "search": "electricity medium voltage grid",
           "mapping_reason": "as above.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "76a85da2-7e4e-3e7e-a3df-f3df5951c9ec"
       },
       {
         "name": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
@@ -190,7 +195,8 @@
           "search": "light fuel oil burned industrial furnace",
           "mapping_reason": "heating oil EL burned on site for the mill: the industrial-furnace dataset (combustion included), RER over CH for a German plant.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "82c07b68-8bf9-3537-9934-91924132e976"
       },
       {
         "name": "Electricity, medium voltage, at grid",
@@ -214,7 +220,8 @@
           "search": "electricity medium voltage grid",
           "mapping_reason": "as above; the report does not distinguish grid from self-supply, flagged low confidence in extraction.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "76a85da2-7e4e-3e7e-a3df-f3df5951c9ec"
       },
       {
         "name": "Electricity, medium voltage, at grid",
@@ -238,7 +245,8 @@
           "search": "electricity medium voltage grid",
           "mapping_reason": "as above.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "76a85da2-7e4e-3e7e-a3df-f3df5951c9ec"
       },
       {
         "name": "Tap water, at user",
@@ -262,7 +270,8 @@
           "search": "tap water user",
           "mapping_reason": "generic tap water; the DE 'water balance according to MoeK 2013' variant is a specific water-balance model not warranted by the excerpt.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "6556440f-cd03-3975-9615-023309701fe2"
       },
       {
         "name": "Hydrochloric acid, 30% in H2O, at plant",
@@ -286,7 +295,8 @@
           "search": "hydrochloric acid plant",
           "mapping_reason": "the generic purchased 30 % solution; the process-specific and 'xx' obsolete variants are not indicated.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "2f8b5baa-5930-3460-bca9-ad90d49c1d36"
       },
       {
         "name": "Sodium hydroxide, 50% in H2O, production mix, at plant",
@@ -310,7 +320,8 @@
           "search": "sodium hydroxide production mix",
           "mapping_reason": "only candidate; the production mix is right for unspecified caustic soda.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "ce8a12aa-ecaa-37d9-8355-5cb7da9ce6c0"
       },
       {
         "name": "Sodium hypochlorite, 15% in H2O, at plant",
@@ -334,7 +345,8 @@
           "search": "sodium hypochlorite",
           "mapping_reason": "only candidate.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "cb94ab60-7f4d-3b40-90df-bc7a9332af65"
       },
       {
         "name": "Chemicals organic, at plant",
@@ -358,7 +370,8 @@
           "search": "chemicals organic plant",
           "mapping_reason": "the generic organic-chemicals proxy; 'inorganic' is the wrong class.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "4d96ad56-9dd3-3fda-bff6-d24796d01043"
       },
       {
         "name": "Electricity, medium voltage, at grid",
@@ -382,7 +395,8 @@
           "search": "electricity medium voltage grid",
           "mapping_reason": "as above.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "76a85da2-7e4e-3e7e-a3df-f3df5951c9ec"
       },
       {
         "name": "Treatment, sewage, unpolluted, to wastewater treatment, class 3",
@@ -406,7 +420,8 @@
           "search": "treatment sewage unpolluted",
           "mapping_reason": "unpolluted wastewater to a treatment plant; the 'from residence' variant is domestic; only CH exists.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "f2814ced-c83a-4b71-8506-3ba89d599de6"
       },
       {
         "name": "Transport, freight, rail",
@@ -430,7 +445,8 @@
           "search": "transport freight rail",
           "mapping_reason": "generic rail freight in the process's country.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "83f61965-0dfe-3b0b-bc52-91350642debb"
       },
       {
         "name": "Transport, freight, rail",
@@ -454,7 +470,8 @@
           "search": "transport freight rail",
           "mapping_reason": "as above.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "83f61965-0dfe-3b0b-bc52-91350642debb"
       },
       {
         "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
@@ -478,7 +495,8 @@
           "search": "transport freight lorry 16t-32t",
           "mapping_reason": "standard lorry class for chemical deliveries; RER since no DE dataset.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "85b3a5a6-2635-3546-b51b-4ccad397650b"
       },
       {
         "name": "Transport, freight, rail",
@@ -502,7 +520,8 @@
           "search": "transport freight rail",
           "mapping_reason": "as above.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "83f61965-0dfe-3b0b-bc52-91350642debb"
       },
       {
         "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
@@ -526,7 +545,8 @@
           "search": "transport freight lorry 16t-32t",
           "mapping_reason": "as above.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "85b3a5a6-2635-3546-b51b-4ccad397650b"
       },
       {
         "name": "Transport, freight, rail",
@@ -550,7 +570,8 @@
           "search": "transport freight rail",
           "mapping_reason": "as above.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "83f61965-0dfe-3b0b-bc52-91350642debb"
       },
       {
         "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
@@ -574,7 +595,8 @@
           "search": "transport freight lorry 16t-32t",
           "mapping_reason": "as above.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "85b3a5a6-2635-3546-b51b-4ccad397650b"
       }
     ],
     "emissions": [
@@ -599,7 +621,9 @@
           "reviewed_by": null,
           "mapping_reason": "dust from quarrying and milling: coarse particulate; PM10 in air, the unspecified sub-compartment.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "08a91e70-3ddc-11dd-91be-0050c2490048",
+        "database": "ef-3.1-biosphere"
       },
       {
         "name": "Nitrogen Oxides",
@@ -622,7 +646,9 @@
           "reviewed_by": null,
           "mapping_reason": "the NOx flow to air, unspecified sub-compartment.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "f79d0f8f-2b0e-49cb-bed0-b1ea0fbd8625",
+        "database": "ef-3.1-biosphere"
       },
       {
         "name": "Sulfur Dioxide",
@@ -645,7 +671,9 @@
           "reviewed_by": null,
           "mapping_reason": "SO2 to air, unspecified sub-compartment.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "fe0acd60-3ddc-11dd-ac48-0050c2490048",
+        "database": "ef-3.1-biosphere"
       },
       {
         "name": "Carbon Dioxide (fossil)",
@@ -668,7 +696,9 @@
           "reviewed_by": null,
           "mapping_reason": "fossil CO2 emitted to air — the 'Resources from air' candidate is an uptake, wrong direction.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "08a91e70-3ddc-11dd-923d-0050c2490048",
+        "database": "ef-3.1-biosphere"
       },
       {
         "name": "Carbon Dioxide (fossil)",
@@ -691,7 +721,9 @@
           "reviewed_by": null,
           "mapping_reason": "carbonate CO2 is characterised as fossil in EF 3.1; emission to air.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "08a91e70-3ddc-11dd-923d-0050c2490048",
+        "database": "ef-3.1-biosphere"
       },
       {
         "name": "Carbon Monoxide (fossil)",
@@ -714,7 +746,9 @@
           "reviewed_by": null,
           "mapping_reason": "CO from fuel combustion, fossil, to air; the plain 'Carbon Monoxide' candidates are water/soil flows.",
           "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
-        }
+        },
+        "code": "08a91e70-3ddc-11dd-924e-0050c2490048",
+        "database": "ef-3.1-biosphere"
       }
     ],
     "resources": []

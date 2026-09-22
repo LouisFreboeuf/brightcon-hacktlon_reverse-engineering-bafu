@@ -1,0 +1,6 @@
+spec,code,name,variant,strategy,status,climate_delta_pct,within_10pct,worst_category,report
+specs/d8ec4be3-burnt-shale-at-plant.draft.json,d8ec4be3-c410-3806-98f5-a2ec5a284fee,"Burnt shale, at plant",draft,S1,rebuilt,5.8,5/25,Climate change-Biogenic (+9772.2 %),results/checks/d8ec4be3-c410-3806-98f5-a2ec5a284fee-draft.md
+specs/d8ec4be3-burnt-shale.json,d8ec4be3-c410-3806-98f5-a2ec5a284fee,"Burnt shale, at plant",,S1,rebuilt,-1.1,9/25,Water use (+141.6 %),results/checks/d8ec4be3-c410-3806-98f5-a2ec5a284fee.md
+specs/gypsum-fibre-board-de.json,a061bf96-1dc6-3ab8-8dae-af476463276b,"Gypsum fibre board, at plant",,S2,rebuilt,-51.4,4/25,"Eutrophication, freshwater (-84.3 %)",results/checks/a061bf96-1dc6-3ab8-8dae-af476463276b.md
+specs/c3490cfc-cement-zn-d-at-plant.draft.json,c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e,"Cement ZN, D, at plant",draft,S1,rebuilt,-19.9,8/25,"Ecotoxicity, freshwater_organics (-55.9 %)",results/checks/c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft.md
+specs/c3490cfc-cement-zn-d.json,c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e,"Cement ZN, D, at plant",,S1,rebuilt,-19.9,8/25,"Ecotoxicity, freshwater_organics (-56.0 %)",results/checks/c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e.md
