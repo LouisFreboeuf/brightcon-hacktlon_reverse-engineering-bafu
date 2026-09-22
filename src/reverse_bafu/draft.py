@@ -413,6 +413,15 @@ def draft_all(project: str, ecospold_dir: Path, reports: Path, dry_run: bool, on
             continue
         rec = {"code": code, "name": name, "family": r["family"], "pdf": "", "pages": "", "status": "", "note": ""}
         status.append(rec)
+        existing = Path("specs") / f"{code[:8]}-{slug(name)}.draft.json"
+        if existing.exists():
+            # never overwrite a draft that may have been resolved, calibrated or reviewed since
+            rec["status"], rec["note"] = "drafted", f"{existing} exists (kept; delete it to re-assemble)"
+            ev0 = Path("specs/evidence") / code / "response-0-locate.json"
+            if ev0.exists():
+                r0 = json.loads(ev0.read_text()); rec["pdf"] = (json.loads((Path("specs/evidence") / code / "captions-0-locate.json").read_text()).get("pdf", "") if (Path("specs/evidence") / code / "captions-0-locate.json").exists() else "")
+                rec["pages"] = f"{r0.get('first_page')}-{r0.get('last_page')}" if r0.get("found") else ""
+            continue
         title = r["source"].split(" | ")[-1] if r["source"] else ""
         pdf_name = pdf_by_title.get(title, "")
         if not pdf_name:
