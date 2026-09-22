@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import datetime as dt
 import hashlib
+import html
 import json
 import re
 import subprocess
@@ -448,6 +449,30 @@ def advance(code: str, name: str, pdf: Path, ecospold_dir: Path, project: str, d
         rec["status"], rec["note"] = "error", str(exc)[:200]
 
 
+def cited_reports(code: str, csv_source: str, pdf_by_title: dict, ecospold_dir: Path) -> list[str]:
+    """Every report PDF this dataset cites that is present in the bundle.
+
+    A dataset can cite more than one source, and the extra ones are only in the ecoSpold XML -
+    results/system_terminated.csv carries a single "author | year | title" string. Taking just
+    that one hid the 2025 plastics report behind all 14 PlasticsEurope datasets, the family with
+    the largest downstream reach, which were recorded as having no report at all.
+    """
+    titles: list[str] = []
+    if csv_source:
+        titles.append(csv_source.split(" | ")[-1])
+    xml = ecospold_dir / f"process_{code}.xml"
+    if xml.exists():
+        text = xml.read_text(encoding="utf-8", errors="replace")
+        head = text[: text.find("<flowData")] if "<flowData" in text else text[:30000]
+        titles += [html.unescape(t) for t in re.findall(r'<source\b[^>]*\btitle="([^"]*)"', head)]
+    out: list[str] = []
+    for t in dict.fromkeys(x for x in titles if x):
+        pdf = pdf_by_title.get(t, "")
+        if pdf and pdf not in out:
+            out.append(pdf)
+    return out
+
+
 def draft_all(project: str, ecospold_dir: Path, reports: Path, dry_run: bool, only: set[str] | None, by: str,
               status_path: Path = Path("results/drafting_status.csv")) -> None:
     """One entry point for all system-terminated datasets: find the report, locate the pages, extract,
@@ -464,7 +489,8 @@ def draft_all(project: str, ecospold_dir: Path, reports: Path, dry_run: bool, on
         rec = {"code": code, "name": name, "family": r["family"], "pdf": "", "pages": "", "status": "", "note": ""}
         status.append(rec)
         title = r["source"].split(" | ")[-1] if r["source"] else ""
-        pdf_name = pdf_by_title.get(title, "")
+        candidates = [p for p in cited_reports(code, r["source"], pdf_by_title, ecospold_dir) if (reports / p).exists()]
+        pdf_name = candidates[0] if candidates else ""
         if not pdf_name and not (SPEC_ROOT / f"{code[:8]}-{slug(name)}.draft.json").exists():
             rec["status"], rec["note"] = "no-pdf", f"family {r['family']}: no report in the documentation bundle for '{title or 'no source'}'"
             continue
