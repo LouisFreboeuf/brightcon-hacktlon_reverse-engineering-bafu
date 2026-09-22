@@ -9,8 +9,8 @@ What is here: the BAFU-2026 v1 inventory installed into Brightway 2.5 via
 aggregated datasets and the reports behind them; the `reverse-bafu` pipeline that rebuilds one
 aggregated dataset from a JSON *spec* (resolve → calibrate → build → check); a reproducible way to
 draft such specs from report PDFs; and a benchmark on synthetic aggregated datasets with known
-answers. Findings live in [docs/disaggregation_strategies.md](docs/disaggregation_strategies.md);
-the pages under `artifacts/` explain the method.
+answers. The documentation is the set of pages under [artifacts/](artifacts/): the method
+explainer, the evidence page on the 101, the rebuilt inventories, and the developer walkthrough.
 
 Steps 1–3 below reproduce everything committed under `results/`; 4–6 are for new work.
 
@@ -146,7 +146,7 @@ uv run reverse-bafu benchmark --n 5 --seed 7 --scenarios blind --name blind-n5-s
 
 BAFU unit processes are turned into system-terminated lookalikes (their cumulative inventory) and
 the calibration is scored against the real inputs under five evidence packages. Results and
-interpretation: [docs/disaggregation_strategies.md](docs/disaggregation_strategies.md) §4.
+interpretation: `results/benchmark/n40-seed7.md` and the method explainer, §7.
 
 ## Layout
 
@@ -156,8 +156,7 @@ scripts/            list_system_terminated.py, list_sources.py, render_pages.py 
 prompts/            the two fixed LLM prompt templates
 specs/              one JSON per rebuilt dataset; specs/evidence/<code>/ = drafting records
 results/            system_terminated.csv, sources.csv, dois.csv, checks/, benchmark/
-docs/               disaggregation_strategies.md — families, strategies, recommendation, benchmark
-artifacts/          method explainer, rebuilt inventories, burnt shale, developer walkthrough
+artifacts/          the documentation: method-explainer, the-101, rebuilt-inventories, burnt-shale-rebuilt, code-walkthrough
 .claude/commands/   /draft-spec
 ```
 

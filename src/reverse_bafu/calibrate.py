@@ -1,7 +1,7 @@
 """Step 2 - amounts for the inputs marked ``free``, by NNLS against the target's cumulative
 inventory, with every other input held at its spec amount. The input *list* is never changed
-here: with a free structure the fit reproduces the scores and invents the process (see
-docs/disaggregation_strategies.md §4); with the list fixed it recovers amounts to ~10 %."""
+here: with a free structure the fit reproduces the scores and invents the process (see the
+method explainer in artifacts/, §2 and §7); with the list fixed it recovers amounts to ~10 %."""
 
 from __future__ import annotations
 
