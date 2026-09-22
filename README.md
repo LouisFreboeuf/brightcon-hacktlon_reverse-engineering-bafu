@@ -94,28 +94,54 @@ documentation bundle is present; `dois.csv`: the 36 DOIs embedded in dataset com
 A spec is one JSON file per dataset holding the evidence-derived unit process — target, strategy,
 evidence, inputs (with `free`/`bounds`/`sandbox`/nested `node` flags), direct emissions and
 resources. Format: docstring of [src/reverse_bafu/spec.py](src/reverse_bafu/spec.py); examples in
-[specs/](specs/). Pick the dataset from `results/system_terminated.csv` and the report page from
-the `pdf` column of `results/sources.csv`; the reproducible route is:
+[specs/](specs/). Pick the dataset from `results/system_terminated.csv` and the report from the
+`pdf` column of `results/sources.csv`. Three commands make the spec; each reads what the previous
+one wrote under `specs/evidence/<code>/`.
 
-```bash
-uv run reverse-bafu evidence <code> --report "BAFU-2026 v1_Documentation/.../<report>.pdf" --pages 19-21   # PDF page numbers
-uv run reverse-bafu draft <code>                 # API route: claude-opus-5, structured output (needs an Anthropic API key or `ant auth login`)
-uv run reverse-bafu draft <code> --dry-run       # writes the exact prompts + JSON schemas for any other model
-uv run reverse-bafu draft <code> --from-response extract=<json> --from-response map=<json> --from-response "by=<who>"
-uv run reverse-bafu assemble <code>              # -> specs/<code>-<slug>.draft.json, the input to step 5
-```
+**`reverse-bafu evidence <code> --report <pdf> --pages <a-b>`** — collects the evidence, deterministically.
 
-Or, inside Claude Code with a subscription: `/draft-spec <code> --report "<pdf>" --pages <a-b>`
-runs the whole chain with the session as the model ([.claude/commands/draft-spec.md](.claude/commands/draft-spec.md)).
+| Reads | Does | Writes to `specs/evidence/<code>/` |
+|---|---|---|
+| the report PDF, PDF pages `a-b` (not the printed page numbers — check with `pdftotext -f a -l b`) | `pdftotext -layout` of those pages | `report-p<a>-<b>.txt` |
+| `data/ecospold/process_<code>.xml` | name, unit, location, category, `includedProcesses`, `technology`, `generalComment`, source, time period, number of flows | `target.json` |
+| the aggregated dataset in Brightway | its resource flows, largest first — candidates for the process's own direct resources (e.g. shale ore, the shale's energy content) that no upstream dataset would emit | `target.json` (`direct_resource_candidates`) |
+| — | SHA‑256 of the PDF, the text and the XML, the pdftotext version, the project name | `manifest.json` |
 
-What is deterministic and hashed: the report text, the target metadata and direct-resource
-candidates (`evidence`), the candidate lists for the mapping pass, and the assembly. What is
-pinned: the two prompt templates ([prompts/](prompts/)), the schemas, the model. Every ingested
-response is schema-validated. Everything — rendered prompts, candidates, raw responses,
-provenance — lands in `specs/evidence/<code>/`, and every input of the assembled spec carries a
-`derivation` (quoted line, raw value, factor with source, chosen candidate and why, author,
-`reviewed_by`). A claude.ai subscription is not an API key: the SDK route needs a key from
-console.anthropic.com; the Claude Code route needs only the subscription.
+**`reverse-bafu draft <code>`** — the model step, in two passes. Pass 1 reads the excerpt, pass 2 maps its
+line items onto BAFU. Everything the model sees and returns is saved.
+
+| Pass | Prompt | Input | Output (JSON, schema‑validated) |
+|---|---|---|---|
+| 1 · extract | [prompts/draft_spec.md](prompts/draft_spec.md) + the metadata, resource candidates and excerpt filled in → `prompt-1-extract.md` | the report text | `response-1-extract.json`: one line item per table row — verbatim `quote`, `raw_value`/`raw_unit` as printed, `per` (the table's basis), an optional conversion `factor` with `factor_source`, `kind` (input / emission / resource / co‑product / ignore), a `search` phrase, `confidence`; plus `basis_amount` (how many target units one table row refers to, e.g. 1000 for per‑tonne values of a per‑kg dataset), `allocation`, `gaps` (what the excerpt does not cover — the model may not add inputs on its own) |
+| — · candidates | (no model) for each line item, a keyword search over the 11,947 dataset names (inputs) or the EF 3.1 flow list (emissions, resources): words matched at word starts, ranked by matches, then the target's location / RER / CH / DE / GLO, then name length — deterministic | `candidates-2-map.json` |
+| 2 · map | [prompts/map_inputs.md](prompts/map_inputs.md) + the line items with their candidates → `prompt-2-map.md` | pass 1 + candidates | `response-2-map.json`: per line item the `chosen` candidate (or null), `location`, `compartment`, whether it is itself an aggregated dataset (`dependency`), and a one‑sentence `reason` |
+
+Who runs the model:
+
+| Route | Command | Needs | Provenance |
+|---|---|---|---|
+| Anthropic API | `reverse-bafu draft <code>` | `uv sync --extra llm` and an **API** key (`ANTHROPIC_API_KEY` from console.anthropic.com) or an `ant auth login` profile — a claude.ai subscription is not an API key | model id, message id, tokens, prompt SHA‑256 (`provenance-*.json`) |
+| Claude Code (subscription) | `/draft-spec <code> --report "<pdf>" --pages <a-b>` | the session answers both prompts itself ([.claude/commands/draft-spec.md](.claude/commands/draft-spec.md)) | `by=claude-code:<model>` |
+| any model or a person | `reverse-bafu draft <code> --dry-run`, answer the prompt files, then `reverse-bafu draft <code> --from-response extract=<json> --from-response map=<json> --from-response "by=<who>"` | nothing else | `by=<who>` |
+
+Ingested responses are validated against the same JSON schemas (`schema-*.json`) the API enforces;
+a rejected file is named with the failing path. `draft` runs `assemble` automatically once both
+responses are in.
+
+**`reverse-bafu assemble <code>`** — turns the two responses into a spec, deterministically. For each line
+item: `amount = raw_value × factor / basis_amount`, unit names normalised (`kg` → `kilogram`, `MJ` →
+`megajoule`, …); inputs take the chosen dataset name and location, emissions and resources the
+chosen flow and compartment; a table range (`raw_min` ≠ `raw_max`) becomes `free: true` with
+`bounds`; co‑products and ignored rows are listed under `provenance.skipped_items`, the model's
+`gaps` under `provenance.gaps_reported_by_model`. Every entry carries a `derivation` (quote, raw
+value and unit, factor with source, search phrase, mapping reason, author, `reviewed_by: null`).
+Output: `specs/<code>-<slug>.draft.json`, with `"variant": "draft"` so its sandbox nodes do not
+collide with a hand‑written rebuild of the same dataset. It is the input to step 5 — after a
+reviewer has looked at the `gaps`, the low‑confidence items and the `free` amounts.
+
+Reproducible means: the evidence, the candidates and the assembly regenerate bit‑for‑bit (two
+runs give identical files), the prompts and the model are pinned, and every number is auditable
+to a quoted line — not that the model returns identical JSON.
 
 How the committed specs were made: `specs/d8ec4be3-burnt-shale-at-plant.draft.json` is the output
 of this route (the two prompts answered by a Claude Code session, labelled so in its provenance).
