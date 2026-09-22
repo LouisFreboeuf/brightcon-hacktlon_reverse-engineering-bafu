@@ -1,0 +1,14 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Electricity, medium voltage, production from hard coal, at grid",ea1cf6f4-3cff-3bba-9d7d-a23dc6c778e9,product-flow,S1-report-transcription,1.0603968917434954,True,1.0604,True
+10,"Natural gas, burned in gas turbine",4aad54e8-c930-333e-bf59-f6637ec332db,product-flow,S1-report-transcription,5.020703329804991e-06,True,,False
+6,"Electricity, at wind farm",b35b43a0-cf11-3cf1-ba91-54faaf294f6c,product-flow,S1-report-transcription,4.829138886533906e-06,True,,False
+8,"Electricity, production mix photovoltaic, at plant",98c2f03e-61a7-3093-9540-f1b88f2fdf99,product-flow,S1-report-transcription,2.3038064999984336e-06,True,,False
+11,"Electricity, production mix photovoltaic, at plant",16fe6704-9ef1-3ba5-86da-ddff085eae08,product-flow,S1-report-transcription,1.7158008111657523e-06,True,,False
+5,"Electricity, lignite, at power plant",2480b5f4-c924-34a7-b67a-2001eaf34cf7,product-flow,S1-report-transcription,2.7243267054566647e-07,True,,False
+13,"Transport, freight, lorry, 7.5t-16t gross weight, fleet average",a4f7817d-ef76-3fb0-943c-12c43ed07da7,product-flow,S1-report-transcription,1.326710033588991e-07,True,,False
+3,"Distribution network, electricity, low voltage",89ae5562-73eb-37ce-a835-2055cb7e9c7d,product-flow,S1-report-transcription,8.740414079281292e-08,True,8.7405e-08,True
+7,"Polycarboxylates, 40% active substance, at plant",f5a22e0a-f55b-3639-86b9-85f999ea7c81,product-flow,S1-report-transcription,6.418800722293349e-08,True,,False
+9,"Potassium chloride, as K2O, at regional storehouse",13ce5dc8-cdd7-322f-9d6b-646f27b9af9d,product-flow,S1-report-transcription,2.5096506485413037e-08,True,,False
+2,"Sulphur hexafluoride, liquid, at plant",b1ff97f2-2364-3290-86c7-d513fd4be2e9,product-flow,S1-report-transcription,1.4471163820849708e-08,True,2.7965e-09,True
+4,"Building, hall",949cba80-fd0f-3f96-9d04-0835f9b93dbd,product-flow,S1-report-transcription,5.432267523526513e-10,True,,False
+12,"Cogen unit 160kWe, components for electricity only",4f8b0a1a-11e4-3e56-887a-2ed03c0beb71,product-flow,S1-report-transcription,9.115153140276322e-12,True,,False

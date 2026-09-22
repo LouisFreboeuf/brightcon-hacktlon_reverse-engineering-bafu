@@ -1,0 +1,15 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+4,"Transport, natural gas, onshore pipeline, long distance",2b1da97b-8762-3f1a-8346-075c44d8de61,product-flow,S1-report-transcription,0.0675789857329182,True,0.067579,True
+1,"Natural gas, at production",d11b7f2b-f980-3c55-ae4a-d1d91f5bfde5,product-flow,S1-report-transcription,0.027780926451960414,True,0.027781,True
+2,"Natural gas, burned in gas turbine",7c2b4b09-b101-3ef1-8b26-2344d6b06842,product-flow,S1-report-transcription,0.0022501368170110177,True,0.00225,True
+3,"Transport, natural gas, offshore pipeline, long distance",5c52cc7d-2c0c-3a6d-aaaa-9bcf709d422d,product-flow,S1-report-transcription,0.0022445093485555095,True,0.0022458,True
+13,"Natural gas, burned in gas turbine",065e8cc8-6122-3763-8712-2bad442327a1,product-flow,S1-report-transcription,6.236309748482699e-07,True,,False
+12,"Iron scrap, at plant",083619e2-b4f7-3fc5-8075-1e78744c6d76,product-flow,S1-report-transcription,3.9721002094747355e-08,True,,False
+10,"Electricity, from natural gas",d119779a-cd95-30d1-9430-45af09226ceb,product-flow,S1-report-transcription,1.6395092090120377e-08,True,,False
+7,"Paraffin, at plant",ffe49bac-1b88-35cd-a9b6-1bb8e98b1b68,product-flow,S1-report-transcription,4.262979856186908e-09,True,,False
+11,"Electricity, oil, at power plant",32d7527e-06e5-3981-af87-5e3998f7bf42,product-flow,S1-report-transcription,2.5367348035272744e-09,True,,False
+8,"Acrylic binder, 34% in H2O, at plant",841dac4d-05cf-3a4d-af9d-77430bcb3f5b,product-flow,S1-report-transcription,1.8349364770042665e-09,True,,False
+6,"Electricity, oil, at power plant",b09bb03a-d07b-38da-9d26-105ff5065358,product-flow,S1-report-transcription,1.8188023791193897e-09,True,,False
+14,"Electricity, hydropower, at reservoir power plant, non alpine regions",fbd1f9e7-9b53-32ce-b7b5-29dd0a7a66bf,product-flow,S1-report-transcription,1.1283766935508915e-09,True,,False
+9,"Electricity, lignite, at power plant",3c286cd3-114d-360c-a9ca-6a049bfc26a2,product-flow,S1-report-transcription,3.4559363632022147e-10,True,,False
+5,"Brake wear emissions, passenger car",e19204bc-3cff-3ad1-bfd6-957987dbbd54,product-flow,S1-report-transcription,2.014556341336778e-12,True,,False

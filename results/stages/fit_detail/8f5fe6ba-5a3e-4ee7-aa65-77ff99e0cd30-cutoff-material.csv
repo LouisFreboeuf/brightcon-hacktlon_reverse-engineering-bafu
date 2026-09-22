@@ -1,0 +1,36 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+24,"Process-specific burdens, sanitary landfill",f332a783-d9b1-45a4-9616-50cfbcc4d98c,product-flow,S1-report-transcription,1.0042228438892218,True,1.0,True
+3,"Electricity from waste, at municipal waste incineration plant",a9f81d35-ac75-3917-8e35-e9c000a104e6,product-flow,S1-report-transcription,0.1,False,6.71e-07,True
+14,"Heat from waste, at municipal waste incineration plant",cc476d2d-20a3-3064-a77e-8d173cc5ac5e,product-flow,S1-report-transcription,0.1,False,3.91e-06,True
+17,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S1-report-transcription,0.00012160821519205717,False,9.07e-07,True
+31,"Powder coating, aluminium sheet",b3bbff04-9f71-3acc-b827-19bd99e6f9b6,product-flow,S1-report-transcription,5.139323898474132e-05,True,,False
+18,"Disposal, cement, hydrated, 0% water, to residual material landfill",6eb70d13-4a43-4a65-9090-90749e3369af,product-flow,S1-report-transcription,4.800405921577068e-05,False,8.2e-08,True
+21,"Electricity, low voltage, at grid",c4a92617-9f99-3d7b-95c0-15fb110b80ad,product-flow,S1-report-transcription,2.5711724209210337e-05,False,7.45e-05,True
+11,"Process-specific burdens, slag compartment",ecdf22c7-d4e1-4421-9a03-1315367c1808,product-flow,S1-report-transcription,8.834651536969935e-07,False,1.88e-07,True
+2,"Process-specific burdens, residual material landfill",89a4ae2f-2679-47a7-90b3-834244ba3384,product-flow,S1-report-transcription,1.3518845103195283e-08,False,8.2e-08,True
+13,"Sewer grid, class 3",d30ff55c-cadd-3d65-bc68-2fc14d754a08,product-flow,S1-report-transcription,6.167446462679435e-10,True,5.45e-10,True
+23,Sanitary landfill facility,3b5a45d2-6fef-32bc-bb7d-37ddb271581d,product-flow,S1-report-transcription,5.507473960859074e-10,True,5.56e-10,True
+25,"Wastewater treatment plant, class 3",5ae22488-0b2a-3888-8a6b-c5df9adab1be,product-flow,S1-report-transcription,9.624624763313133e-12,True,1.42e-11,True
+34,Mixed construction and demolition waste to sorting,51dbeb1f-83a6-40af-975c-7997408176a1,product-flow,S1-report-transcription,6.942803605646275e-14,False,,False
+6,"Process-specific burdens, municipal waste incineration",edab3419-2301-42b6-869a-5c9c606a2ff3,product-flow,S1-report-transcription,4.193869668396518e-17,False,4.66e-06,True
+5,"Natural gas, burned in boiler modulating >100kW",3b3545b6-561a-36c3-ac77-5e648b0b1d74,product-flow,S1-report-transcription,3.918716013608639e-17,False,4.69e-05,True
+8,"Disposal, plastics, mixture, 15.3% water, to municipal incineration",3cef9fc0-0cf8-42ba-88f5-0ff65ef6169f,product-flow,S1-report-transcription,2.831933466733737e-17,False,3.88e-05,True
+4,"Disposal, paper, 11.2% water, to municipal incineration",46eeff89-f26d-44ad-91ac-9974927741c0,product-flow,S1-report-transcription,1.4351141169550143e-17,False,3.88e-05,True
+26,"Limestone, milled, packed, at plant",8eac0f20-7282-3186-a584-b89ad40e5b94,product-flow,S1-report-transcription,5.307061784517465e-18,False,,False
+22,"Light fuel oil, burned in boiler 100kW, non-modulating",09da51a8-f8ca-3270-bfa4-7749767952a7,product-flow,S1-report-transcription,5.21727445379588e-18,False,3.47e-05,True
+35,"Disposal, wood untreated, 20% water, to municipal incineration",c03df82a-e3d3-408f-8f7e-7c03e10bf8bf,product-flow,S1-report-transcription,2.4047571684047306e-18,False,,False
+20,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S1-report-transcription,5.456578905475881e-19,False,1.52e-07,True
+7,"Chemicals organic, at plant",4d96ad56-9dd3-3fda-bff6-d24796d01043,product-flow,S1-report-transcription,5.006828659268151e-19,False,3.4e-08,True
+33,"Acrylic binder, 34% in H2O, at plant",841dac4d-05cf-3a4d-af9d-77430bcb3f5b,product-flow,S1-report-transcription,4.1074254653223355e-19,False,,False
+29,"Disposal, mineral wool, 0% water, to construction waste landfill",248ed302-3b4d-4a0b-a3f9-f3982be54e5d,product-flow,S1-report-transcription,3.737972703031807e-19,False,,False
+27,"Iron sulphate, at plant",1b541649-c28b-369b-a574-066c98648887,product-flow,S1-report-transcription,3.3628134156040004e-19,False,,False
+19,"Chemicals inorganic, at plant",90d675e2-e433-3ef4-abc3-4a6735350d72,product-flow,S1-report-transcription,5.726962131102118e-20,False,4.48e-11,True
+28,"Tube insulation, elastomere, at plant",54b7636c-499b-3841-a9cb-33cdaa32b619,product-flow,S1-report-transcription,4.860083990263954e-20,False,,False
+16,"Hydrochloric acid, 30% in H2O, at plant",2f8b5baa-5930-3460-bca9-ad90d49c1d36,product-flow,S1-report-transcription,1.8142864313079676e-20,False,2.69e-11,True
+15,"Iron (III) chloride, 40% in H2O, at plant",5f0851c6-b2f2-3e4d-b5a0-ab2dd7124638,product-flow,S1-report-transcription,1.2675843745718187e-20,False,8.16e-09,True
+10,Residual material landfill facility,0311b8c7-c4b4-3863-baee-04ee9d28c324,product-flow,S1-report-transcription,8.68172929530879e-22,False,1.71e-16,True
+1,Slag compartment,085102e3-c9cc-3bad-940a-03c7db21125e,product-flow,S1-report-transcription,4.433039937278638e-24,False,3.34e-16,True
+32,"Regional distribution, oil products",4f7cc4ce-e72a-389c-bae5-c6138af12706,product-flow,S1-report-transcription,2.7299055865897047e-25,False,,False
+9,"Cement, unspecified, at plant",39f4c4a5-a5f8-3299-8841-9ab862d9e8fa,product-flow,S1-report-transcription,8.023347779281276e-29,False,3.28e-08,True
+30,"Ethylene glycol, at plant",582ad303-7f18-3110-83c2-bccca0dc995f,product-flow,S1-report-transcription,1.2443974040193257e-30,False,,False
+12,Municipal waste incineration plant,c48dd908-0b49-323f-8270-ef772e7c900d,product-flow,S1-report-transcription,1.508642285232363e-35,False,1.17e-15,True

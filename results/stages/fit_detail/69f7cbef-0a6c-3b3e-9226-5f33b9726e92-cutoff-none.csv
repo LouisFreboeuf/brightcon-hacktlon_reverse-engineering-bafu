@@ -1,0 +1,15 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Steel, low-alloyed, at plant",b9430f24-d0b9-3422-a5ad-f874acbbef18,product-flow,S3-top-down-model,180939.56214155693,True,180000.0,True
+4,"Transport, freight, lorry, 16t-32t gross weight, fleet average",85b3a5a6-2635-3546-b51b-4ccad397650b,product-flow,S3-top-down-model,19272.83129933182,True,20700.0,True
+3,"Copper, at regional storage",3972eb0c-d60e-3537-9ad1-fd6b7bbafce8,product-flow,S3-top-down-model,17961.356271028224,True,18000.0,True
+2,"Chromium steel 18/8, at plant",fc9385f8-fe2d-3399-b663-4b66e5062a3f,product-flow,S3-top-down-model,8884.347888478354,True,9000.0,True
+5,"Manganese concentrate, at beneficiation",f2604d57-9474-36dc-9219-c04eedc6f657,product-flow,S3-top-down-model,2730.295763389319,True,,False
+11,"Electric motor, for electric passenger car",f937e3b1-e1ee-32f8-b582-8a044ad51323,product-flow,S3-top-down-model,361.30288880641467,True,,False
+6,"Electricity, hydropower, at pumped storage power plant",ebbd7d52-14b8-3798-85ae-915fd40643ab,product-flow,S3-top-down-model,205.7110935190081,True,,False
+13,"Transport, barge",2e1b341b-71fa-337b-8343-f406a400b09b,product-flow,S3-top-down-model,120.80817418342129,True,,False
+7,"Electricity, lignite, at power plant",016d490f-79c5-3c87-b3fb-165aa94757f4,product-flow,S3-top-down-model,19.648736820009827,True,,False
+9,"Paraffin, at plant",ffe49bac-1b88-35cd-a9b6-1bb8e98b1b68,product-flow,S3-top-down-model,3.1588550527409255e-15,True,,False
+10,"Light fuel oil, burned in industrial furnace 1MW, non-modulating",82c07b68-8bf9-3537-9934-91924132e976,product-flow,S3-top-down-model,3.3326460023282774e-16,True,,False
+12,"Methanol, at plant",1bf86f83-27bd-3271-9390-c280d9994184,product-flow,S3-top-down-model,2.3831638438468562e-18,True,,False
+14,"Road wear emissions, lorry",92c36959-3136-3b24-bdf1-058ff7429972,product-flow,S3-top-down-model,3.1189103497890153e-22,True,,False
+8,"Polystyrene, high impact, HIPS, at plant",b2ddf286-46b3-3a00-8b8a-c38b11ced364,product-flow,S3-top-down-model,6.152716763455489e-50,True,,False

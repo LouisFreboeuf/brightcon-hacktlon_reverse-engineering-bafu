@@ -1,0 +1,19 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+5,"Electricity, medium voltage, production ENTSO-E, at grid",648e3bb3-7b98-46f8-9da1-f45627c309ef,product-flow,S3-top-down-model,1.1353543987527035,True,1.122,True
+6,"Transport, freight, lorry, 32t-40t gross weight, fleet average",7b09a113-0b6e-33fe-ad56-efc96b9a8b77,product-flow,S3-top-down-model,0.7944841669798562,True,0.786,True
+8,"Light fuel oil, burned in boiler 100kW, non-modulating",09da51a8-f8ca-3270-bfa4-7749767952a7,product-flow,S3-top-down-model,0.3523037283597201,True,0.449,True
+2,"Polyethylene terephthalate, granulate, amorphous, at plant",6bff31ec-3d70-3720-93b4-68a5017911b4,product-flow,S3-top-down-model,0.3332885870921135,True,0.331,True
+3,"Polypropylene, granulate, at plant",09cda8b1-b652-39b2-8761-c93aecc29f70,product-flow,S3-top-down-model,0.3324480930312859,True,0.331,True
+1,"Nylon 6, at plant",a22a1218-236e-32ca-8e90-302962a36fb5,product-flow,S3-top-down-model,0.3309664537153466,True,0.331,True
+4,"Latex, at plant",b242dd8f-393a-36a6-b974-436e78f905a2,product-flow,S3-top-down-model,0.20869433940963084,True,0.208,True
+7,"Aluminium hydroxide, at plant",34d9da9b-4ba9-31d2-8e6f-b908c3f99f92,product-flow,S3-top-down-model,0.10377276011450848,True,0.105,True
+13,"Frame, blanks and saddle, for lorry",18be4c5c-e3fa-3376-85e3-b0b59c4167fd,product-flow,S3-top-down-model,0.0020815002626318195,True,,False
+9,"Electricity, lignite, at power plant",2480b5f4-c924-34a7-b67a-2001eaf34cf7,product-flow,S3-top-down-model,0.0018785464884265145,True,,False
+12,"Propylene glycol, liquid, at plant",09cfe051-80c6-3c72-9811-5d36847d535f,product-flow,S3-top-down-model,5.96637966164787e-05,False,,False
+15,"Phosphate rock, as P2O5, beneficiated, dry, at plant",8ff03125-13fd-3787-92c4-29de499447da,product-flow,S3-top-down-model,4.173563283021436e-05,False,,False
+14,"Lead, at regional storage",5097fdf8-210b-3053-9e5a-98fbf73b914f,product-flow,S3-top-down-model,1.9125571522223486e-05,False,,False
+11,"Cogen unit 160kWe, common components for heat+electricity",edcd9e24-f73c-3e18-b9f7-465ef785d2e2,product-flow,S3-top-down-model,2.2440286782479653e-07,False,,False
+18,"Electricity, oil, at power plant",5fae962b-f88c-3ac4-a587-f976654f70b8,product-flow,S3-top-down-model,8.220714009012415e-08,False,,False
+17,Injection moulding,f7ce1c49-0916-320e-9585-666388269b3d,product-flow,S3-top-down-model,2.16813991025125e-18,False,,False
+16,"Diesel, burned in diesel-electric generating set, at extraction site",3b9ec683-d3db-30b9-b5bd-c3ea85135ec5,product-flow,S3-top-down-model,6.073057588887968e-19,False,,False
+10,"Electricity, production mix photovoltaic, at plant",8ad18206-854f-3686-b52d-d32b2ebedfb7,product-flow,S3-top-down-model,2.8531305686210826e-30,False,,False

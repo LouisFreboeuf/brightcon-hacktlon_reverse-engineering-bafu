@@ -11,7 +11,7 @@ from . import db, spec as spec_mod
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="reverse-bafu", description=__doc__)
-    p.add_argument("command", choices=["resolve", "calibrate", "build", "check", "run", "benchmark", "evidence", "draft", "assemble", "locate", "draft-all", "run-all"])
+    p.add_argument("command", choices=["resolve", "calibrate", "build", "check", "run", "benchmark", "evidence", "draft", "assemble", "locate", "draft-all", "run-all", "stages"])
     p.add_argument("spec", nargs="?", help="spec JSON (see src/reverse_bafu/spec.py); for evidence/draft/assemble: the target code")
     p.add_argument("--report", help="evidence: the report PDF")
     p.add_argument("--pages", help="evidence: page range in the PDF, e.g. 16-17")
@@ -45,6 +45,12 @@ def main(argv: list[str] | None = None) -> int:
                                      Path(args.reports), args.dry_run, args.by or "manual", only)
         else:
             benchmark.run(args.n, args.seed, args.scenarios.split(","), args.name or f"n{args.n}-seed{args.seed}")
+        return 0
+    if args.command == "stages":
+        from pathlib import Path
+        from . import stages
+        stages.run_stages(n=args.n, seed=args.seed, project=args.project,
+                          ecospold_dir=Path(args.ecospold) if Path(args.ecospold).exists() else None)
         return 0
     if args.command == "run-all":
         from . import runall

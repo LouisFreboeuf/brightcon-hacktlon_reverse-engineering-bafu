@@ -1,0 +1,24 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+5,"Transport, barge",2e1b341b-71fa-337b-8343-f406a400b09b,product-flow,S1-report-transcription,79.49877891606339,True,81.746,True
+6,"Ammonium nitrate, as N, at regional storehouse",23f3ffba-42da-3167-96ac-808ccb478f9d,product-flow,S1-report-transcription,15.249130315386614,True,15.557,True
+2,"Rape seed IP, at regional storehouse",c2bd0b2d-07b7-33a7-acda-178c546b0699,product-flow,S1-report-transcription,10.034904842255838,True,10.0,True
+9,"Calcium ammonium nitrate, as N, at regional storehouse",941c6721-d698-3b04-b46a-fe25eaedad6c,product-flow,S1-report-transcription,8.274369602833128,True,7.8025,True
+8,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S1-report-transcription,7.429592858263305,True,9.0829,True
+10,"Transport, freight, rail, electricity with shunting",a169f230-3e05-33d0-a12d-f9d6d4d6abf1,product-flow,S1-report-transcription,7.234040021559108,True,9.0829,True
+20,"Transport, transoceanic freight ship",1846e2f7-dc18-37a6-9bb7-da1570d8798c,product-flow,S1-report-transcription,6.366622985429396,True,,False
+13,"Urea, as N, at regional storehouse",36fe2f4f-91bb-3bfe-a13d-06a59f95beac,product-flow,S1-report-transcription,4.9548983521897565,True,5.4634,True
+19,"Electricity, hard coal, at power plant",a2606599-aea3-3187-9594-72fba555a8ef,product-flow,S1-report-transcription,2.5044674701535032,True,,False
+1,Sowing,0324121d-7ddb-3ad1-b819-dbb7871c1136,product-flow,S1-report-transcription,1.9949685093986838,True,1.0,True
+11,"Ammonium sulphate, as N, at regional storehouse",5ed8de24-24f1-318b-b7cc-e9c4d1f8751f,product-flow,S1-report-transcription,1.415671920010118,True,1.1772,True
+3,"Tillage, harrowing, by spring tine harrow",1956d802-1be3-3c15-9165-ec9d94ac45d6,product-flow,S1-report-transcription,1.0870784794288944,True,1.0,True
+12,"Fertilising, by broadcaster",7fe98270-36fa-3fd5-ab4f-2d191c8fc271,product-flow,S1-report-transcription,0.8667025174505218,True,1.0,True
+7,"Transport, freight, lorry, 3.5t gross weight, fleet average",f2b283d7-3c63-3bd0-b949-7b55e377bbff,product-flow,S1-report-transcription,0.15987209199146477,True,0.15,True
+14,"Hydrogen sulphide, H2S, at plant",c4fb13df-afca-31f0-a6bc-c7e552b6020a,product-flow,S1-report-transcription,3.702822590261324e-05,True,,False
+16,"Extrusion, plastic pipes",0c4cff21-9b05-3ebf-bde2-fe4919628d27,product-flow,S1-report-transcription,4.476782114788182e-19,True,,False
+18,"Paper, woodfree, coated, at integrated mill",a50b0327-4733-30fa-9ec1-4f3c3afd7b81,product-flow,S1-report-transcription,1.5786092965986728e-20,True,,False
+23,"Water, decarbonised, at plant",d51355e5-b0a8-3db5-bd7e-c74fd60c87e0,product-flow,S1-report-transcription,1.2286145422759532e-20,True,,False
+22,"Ethylvinylacetate, foil, at plant",1ef6ea99-4478-3315-b947-9ba1e37bd1e8,product-flow,S1-report-transcription,3.0653238956368123e-22,True,,False
+17,"Electricity, hard coal, at power plant",1cc60476-0ba4-3fc7-8bd6-cec7b83dc18c,product-flow,S1-report-transcription,4.2553526820761713e-29,True,,False
+4,Mulching,54818abe-92ee-3f04-b98b-45c9ccf6e68b,product-flow,S1-report-transcription,2.2485930667590097e-31,True,1.0,True
+15,"Polycarbonate, at plant",53117f8b-9311-37b3-bf5b-6e14b2ae711c,product-flow,S1-report-transcription,1.7661931076482293e-34,True,,False
+21,"Calcium chloride, CaCl2, at plant",5b81a011-1c43-3344-bdaf-1778d6de03bf,product-flow,S1-report-transcription,1.205640889976626e-78,True,,False

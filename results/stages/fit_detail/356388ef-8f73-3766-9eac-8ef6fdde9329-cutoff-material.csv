@@ -1,0 +1,14 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Industrial machine, heavy, unspecified, at plant",5906ff1f-2cd1-3951-9bfc-abd0cdbf8c75,product-flow,S1-report-transcription,92120.85044133817,True,168000.0,True
+3,"Building, hall",949cba80-fd0f-3f96-9d04-0835f9b93dbd,product-flow,S1-report-transcription,29256.18157366239,True,29500.0,True
+2,"Building, multi-storey",552ee3f6-4f6a-3b85-a72c-5707a3b0f9c7,product-flow,S1-report-transcription,26181.184769929558,True,26300.0,True
+6,"Disposal, dust, unalloyed EAF steel, 15.4% water, to residual material landfill",d1ca3d5f-519a-4577-9579-e94dd5e964c6,product-flow,S1-report-transcription,742.4248890721537,False,,False
+11,"Furnace, wood chips, mixed, 300kW",4f59644e-3c7a-34b9-86ff-b516e730577e,product-flow,S1-report-transcription,17.131226971707658,True,,False
+10,"Process-specific burdens, municipal waste incineration",edab3419-2301-42b6-869a-5c9c606a2ff3,product-flow,S1-report-transcription,6.475107242925642,False,,False
+12,"Disposal, wood untreated, 20% water, to municipal incineration",c03df82a-e3d3-408f-8f7e-7c03e10bf8bf,product-flow,S1-report-transcription,0.0006360320259701931,False,,False
+7,"Chemical plant, organics",13ed4fe0-7ba5-3b60-82b6-a63918ee814d,product-flow,S1-report-transcription,0.00017305555231858676,False,,False
+5,"Electricity, oil, at power plant",20c73089-24e6-3782-ab75-d76df32fec06,product-flow,S1-report-transcription,1.666158446418271e-06,False,,False
+9,"Crude oil, at production",1313f2ed-6d81-3cee-a245-0167b32f373a,product-flow,S1-report-transcription,1.6639003653827144e-12,False,,False
+8,"Electricity, high voltage, production ENTSO-E, at grid",d7cd364e-1d5c-4f92-8c81-942cad46c4bd,product-flow,S1-report-transcription,2.402020057207751e-16,False,,False
+4,"Electricity, low voltage, production ENTSO-E, at grid",8cebe831-b6c1-4854-a5ab-a08a7ba3e50d,product-flow,S1-report-transcription,1.7728217796666442e-16,False,,False
+13,"Portland cement, strength class Z 42.5, at plant",cd9549ee-8aa8-3183-84f9-ad0483fe1e73,product-flow,S1-report-transcription,2.8625683853924446e-18,False,,False

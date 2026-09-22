@@ -1,0 +1,18 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+5,"Treatment, c-Si PV module",a8e50690-8e9b-4ea4-9092-a59cbd06972c,product-flow,S1-report-transcription,226.53130973750584,True,226.51,True
+2,"Transport, freight, lorry, 7.5t-16t gross weight, fleet average",a4f7817d-ef76-3fb0-943c-12c43ed07da7,product-flow,S1-report-transcription,36.49255608279403,True,36.501,True
+3,"Photovoltaic panel, multi-Si, at regional storage",8d52e5d5-2e3b-4fb7-8815-33680a7f2665,product-flow,S1-report-transcription,17.166926397854144,True,17.167,True
+1,"Flat roof construction, on roof",2f54c187-23e8-3dee-8f78-031c99e568ea,product-flow,S1-report-transcription,16.665911045837916,True,16.667,True
+6,"Inverter, 2.5 kW, average, at plant",7da39c9b-d38f-32f1-b0fa-676bd25fdaa7,product-flow,S1-report-transcription,2.3999984719548233,True,2.4,True
+4,"Electricity, low voltage, at grid",2489d4d7-3129-3a5c-8f9e-79469e2521d6,product-flow,S1-report-transcription,1.015377151797819,True,1.02,True
+7,"Electric installation, photovoltaic plant, at plant",6e910062-f919-3dbe-b24f-96eee8f43df8,product-flow,S1-report-transcription,0.9999959362746134,True,1.0,True
+10,"Disposal, paper, 11.2% water, to municipal incineration",46eeff89-f26d-44ad-91ac-9974927741c0,product-flow,S1-report-transcription,0.03011010345917587,True,,False
+11,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S1-report-transcription,0.020306475780255847,True,,False
+16,"Aluminium, production mix, wrought alloy, at plant",b18629ea-f8e8-3549-a958-cad98fe857cf,product-flow,S1-report-transcription,0.0019038095172663934,True,,False
+14,"Crude oil, at production",4363e9b3-9d13-3649-8b7b-c57cb3d8b149,product-flow,S1-report-transcription,0.0018966113206803786,True,,False
+9,"Paper, woodfree, coated, at integrated mill",a50b0327-4733-30fa-9ec1-4f3c3afd7b81,product-flow,S1-report-transcription,0.0012313494234281244,True,,False
+12,"Fuel tank, for diesel vehicle",02d34621-e606-3ecc-83a0-d527b2bb4288,product-flow,S1-report-transcription,0.0008670054606342687,True,,False
+8,"Metal working machine, unspecified, at plant",07afbe46-7fce-34f9-ba0d-e293fe08cb0d,product-flow,S1-report-transcription,0.0002827980359614618,True,,False
+15,"Disposal, wood ash mixture, pure, 0% water, to landfarming",370fd3e8-203b-40f7-9ff6-28a770d1cbc3,product-flow,S1-report-transcription,0.00018793094020765123,True,,False
+17,"Cogen unit 160kWe, common components for heat+electricity",edcd9e24-f73c-3e18-b9f7-465ef785d2e2,product-flow,S1-report-transcription,3.573645899121029e-08,True,,False
+13,Sanitary landfill facility,3b5a45d2-6fef-32bc-bb7d-37ddb271581d,product-flow,S1-report-transcription,2.230335040447333e-10,True,,False

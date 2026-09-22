@@ -1,0 +1,14 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+7,"Heat, natural gas, at industrial furnace 1MW",2fcda415-e506-38d9-9c3e-8ce2c2e7c8f2,product-flow,S3-top-down-model,1.0243342156247053,True,,False
+1,"Rape methyl ester, at esterification plant",407893f6-6bb8-3cad-9b83-4c36478fafb2,product-flow,S3-top-down-model,0.5236584931250206,True,0.52,True
+2,"Palm methyl ester, at esterification plant",fde2bfe9-f8e9-39f1-9224-c127b55e63c8,product-flow,S3-top-down-model,0.1331679609823827,True,0.13,True
+3,"Soybean methyl ester, at esterification plant",6df0f8d8-e418-38d9-b852-e338fe16021a,product-flow,S3-top-down-model,0.10883932117610814,True,0.03,True
+13,"Natural gas, burned in gas turbine",dc123404-174a-313e-aca5-44694add9665,product-flow,S3-top-down-model,0.02910710418710211,False,,False
+10,"Electricity, hydropower, at pumped storage power plant",f21f2f68-abfa-3e72-8a89-dd6393731cf3,product-flow,S3-top-down-model,0.007613960621308819,True,,False
+11,"Excavation, hydraulic digger, average",de7e006b-f5dd-3d18-873a-23959012d5b9,product-flow,S3-top-down-model,0.005206361309391571,False,,False
+9,"Transport, freight, lorry, 3.5t gross weight, fleet average",f2b283d7-3c63-3bd0-b949-7b55e377bbff,product-flow,S3-top-down-model,0.004868809757663015,True,,False
+12,"Potassium chloride, as K2O, at regional storehouse",13ce5dc8-cdd7-322f-9d6b-646f27b9af9d,product-flow,S3-top-down-model,0.0009979785293315105,True,,False
+6,"93 kWp slanted-roof installation, multi-Si, panel, mounted, on roof",d777787e-6732-3c75-9a75-69c61e46424a,product-flow,S3-top-down-model,1.799731715526044e-08,True,,False
+5,"Electricity, hydropower, at reservoir power plant",12bbcef6-63fe-322d-86d9-0ac443a318fc,product-flow,S3-top-down-model,1.4051772963544939e-11,False,,False
+4,"Nylon 6, at plant",a22a1218-236e-32ca-8e90-302962a36fb5,product-flow,S3-top-down-model,2.2426709407670186e-24,False,,False
+8,"Electricity, hard coal, at power plant",53f0a077-87a5-334e-8155-cc3dc6f8b249,product-flow,S3-top-down-model,1.257372975833569e-27,False,,False

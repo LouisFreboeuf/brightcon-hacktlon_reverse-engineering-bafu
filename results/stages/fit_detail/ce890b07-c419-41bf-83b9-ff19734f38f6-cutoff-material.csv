@@ -1,0 +1,15 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+7,Recycling steel and iron,daeb4e04-abe6-4a30-ae04-16353e2f1531,product-flow,S1-report-transcription,0.1,False,,False
+1,"Petrol, at regional storage",6e18b692-ec43-337d-b618-342b78510576,product-flow,S1-report-transcription,0.024469884852760967,True,0.02447,True
+2,"Lubricating oil, at plant",0b14288a-dbf3-3dac-a570-83d083f4b600,product-flow,S1-report-transcription,0.0005139987984167736,True,0.000514,True
+4,"Disposal, used mineral oil, 10% water, to hazardous waste incineration",be69d35d-4a8e-4e4c-88c0-c5df0c7db472,product-flow,S1-report-transcription,0.0005139174290293928,True,0.000514,True
+9,"Disposal, building, paint on metal, to sorting plant",d5dae353-9d60-4989-9432-42e36d1f2d81,product-flow,S1-report-transcription,7.083232175096181e-06,False,,False
+3,Building machine,853eecbe-ecd0-3119-bb72-68e5ac63cbde,product-flow,S1-report-transcription,1.3399854932113752e-07,True,1.34e-07,True
+6,"Methanol, at regional storage",2dd8974d-9d0a-3975-a37d-62105f3a1bf3,product-flow,S1-report-transcription,8.785524165575719e-08,False,,False
+14,"Section bar extrusion, aluminium",4a0f787e-5316-36c2-9e11-188e470e6ca7,product-flow,S1-report-transcription,2.4150797417493914e-08,False,,False
+12,"Electricity, medium voltage, at grid",df605f09-34c5-3b3f-94ea-227f7a3c06a7,product-flow,S1-report-transcription,1.9560214096983807e-08,False,,False
+13,Injection moulding,f7ce1c49-0916-320e-9585-666388269b3d,product-flow,S1-report-transcription,1.3470958666497879e-08,False,,False
+8,"Electricity, hydropower, at pumped storage power plant",7776bf3c-109c-30d1-b409-6f12a35c3b06,product-flow,S1-report-transcription,1.050175129157704e-08,False,,False
+5,"Aluminium oxide, at plant",cf4b9a68-b9bf-3326-8dbf-5508e6515909,product-flow,S1-report-transcription,8.836417283475437e-09,False,,False
+11,"Electricity, lignite, at power plant",2480b5f4-c924-34a7-b67a-2001eaf34cf7,product-flow,S1-report-transcription,4.316157123023971e-09,False,,False
+10,"Electricity, industrial gas, at power plant",46e83e9e-a0a0-3cf1-91ac-05ee8541de96,product-flow,S1-report-transcription,1.5216364084517388e-09,False,,False

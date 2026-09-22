@@ -1,0 +1,25 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+7,"Natural gas, high pressure, at consumer",52167408-1c86-310c-ab50-a92f15e84379,product-flow,S1-report-transcription,0.3224967948642957,True,0.3225,True
+9,"Electricity, medium voltage, production ENTSO-E, at grid",648e3bb3-7b98-46f8-9da1-f45627c309ef,product-flow,S1-report-transcription,0.09116184284276657,True,0.091162,True
+5,"Diesel, burned in building machine, average",e4e7ddc0-f7d1-3fad-bd12-9d6981142800,product-flow,S1-report-transcription,0.004520959014327797,True,0.0045207,True
+11,"Disposal, inert waste, 5% water, to construction waste landfill",2be08541-6444-47e0-9d93-5fc9f7e3e9c8,product-flow,S1-report-transcription,0.0011216765566063342,True,0.0011211,True
+2,"Light fuel oil, at regional storage",80b22bf0-10cb-3af0-b63a-d3cf38d0ccb5,product-flow,S1-report-transcription,0.0010025072230675075,True,0.0010025,True
+14,"Steel, low-alloyed, at plant",b9430f24-d0b9-3422-a5ad-f874acbbef18,product-flow,S1-report-transcription,0.00035300591476967455,False,0.00035301,True
+13,"Treatment, concrete production effluent, to wastewater treatment, class 3",89d24e35-54b0-40a6-8568-4251cb96bad8,product-flow,S1-report-transcription,0.0003521682548924646,False,0.00035218,True
+6,"Air filter, central unit, 600 m3/h, at plant",eb8759e7-44d4-3bb5-94f5-5f166d18174c,product-flow,S1-report-transcription,8.028594552802153e-05,False,8.0286e-05,True
+8,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S1-report-transcription,7.277967241462714e-05,False,7.4262e-05,True
+12,"Transport, freight, lorry, 16t-32t gross weight, fleet average",85b3a5a6-2635-3546-b51b-4ccad397650b,product-flow,S1-report-transcription,3.580187683202245e-05,False,3.5911e-05,True
+1,"Lubricating oil, at plant",0b14288a-dbf3-3dac-a570-83d083f4b600,product-flow,S1-report-transcription,4.017913556690601e-06,False,4.015e-06,True
+4,"Ethylene glycol, at plant",582ad303-7f18-3110-83c2-bccca0dc995f,product-flow,S1-report-transcription,1.237433967144332e-06,False,1.2601e-06,True
+3,"Solvents, organic, unspecified, at plant",bac59fd2-5b1f-318c-8dae-c794cd786431,product-flow,S1-report-transcription,8.26169490758087e-07,False,8.262e-07,True
+16,"Assembly operation, for lorry",6a0c6ef7-df9a-37e7-8104-b5fd21dac73c,product-flow,S1-report-transcription,2.329491070634869e-07,False,,False
+20,"Hot rolling, steel",79cdf328-b4c5-3885-a6ed-fcf7b5c0afcd,product-flow,S1-report-transcription,1.953629734165825e-07,False,,False
+24,"Electricity, from natural gas",6e6e5583-44b7-38c8-8f92-8dc8f85dbf1e,product-flow,S1-report-transcription,8.826855081678127e-08,False,,False
+19,"Potassium chloride, as K2O, at regional storehouse",13ce5dc8-cdd7-322f-9d6b-646f27b9af9d,product-flow,S1-report-transcription,1.9409172304791472e-08,False,,False
+21,"Paraffin, at plant",ffe49bac-1b88-35cd-a9b6-1bb8e98b1b68,product-flow,S1-report-transcription,1.9267465792148054e-08,False,,False
+15,"Toluene, liquid, at plant",1f6091b0-b8fd-3f54-b98b-dbfa5490e46a,product-flow,S1-report-transcription,1.4164376669056215e-08,False,,False
+18,"Propylene, at plant",169c6f0a-21f5-3497-b439-a46a8e2f5a3b,product-flow,S1-report-transcription,1.380929369271162e-08,False,,False
+17,"Polystyrene, high impact, HIPS, at plant",b2ddf286-46b3-3a00-8b8a-c38b11ced364,product-flow,S1-report-transcription,5.688611464191256e-09,False,,False
+23,"Polyurethane, rigid foam, at plant",a7c19342-01d0-37f6-86bf-7ecf91a7d206,product-flow,S1-report-transcription,4.011591149841774e-09,False,,False
+10,Cement plant,30df91c3-fac6-3ccf-835b-71863079263a,product-flow,S1-report-transcription,5.3599938545028734e-11,False,5.36e-11,True
+22,"SOFC fuel cell 125kWe, future",e00fdfe1-df9f-34c2-b6a1-4b27259faade,product-flow,S1-report-transcription,1.4792584114213508e-13,False,,False

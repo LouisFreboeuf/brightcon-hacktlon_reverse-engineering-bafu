@@ -1,0 +1,17 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+5,"Electricity, low voltage, production ENTSO-E, at grid",8cebe831-b6c1-4854-a5ab-a08a7ba3e50d,product-flow,S1-report-transcription,0.10399977474434823,True,0.104,True
+4,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S1-report-transcription,7.406417266255445e-05,True,7.46e-05,True
+1,"Transport, freight, lorry, fleet average",99f8a4b0-99b5-3130-924c-5de4c10b62ef,product-flow,S1-report-transcription,3.681377800118803e-05,True,3.73e-05,True
+6,"Lubricating oil, at plant",0b14288a-dbf3-3dac-a570-83d083f4b600,product-flow,S1-report-transcription,2.0781040986049923e-06,True,2.08e-06,True
+2,"Disposal, used mineral oil, 10% water, to hazardous waste incineration",be69d35d-4a8e-4e4c-88c0-c5df0c7db472,product-flow,S1-report-transcription,2.060270877043576e-06,True,2.08e-06,True
+7,"Electricity, production mix photovoltaic, at plant",1aebffab-b9cb-30b8-9c38-0be5406a8fa0,product-flow,S1-report-transcription,4.1009848024516743e-07,True,,False
+11,"Disposal, wood untreated, 20% water, to municipal incineration",c03df82a-e3d3-408f-8f7e-7c03e10bf8bf,product-flow,S1-report-transcription,3.1117409434082343e-07,True,,False
+13,"Hard coal, burned in industrial furnace 1-10MW",a7722f3b-b2df-3029-973c-0121d0822cee,product-flow,S1-report-transcription,2.476893237848488e-07,True,,False
+3,"Air compressor, screw-type compressor, 300 kW, at plant",68cd88ca-b2b0-3bc4-8da7-96f9a6ddb4cf,product-flow,S1-report-transcription,8.099749541537587e-08,True,8.1e-08,True
+15,"Electricity, hydropower, at pumped storage power plant",ebbd7d52-14b8-3798-85ae-915fd40643ab,product-flow,S1-report-transcription,3.102064705426705e-08,True,,False
+16,"Frame, blanks and saddle, for lorry",18be4c5c-e3fa-3376-85e3-b0b59c4167fd,product-flow,S1-report-transcription,8.694309341826908e-09,True,,False
+10,"Isopropanol, at plant",cc16978e-b292-32be-bf38-472e5f5d4156,product-flow,S1-report-transcription,6.996528060705999e-09,True,,False
+14,"Harvesting, forestry harvester",6e60d365-26dd-32eb-92a6-eba365d2b56a,product-flow,S1-report-transcription,1.1774164643525903e-09,True,,False
+8,"Pipeline, natural gas, low pressure distribution network",dc9a8ea6-f255-3706-839a-400ac8477b96,product-flow,S1-report-transcription,7.403320256536259e-13,True,,False
+9,"570 kWp open ground installation, single-Si, on open ground",72f4b692-8e68-3270-90f4-5352b5c88597,product-flow,S1-report-transcription,1.0197998805137975e-14,True,,False
+12,Ethanol fermentation plant,82771312-7ae9-3f97-bee8-a88e5e35512c,product-flow,S1-report-transcription,3.241088142737448e-15,True,,False

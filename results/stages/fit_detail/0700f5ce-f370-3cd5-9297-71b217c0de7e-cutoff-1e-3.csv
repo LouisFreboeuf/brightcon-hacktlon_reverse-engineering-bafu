@@ -1,0 +1,20 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+5,"Electricity, low voltage, at grid",c4a92617-9f99-3d7b-95c0-15fb110b80ad,product-flow,S1-report-transcription,0.07122990058303143,True,0.07123,True
+8,"Air filter, in exhaust air valve, at plant",89e529d6-e688-3b2a-92e9-4e5bd99ddf4b,product-flow,S1-report-transcription,1.2970510209900082e-05,False,1.323e-05,True
+7,"Transport, freight, rail, electricity with shunting",a169f230-3e05-33d0-a12d-f9d6d4d6abf1,product-flow,S1-report-transcription,1.2768434480135954e-06,False,3.147e-07,True
+1,Heat pump 10 kW production for ground source heat pump system,b30a4bdd-1d33-3758-842f-a997520ca5ae,product-flow,S1-report-transcription,6.613992929474219e-07,False,6.614e-07,True
+9,Treatment of heat pump 10 kW production for air source heat pump system,c6ad9829-8f7b-4856-978c-8597f8a51147,product-flow,S1-report-transcription,6.613140903446239e-07,False,6.614e-07,True
+18,"Diesel, burned in diesel-electric generating set, at extraction site",3b9ec683-d3db-30b9-b5bd-c3ea85135ec5,product-flow,S1-report-transcription,4.021293408942589e-07,False,,False
+4,"Lubricating oil, at plant",0b14288a-dbf3-3dac-a570-83d083f4b600,product-flow,S1-report-transcription,3.8873508014388805e-07,False,3.968e-07,True
+2,"Trifluoromethane, at plant",a5da0248-74b4-3fa7-a07b-0e2666900a28,product-flow,S1-report-transcription,2.5130108897357e-07,False,2.513e-07,True
+3,"1,1-difluoroethane, HFC-152a, at plant",cda7d2ad-0df5-32cc-945b-49d9cb010895,product-flow,S1-report-transcription,2.4245158225831453e-07,False,2.513e-07,True
+19,"Transport, freight, lorry, fleet average",cedd6b69-4829-358e-9ea2-f280e8ac03cb,product-flow,S1-report-transcription,7.862240650956981e-08,False,,False
+6,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S1-report-transcription,6.475536189966813e-08,False,3.823e-08,True
+13,"Secondary sulphur, at refinery",e902a7d5-1057-3e65-825f-b1b30fe3a67a,product-flow,S1-report-transcription,3.35467513478185e-08,False,,False
+14,"Electricity, oil, at power plant",10452abe-20fb-3f80-a31c-96dea9abd177,product-flow,S1-report-transcription,2.9731197972365405e-08,False,,False
+17,"Butene, mixed, at plant",dacb7921-fc1f-3ac6-8903-c667d2bddaf4,product-flow,S1-report-transcription,1.646247635318425e-08,False,,False
+10,"Disposal, building, paint on wood, to final disposal",404d64ff-52e2-423a-a8cf-7dc755624bf7,product-flow,S1-report-transcription,4.04861487426959e-09,False,,False
+15,"Ammonium nitrate, as N, at regional storehouse",23f3ffba-42da-3167-96ac-808ccb478f9d,product-flow,S1-report-transcription,1.6098754106421623e-09,False,,False
+11,"Electricity, at cogen 300kWth, diesel, allocation exergy",29612bfe-5e20-37df-a2d4-e255324c5dbe,product-flow,S1-report-transcription,1.2380712755292852e-09,False,,False
+12,Railway track,81085e38-b471-33ae-a18f-55686d931f3c,product-flow,S1-report-transcription,4.087451038160371e-10,False,,False
+16,"3kWp slanted-roof installation, CIS, laminated, integrated, on roof",00c42a3d-5009-3d77-8a89-5c56d12cc64c,product-flow,S1-report-transcription,1.8173656581903873e-12,False,,False

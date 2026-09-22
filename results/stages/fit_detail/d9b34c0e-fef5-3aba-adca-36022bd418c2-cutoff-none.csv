@@ -1,0 +1,19 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+4,"Water, decarbonised, at plant",d51355e5-b0a8-3db5-bd7e-c74fd60c87e0,product-flow,S1-report-transcription,19.993622328528513,True,20.0,True
+7,"Limestone, milled, loose, at plant",f8e122b3-92fb-37d6-aade-43ee2f2de640,product-flow,S1-report-transcription,1.299998850966776,True,1.3,True
+6,"Quicklime, milled, loose, at plant",be8157f1-1512-33e6-8d1d-4afb87975b8a,product-flow,S1-report-transcription,0.1999978622742856,True,0.2,True
+2,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S1-report-transcription,0.1699998294009123,True,0.17,True
+3,"Sulphuric acid, liquid, at plant",e6037d3e-db63-3537-b5fa-73c72c806426,product-flow,S1-report-transcription,0.07999980956134471,True,0.08,True
+5,"Disposal, municipal solid waste, 22.9% water, to sanitary landfill",d945c4fe-a169-4132-930c-94d1be1116ea,product-flow,S1-report-transcription,0.05999999603371495,True,0.06,True
+1,"Sodium hydroxide, 50% in H2O, production mix, at plant",ce8a12aa-ecaa-37d9-8355-5cb7da9ce6c0,product-flow,S1-report-transcription,0.019999756875003036,True,0.02,True
+8,"Transport, freight, lorry, fleet average",99f8a4b0-99b5-3130-924c-5de4c10b62ef,product-flow,S1-report-transcription,0.002999070866808659,True,0.003,True
+18,"Treatment, c-Si PV module",a8e50690-8e9b-4ea4-9092-a59cbd06972c,product-flow,S1-report-transcription,2.0325692468705655e-06,True,,False
+14,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S1-report-transcription,1.3623352299210446e-06,True,,False
+10,"Electricity, production mix photovoltaic, at plant",a52c8862-1050-31e2-9b0e-aecf5c0ba357,product-flow,S1-report-transcription,9.835268599920993e-07,True,,False
+13,"Electricity, production mix photovoltaic, at plant",c37e1028-858d-3bbb-a52b-443561fa9c72,product-flow,S1-report-transcription,7.112500413521979e-07,True,,False
+15,"Disposal, bilge oil, 90% water, to hazardous waste incineration",c4e9c774-19d3-4cd7-b122-083773f4d04f,product-flow,S1-report-transcription,2.487104490855732e-07,True,,False
+12,"Electricity, nuclear, at power plant boiling water reactor",ecf35b33-e186-3b5a-9bd5-d60bd87f9518,product-flow,S1-report-transcription,1.7649831483631755e-07,True,,False
+17,"Ethylene oxide, at plant",6ab29660-cc4e-30a3-aaa1-f175fa54dd61,product-flow,S1-report-transcription,1.3818592217078625e-07,True,,False
+11,Combine harvesting,7cdc6a0a-2723-3732-a2e3-e88dd6a61352,product-flow,S1-report-transcription,5.011482814392857e-10,True,,False
+16,"Well for exploration and production, offshore",4e467d03-a80f-37c4-a765-ad723cbd9def,product-flow,S1-report-transcription,2.269504879699131e-12,True,,False
+9,"Chemical plant, organics",13ed4fe0-7ba5-3b60-82b6-a63918ee814d,product-flow,S1-report-transcription,2.627952541519634e-16,True,,False

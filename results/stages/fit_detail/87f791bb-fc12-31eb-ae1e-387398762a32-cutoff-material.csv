@@ -1,0 +1,19 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+7,"Heat, natural gas, at industrial furnace 1MW",2fcda415-e506-38d9-9c3e-8ce2c2e7c8f2,product-flow,S1-report-transcription,1.9998958390270625,True,2.0,True
+2,"Copper, at regional storage",3972eb0c-d60e-3537-9ad1-fd6b7bbafce8,product-flow,S1-report-transcription,0.8150050534845358,True,0.815,True
+6,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S1-report-transcription,0.48941861178840174,True,0.49,True
+5,"Electricity, medium voltage, production ENTSO-E, at grid",648e3bb3-7b98-46f8-9da1-f45627c309ef,product-flow,S1-report-transcription,0.3329912984248162,True,0.333,True
+1,"Transport, freight, lorry, fleet average",99f8a4b0-99b5-3130-924c-5de4c10b62ef,product-flow,S1-report-transcription,0.08155021663049358,True,0.0816,True
+12,"Gravel, round, market mix, at regional storage, with resource correction",e12ff86b-8450-39a9-981a-87f823201fce,product-flow,S1-report-transcription,0.0014457030776285405,False,,False
+4,"Ammonium carbonate, at plant",48437dbd-050b-38c9-bf8a-13df82183791,product-flow,S1-report-transcription,0.0012078420793737244,False,0.00121,True
+8,"Ammonia, liquid, at regional storehouse",461aa0e0-5253-3cda-b22f-4c075152cdb5,product-flow,S1-report-transcription,0.0004234387633437875,False,0.000427,True
+14,"Process-specific burdens, residual material landfill",89a4ae2f-2679-47a7-90b3-834244ba3384,product-flow,S1-report-transcription,0.0002499598258991022,False,,False
+13,"Electricity, production mix photovoltaic, at plant",abb5756e-522b-3f5e-95b8-4b21e31a55d7,product-flow,S1-report-transcription,2.9761603474198085e-05,False,,False
+9,"Electricity, from natural gas",a3a52c7b-d7e8-3e90-9189-b16326567ebc,product-flow,S1-report-transcription,4.2849022737487334e-06,False,,False
+15,"Electricity, hydropower, at pumped storage power plant",7363d80d-7364-384a-b041-3b2452882975,product-flow,S1-report-transcription,2.6226305906286737e-06,False,,False
+18,"Hydrogen, liquid, at plant",5c8dc33f-bb23-3f2e-9628-c16695008af1,product-flow,S1-report-transcription,2.4461247099524825e-06,False,,False
+11,"Treatment, sewage, from residence, to wastewater treatment, class 2",af36788f-505a-462c-bc7b-2b30e1f5f756,product-flow,S1-report-transcription,1.442186806108606e-06,False,,False
+10,"Glider, for passenger car",7ac1e22b-caaf-35bc-972f-827ae4d49296,product-flow,S1-report-transcription,9.676306314410461e-07,False,,False
+16,"Iron (III) chloride, 40% in H2O, at plant",5f0851c6-b2f2-3e4d-b5a0-ab2dd7124638,product-flow,S1-report-transcription,6.386251976889548e-08,False,,False
+17,"Packaging film, LDPE, at plant",4729b77e-908b-3258-a3fd-55f38497291b,product-flow,S1-report-transcription,2.6360923017219983e-08,False,,False
+3,"Chemical plant, organics",13ed4fe0-7ba5-3b60-82b6-a63918ee814d,product-flow,S1-report-transcription,4.002928536315321e-10,True,4e-10,True

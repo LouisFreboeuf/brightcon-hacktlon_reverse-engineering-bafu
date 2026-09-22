@@ -1,0 +1,15 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+4,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S3-top-down-model,1.5241018807652629,True,1.54,True
+3,"Transport, freight, lorry, fleet average",99f8a4b0-99b5-3130-924c-5de4c10b62ef,product-flow,S3-top-down-model,0.7831134171216957,True,0.75,True
+2,"Paper, woodfree, uncoated, at integrated mill",dcc6e450-80a8-3a4d-9dc9-2b20741b611a,product-flow,S3-top-down-model,0.5005100380384847,True,0.5,True
+1,"Paper, woodfree, uncoated, at non-integrated mill",3c237c91-a614-3b47-a546-2ec14e1d968f,product-flow,S3-top-down-model,0.49838731867308134,True,0.5,True
+14,"Disposal, polyurethane, 0.2% water, to municipal incineration",c4c65d31-c9b2-402c-93f6-6b3cec250c36,product-flow,S3-top-down-model,5.1224100077144e-10,False,,False
+10,"Electricity, oil, at power plant",32d7527e-06e5-3981-af87-5e3998f7bf42,product-flow,S3-top-down-model,2.6014004008487313e-11,False,,False
+12,Low active radioactive waste,3c080289-ef2f-4848-ae59-d9938a1917ac,product-flow,S3-top-down-model,3.0969921463357974e-13,False,,False
+9,"Vinyl acetate, at plant",c2a2901a-d00a-377e-aa01-9a1083e40f4e,product-flow,S3-top-down-model,3.765219632467024e-15,False,,False
+7,"Synthetic rubber, at plant",c66b37b5-67d2-32cf-a5ba-5abcb693cc6f,product-flow,S3-top-down-model,8.779560049282894e-16,False,,False
+8,"Tires and wheels, for lorry",a078655e-3ea0-3e1c-9cab-121f8dd2b75a,product-flow,S3-top-down-model,4.442725164051906e-16,False,,False
+5,"Drawing of pipes, steel",ac58ca30-f75f-3935-9a20-ff1f52047114,product-flow,S3-top-down-model,1.7918547939905864e-16,False,,False
+13,"Building, hall, steel construction",ca5a6b7c-4d6a-3e28-a61f-ac1d807a4ecc,product-flow,S3-top-down-model,3.9021614626214403e-17,False,,False
+11,"Portland cement, strength class Z 42.5, at plant",cd9549ee-8aa8-3183-84f9-ad0483fe1e73,product-flow,S3-top-down-model,3.61400044756561e-20,False,,False
+6,"Production plant crude oil, onshore",dfb70048-c550-3ab0-aa5e-ca8b9eda637b,product-flow,S3-top-down-model,9.298679392187002e-21,False,,False

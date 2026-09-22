@@ -1,0 +1,15 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+4,"Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from Solar PV + Wind (MA)",7dfebeb7-afde-39f3-b851-5780883f026c,product-flow,S1-report-transcription,0.002073542818127366,True,1.155e-05,True
+3,"Tap water, at user",1a2f0384-d903-4f9d-8757-1e78d84366ab,product-flow,S1-report-transcription,6.518285665462124e-06,False,1.959e-06,True
+9,"Electricity, at wind farm",542e8ae5-f22c-39fe-8d11-7681851e9dfc,product-flow,S1-report-transcription,3.7290751009445216e-07,False,,False
+7,"Wood chips, softwood, wet, measured as dry mass, at sawmill",422925ce-e7aa-380d-a4ce-23750e19f3de,product-flow,S1-report-transcription,2.614263121678103e-08,False,,False
+10,"Portland cement, strength class Z 42.5, at plant",cd9549ee-8aa8-3183-84f9-ad0483fe1e73,product-flow,S1-report-transcription,8.217092139729192e-09,False,,False
+14,"Electricity, hydropower, at pumped storage power plant",f6b0c647-c4fb-3736-8c11-360d92be114f,product-flow,S1-report-transcription,7.484641540693458e-09,False,,False
+11,"Disposal, refinery sludge, 89.5% water, to hazardous waste incineration",cf21cb6f-fd39-49b3-bb3b-70581f9fa170,product-flow,S1-report-transcription,3.6377435463361753e-09,False,,False
+6,"Kerosene, at regional storage",89f57412-3a81-3b81-a284-43cf740c5d7f,product-flow,S1-report-transcription,3.513086306833009e-09,False,,False
+13,"Natural gas, sweet, burned in production flare",7e9ad35b-eb88-3146-8224-cfd4a2558b4a,product-flow,S1-report-transcription,1.981324860505379e-09,False,,False
+5,"Synthetic rubber, at plant",c66b37b5-67d2-32cf-a5ba-5abcb693cc6f,product-flow,S1-report-transcription,1.839807639590843e-09,False,,False
+12,"Vinyl acetate, at plant",c2a2901a-d00a-377e-aa01-9a1083e40f4e,product-flow,S1-report-transcription,1.1071313637250858e-09,False,,False
+1,"SOFC fuel cell 125kWe, future",e00fdfe1-df9f-34c2-b6a1-4b27259faade,product-flow,S1-report-transcription,1.0549585566249995e-09,True,1.055e-09,True
+2,"Maintenance SOFC fuel cell 125kWe, future",43bc11fa-35a2-3734-8f1a-87975c8a0780,product-flow,S1-report-transcription,1.0523040640104908e-09,False,1.055e-09,True
+8,"Operation, maintenance, road",876f8f6b-9548-3edc-84b6-a4b0b05e90c6,product-flow,S1-report-transcription,4.2457549622055963e-10,False,,False

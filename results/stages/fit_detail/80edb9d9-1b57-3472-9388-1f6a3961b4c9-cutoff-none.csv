@@ -1,0 +1,21 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+3,"Electricity, medium voltage, production ENTSO-E, at grid",648e3bb3-7b98-46f8-9da1-f45627c309ef,product-flow,S1-report-transcription,0.003090036614526094,True,0.00309,True
+2,"Disposal, wood untreated, 20% water, to municipal incineration",c03df82a-e3d3-408f-8f7e-7c03e10bf8bf,product-flow,S1-report-transcription,0.0018284450883739474,True,0.0018284,True
+8,"Industrial machine, heavy, unspecified, at plant",5906ff1f-2cd1-3951-9bfc-abd0cdbf8c75,product-flow,S1-report-transcription,0.0014999950520450686,True,0.0015,True
+7,"Transport, freight, rail, electricity with shunting",a169f230-3e05-33d0-a12d-f9d6d4d6abf1,product-flow,S1-report-transcription,0.0013900286165370052,True,0.00139,True
+6,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S1-report-transcription,0.001389911779492088,True,0.00139,True
+9,EUR-flat pallet,0669988c-64e1-3574-931e-640b8ad2f246,product-flow,S1-report-transcription,6.25004748910545e-05,True,6.25e-05,True
+5,"Disposal, polyethylene, 0.4% water, to municipal incineration",418f911c-33e1-4fe6-a3d4-6c4b7974f139,product-flow,S1-report-transcription,6.150453564373373e-05,True,6.15e-05,True
+4,"Polyethylene, HDPE, granulate, at plant",6738f024-eb64-3ef8-837e-05b84c6e43da,product-flow,S1-report-transcription,6.149971410124255e-05,True,6.15e-05,True
+10,"Extrusion, plastic film",c06a8970-8ec4-359e-887a-0bbf51d9ee6f,product-flow,S1-report-transcription,6.13322505479941e-05,True,6.15e-05,True
+1,"Transport, freight, lorry, 7.5t-16t gross weight, fleet average",a4f7817d-ef76-3fb0-943c-12c43ed07da7,product-flow,S1-report-transcription,5.903521409084702e-07,True,6.15e-07,True
+14,"Disposal, steel, 0% water, to municipal incineration",0f1a02cd-9d0c-404e-b233-a810d32a1e85,product-flow,S1-report-transcription,1.991230657414621e-07,True,,False
+13,"Transport, freight, lorry, 32t-40t gross weight, fleet average",984d5f03-2208-366d-bceb-69003ae01594,product-flow,S1-report-transcription,1.3707140854414272e-07,True,,False
+12,"Diesel, burned in diesel-electric generating set, at extraction site",3b9ec683-d3db-30b9-b5bd-c3ea85135ec5,product-flow,S1-report-transcription,9.379507096740565e-08,True,,False
+17,"Acetylene, at regional storehouse",1fe91cd9-896a-3865-a49a-4235fbf6f911,product-flow,S1-report-transcription,1.0375974003042181e-08,True,,False
+15,"Frame, blanks and saddle, for lorry",18be4c5c-e3fa-3376-85e3-b0b59c4167fd,product-flow,S1-report-transcription,5.1222517505521095e-09,True,,False
+16,"Aluminium oxide, at plant",cf4b9a68-b9bf-3326-8dbf-5508e6515909,product-flow,S1-report-transcription,4.236902843574315e-09,True,,False
+20,"Electricity, hydropower, at reservoir power plant",12bbcef6-63fe-322d-86d9-0ac443a318fc,product-flow,S1-report-transcription,3.054726013517849e-09,True,,False
+18,"Soda, powder, at plant",8c1442f6-cec0-30c1-9b55-b15cb77aee4b,product-flow,S1-report-transcription,1.5261886336554683e-09,True,,False
+11,"Inverter, 2.5 kW, average, at plant",7da39c9b-d38f-32f1-b0fa-676bd25fdaa7,product-flow,S1-report-transcription,1.6474004100133752e-12,True,,False
+19,"3kWp slanted-roof installation, CdTe, panel, mounted, on roof",e0c7a37f-365c-3471-ab33-2d88f7e8d6fc,product-flow,S1-report-transcription,8.680766276079433e-13,True,,False

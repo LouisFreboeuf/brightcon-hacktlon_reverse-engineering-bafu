@@ -1,0 +1,17 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+5,"Diesel, burned in building machine, average",e4e7ddc0-f7d1-3fad-bd12-9d6981142800,product-flow,S1-report-transcription,1814.7957900198285,True,1814.8,True
+1,"Transport, freight, lorry, 32t-40t gross weight, fleet average",984d5f03-2208-366d-bceb-69003ae01594,product-flow,S1-report-transcription,101.16061387326306,True,101.19,True
+6,"Transport, freight, rail, electricity with shunting",a169f230-3e05-33d0-a12d-f9d6d4d6abf1,product-flow,S1-report-transcription,70.36350924454588,True,70.38,True
+3,"Reinforcing steel, at regional storage",36f49fc8-c223-3f57-82e4-aef9bab9ee05,product-flow,S1-report-transcription,63.99961826032441,True,64.0,True
+4,"Rolled steel, at regional storage",0a28f083-19b6-3e03-afa5-453dd38eb4c2,product-flow,S1-report-transcription,53.29973670549275,True,53.3,True
+2,"Concrete for drilled piles, unspecific, at plant",eb1242c3-5234-3240-8952-ead261c0355e,product-flow,S1-report-transcription,2.0500014673780647,True,2.05,True
+11,"Solid manure loading and spreading, by hydraulic loader and spreader",876a8348-b458-363d-8fbe-da461b2bd2ea,product-flow,S1-report-transcription,0.3538404631859833,True,,False
+15,"Quicklime, milled, loose, at plant",be8157f1-1512-33e6-8d1d-4afb87975b8a,product-flow,S1-report-transcription,0.0030226903274252616,True,,False
+12,"Disposal, polyethylene terephtalate, 0.2% water, to municipal incineration",43268043-3dcf-45a5-ac35-45ea38d1412c,product-flow,S1-report-transcription,0.0013624206418150224,True,,False
+16,"Crude oil, at production",1313f2ed-6d81-3cee-a245-0167b32f373a,product-flow,S1-report-transcription,0.0007676454396771779,False,,False
+13,"Excavation, skid-steer loader",ebf03a6f-4e4e-3d94-8c61-1b862c1161d0,product-flow,S1-report-transcription,0.00045723789994652733,False,,False
+14,"Electricity, hydropower, at pumped storage power plant",2cd6361a-a17d-3922-a171-544dc51d161c,product-flow,S1-report-transcription,0.00015318809454697906,False,,False
+9,"Disposal, building, polyvinylchloride products, to final disposal",08922178-ab4a-487c-920d-0a97af0bcb58,product-flow,S1-report-transcription,3.9671922476311626e-05,False,,False
+7,"Converter, for electric passenger car",918b10c6-3c7c-34dd-a31e-0040e99c5a2d,product-flow,S1-report-transcription,5.399737227524257e-07,False,,False
+8,Water supply network,83e88ab5-0a07-3a06-b975-c1bcf39cccae,product-flow,S1-report-transcription,3.1033215369094355e-09,False,,False
+10,Road vehicle plant,add62058-528c-3255-b17d-65d0a77cc3d9,product-flow,S1-report-transcription,1.6157488755771511e-12,False,,False

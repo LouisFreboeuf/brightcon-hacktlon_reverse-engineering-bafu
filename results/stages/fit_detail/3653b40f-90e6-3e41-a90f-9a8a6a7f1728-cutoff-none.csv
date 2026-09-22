@@ -1,0 +1,23 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+3,"Sulphuric acid, liquid, at plant",e6037d3e-db63-3537-b5fa-73c72c806426,product-flow,S1-report-transcription,35.000057622844494,True,35.0,True
+8,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S1-report-transcription,32.00066446935292,True,32.0,True
+4,"Transport, freight, lorry, fleet average",99f8a4b0-99b5-3130-924c-5de4c10b62ef,product-flow,S1-report-transcription,6.300030683549543,True,6.3,True
+11,"Sodium chloride, brine solution, at plant",91575c0a-b200-3b07-93d7-8f6a0d9b4e37,product-flow,S1-report-transcription,2.5015381905958978,True,2.5,True
+2,"Soda, powder, at plant",8c1442f6-cec0-30c1-9b55-b15cb77aee4b,product-flow,S1-report-transcription,2.4999591759128186,True,2.5,True
+6,"Sodium chlorate, powder, at plant",5bb4ee23-6c19-33ee-bc4a-1afebcafefac,product-flow,S1-report-transcription,0.9999972605591433,True,1.0,True
+10,"Ammonia, liquid, at regional storehouse",461aa0e0-5253-3cda-b22f-4c075152cdb5,product-flow,S1-report-transcription,0.9000760398964757,True,0.9,True
+1,"Chemicals organic, at plant",4d96ad56-9dd3-3fda-bff6-d24796d01043,product-flow,S1-report-transcription,0.3149823594637952,True,0.315,True
+7,"Chemicals inorganic, at plant",90d675e2-e433-3ef4-abc3-4a6735350d72,product-flow,S1-report-transcription,0.2600060860696682,True,0.26,True
+9,"Ammonium sulphate, as N, at regional storehouse",5ed8de24-24f1-318b-b7cc-e9c4d1f8751f,product-flow,S1-report-transcription,0.1056500042626048,True,0.106,True
+5,"Sodium hydroxide, 50% in H2O, production mix, at plant",ce8a12aa-ecaa-37d9-8355-5cb7da9ce6c0,product-flow,S1-report-transcription,0.025994504313581974,True,0.026,True
+12,"Ethylenediamine, at plant",8db934a5-1264-328d-84c4-fd595209fe6f,product-flow,S1-report-transcription,0.01200001433824513,True,0.012,True
+20,"Heat, unspecific, in chemical plant",af5e1165-acae-352e-a391-322c00c8a054,product-flow,S1-report-transcription,0.0011997317282735473,True,,False
+17,"Light fuel oil, burned in boiler 100kW, non-modulating",09da51a8-f8ca-3270-bfa4-7749767952a7,product-flow,S1-report-transcription,0.0007384181553476619,True,,False
+22,"Process-specific burdens, municipal waste incineration",edab3419-2301-42b6-869a-5c9c606a2ff3,product-flow,S1-report-transcription,0.0003684899471036079,True,,False
+18,"Transport, crude oil pipeline, offshore",3b5d0e0e-1faa-34c9-877c-7cc151076ef8,product-flow,S1-report-transcription,0.0002509451154265664,True,,False
+16,"Electricity, from natural gas",31a563ca-8281-3f95-b2d3-cf1ebfd78d89,product-flow,S1-report-transcription,0.00021166091136981988,True,,False
+13,"Methanol, at plant",1bf86f83-27bd-3271-9390-c280d9994184,product-flow,S1-report-transcription,9.209562120268352e-05,True,,False
+15,"Disposal, polyethylene terephtalate, 0.2% water, to municipal incineration",43268043-3dcf-45a5-ac35-45ea38d1412c,product-flow,S1-report-transcription,4.20283462542538e-05,True,,False
+19,"Flat glass, uncoated, at plant",e33d282a-b69e-320e-825a-ddb5e7264ad5,product-flow,S1-report-transcription,4.105181172890223e-05,True,,False
+14,"Disposal, plastics, mixture, 15.3% water, to municipal incineration",3cef9fc0-0cf8-42ba-88f5-0ff65ef6169f,product-flow,S1-report-transcription,3.7290458195955526e-05,True,,False
+21,"Disposal, electric scooter",39e4df6b-4552-4531-9ef0-4daf111e500b,product-flow,S1-report-transcription,1.0286599127716668e-06,True,,False

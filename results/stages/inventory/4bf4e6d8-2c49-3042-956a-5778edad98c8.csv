@@ -1,0 +1,1505 @@
+flow,compartment,unit,amount
+Radon-222,Emissions / Emissions to air,kilo Becquerel,12.911154006241414
+"Noble Gases, Radioactive, Unspecified",air,kilo Becquerel,4.472078107909773
+Waste Heat,air,megajoule,2.5068139184191445
+Natural Gas,Resources / Resources from ground,megajoule,2.295909624076109
+Crude Oil,Resources / Resources from ground,megajoule,0.7515837722632246
+Water,Emissions / Emissions to water,cubic meter,0.3097100947209144
+Water to turbine,Resources / Resources from water,cubic meter,0.3078462031502314
+Waste Heat,water,megajoule,0.2747787306942286
+Waste Heat,air,megajoule,0.24883909333976598
+"Noise, rail, freight train",non material emissions / unspecified,ton kilometer,0.24427556089715166
+"Water, salt, ocean",resources / in water,cubic meter,0.1973506434023797
+Water,water,cubic meter,0.19733249468743064
+Hydrogen-3,Emissions / Emissions to water,kilo Becquerel,0.18007422966795755
+Uranium,Resources / Resources from ground,megajoule,0.17501610941601084
+Gravel,soil,kilogram,0.12424735174012728
+Radon-222,Emissions / Emissions to air,kilo Becquerel,0.11941680062908884
+Hard Coal,Resources / Resources from ground,megajoule,0.10946744797463025
+Carbon Dioxide (fossil),Emissions / Emissions to air,kilogram,0.10382141805452927
+Carbon Dioxide (fossil),Emissions / Emissions to air,kilogram,0.1003646080775709
+Hydrogen-3,Emissions / Emissions to water,kilo Becquerel,0.09020225801382178
+Waste Heat,air,megajoule,0.0659222184305551
+Calcite,resources / in ground,kilogram,0.06188354034538054
+"Energy, gross calorific value, in biomass",resources / biotic,megajoule,0.05820808084406036
+"Energy, Potential (in Hydropower Reservoir), Converted",natural resource,megajoule,0.049146582919232316
+Brown Coal,Resources / Resources from ground,megajoule,0.03845594403444116
+"Energy, Kinetic (in Wind), Converted",natural resource,megajoule,0.030749959125208205
+"Noise, road, lorry, average",non material emissions / unspecified,kilometer,0.019833282906236937
+Carbon Dioxide (fossil),Emissions / Emissions to air,kilogram,0.019567034090287098
+"Energy, Solar, Converted",natural resource,megajoule,0.01592341189224264
+Sodium chloride,resources / in ground,kilogram,0.014344490285543006
+"Waste mass, total, placed in landfill",resources / in ground,kilogram,0.010801562279220148
+Radium-226,Emissions / Emissions to water,kilo Becquerel,0.010461787288397473
+"Radioactive Species, Nuclides, Unspecified",water,kilo Becquerel,0.009118223639571049
+Chemically polluted water,emissions to water / river,kilogram,0.007405445348216621
+carbon dioxide (biogenic),Resources / Resources from air,kilogram,0.005561786616728059
+"Forest, Intensive",Land use / Land occupation,square meter-year,0.004718459654679684
+Carbon Dioxide (biogenic),Emissions / Emissions to air,kilogram,0.004408715979163554
+Krypton-85,Emissions / Emissions to air,kilo Becquerel,0.003974774902981118
+"Radioactive species, unspecified",emissions to air / unspecified,kilo Becquerel,0.003936979258556215
+Chloride,Emissions / Emissions to water,kilogram,0.0036925608652877725
+Hydrogen-3,Emissions / Emissions to air,kilo Becquerel,0.002678489849165734
+Platinum,air,kilogram,0.0022123217332978397
+calcium,Emissions / Emissions to water,kilogram,0.0017543564930167762
+"Volume Occupied, Reservoir",land use,cubic meter-year,0.0016951615147537313
+Clay,soil,kilogram,0.0016517457123432216
+Sulfate,"emissions to water / groundwater, long-term",kilogram,0.0015113772430424789
+Chloride,Emissions / Emissions to water,kilogram,0.0014751339281785275
+Iron,Resources / Resources from ground,kilogram,0.0014226896569428842
+Xenon-133,Emissions / Emissions to air,kilo Becquerel,0.0013640724589535443
+Water,Resources / Resources from water,cubic meter,0.0011886301067364315
+Waste Heat,soil,megajoule,0.0010879881704935596
+Sodium,water,kilogram,0.0010396880700130019
+Calcium,Emissions / Emissions to water,kilogram,0.001031596857311029
+Radium-228,water,kilo Becquerel,0.0010268825565223816
+Lead-210,water,kilo Becquerel,0.0010002779255411977
+Forest,Land use / Land occupation,square meter-year,0.0009453306448641024
+"Solids, Inorganic",water,kilogram,0.0009081161985082435
+Carbon Dioxide (biogenic),Emissions / Emissions to air,kilogram,0.0009016445840684321
+Strontium-90,Emissions / Emissions to water,kilo Becquerel,0.0008492358943835369
+"Energy, Gross Calorific Value, In Biomass, Primary Forest",natural resource,megajoule,0.0008140815133336363
+"Heat, waste","emissions to water / groundwater, long-term",megajoule,0.0007667860342222379
+"To Arable, Non-irrigated, Intensive",Land use / Land transformation,square meter,0.0007450352524615047
+"Arable, Non-irrigated, Intensive",Land use / Land occupation,square meter-year,0.000682782718151866
+Water To Cooling,Resources / Resources from water,cubic meter,0.0006605087566416802
+Carbon Dioxide (biogenic),Emissions / Emissions to air,kilogram,0.0006255311507072017
+Radium-228,water,kilo Becquerel,0.0006141070014077689
+Lead-210,water,kilo Becquerel,0.0005836814156713155
+Waste Heat,water,megajoule,0.0005504075479291851
+"From Arable, Non-irrigated, Intensive",Land use / Land transformation,square meter,0.0005288667556182541
+Xenon-135,air,kilo Becquerel,0.0004961646188937858
+Sulfur Dioxide,Emissions / Emissions to air,kilogram,0.0004885440922636459
+Carbon-14,Emissions / Emissions to air,kilo Becquerel,0.00048788778818499676
+Industrial Area,Land use / Land occupation,square meter-year,0.00047311265851254986
+Sodium,water,kilogram,0.00046802757830184764
+Barite,resources / in ground,kilogram,0.0004552845554205867
+"Radioactive Species, Nuclides, Unspecified",water,kilo Becquerel,0.0004520299160846329
+Silicon,Emissions / Emissions to water,kilogram,0.0004357886506847942
+Peat,Resources / Resources from ground,megajoule,0.00042060304868976617
+Nitrogen Oxides,Emissions / Emissions to air,kilogram,0.00041750106901924244
+Methane (fossil),Emissions / Emissions to air,kilogram,0.0004153709346394713
+Hypochlorite,water,kilogram,0.0003681505039442495
+Krypton-85,Emissions / Emissions to air,kilo Becquerel,0.00035295704045490325
+Waste water,emissions to water / river,kilogram,0.0003298495860798423
+"To Arable, Non-irrigated",Land use / Land transformation,square meter,0.00032052517385667287
+Water Bodies,land use,square meter-year,0.00031231765491540543
+"Traffic Area, Rail/road Embankment",Land use / Land occupation,square meter-year,0.00031226346964577357
+"From Arable, Non-irrigated",Land use / Land transformation,square meter,0.0002996060683661782
+Sodium,"emissions to water / groundwater, long-term",kilogram,0.00028150242227269813
+Xenon-135m,air,kilo Becquerel,0.0002784796417626368
+"Traffic Area, Road Network",Land use / Land occupation,square meter-year,0.00026529769471387633
+Methane (fossil),Emissions / Emissions to air,kilogram,0.00025926878487768525
+Radium-224,water,kilo Becquerel,0.00025892855679306593
+magnesium,Emissions / Emissions to water,kilogram,0.00023892028630517195
+From Pasture/meadow,Land use / Land transformation,square meter,0.0002184607502887883
+Dolomite,soil,kilogram,0.00021111705344396446
+Non-methane Volatile Organic Compounds,Emissions / Emissions to air,kilogram,0.00020887270879308144
+Thorium-228,water,kilo Becquerel,0.00020558324636356829
+"Traffic Area, Rail Network",Land use / Land occupation,square meter-year,0.00019762380913010598
+Air,air,kilogram,0.00019756868475761884
+Calcium,Emissions / Emissions to water,kilogram,0.00018629146317907557
+"Arable, Non-irrigated",Land use / Land occupation,square meter-year,0.0001748431880636388
+Radium-224,water,kilo Becquerel,0.00015484941420124398
+"Noise, road, passenger car, average",non material emissions / unspecified,kilometer,0.00015432472525820279
+river water,Resources / Resources from water,cubic meter,0.00014849646638642058
+Potassium,"emissions to water / groundwater, long-term",kilogram,0.00013493548006804476
+Thorium-230,water,kilo Becquerel,0.0001300276451747797
+Waste Heat,water,megajoule,0.00012557575084274513
+Used Air,air,kilogram,0.00012318810694776538
+Thorium-228,water,kilo Becquerel,0.00012277046845453893
+Waste water,emissions to water / ocean,kilogram,0.00012148863063312123
+Magnesite,soil,kilogram,0.00011835082464170554
+Argon-41,air,kilo Becquerel,0.00011425999986186452
+Nitrogen Oxides,Emissions / Emissions to air,kilogram,0.00011213251317474237
+Carbon Dioxide (land Use Change),Emissions / Emissions to air,kilogram,0.00010990361283583641
+Nitrogen Oxides,Emissions / Emissions to air,kilogram,0.00010395855268495016
+chloride,Emissions / Emissions to water,kilogram,0.00010155318662447469
+"COD, Chemical Oxygen Demand","emissions to water / groundwater, long-term",kilogram,0.00010123357919792307
+Sulfate Ion,water,kilogram,9.327163616792863e-05
+Mineral Extraction Site,Land use / Land occupation,square meter-year,8.825077940523704e-05
+Cesium-137,Emissions / Emissions to water,kilo Becquerel,8.663382649770804e-05
+Aluminium,Resources / Resources from ground,kilogram,8.467096625243564e-05
+Dump Site,Land use / Land occupation,square meter-year,7.54949648327521e-05
+Carbon Monoxide (fossil),Emissions / Emissions to air,kilogram,7.011254383522744e-05
+"Radioactive Species, Nuclides, Unspecified",water,kilo Becquerel,6.732934490057353e-05
+Total Organic Carbon,water,kilogram,6.469695279309932e-05
+Potassium chloride,resources / in ground,kilogram,6.359567574021654e-05
+Sulfur Dioxide,Emissions / Emissions to air,kilogram,5.899740200229133e-05
+iron,Emissions / Emissions to water,kilogram,5.7865191375205704e-05
+"To Forest, Intensive",Land use / Land transformation,square meter,5.781909034137491e-05
+"From Forest, Intensive",Land use / Land transformation,square meter,5.572124715894477e-05
+Xenon-138,air,kilo Becquerel,5.4861942260532934e-05
+aluminium,Emissions / Emissions to water,kilogram,5.3643785216784105e-05
+Carbon Monoxide (fossil),Emissions / Emissions to air,kilogram,5.337459504136712e-05
+Sulfate Ion,water,kilogram,5.1965467119681424e-05
+Sulfur Dioxide,Emissions / Emissions to air,kilogram,5.031455972173789e-05
+Phosphate,Emissions / Emissions to water,kilogram,4.878332389524055e-05
+Ground Water,Resources / Resources from water,cubic meter,4.5197973472836745e-05
+Copper,Resources / Resources from ground,kilogram,4.4448968711013876e-05
+Construction Site,Land use / Land occupation,square meter-year,4.3282886898945517e-05
+"Noise, aircraft, passenger",non material emissions / unspecified,person kilometer,4.192050731503276e-05
+Chloride,Emissions / Emissions to soil,kilogram,4.1879516248104436e-05
+Total Organic Carbon,water,kilogram,4.043579604272537e-05
+Polonium-210,water,kilo Becquerel,3.978535748175419e-05
+Chromium,Resources / Resources from ground,kilogram,3.931887979875182e-05
+Xenon-131m,air,kilo Becquerel,3.909452667750859e-05
+Carbon Monoxide (fossil),Emissions / Emissions to air,kilogram,3.845064603442645e-05
+Uranium alpha,emissions to water / river,kilo Becquerel,3.842247721319828e-05
+Basalt,soil,kilogram,3.833355659706741e-05
+"Suspended Solids, Unspecified",water,kilogram,3.5780839564145635e-05
+"Radioactive Species, Other Beta Emitters",air,kilo Becquerel,3.216225004081833e-05
+"TOC, Total Organic Carbon","emissions to water / groundwater, long-term",kilogram,3.118283824352132e-05
+"DOC, Dissolved Organic Carbon","emissions to water / groundwater, long-term",kilogram,3.118283824351482e-05
+Iodine-131,Emissions / Emissions to air,kilo Becquerel,3.087821527722936e-05
+Particles (> PM10),air,kilogram,3.018852284012757e-05
+Magnesium,Emissions / Emissions to water,kilogram,2.9981525028738543e-05
+Sodium,water,kilogram,2.9962306605848358e-05
+Inland Water Bodies,land use,square meter-year,2.9871946837508367e-05
+"Clay, bentonite",resources / in ground,kilogram,2.9239438792594466e-05
+Sulfate Ion,water,kilogram,2.793411648297371e-05
+To Arable,Land use / Land transformation,square meter,2.7665055067353164e-05
+From Forest,Land use / Land transformation,square meter,2.4602061889355432e-05
+Particles (PM2.5),Emissions / Emissions to air,kilogram,2.450432854737213e-05
+Krypton-85m,air,kilo Becquerel,2.419013305371557e-05
+Nickel,Resources / Resources from ground,kilogram,2.3150662040992777e-05
+Magnesium,Emissions / Emissions to water,kilogram,2.131745451579305e-05
+"BOD5, Biological Oxygen Demand","emissions to water / groundwater, long-term",kilogram,2.0921143855892996e-05
+Potassium,water,kilogram,2.071301706826105e-05
+Water,air,cubic meter,2.0427063974775807e-05
+Nitrate,Emissions / Emissions to water,kilogram,2.0113268265276372e-05
+Manganese,Resources / Resources from ground,kilogram,1.9385206654921343e-05
+Ammonia,Emissions / Emissions to air,kilogram,1.8921563292809146e-05
+Biological Oxygen Demand,water,kilogram,1.8644293362046386e-05
+manganese,Emissions / Emissions to water,kilogram,1.7658696189408256e-05
+Nitrate,Emissions / Emissions to water,kilogram,1.6991258081408214e-05
+Chemical Oxygen Demand,water,kilogram,1.6725921745373997e-05
+From Unspecified,Land use / Land transformation,square meter,1.6359108310160862e-05
+Zinc,Resources / Resources from ground,kilogram,1.6158940971543946e-05
+Potassium,water,kilogram,1.52952743328218e-05
+Ethane,Emissions / Emissions to air,kilogram,1.501667779165696e-05
+"From Pasture/meadow, Intensive",Land use / Land transformation,square meter,1.4920420309749254e-05
+"Organic carbon, placed in landfill",resources / in ground,kilogram,1.476648169487931e-05
+"Solids, Inorganic",water,kilogram,1.4695596723366524e-05
+Arable,Land use / Land occupation,square meter-year,1.4635744606811906e-05
+Biological Oxygen Demand,water,kilogram,1.4324121559448502e-05
+Xenon-133,Emissions / Emissions to air,kilo Becquerel,1.4293387530765385e-05
+Uranium-238,Emissions / Emissions to water,kilo Becquerel,1.3878132540318073e-05
+To Dump Site,Land use / Land transformation,square meter,1.2934644761263093e-05
+To Industrial Area,Land use / Land transformation,square meter,1.2871842228613268e-05
+Fluorspar,soil,kilogram,1.2578527890955516e-05
+Hydrogen Chloride,Emissions / Emissions to air,kilogram,1.2348599554785113e-05
+From Seabed,land use,square meter,1.2303956867718528e-05
+Uranium alpha,emissions to water / lake,kilo Becquerel,1.1731276909858814e-05
+From Arable,Land use / Land transformation,square meter,1.1672096328965488e-05
+Calcium,Emissions / Emissions to soil,kilogram,1.1352544228396609e-05
+Methane (fossil),Emissions / Emissions to air,kilogram,1.1174238866232097e-05
+Phosphate,Emissions / Emissions to water,kilogram,1.0867598101293772e-05
+Polonium-210,Emissions / Emissions to air,kilo Becquerel,1.0825728348750004e-05
+To Mineral Extraction Site,Land use / Land transformation,square meter,1.0422263984375854e-05
+Particles (PM10),Emissions / Emissions to air,kilogram,1.0057265518790625e-05
+chloride,Emissions / Emissions to soil,kilogram,9.93321493741216e-06
+Radon-220,air,kilo Becquerel,9.8934073871549e-06
+fluoride,Emissions / Emissions to water,kilogram,9.653678738136367e-06
+Phosphorus,Resources / Resources from ground,kilogram,9.643072932804194e-06
+Chemical Oxygen Demand,water,kilogram,8.730187817185293e-06
+"Carbon, organic, in soil or biomass stock",resources / in ground,kilogram,8.674319417167456e-06
+To Forest,Land use / Land transformation,square meter,8.651397633848071e-06
+Carbon,soil,kilogram,8.51403847600755e-06
+"DOC, Dissolved Organic Carbon",water,kilogram,8.211788913233699e-06
+Tin atom,Resources / Resources from ground,kilogram,8.189717297688844e-06
+Krypton-88,air,kilo Becquerel,8.17114159193762e-06
+Particles (PM2.5),Emissions / Emissions to air,kilogram,7.780334976771915e-06
+Barium sulfate,Emissions / Emissions to water,kilogram,7.386573776014921e-06
+From Shrub Land,Land use / Land transformation,square meter,7.191517478735237e-06
+Krypton-87,air,kilo Becquerel,7.17779624423605e-06
+Iron,Emissions / Emissions to water,kilogram,7.0371174506863494e-06
+Strontium,Emissions / Emissions to water,kilogram,7.016541191624051e-06
+Xenon-137,air,kilo Becquerel,6.774012884287702e-06
+Xenon-135,air,kilo Becquerel,6.755570585186289e-06
+"DOC, Dissolved Organic Carbon",water,kilogram,6.6524426188552045e-06
+"From Forest, Natural",Land use / Land transformation,square meter,6.229917543571292e-06
+Methane (biogenic),Emissions / Emissions to air,kilogram,6.162801719851075e-06
+zinc,Emissions / Emissions to water,kilogram,6.101942799250111e-06
+Chloride,Emissions / Emissions to water,kilogram,6.0566186900906075e-06
+Sodium,soil,kilogram,6.025630739141228e-06
+Lead-210,Emissions / Emissions to air,kilo Becquerel,6.014794467070323e-06
+Calcium,Emissions / Emissions to water,kilogram,5.960369223934112e-06
+strontium,Emissions / Emissions to water,kilogram,5.8598881711193215e-06
+Carbonate Ion,water,kilogram,5.73593917449544e-06
+Radium-228,air,kilo Becquerel,5.69675467581659e-06
+iron,Emissions / Emissions to soil,kilogram,5.678316040068972e-06
+Non-methane Volatile Organic Compounds,Emissions / Emissions to air,kilogram,5.3302393739637225e-06
+Water,Emissions / Emissions to water,cubic meter,5.1863593377469715e-06
+Uranium-238,Emissions / Emissions to water,kilo Becquerel,5.035533725665929e-06
+Particles (PM10),Emissions / Emissions to air,kilogram,4.999166621425163e-06
+Radon-220,air,kilo Becquerel,4.99003847218557e-06
+Hydrogen,air,kilogram,4.756983909874278e-06
+Titanium,Resources / Resources from ground,kilogram,4.756557678072786e-06
+Particles (> PM10),air,kilogram,4.4701462812828305e-06
+Propane,Emissions / Emissions to air,kilogram,4.392349734660788e-06
+Xenon-133m,air,kilo Becquerel,4.2992315155302955e-06
+Strontium,Emissions / Emissions to water,kilogram,4.28749905591169e-06
+Hydrogen Chloride,Emissions / Emissions to air,kilogram,4.070267212234346e-06
+Silicon,Emissions / Emissions to water,kilogram,4.070101926581991e-06
+"Carboxylic Acids, Unspecified",water,kilogram,3.854478109756178e-06
+Chemical Oxygen Demand,water,kilogram,3.810602301352446e-06
+Non-methane Volatile Organic Compounds,Emissions / Emissions to air,kilogram,3.7924153013059066e-06
+Butane,Emissions / Emissions to air,kilogram,3.774826790605537e-06
+Biological Oxygen Demand,water,kilogram,3.7501864023845294e-06
+lake water,Resources / Resources from water,cubic meter,3.7002163131295646e-06
+Carbonate Ion,water,kilogram,3.475702483220045e-06
+Ammonium,Emissions / Emissions to water,kilogram,3.4709038026513977e-06
+"Permanent Crops, Non-irrigated, Intensive",Land use / Land occupation,square meter-year,3.4347124023216318e-06
+Particles (PM2.5),Emissions / Emissions to air,kilogram,3.3869602392606373e-06
+Ammonium,Emissions / Emissions to water,kilogram,3.3237638837634492e-06
+Sodium sulfate,resources / in ground,kilogram,3.297158814153113e-06
+Lead,Resources / Resources from ground,kilogram,3.2892789104217618e-06
+Radium-226,Emissions / Emissions to air,kilo Becquerel,3.271944689031673e-06
+To Water Bodies,land use,square meter,3.255540416335385e-06
+Potassium-40,water,kilo Becquerel,3.148505532238511e-06
+Methane (biogenic),Emissions / Emissions to air,kilogram,2.9194365524189827e-06
+aluminium,Emissions / Emissions to soil,kilogram,2.8380124823697264e-06
+titanium,Emissions / Emissions to water,kilogram,2.7894134665572573e-06
+Uranium-235,Emissions / Emissions to water,kilo Becquerel,2.6830690175950003e-06
+Pentane,Emissions / Emissions to air,kilogram,2.6758265513445545e-06
+Barium,Emissions / Emissions to water,kilogram,2.6497789143093817e-06
+Uranium alpha,emissions to air / low. pop.,kilo Becquerel,2.644733511794089e-06
+fluorane,Emissions / Emissions to air,kilogram,2.589262291943004e-06
+Aluminium,Emissions / Emissions to air,kilogram,2.5809241378114117e-06
+boron,Emissions / Emissions to water,kilogram,2.547280359605993e-06
+Krypton-89,air,kilo Becquerel,2.5182912217834393e-06
+Hydrogen-3,Emissions / Emissions to air,kilo Becquerel,2.414822649456954e-06
+Fluorine,natural resource,kilogram,2.413859418579715e-06
+Particles (PM10),Emissions / Emissions to air,kilogram,2.3873448825838026e-06
+nickel,Emissions / Emissions to water,kilogram,2.3593319552525103e-06
+"Wood, soft, standing",resources / biotic,cubic meter,2.3098697891271258e-06
+Magnesium,Emissions / Emissions to soil,kilogram,2.270410428825563e-06
+"Carboxylic Acids, Unspecified",water,kilogram,2.259003527073013e-06
+"Oils, Unspecified",Emissions / Emissions to water,kilogram,2.218192977511192e-06
+Ammonia,Emissions / Emissions to air,kilogram,2.1532404906740334e-06
+Particles (> PM10),air,kilogram,1.8965389721708636e-06
+"Nitrogen, Total (excluding N2)",Emissions / Emissions to water,kilogram,1.8561754190683708e-06
+copper,Emissions / Emissions to water,kilogram,1.7265872922848013e-06
+sulfur,Emissions / Emissions to soil,kilogram,1.7028074693990473e-06
+"To Traffic Area, Rail/road Embankment",Land use / Land transformation,square meter,1.6830488828886268e-06
+Cobalt-58,Emissions / Emissions to water,kilo Becquerel,1.6272255918441738e-06
+Total Organic Carbon,water,kilogram,1.6009794375257303e-06
+Barium(2+),Emissions / Emissions to water,kilogram,1.5965905646725354e-06
+Pentane,Emissions / Emissions to air,kilogram,1.5947001985306742e-06
+Uranium-234,Emissions / Emissions to water,kilo Becquerel,1.587005438658277e-06
+From Mineral Extraction Site,Land use / Land transformation,square meter,1.5227389091317643e-06
+Carbon Monoxide (biogenic),Emissions / Emissions to air,kilogram,1.4573918106680519e-06
+Magnesium,natural resource,kilogram,1.4565053818227677e-06
+barium,Emissions / Emissions to water,kilogram,1.4550459869467253e-06
+Potassium-40,air,kilo Becquerel,1.4300302222769823e-06
+Barium(2+),Emissions / Emissions to soil,kilogram,1.4190061784812746e-06
+Agriculture,Land use / Land occupation,square meter-year,1.39539014888277e-06
+Nitrous Oxide,Emissions / Emissions to air,kilogram,1.3836004618012685e-06
+Silicon,Emissions / Emissions to air,kilogram,1.3653374667191386e-06
+Carbon-14,Emissions / Emissions to air,kilo Becquerel,1.349084302831908e-06
+Ammonia,Emissions / Emissions to air,kilogram,1.342800808446222e-06
+Cobalt-60,Emissions / Emissions to water,kilo Becquerel,1.3172769243286382e-06
+Thorium-234,water,kilo Becquerel,1.3153220854426127e-06
+Protactinium-234,water,kilo Becquerel,1.3150961524916962e-06
+"Wood, hard, standing",resources / biotic,cubic meter,1.3073595998247181e-06
+Potassium-40,water,kilo Becquerel,1.2993475480646054e-06
+"To Traffic Area, Road Network",Land use / Land transformation,square meter,1.270927864467222e-06
+Molybdenum,Resources / Resources from ground,kilogram,1.2672055551489345e-06
+Nitrous Oxide,Emissions / Emissions to air,kilogram,1.255795314169718e-06
+Silver-110,Emissions / Emissions to water,kilo Becquerel,1.226737885216081e-06
+"Water, salt, sole",resources / in water,cubic meter,1.2013111618887912e-06
+Iodide Ion,Emissions / Emissions to water,kilogram,1.1955998394109783e-06
+Xenon-138,air,kilo Becquerel,1.1212046657390894e-06
+Tin atom,Emissions / Emissions to air,kilogram,1.1089439842391652e-06
+"Hydrocarbons, Chlorinated",air,kilogram,1.0991895508653602e-06
+Polonium-210,water,kilo Becquerel,1.0816171100545707e-06
+Carbon,soil,kilogram,1.0799234845596055e-06
+"DOC, Dissolved Organic Carbon",water,kilogram,1.0745001290180672e-06
+Propane,Emissions / Emissions to air,kilogram,1.068776421996781e-06
+Uranium-238,Emissions / Emissions to air,kilo Becquerel,1.062248438604095e-06
+Xenon-137,air,kilo Becquerel,1.0212942070450943e-06
+Butane,Emissions / Emissions to air,kilogram,1.0070391703883498e-06
+Potassium,soil,kilogram,9.93661994270695e-07
+Aluminium,Emissions / Emissions to water,kilogram,9.8556825378335e-07
+Aluminium,Emissions / Emissions to air,kilogram,9.209577869863767e-07
+Potassium,water,kilogram,9.06616030249576e-07
+Iron,Emissions / Emissions to water,kilogram,9.040255437087736e-07
+Hexane,Emissions / Emissions to air,kilogram,9.030331918044882e-07
+Talc,resources / in ground,kilogram,8.958127238506616e-07
+Hexane,Emissions / Emissions to air,kilogram,8.787636883748663e-07
+Shrub Land,Land use / Land occupation,square meter-year,8.623099657881146e-07
+Iron,Emissions / Emissions to soil,kilogram,8.358910833778146e-07
+Uranium-238,Emissions / Emissions to air,kilo Becquerel,8.137502383804124e-07
+Benzene,Emissions / Emissions to air,kilogram,7.647637857893462e-07
+Butane,Emissions / Emissions to air,kilogram,7.574071065877374e-07
+"Actinides, Radioactive, Unspecified",water,kilo Becquerel,7.559995141889458e-07
+Nitrogen,air,kilogram,7.523789388708605e-07
+Iodide Ion,Emissions / Emissions to water,kilogram,7.184914503694032e-07
+Bromine,Emissions / Emissions to water,kilogram,7.18423596990598e-07
+Helium,air,kilogram,7.042223665354581e-07
+Particles (> PM10),air,kilogram,6.732244767804996e-07
+From Dump Site,Land use / Land transformation,square meter,6.631930573663248e-07
+Uranium-234,Emissions / Emissions to air,kilo Becquerel,6.611600788655551e-07
+To Pasture/meadow,Land use / Land transformation,square meter,6.512014817657074e-07
+Chlorate ion,Emissions / Emissions to water,kilogram,6.417021300473957e-07
+Cesium-137,Emissions / Emissions to water,kilo Becquerel,6.202572437443542e-07
+cobalt,Emissions / Emissions to water,kilogram,5.711044525532908e-07
+Sulfur,Emissions / Emissions to water,kilogram,5.652020240620026e-07
+"From Traffic Area, Rail/road Embankment",Land use / Land transformation,square meter,5.574140109577612e-07
+Carbon Monoxide (biogenic),Emissions / Emissions to air,kilogram,5.571526203592419e-07
+Sulfate Ion,air,kilogram,5.551067739896952e-07
+Phosphorus,Emissions / Emissions to water,kilogram,5.494514564715972e-07
+Bromine,Emissions / Emissions to water,kilogram,5.487562496872278e-07
+"Hydrocarbons, Aromatic",Emissions / Emissions to water,kilogram,5.443365909191957e-07
+"Urban, Discontinuously Built",Land use / Land occupation,square meter-year,5.320406001871883e-07
+Thorium-228,air,kilo Becquerel,5.294078613876348e-07
+Kaolinite,soil,kilogram,5.151053695088272e-07
+Potassium,air,kilogram,5.020691080384155e-07
+Argon-41,air,kilo Becquerel,4.774064728935903e-07
+Hydrogen,air,kilogram,4.765978262571741e-07
+Iodine-129,Emissions / Emissions to air,kilo Becquerel,4.6570660177238516e-07
+"Oils, Unspecified",Emissions / Emissions to water,kilogram,4.6027635890712317e-07
+"To Traffic Area, Rail Network",Land use / Land transformation,square meter,4.5711245494127913e-07
+"Oils, Unspecified",Emissions / Emissions to water,kilogram,4.5476157266886874e-07
+Iron,Emissions / Emissions to air,kilogram,4.4710479200298155e-07
+Phosphate,Emissions / Emissions to water,kilogram,4.407660467764404e-07
+Water,air,cubic meter,4.3152608995952946e-07
+Colemanite,soil,kilogram,4.281872147527737e-07
+vanadium,Emissions / Emissions to water,kilogram,4.266513426012442e-07
+Particles (PM10),Emissions / Emissions to air,kilogram,4.039346833571528e-07
+"Energy, Geothermal, Converted",natural resource,megajoule,3.997895294148624e-07
+Toluene,Emissions / Emissions to air,kilogram,3.9541902465150406e-07
+Boron,Emissions / Emissions to water,kilogram,3.8936025213414424e-07
+Formaldehyde,Emissions / Emissions to air,kilogram,3.885505113689956e-07
+Thorium-232,emissions to air / high. pop.,kilo Becquerel,3.881218912939126e-07
+Iron,Emissions / Emissions to air,kilogram,3.8473863719186744e-07
+Aluminium,Emissions / Emissions to water,kilogram,3.7833356372954e-07
+iron,Emissions / Emissions to air,kilogram,3.6704566497056374e-07
+To Inland Water Bodies,land use,square meter,3.6611926147296606e-07
+Nitrous Oxide,Emissions / Emissions to air,kilogram,3.6461785920415856e-07
+Volatile Organic Compound,Emissions / Emissions to water,kilogram,3.5921188077080553e-07
+Sulfide ion,water,kilogram,3.5307455937960596e-07
+Aluminium,Emissions / Emissions to air,kilogram,3.3753446351072314e-07
+Magnesium,Emissions / Emissions to air,kilogram,3.349101706987984e-07
+Calcium,Emissions / Emissions to soil,kilogram,3.2815872398562746e-07
+"Hydrocarbons, Aromatic",Emissions / Emissions to water,kilogram,3.231422088216288e-07
+"Hydrocarbons, Aliphatic, Alkanes, Unspecified",air,kilogram,3.154036627215395e-07
+Carbon disulfide,Emissions / Emissions to air,kilogram,3.147344618504602e-07
+Sulfate Ion,air,kilogram,3.107899099615683e-07
+Iron,Emissions / Emissions to soil,kilogram,3.0983418746327595e-07
+"Hydrocarbons, Chlorinated",air,kilogram,2.9585500478089014e-07
+Cumene,Emissions / Emissions to water,kilogram,2.9544346133979104e-07
+"Noise, aircraft, freight",non material emissions / unspecified,ton kilometer,2.8810883947868545e-07
+Silicon,Emissions / Emissions to soil,kilogram,2.83801255442728e-07
+Sand,soil,kilogram,2.8252044974921425e-07
+lead,Emissions / Emissions to water,kilogram,2.722970762392901e-07
+Lithium,Emissions / Emissions to water,kilogram,2.719591489771251e-07
+Particles (PM2.5),Emissions / Emissions to air,kilogram,2.692897896351251e-07
+Xenon-131m,air,kilo Becquerel,2.6874858908004275e-07
+Thorium-230,Emissions / Emissions to air,kilo Becquerel,2.686106447879372e-07
+Chromium-51,water,kilo Becquerel,2.6704743414276296e-07
+Ethylene,Emissions / Emissions to air,kilogram,2.6597214965684404e-07
+Benzene,Emissions / Emissions to water,kilogram,2.659190680302806e-07
+Zinc,Emissions / Emissions to water,kilogram,2.5948008318790026e-07
+Thorium-232,emissions to water / river,kilo Becquerel,2.4694976632797594e-07
+Iron,Emissions / Emissions to water,kilogram,2.4660152373074206e-07
+Boron,Emissions / Emissions to water,kilogram,2.463034118758576e-07
+Calcium,Emissions / Emissions to air,kilogram,2.4497867602970754e-07
+Ozone,air,kilogram,2.409905562659875e-07
+Fluoride Ion,Emissions / Emissions to water,kilogram,2.3782589742100732e-07
+Chromium VI,"emissions to water / groundwater, long-term",kilogram,2.3298292115709634e-07
+Propylene,Emissions / Emissions to water,kilogram,2.3172097861851242e-07
+Benzene,Emissions / Emissions to air,kilogram,2.2695331996336538e-07
+Methyl Cyclopentane,Emissions / Emissions to water,kilogram,2.1933555910743045e-07
+Acetic Acid,Emissions / Emissions to air,kilogram,2.189019802913784e-07
+Hydrogen Chloride,Emissions / Emissions to air,kilogram,2.1016098717812839e-07
+Silicon,Emissions / Emissions to soil,kilogram,2.0705800957980001e-07
+From Industrial Area,Land use / Land transformation,square meter,1.9859420746798493e-07
+"Oils, biogenic",emissions to soil / industrial,kilogram,1.9413145609602576e-07
+Acetic Acid,Emissions / Emissions to air,kilogram,1.8948946316173596e-07
+fluorane,Emissions / Emissions to air,kilogram,1.8912470167629537e-07
+Antimony,Emissions / Emissions to air,kilogram,1.8529113049265343e-07
+arsenic,Emissions / Emissions to water,kilogram,1.8186865183313573e-07
+Zinc,Emissions / Emissions to water,kilogram,1.7775485467274524e-07
+Heptane,Emissions / Emissions to air,kilogram,1.7762935395491616e-07
+Ethane,Emissions / Emissions to air,kilogram,1.774945297468848e-07
+Methanol,Emissions / Emissions to air,kilogram,1.7490326472301202e-07
+tin,Emissions / Emissions to water,kilogram,1.7291805830733472e-07
+To Shrub Land,Land use / Land transformation,square meter,1.722080559277968e-07
+Sodium chloride,resources / in water,kilogram,1.676357281851117e-07
+Manganese,Emissions / Emissions to water,kilogram,1.655917233753434e-07
+Lithium,Emissions / Emissions to water,kilogram,1.6273117952967455e-07
+Formaldehyde,Emissions / Emissions to air,kilogram,1.602127662320495e-07
+Potassium-40,air,kilo Becquerel,1.505446432381328e-07
+Ethane,Emissions / Emissions to air,kilogram,1.4793884440736247e-07
+Lead(2+),Emissions / Emissions to water,kilogram,1.431626941147711e-07
+Phosphorus,Emissions / Emissions to soil,kilogram,1.419008547984305e-07
+Fluoride Ion,Emissions / Emissions to soil,kilogram,1.4190081391106584e-07
+"Agriculture, Mosaic",Land use / Land occupation,square meter-year,1.4146250766686707e-07
+Antimony-124,Emissions / Emissions to water,kilo Becquerel,1.3774158733828254e-07
+Formaldehyde,Emissions / Emissions to air,kilogram,1.3510307819678588e-07
+"Hydrocarbons, Aliphatic, Alkanes, Unspecified",water,kilogram,1.3342152002519e-07
+Gypsum,resources / in ground,kilogram,1.327442688728321e-07
+beryllium,Emissions / Emissions to water,kilogram,1.312743973095921e-07
+Chromium,Emissions / Emissions to air,kilogram,1.3125593258464463e-07
+"Oils, biogenic",emissions to soil / unspecified,kilogram,1.294006341322403e-07
+Silicon,Emissions / Emissions to air,kilogram,1.2660241532301668e-07
+Phenol,Emissions / Emissions to water,kilogram,1.2577801698604268e-07
+Zinc-65,water,kilo Becquerel,1.2397941451082465e-07
+Cumene,Emissions / Emissions to air,kilogram,1.2294851468172924e-07
+To Unspecified,Land use / Land transformation,square meter,1.203586784202357e-07
+Toluene,Emissions / Emissions to water,kilogram,1.2008024051330276e-07
+Fluoride Ion,Emissions / Emissions to water,kilogram,1.194994862129956e-07
+molybdenum,Emissions / Emissions to water,kilogram,1.1791150588989027e-07
+manganese,Emissions / Emissions to soil,kilogram,1.1353035208388508e-07
+Calcium,Emissions / Emissions to air,kilogram,1.0974481427573842e-07
+"Oils, Unspecified",Emissions / Emissions to soil,kilogram,1.0913606016978452e-07
+Antimony-125,Emissions / Emissions to water,kilo Becquerel,1.0757561216767072e-07
+hydrogen sulfide,Emissions / Emissions to water,kilogram,1.0663289620774082e-07
+Sulfur,Resources / Resources from ground,kilogram,1.0601274705152038e-07
+Nitrogen,water,kilogram,1.0491825851778917e-07
+"Aerosols, Radioactive, Unspecified",air,kilo Becquerel,1.0345250183422442e-07
+Boron,Emissions / Emissions to air,kilogram,1.0206795535811867e-07
+"Hydrocarbons, Aliphatic, Unsaturated",air,kilogram,1.0132026820509153e-07
+Xylene,Emissions / Emissions to water,kilogram,1.0028239260584287e-07
+Sodium,air,kilogram,9.973535148784852e-08
+Copper,Emissions / Emissions to air,kilogram,9.714798556878619e-08
+Sulfur,Emissions / Emissions to soil,kilogram,9.58071767333895e-08
+Ethylene,Emissions / Emissions to air,kilogram,9.532892217868676e-08
+Aluminium,Emissions / Emissions to soil,kilogram,9.326225542416741e-08
+Propylene,Emissions / Emissions to air,kilogram,9.239100097950706e-08
+Manganese-54,Emissions / Emissions to water,kilo Becquerel,8.874909657656298e-08
+Soil,soil,kilogram,8.801305539758061e-08
+Ethylene,Emissions / Emissions to air,kilogram,8.780630412550763e-08
+selenium,Emissions / Emissions to water,kilogram,8.677232880049875e-08
+Cesium-134,Emissions / Emissions to water,kilo Becquerel,8.517737328140487e-08
+Phenol,Emissions / Emissions to air,kilogram,8.446642874355355e-08
+Oxygen,air,kilogram,8.418087765487825e-08
+antimony,Emissions / Emissions to water,kilogram,8.414098973301041e-08
+tungsten,Emissions / Emissions to water,kilogram,8.355082649817861e-08
+Bromate,Emissions / Emissions to water,kilogram,8.343137354705592e-08
+"Metamorphous rock, graphite containing",resources / in ground,kilogram,8.284654517839197e-08
+Phenol,Emissions / Emissions to water,kilogram,8.242435152004222e-08
+"Hydrocarbons, Aliphatic, Alkanes, Unspecified",water,kilogram,7.980080542098062e-08
+Manganese(2+),Emissions / Emissions to water,kilogram,7.81615665311698e-08
+Nitrite,Emissions / Emissions to water,kilogram,7.748404360484643e-08
+Benzene,Emissions / Emissions to water,kilogram,7.642424123437441e-08
+"Wood, primary forest, standing",resources / biotic,cubic meter,7.552250655169919e-08
+Silicon,Emissions / Emissions to air,kilogram,7.516136056971675e-08
+Pentane,Emissions / Emissions to air,kilogram,7.351619383675715e-08
+Xylene,Emissions / Emissions to air,kilogram,7.286591885776583e-08
+Toluene,Emissions / Emissions to water,kilogram,7.252120743290553e-08
+Scandium,"emissions to water / groundwater, long-term",kilogram,7.208026933757895e-08
+Dichloromethane,Emissions / Emissions to water,kilogram,7.198120614170093e-08
+Radium-228,air,kilo Becquerel,7.138177235093845e-08
+Barium(2+),Emissions / Emissions to air,kilogram,7.135382454084076e-08
+cadmium,Emissions / Emissions to water,kilogram,7.009952194927272e-08
+Artificial Areas,Land use / Land occupation,square meter-year,6.815027936864403e-08
+Zinc,Emissions / Emissions to air,kilogram,6.750348167950998e-08
+"Oils, unspecified",Emissions / Emissions to soil,kilogram,6.741408431030528e-08
+"Oils, biogenic",emissions to soil / forestry,kilogram,6.707026386771637e-08
+Thorium-234,air,kilo Becquerel,6.645065547496321e-08
+Protactinium-234,air,kilo Becquerel,6.642952128507306e-08
+Acetaldehyde,Emissions / Emissions to air,kilogram,6.571928753085036e-08
+Acetaldehyde,Emissions / Emissions to air,kilogram,6.415819102404407e-08
+Sulfate Ion,air,kilogram,6.291744681750178e-08
+"Nitrogen, organic bound","emissions to water / groundwater, long-term",kilogram,6.28958320674345e-08
+fluorane,Emissions / Emissions to air,kilogram,6.283677462437944e-08
+Thorium-232,emissions to air / low. pop.,kilo Becquerel,6.182320103611061e-08
+Toluene,Emissions / Emissions to air,kilogram,6.15403232968962e-08
+Propylene,Emissions / Emissions to air,kilogram,6.078642549322325e-08
+Xylene,Emissions / Emissions to water,kilogram,6.017082270720625e-08
+"From Forest, Extensive",Land use / Land transformation,square meter,5.962973209589282e-08
+Potassium,air,kilogram,5.773130169159532e-08
+Iodine-135,air,kilo Becquerel,5.603107817642276e-08
+Zinc,Emissions / Emissions to air,kilogram,5.500606691737664e-08
+Formic Acid,Emissions / Emissions to air,kilogram,5.303365087048877e-08
+Propane,Emissions / Emissions to air,kilogram,5.123607254397574e-08
+Boron,Emissions / Emissions to air,kilogram,4.9404904107788444e-08
+"To Permanent Crops, Non-irrigated, Intensive",Land use / Land transformation,square meter,4.835090931879033e-08
+Nitrogen,water,kilogram,4.8181373641178037e-08
+"Radioactive Species, Alpha Emitters",water,kilo Becquerel,4.539712023971023e-08
+Acetylene,Emissions / Emissions to air,kilogram,4.307434634395167e-08
+2-hydroxybenzonitrile,Emissions / Emissions to air,kilogram,4.306637154171118e-08
+Copper,Emissions / Emissions to air,kilogram,4.268982329133177e-08
+Zinc,Emissions / Emissions to soil,kilogram,4.2572742708291826e-08
+ammonium,Emissions / Emissions to water,kilogram,4.229343533506634e-08
+Propylene,Emissions / Emissions to air,kilogram,4.211344857366618e-08
+"Sand, resource correction",resources / in ground,kilogram,4.106773201603027e-08
+Xylene,Emissions / Emissions to air,kilogram,3.9414170350247005e-08
+Xylene,Emissions / Emissions to air,kilogram,3.922166783035473e-08
+Lead,Emissions / Emissions to air,kilogram,3.912982190587741e-08
+Arsenic,Emissions / Emissions to water,kilogram,3.911480775407865e-08
+Fluoride Ion,Emissions / Emissions to water,kilogram,3.8818101082306595e-08
+Thorium-228,air,kilo Becquerel,3.86255895313852e-08
+Acetone,Emissions / Emissions to air,kilogram,3.7300723377225976e-08
+Magnesium,Emissions / Emissions to soil,kilogram,3.676842406612835e-08
+Nitrogen Dioxide,Emissions / Emissions to air,kilogram,3.660080170620441e-08
+Carbon Dioxide (fossil),Emissions / Emissions to air,kilogram,3.5711314298022086e-08
+Metazachlor,Emissions / Emissions to soil,kilogram,3.536786104622144e-08
+Magnesium,Emissions / Emissions to air,kilogram,3.366122370740718e-08
+Titanium,Emissions / Emissions to air,kilogram,3.34437701265361e-08
+Bauxite,soil,kilogram,3.281302268475675e-08
+Ethyl Acetate,Emissions / Emissions to air,kilogram,3.25180836309495e-08
+Methyl Ethyl Ketone,Emissions / Emissions to air,kilogram,3.251643323966173e-08
+Chromium,Emissions / Emissions to water,kilogram,3.223034334479632e-08
+Acetic Acid,Emissions / Emissions to air,kilogram,3.123026266595748e-08
+Manganese,Emissions / Emissions to air,kilogram,3.0184805972254655e-08
+Nickel,Emissions / Emissions to air,kilogram,2.9903746667908236e-08
+"Hydrocarbons, Aliphatic, Alkanes, Unspecified",air,kilogram,2.9683677876240896e-08
+Boron,Emissions / Emissions to soil,kilogram,2.9299644974980775e-08
+Nickel,Emissions / Emissions to water,kilogram,2.9298600464372563e-08
+Carbon-14,Emissions / Emissions to water,kilo Becquerel,2.906933616712441e-08
+Waste water/m3,emissions to water / unspecified,cubic meter,2.8939524353999477e-08
+Tetrachloroethylene,Emissions / Emissions to air,kilogram,2.8935363586203687e-08
+Propionic Acid,Emissions / Emissions to air,kilogram,2.8852699619513317e-08
+Strontium,Emissions / Emissions to soil,kilogram,2.8437363123826544e-08
+Technetium-99m,water,kilo Becquerel,2.827104827140958e-08
+Ethyl Benzene,Emissions / Emissions to water,kilogram,2.7590986000137104e-08
+Iodine-133,Emissions / Emissions to air,kilo Becquerel,2.7574971847613017e-08
+Uranium-235,Emissions / Emissions to air,kilo Becquerel,2.7511073355931504e-08
+Bromine,natural resource,kilogram,2.7314835745913228e-08
+Copper,Emissions / Emissions to water,kilogram,2.6909623735546652e-08
+Iodine-131,Emissions / Emissions to water,kilo Becquerel,2.6717869465061335e-08
+Vanadium(2+),Emissions / Emissions to air,kilogram,2.612182734199356e-08
+Ulexite,resources / in ground,kilogram,2.569212429625286e-08
+Iodine-129,Emissions / Emissions to water,kilo Becquerel,2.5323353829682594e-08
+Hydrogen Sulfide,Emissions / Emissions to air,kilogram,2.5257691183522805e-08
+Bromide ion,Emissions / Emissions to water,kilogram,2.489373999509865e-08
+Acrolein,Emissions / Emissions to air,kilogram,2.484162633678832e-08
+Cyanide,Emissions / Emissions to water,kilogram,2.4517442963101964e-08
+Hydrogen Sulfide,Emissions / Emissions to air,kilogram,2.3068780449838104e-08
+Polycyclic Aromatic Hydrocarbons,Emissions / Emissions to water,kilogram,2.2386157118320566e-08
+Titanium,Emissions / Emissions to air,kilogram,2.2041183820082686e-08
+Zinc,Emissions / Emissions to water,kilogram,2.1994777727478758e-08
+Strontium-89,water,kilo Becquerel,2.178892968607713e-08
+Zinc(2+),Emissions / Emissions to soil,kilogram,2.1659692169237465e-08
+"(2,4-dichlorophenoxy)acetic Acid",Emissions / Emissions to soil,kilogram,2.1651136715064906e-08
+Lead,Emissions / Emissions to air,kilogram,2.0584141226900065e-08
+Fluorine,Emissions / Emissions to air,kilogram,2.056562432369827e-08
+Sodium,air,kilogram,1.982784387179183e-08
+Molybdenum,Emissions / Emissions to water,kilogram,1.9561741249336943e-08
+Benzaldehyde,Emissions / Emissions to air,kilogram,1.9226715667333494e-08
+Benzene,Emissions / Emissions to air,kilogram,1.869040159999469e-08
+HFC-134a,Emissions / Emissions to air,kilogram,1.864133314316211e-08
+Molybdenum,Emissions / Emissions to air,kilogram,1.852672795736848e-08
+Acetylene,Emissions / Emissions to air,kilogram,1.7884538533355633e-08
+Butene,Emissions / Emissions to air,kilogram,1.771392694491627e-08
+Strontium,Emissions / Emissions to air,kilogram,1.7279789931235446e-08
+"To Arable, Fallow",Land use / Land transformation,square meter,1.7143508889873412e-08
+Glyphosate,Emissions / Emissions to soil,kilogram,1.6884402501342145e-08
+Oxygen,natural resource,kilogram,-1.6735089600923146e-08
+Ethyl Benzene,Emissions / Emissions to air,kilogram,1.6620719740551327e-08
+Ethyl Benzene,Emissions / Emissions to water,kilogram,1.6538895268206587e-08
+bromine,Emissions / Emissions to water,kilogram,1.6403150216556384e-08
+Methanol,Emissions / Emissions to air,kilogram,1.5861443895647726e-08
+Chrysotile,resources / in ground,kilogram,1.5767344441643083e-08
+Cyanide,Emissions / Emissions to air,kilogram,1.5129706917645342e-08
+Furan,Emissions / Emissions to air,kilogram,1.5058611896462066e-08
+Copper,Emissions / Emissions to water,kilogram,1.4827092580311286e-08
+Acetone,Emissions / Emissions to air,kilogram,1.4668175787162699e-08
+Sodium,air,kilogram,1.4664039304534367e-08
+Calcium,Emissions / Emissions to air,kilogram,1.4628861584807277e-08
+Nickel,Emissions / Emissions to air,kilogram,1.4544434943781178e-08
+Polycyclic Aromatic Hydrocarbons,Emissions / Emissions to water,kilogram,1.4286738576237029e-08
+chromium,Emissions / Emissions to soil,kilogram,1.4194070223438539e-08
+Diflubenzuron,Emissions / Emissions to soil,kilogram,1.408157815193192e-08
+Acrolein,Emissions / Emissions to air,kilogram,1.404724181889967e-08
+Polycyclic Aromatic Hydrocarbons,Emissions / Emissions to air,kilogram,1.3940044591141806e-08
+M-xylene,Emissions / Emissions to air,kilogram,1.3753426539224944e-08
+Acetaldehyde,Emissions / Emissions to air,kilogram,1.3512959015144934e-08
+To Seabed,land use,square meter,1.3175594556627115e-08
+Arsenic,Emissions / Emissions to air,kilogram,1.2968659833642424e-08
+Toluene,Emissions / Emissions to air,kilogram,1.264798763038013e-08
+Barium(2+),Emissions / Emissions to air,kilogram,1.232317501038477e-08
+"Hydrocarbons, Aliphatic, Unsaturated",water,kilogram,1.2315833191933109e-08
+Polonium-210,water,kilo Becquerel,1.2242676025449787e-08
+Formaldehyde,Emissions / Emissions to water,kilogram,1.2238901022374368e-08
+glyphosate,Emissions / Emissions to soil,kilogram,1.2029274887616806e-08
+thallium,Emissions / Emissions to water,kilogram,1.1743837572235428e-08
+Antimony,Emissions / Emissions to water,kilogram,1.1593043259179034e-08
+Benzaldehyde,Emissions / Emissions to air,kilogram,1.1338621789769202e-08
+Cyanide,Emissions / Emissions to air,kilogram,1.1192736879347024e-08
+Ruthenium-106,Emissions / Emissions to water,kilo Becquerel,1.106995452256053e-08
+Chlorobenzene,Emissions / Emissions to water,kilogram,1.098287893918927e-08
+Tellurium-123m,water,kilo Becquerel,1.0907847879511512e-08
+Bromine,Emissions / Emissions to air,kilogram,1.0906399455558673e-08
+Phosphorus,Emissions / Emissions to air,kilogram,1.0876715076579636e-08
+Sodium-24,water,kilo Becquerel,1.0617716770061035e-08
+"To Urban, Discontinuously Built",Land use / Land transformation,square meter,1.0597905627524057e-08
+Ethylene,Emissions / Emissions to water,kilogram,1.0503287048012637e-08
+Uranium-238,Emissions / Emissions to air,kilo Becquerel,1.0487506388338682e-08
+"Volume Occupied, Underground Deposit",land use,cubic meter,1.0322542190479393e-08
+"From Arable, Fallow",Land use / Land transformation,square meter,1.0274716207506517e-08
+Rubidium,water,kilogram,1.0263193937754751e-08
+Sulfite,water,kilogram,1.0256114649481861e-08
+Formaldehyde,Emissions / Emissions to water,kilogram,9.92257088393325e-09
+Zinc,Emissions / Emissions to air,kilogram,9.72541722416454e-09
+Chlormequat Chloride,Emissions / Emissions to soil,kilogram,9.58209000257026e-09
+zinc,Emissions / Emissions to soil,kilogram,9.561979819228057e-09
+"Hydrocarbons, Aromatic",Emissions / Emissions to air,kilogram,9.557794225273993e-09
+Argon,air,kilogram,9.321035880535277e-09
+Isopropanol,Emissions / Emissions to air,kilogram,9.274673497524892e-09
+"Actinides, Radioactive, Unspecified",air,kilo Becquerel,8.820947007990958e-09
+Cobalt-57,water,kilo Becquerel,8.730497457105376e-09
+Silicon,Emissions / Emissions to air,kilogram,8.644963536863665e-09
+Barium(2+),Emissions / Emissions to water,kilogram,8.601914281826985e-09
+Methanol,Emissions / Emissions to air,kilogram,8.525249174791418e-09
+Polycyclic Aromatic Hydrocarbons,Emissions / Emissions to air,kilogram,8.484494033857153e-09
+Styrene,Emissions / Emissions to air,kilogram,8.184343908111903e-09
+Lead,Emissions / Emissions to air,kilogram,8.180164819259743e-09
+Lead-210,water,kilo Becquerel,8.045432303237265e-09
+Acetonitrile,Emissions / Emissions to air,kilogram,7.929165101795266e-09
+Arsenic,Emissions / Emissions to water,kilogram,7.830416042084337e-09
+"Hydrocarbons, Aliphatic, Unsaturated",air,kilogram,7.761403118731452e-09
+M-xylene,Emissions / Emissions to air,kilogram,7.760252085216189e-09
+Manganese,Emissions / Emissions to air,kilogram,7.589914095602911e-09
+Sulfate Ion,air,kilogram,7.52556231434522e-09
+"Urban, Continuously Built",Land use / Land occupation,square meter-year,7.486712811217597e-09
+"Hydrocarbons, Aliphatic, Unsaturated",water,kilogram,7.372104792704773e-09
+"Hydrocarbons, Aliphatic, Alkanes, Unspecified",air,kilogram,7.239695619576659e-09
+Cypermethrin,Emissions / Emissions to soil,kilogram,7.026992820213843e-09
+Titanium,Emissions / Emissions to air,kilogram,6.819932100831268e-09
+Trifluralin,Emissions / Emissions to soil,kilogram,6.7845950362216625e-09
+Tebutam,soil,kilogram,6.773582702047457e-09
+Thorium-232,emissions to water / ocean,kilo Becquerel,6.6450393439891335e-09
+Terpenes,air,kilogram,6.607637102739484e-09
+Rubidium,water,kilogram,6.138523540565199e-09
+Kieserite,soil,kilogram,5.901116590940792e-09
+Niobium-95,water,kilo Becquerel,5.792942480352456e-09
+Seabed,land use,square meter-year,5.767094660114612e-09
+Sulfur hexafluoride,Emissions / Emissions to air,kilogram,5.759008802823453e-09
+"Hydrocarbons, Aliphatic, Alkanes, Cyclic",air,kilogram,5.700711791683905e-09
+Manganese,Emissions / Emissions to air,kilogram,5.6867635460111e-09
+Sulfur hexafluoride,Emissions / Emissions to air,kilogram,5.632031408694862e-09
+O-xylene,Emissions / Emissions to air,kilogram,5.613511785643802e-09
+Iodine,Emissions / Emissions to air,kilogram,5.451124911584275e-09
+Manganese,Emissions / Emissions to air,kilogram,5.328623038591032e-09
+Mercury,Emissions / Emissions to water,kilogram,5.235543614982438e-09
+Chromium,Emissions / Emissions to soil,kilogram,5.216272567080855e-09
+Methane (biogenic),Emissions / Emissions to air,kilogram,5.206511542149894e-09
+"Hydrocarbons, Aromatic",Emissions / Emissions to air,kilogram,5.2056562047446865e-09
+Silver,Resources / Resources from ground,kilogram,4.875029359672782e-09
+Heptane,Emissions / Emissions to air,kilogram,4.677517657425647e-09
+Sulfide ion,water,kilogram,4.561977946899868e-09
+Ethanol,Emissions / Emissions to air,kilogram,4.483739526350147e-09
+Styrene,Emissions / Emissions to air,kilogram,4.4339288395127625e-09
+"Aldehydes, Unspecified",Emissions / Emissions to air,kilogram,4.423964487986609e-09
+Ethanolamine,Emissions / Emissions to air,kilogram,4.326804126929016e-09
+Napropamide,Emissions / Emissions to soil,kilogram,4.283642155897078e-09
+Chlorine,Emissions / Emissions to air,kilogram,4.186902916624962e-09
+silver,Emissions / Emissions to water,kilogram,4.183213271157132e-09
+Tebuconazole,Emissions / Emissions to soil,kilogram,4.14309423946301e-09
+Ethylenediamine,Emissions / Emissions to air,kilogram,4.136717497312312e-09
+Cadmium,Emissions / Emissions to air,kilogram,4.015046662708329e-09
+"Radioactive Species, Other Beta Emitters",air,kilo Becquerel,3.979400050303329e-09
+Magnesium chloride,resources / in ground,kilogram,3.927126068074927e-09
+Acetic Acid,Emissions / Emissions to water,kilogram,3.783637774741108e-09
+Titanium,Emissions / Emissions to water,kilogram,3.741675460900342e-09
+Nickel,Emissions / Emissions to water,kilogram,3.7095729584314273e-09
+Chromium,Emissions / Emissions to soil,kilogram,3.6674057019065646e-09
+Phenol,Emissions / Emissions to air,kilogram,3.662493382050412e-09
+Copper,Emissions / Emissions to air,kilogram,3.6208049406066524e-09
+M-xylene,Emissions / Emissions to air,kilogram,3.610368806248864e-09
+Iodine-131,Emissions / Emissions to water,kilo Becquerel,3.585506987075803e-09
+copper,Emissions / Emissions to soil,kilogram,3.5827733821280414e-09
+Nitrate,Emissions / Emissions to air,kilogram,3.58108247056969e-09
+Lanthanum-140,water,kilo Becquerel,3.5775339015531993e-09
+fluoride,Emissions / Emissions to soil,kilogram,3.503035275281904e-09
+Potassium,soil,kilogram,3.466113827852678e-09
+Iodine,natural resource,kilogram,3.4253975946166724e-09
+Borax,resources / in ground,kilogram,3.3973397154346787e-09
+Carbon black,emissions to air / unspecified,kilogram,3.3940695855594824e-09
+Cobalt,Emissions / Emissions to water,kilogram,3.336805811422697e-09
+Radon-220,air,kilo Becquerel,3.31694105967655e-09
+Fluosilicic Acid,water,kilogram,3.3161964783601023e-09
+Nickel,Emissions / Emissions to air,kilogram,3.30670307825011e-09
+Barium-140,water,kilo Becquerel,3.290189569190465e-09
+Selenium,Emissions / Emissions to water,kilogram,3.2142802313906087e-09
+Isocyanic Acid,air,kilogram,3.1987249874296926e-09
+Sulfate Ion,soil,kilogram,3.193692320510266e-09
+Vermiculite,soil,kilogram,3.1905761017863982e-09
+O-xylene,Emissions / Emissions to air,kilogram,3.166718686859313e-09
+Trifluoromethane,Emissions / Emissions to air,kilogram,3.1644667845703177e-09
+Chromium,Emissions / Emissions to air,kilogram,3.1457843623657447e-09
+Chlorine,Emissions / Emissions to air,kilogram,3.125720712874362e-09
+Phosphorus,Emissions / Emissions to water,kilogram,3.1066153625907166e-09
+Chromium,Emissions / Emissions to air,kilogram,3.0713553395936243e-09
+Cobalt-60,Emissions / Emissions to water,kilo Becquerel,3.027378504306214e-09
+Lead,Emissions / Emissions to air,kilogram,3.0248989517551704e-09
+Methanol,Emissions / Emissions to water,kilogram,2.968842555132812e-09
+Acrolein,Emissions / Emissions to air,kilogram,2.9351284350289147e-09
+Cadmium,Emissions / Emissions to water,kilogram,2.9277877625112792e-09
+Endosulfan,Emissions / Emissions to soil,kilogram,2.9225917283849327e-09
+Manganese,Emissions / Emissions to soil,kilogram,2.909287915720219e-09
+Nitrate,Emissions / Emissions to air,kilogram,2.895787269666842e-09
+Bromine,Emissions / Emissions to air,kilogram,2.8781706395086437e-09
+Copper,Emissions / Emissions to air,kilogram,2.858898350470824e-09
+Selenium,Emissions / Emissions to air,kilogram,2.8416124171464135e-09
+Copper,Emissions / Emissions to water,kilogram,2.831927560056194e-09
+Nickel,Emissions / Emissions to water,kilogram,2.8023043279986264e-09
+sulfur,Emissions / Emissions to water,kilogram,2.798710731236945e-09
+HFC-152a,Emissions / Emissions to air,kilogram,2.7465565682525742e-09
+Carbofuran,Emissions / Emissions to soil,kilogram,2.6699068131205012e-09
+Tungsten,Emissions / Emissions to water,kilogram,2.6233028874397148e-09
+Cyanide,Emissions / Emissions to water,kilogram,2.602715513592479e-09
+Carbon tetrafluoride,Emissions / Emissions to air,kilogram,2.5953881081022786e-09
+(1S)-1-(ethylcarbamoyl)ethyl N-phenylcarbamate,Emissions / Emissions to soil,kilogram,2.5809562999746273e-09
+Arsenic,Emissions / Emissions to air,kilogram,2.567670635694098e-09
+Chlorine,Emissions / Emissions to water,kilogram,2.4881457429214083e-09
+Heptane,Emissions / Emissions to air,kilogram,2.3724961928648776e-09
+Tin atom,Emissions / Emissions to air,kilogram,2.332406767329765e-09
+Iron,Emissions / Emissions to air,kilogram,2.330491196820002e-09
+Carbendazim,Emissions / Emissions to soil,kilogram,2.307223011947969e-09
+Silicon,Emissions / Emissions to soil,kilogram,2.292495088516499e-09
+Benzaldehyde,Emissions / Emissions to air,kilogram,2.260449752461929e-09
+Vanadium,Emissions / Emissions to water,kilogram,2.254693521877837e-09
+Zinc,Emissions / Emissions to air,kilogram,2.1672293594215268e-09
+Shale,soil,kilogram,2.1661981610041004e-09
+Propylene Oxide,Emissions / Emissions to air,kilogram,2.163431426151503e-09
+Cerium,natural resource,kilogram,2.1615554978802264e-09
+Iodine,Emissions / Emissions to air,kilogram,2.153133125494385e-09
+Iodine-133,water,kilo Becquerel,2.1270340098188753e-09
+Vanadium,Emissions / Emissions to air,kilogram,2.093451454969761e-09
+Nitrite,Emissions / Emissions to water,kilogram,2.091026943525436e-09
+Cyanide,Emissions / Emissions to water,kilogram,2.073825536377269e-09
+Hexane,Emissions / Emissions to air,kilogram,2.0048187265021043e-09
+Aluminium,Emissions / Emissions to air,kilogram,1.9639763438402947e-09
+barium,Emissions / Emissions to air,kilogram,1.9551175500419097e-09
+Phenol,Emissions / Emissions to water,kilogram,1.9518356270959032e-09
+Nitrate,soil,kilogram,1.9130371707298416e-09
+Propaquizafop,Emissions / Emissions to soil,kilogram,1.9111759909128254e-09
+Manganese,Emissions / Emissions to water,kilogram,1.891893067088094e-09
+Hydroxide,water,kilogram,1.872846183993402e-09
+Methanol,Emissions / Emissions to water,kilogram,1.8606263731931417e-09
+Fluosilicic Acid,air,kilogram,1.8423314285471757e-09
+"Hydrocarbons, Aliphatic, Alkanes, Cyclic",air,kilogram,1.8409508241398285e-09
+Selenium,Emissions / Emissions to air,kilogram,1.8379773922808313e-09
+Copper(2+),Emissions / Emissions to soil,kilogram,1.8303944535556893e-09
+Cobalt,Emissions / Emissions to air,kilogram,1.8107871801251884e-09
+Fluorine,Emissions / Emissions to air,kilogram,1.803487134929459e-09
+"Hydrocarbons, Chlorinated",air,kilogram,1.7911739211155255e-09
+arsenic,Emissions / Emissions to air,kilogram,1.7891171238803718e-09
+"Acidity, unspecified",emissions to water / river,kilogram,1.73891111825275e-09
+Ethyl Benzene,Emissions / Emissions to air,kilogram,1.737607186193376e-09
+Monocrotophos,Emissions / Emissions to soil,kilogram,1.7203438047351709e-09
+Antimony,Emissions / Emissions to air,kilogram,1.6850167778978972e-09
+Zirconium-95,water,kilo Becquerel,1.6571149376807065e-09
+Platinum,Resources / Resources from ground,kilogram,1.5958295563388764e-09
+Toluene,Emissions / Emissions to water,kilogram,1.5646889147400332e-09
+Zirconium,Resources / Resources from ground,kilogram,1.5550725155746866e-09
+Silicon,Emissions / Emissions to water,kilogram,1.550753728846704e-09
+Hypochlorite,water,kilogram,1.5462719393472441e-09
+Aluminium,Emissions / Emissions to water,kilogram,1.5458745150505725e-09
+"Nitrogen, Total (excluding N2)",Emissions / Emissions to water,kilogram,1.4921269082172833e-09
+Cesium-134,Emissions / Emissions to water,kilo Becquerel,1.4779767605759914e-09
+Cinnabar,soil,kilogram,1.4615483467566146e-09
+Vanadium(2+),Emissions / Emissions to air,kilogram,1.446258967920503e-09
+Lead(2+),Emissions / Emissions to soil,kilogram,1.4057520053264956e-09
+Thorium-230,Emissions / Emissions to air,kilo Becquerel,1.4054956827195456e-09
+Chromium,Emissions / Emissions to water,kilogram,1.4039760206071423e-09
+Cerium-141,water,kilo Becquerel,1.3415018085593452e-09
+Arsenic,Emissions / Emissions to water,kilogram,1.3290969192173745e-09
+Tin atom,Emissions / Emissions to water,kilogram,1.3146406115582722e-09
+Cadmium,Resources / Resources from ground,kilogram,1.2904121856112027e-09
+Metconazole,Emissions / Emissions to soil,kilogram,1.2897823349493956e-09
+Phosphorus,Emissions / Emissions to water,kilogram,1.279312502316987e-09
+Barium-140,air,kilo Becquerel,1.2647219072448928e-09
+Metaldehyde,Emissions / Emissions to soil,kilogram,1.2472387619634627e-09
+strontium,Emissions / Emissions to air,kilogram,1.2265596081294872e-09
+Propylene Oxide,Emissions / Emissions to water,kilogram,1.2227064315621627e-09
+Molybdenum-99,water,kilo Becquerel,1.2091029935903454e-09
+Scandium,air,kilogram,1.2081151311917249e-09
+Hydrogen Sulfide,Emissions / Emissions to water,kilogram,1.2017229205210705e-09
+To Agriculture,Land use / Land transformation,square meter,1.1939922569372677e-09
+Benzo[a]pyrene,Emissions / Emissions to air,kilogram,1.1938223333459697e-09
+Sodium Formate,Emissions / Emissions to water,kilogram,1.1937366659977415e-09
+Lead(2+),Emissions / Emissions to water,kilogram,1.1931751081359751e-09
+Cobalt,Emissions / Emissions to air,kilogram,1.1825720928474154e-09
+Polycyclic Aromatic Hydrocarbons,Emissions / Emissions to air,kilogram,1.162411601955649e-09
+Gold,Resources / Resources from ground,kilogram,1.1589155763061504e-09
+calcium,Emissions / Emissions to soil,kilogram,1.136755672784047e-09
+arsenic,Emissions / Emissions to soil,kilogram,1.135205141646482e-09
+Sulfide ion,water,kilogram,1.1325229362032296e-09
+Aclonifen,Emissions / Emissions to soil,kilogram,1.1278248014560052e-09
+Cobalt,Resources / Resources from ground,kilogram,1.1233967997865025e-09
+Scandium,water,kilogram,1.1228741069533743e-09
+From Agriculture,Land use / Land transformation,square meter,1.1175371638931016e-09
+Mercury,Emissions / Emissions to air,kilogram,1.1079252708664177e-09
+Benzene,Emissions / Emissions to water,kilogram,1.1060946712647612e-09
+Butene,Emissions / Emissions to air,kilogram,1.102382263349882e-09
+Potassium,air,kilogram,1.084827350523638e-09
+Xylene,Emissions / Emissions to water,kilogram,1.0407848220700647e-09
+Cesium,Emissions / Emissions to water,kilogram,1.0263194083579448e-09
+Nitrate,Emissions / Emissions to air,kilogram,9.960033360362265e-10
+Methyl acrylate,Emissions / Emissions to water,kilogram,9.754703338017115e-10
+Potassium-40,water,kilo Becquerel,9.724325312608565e-10
+Sodium bromide,resources / unspecified,kilogram,9.702103752243626e-10
+Strontium,Emissions / Emissions to air,kilogram,9.687207107820172e-10
+"Radioactive species, unspecified",emissions to air / low. pop.,kilo Becquerel,9.65618839207211e-10
+Titanium,Emissions / Emissions to water,kilogram,9.598142011559075e-10
+Styrene,Emissions / Emissions to air,kilogram,9.529558271090484e-10
+"1,2-dichloroethane",Emissions / Emissions to air,kilogram,9.464401229511875e-10
+Total Organic Carbon,soil,kilogram,9.266642231480432e-10
+Lead(2+),Emissions / Emissions to water,kilogram,9.249015042029236e-10
+Mancozeb,Emissions / Emissions to soil,kilogram,9.132354093610117e-10
+Glutaraldehyde,Emissions / Emissions to water,kilogram,9.119226665120265e-10
+Antimony-122,water,kilo Becquerel,8.847947774001822e-10
+Carbon,soil,kilogram,8.843063455758691e-10
+Nickel,Emissions / Emissions to soil,kilogram,8.726198795113214e-10
+Molybdenum,Emissions / Emissions to air,kilogram,8.67193992696942e-10
+Ethanol,Emissions / Emissions to air,kilogram,8.511410750002338e-10
+Chloroacetic Acid,Emissions / Emissions to water,kilogram,8.352675151569756e-10
+Ammonium,Emissions / Emissions to water,kilogram,8.352093757261906e-10
+Fluorine,Emissions / Emissions to air,kilogram,8.327269908226184e-10
+Fluazifop-p-butyl,Emissions / Emissions to soil,kilogram,8.237845022802013e-10
+Decane,Emissions / Emissions to water,kilogram,8.104917778900153e-10
+Barium(2+),Emissions / Emissions to air,kilogram,8.078462100247409e-10
+Adsorbable Organic Halogen Compounds,Emissions / Emissions to water,kilogram,7.983359124072994e-10
+Sulfur,Emissions / Emissions to water,kilogram,7.915486586422152e-10
+Magnesium,Emissions / Emissions to air,kilogram,7.802593248770445e-10
+Strontium(2+),Emissions / Emissions to air,kilogram,7.674404898285545e-10
+Anhydrite,resources / in ground,kilogram,7.651007984040493e-10
+Sulfur,Emissions / Emissions to soil,kilogram,7.494054038615806e-10
+Silver,Emissions / Emissions to water,kilogram,7.473518356717107e-10
+Ethanol,Emissions / Emissions to water,kilogram,7.46329960842976e-10
+Cadmium,Emissions / Emissions to water,kilogram,7.381533986635721e-10
+Chromium(3+),Emissions / Emissions to water,kilogram,7.270083760742183e-10
+Total Organic Carbon,air,kilogram,7.111283660087723e-10
+Chlorothalonil,Emissions / Emissions to soil,kilogram,7.03362847787719e-10
+Isoprene,Emissions / Emissions to air,kilogram,6.987898179712079e-10
+Dichloroacetylene,Emissions / Emissions to air,kilogram,6.834847747463131e-10
+"1,3-Butadiene",Emissions / Emissions to air,kilogram,6.784960284387975e-10
+Mercury,Emissions / Emissions to air,kilogram,6.663371402714185e-10
+O-xylene,Emissions / Emissions to air,kilogram,6.635559170275491e-10
+Chlorine,Emissions / Emissions to soil,kilogram,6.62450295109401e-10
+Acetylene,Emissions / Emissions to air,kilogram,6.504346805081606e-10
+Lanthanum,natural resource,kilogram,6.471379552588914e-10
+Iron-59,water,kilo Becquerel,6.299699880735417e-10
+Phosphorus,Emissions / Emissions to soil,kilogram,6.232645425529873e-10
+Nickel,Emissions / Emissions to air,kilogram,6.197353897450134e-10
+Cesium,Emissions / Emissions to water,kilogram,6.138523627763309e-10
+Waste Heat,air,megajoule,5.997076131764908e-10
+Vanadium,Emissions / Emissions to water,kilogram,5.939070520359508e-10
+Adsorbable Organic Halogen Compounds,Emissions / Emissions to water,kilogram,5.899624848545028e-10
+"Volume Occupied, Final Repository For Low-active Radioactive Waste",land use,cubic meter,5.881356581047009e-10
+Molybdenum,Emissions / Emissions to air,kilogram,5.874575147276972e-10
+Benzo[a]pyrene,Emissions / Emissions to water,kilogram,5.859638910548118e-10
+Bentazon,Emissions / Emissions to soil,kilogram,5.760080062555439e-10
+Formate,water,kilogram,5.728715943541718e-10
+Scandium,water,kilogram,5.72337369992976e-10
+Boron,Emissions / Emissions to air,kilogram,5.671685311219607e-10
+Phosphorus,Emissions / Emissions to air,kilogram,5.671685311219607e-10
+Antimony,Emissions / Emissions to air,kilogram,5.629289810275218e-10
+Hydrogen Peroxide,Emissions / Emissions to water,kilogram,5.628964955652516e-10
+"1,2-dichlorobenzene",Emissions / Emissions to water,kilogram,5.488885708918087e-10
+Lead,Emissions / Emissions to water,kilogram,5.470697247509444e-10
+Chromium(3+),Emissions / Emissions to air,kilogram,5.454012968248573e-10
+Pentachlorophenol,Emissions / Emissions to air,kilogram,5.220595728903546e-10
+"1,2-dichloroethane",Emissions / Emissions to air,kilogram,5.158620386152133e-10
+Mercury,Emissions / Emissions to air,kilogram,5.151284945063117e-10
+Metolachlor,Emissions / Emissions to soil,kilogram,5.036331223861893e-10
+Chlorodifluoromethane,Emissions / Emissions to air,kilogram,4.976474393866901e-10
+Sodium Formate,Emissions / Emissions to air,kilogram,4.968852973953283e-10
+Cadmium,Emissions / Emissions to air,kilogram,4.940117322133567e-10
+Titanium,Emissions / Emissions to soil,kilogram,4.822131941887553e-10
+Vanadium(2+),Emissions / Emissions to air,kilogram,4.786734791431844e-10
+Cerium-144,water,kilo Becquerel,4.717600699375391e-10
+Silver,Emissions / Emissions to water,kilogram,4.69815889793334e-10
+Black carbon,emissions to air / unspecified,kilogram,4.5390575578006957e-10
+Cadmium,Emissions / Emissions to air,kilogram,4.5276699687456744e-10
+Chlorate ion,Emissions / Emissions to water,kilogram,4.3360180852793835e-10
+Vinyl Chloride,Emissions / Emissions to air,kilogram,4.3043916778124495e-10
+Vinyl Chloride,Emissions / Emissions to air,kilogram,4.244528584895511e-10
+Calcium,Emissions / Emissions to air,kilogram,4.2014567099470556e-10
+Aluminium,Emissions / Emissions to soil,kilogram,4.126485123598983e-10
+Chromium,Emissions / Emissions to water,kilogram,3.9888290532774937e-10
+Tert-butyl Methyl Ether,Emissions / Emissions to air,kilogram,3.9431455887834076e-10
+Hcfc 124,Emissions / Emissions to air,kilogram,3.87670624479418e-10
+Cfc 113,Emissions / Emissions to air,kilogram,3.8767056258972717e-10
+CFC-114,Emissions / Emissions to air,kilogram,3.8718170149604814e-10
+Acetaldehyde,Emissions / Emissions to water,kilogram,3.845459474743176e-10
+"Nitrogen, Total (excluding N2)",Emissions / Emissions to water,kilogram,3.83119999514388e-10
+Cesium-137,Emissions / Emissions to air,kilo Becquerel,3.7604923409968795e-10
+Bromotrifluoromethane,Emissions / Emissions to air,kilogram,3.63742494653121e-10
+Polycyclic Aromatic Hydrocarbons,Emissions / Emissions to water,kilogram,3.6115544550609696e-10
+Neodymium,natural resource,kilogram,3.56402054700605e-10
+Prochloraz,Emissions / Emissions to soil,kilogram,3.558436033836905e-10
+Tert-butyl Methyl Ether,Emissions / Emissions to air,kilogram,3.2656615464823733e-10
+Cadmium,Emissions / Emissions to water,kilogram,3.231524861164057e-10
+Cerium-141,air,kilo Becquerel,3.0658583956784843e-10
+Water,air,cubic meter,3.048914491534389e-10
+Ruthenium-103,water,kilo Becquerel,2.970956827702905e-10
+Lithium,Resources / Resources from ground,kilogram,2.8702283279310645e-10
+Mercury(2+),Emissions / Emissions to water,kilogram,2.8549269777160655e-10
+Potassium,air,kilogram,2.8517913702000935e-10
+"1,2-dichloroethane",Emissions / Emissions to water,kilogram,2.796596195807779e-10
+Acetaldehyde,Emissions / Emissions to water,kilogram,2.789091128734691e-10
+Olivine,soil,kilogram,2.787805129145885e-10
+Cesium-136,water,kilo Becquerel,2.750302497631319e-10
+Sodium,air,kilogram,2.73294395984715e-10
+Borax (B4Na2O7.10H2O),water,kilogram,2.7150428861222945e-10
+Cobalt,Emissions / Emissions to air,kilogram,2.7113423664530594e-10
+Cumene,Emissions / Emissions to air,kilogram,2.705148590926111e-10
+"Chlorinated Solvents, Unspecified",water,kilogram,2.6441250276607247e-10
+Hexafluoroethane,Emissions / Emissions to air,kilogram,2.59572861536675e-10
+Ethylene,Emissions / Emissions to water,kilogram,2.5623826376007835e-10
+Cobalt-60,Emissions / Emissions to air,kilo Becquerel,2.528768668101143e-10
+Titanium,Emissions / Emissions to water,kilogram,2.4795702377879803e-10
+Hydrogen Sulfide,Emissions / Emissions to air,kilogram,2.4692161202508563e-10
+lead,Emissions / Emissions to soil,kilogram,2.39936773013623e-10
+Ethyl Benzene,Emissions / Emissions to water,kilogram,2.297256233406959e-10
+"1,3-Butadiene",Emissions / Emissions to air,kilogram,2.277159691369557e-10
+N-propanol,Emissions / Emissions to air,kilogram,2.189705797442357e-10
+Uranium,air,kilogram,2.17709502194012e-10
+Chromium(6+),Emissions / Emissions to air,kilogram,2.17645171099538e-10
+2-methyl-1-propene,Emissions / Emissions to air,kilogram,2.0718189940640962e-10
+Butene,Emissions / Emissions to water,kilogram,2.0543425673232994e-10
+Chloride,Emissions / Emissions to soil,kilogram,2.035149613296531e-10
+Hexafluoroethane,Emissions / Emissions to air,kilogram,1.9677198227102053e-10
+Molybdenum,Emissions / Emissions to water,kilogram,1.9593731114726746e-10
+Isobutane,Emissions / Emissions to air,kilogram,1.8835743949812102e-10
+Adsorbable Organic Halogen Compounds,Emissions / Emissions to water,kilogram,1.878130732592199e-10
+Cadmium(2+),Emissions / Emissions to soil,kilogram,1.8725076651667709e-10
+Tantalum,Resources / Resources from ground,kilogram,1.8516389264609605e-10
+Orbencarb,Emissions / Emissions to soil,kilogram,1.7364344730776696e-10
+iodide,Emissions / Emissions to water,kilogram,1.7260226866756903e-10
+"Acidity, unspecified",emissions to water / unspecified,kilogram,1.6938199725071924e-10
+Selenium,Emissions / Emissions to air,kilogram,1.687672227394198e-10
+Sodium Hydroxide,Emissions / Emissions to air,kilogram,1.6654501293180733e-10
+Arsenic,Emissions / Emissions to air,kilogram,1.6456431123729117e-10
+Selenium,Emissions / Emissions to air,kilogram,1.6386183680312544e-10
+Thorium,air,kilogram,1.6349674404163832e-10
+Nitrogen,water,kilogram,1.6324346105128956e-10
+Barium,Emissions / Emissions to soil,kilogram,1.5968445918852018e-10
+"Aldehydes, Unspecified",Emissions / Emissions to air,kilogram,1.5670310306386478e-10
+Butyl acetate,Emissions / Emissions to water,kilogram,1.53593643199829e-10
+Beryllium(2+),Emissions / Emissions to water,kilogram,1.5266096079113084e-10
+Dichromate,water,kilogram,1.5235144814776297e-10
+Potassium-40,air,kilo Becquerel,1.5198859481435568e-10
+Nitrate,Emissions / Emissions to air,kilogram,1.4394597749441224e-10
+Americium-241,Emissions / Emissions to water,kilo Becquerel,1.4352809908335674e-10
+"Volume Occupied, Final Repository For Radioactive Waste",land use,cubic meter,1.4263253914170635e-10
+Ethanol,Emissions / Emissions to air,kilogram,1.415791907458951e-10
+Propanal,Emissions / Emissions to air,kilogram,1.4002767168956708e-10
+Propanal,Emissions / Emissions to air,kilogram,1.388481736479247e-10
+"Radioactive Species, Other Beta Emitters",air,kilo Becquerel,1.3843868509594426e-10
+Thallium,Emissions / Emissions to air,kilogram,1.368322288742454e-10
+Deltamethrin,Emissions / Emissions to soil,kilogram,1.3672097400777012e-10
+Tungsten,Emissions / Emissions to air,kilogram,1.3648933987637927e-10
+Phenol,Emissions / Emissions to air,kilogram,1.3575211871227883e-10
+Sodium Chlorate,Emissions / Emissions to air,kilogram,1.34679824141089e-10
+Cobalt,Emissions / Emissions to water,kilogram,1.295282031624658e-10
+acrylic acid,Emissions / Emissions to water,kilogram,1.2562361911077347e-10
+Butanol,Emissions / Emissions to water,kilogram,1.2532090463011467e-10
+Tin atom,Emissions / Emissions to soil,kilogram,1.238623835190381e-10
+Ethylene Oxide,Emissions / Emissions to air,kilogram,1.2169788521731518e-10
+Nitric oxide,Emissions / Emissions to air,kilogram,1.1190493908491289e-10
+Ozone,air,kilogram,1.1012391614352757e-10
+Beryllium(2+),Emissions / Emissions to air,kilogram,1.0868107574542865e-10
+Scandium,air,kilogram,1.0842430977381355e-10
+Lanthanum-140,air,kilo Becquerel,1.0808679887512068e-10
+Mercury(2+),Emissions / Emissions to water,kilogram,1.0454397069256984e-10
+Thorium-228,water,kilo Becquerel,9.863956231985196e-11
+Molybdenum,Emissions / Emissions to air,kilogram,9.748653828719452e-11
+Chromium(6+),Emissions / Emissions to air,kilogram,9.7135463468292e-11
+Chlorine,Emissions / Emissions to air,kilogram,9.650856209364978e-11
+Lambda-cyhalothrin,Emissions / Emissions to soil,kilogram,9.574725983370365e-11
+Copper,Emissions / Emissions to soil,kilogram,9.418940478265558e-11
+Ethylene Oxide,Emissions / Emissions to air,kilogram,9.235518629544494e-11
+Tin atom,Emissions / Emissions to water,kilogram,9.152051935441176e-11
+Benzo[a]pyrene,Emissions / Emissions to air,kilogram,8.987194122852308e-11
+Chloride,Emissions / Emissions to air,kilogram,8.951963672516947e-11
+Titanium,Emissions / Emissions to soil,kilogram,8.78806437461527e-11
+Bromine,Emissions / Emissions to air,kilogram,8.634368836544713e-11
+Tin atom,Emissions / Emissions to air,kilogram,8.578346363500996e-11
+Sulfite,water,kilogram,8.32812394017755e-11
+Tellurium-132,water,kilo Becquerel,8.241119897390163e-11
+Clomazone,Emissions / Emissions to soil,kilogram,8.066546428584925e-11
+Vanadium(2+),Emissions / Emissions to water,kilogram,7.740337488566908e-11
+Linuron,Emissions / Emissions to soil,kilogram,7.306930651495262e-11
+Dimethyl Formamide,Emissions / Emissions to air,kilogram,7.24607715500562e-11
+Ethylene Oxide,Emissions / Emissions to water,kilogram,7.216452935267665e-11
+CFC-10,Emissions / Emissions to air,kilogram,7.209260236654537e-11
+Cesium-134,Emissions / Emissions to air,kilo Becquerel,7.206398648887926e-11
+Tin atom,Emissions / Emissions to air,kilogram,7.036578827845965e-11
+Ethyl Acetate,Emissions / Emissions to air,kilogram,6.940635596627154e-11
+Sulfur Trioxide,Emissions / Emissions to air,kilogram,6.764373012507532e-11
+Titanium,Emissions / Emissions to air,kilogram,6.691511435786321e-11
+Fenpiclonil,Emissions / Emissions to soil,kilogram,6.656538444428657e-11
+Chloroform,Emissions / Emissions to air,kilogram,6.64351557586993e-11
+Mercury(2+),Emissions / Emissions to water,kilogram,6.518076801302641e-11
+Manganese,Emissions / Emissions to soil,kilogram,6.498027390773233e-11
+Indium,Resources / Resources from ground,kilogram,6.14534221400902e-11
+Zirconium-95,air,kilo Becquerel,5.765292510670309e-11
+Ethyl Cellulose,air,kilogram,5.760205685592984e-11
+Barium,Emissions / Emissions to water,kilogram,5.702142563997346e-11
+Volatile Organic Compound,Emissions / Emissions to air,kilogram,5.619426797304397e-11
+Nitric Acid,Emissions / Emissions to air,kilogram,5.5930599148477444e-11
+Pirimicarb,Emissions / Emissions to soil,kilogram,5.452379596166509e-11
+Cobalt-60,Emissions / Emissions to air,kilo Becquerel,5.425380450426089e-11
+Palladium,Resources / Resources from ground,kilogram,5.362231976373045e-11
+Monochloramine,Emissions / Emissions to water,kilogram,5.351538693180316e-11
+Acrylic Acid,Emissions / Emissions to air,kilogram,5.30784966238942e-11
+Silver,Emissions / Emissions to air,kilogram,5.053794426594914e-11
+Cobalt,Emissions / Emissions to soil,kilogram,5.044257049677003e-11
+Zinc-65,air,kilo Becquerel,5.023656825898699e-11
+Feldspar,soil,kilogram,5.023444692827679e-11
+Methyl acrylate,Emissions / Emissions to air,kilogram,4.9933745639910256e-11
+Phosphorus,Emissions / Emissions to air,kilogram,4.9704421082041505e-11
+Acenaphthene,Emissions / Emissions to water,kilogram,4.8471514154831993e-11
+Trinexapac-ethyl,Emissions / Emissions to soil,kilogram,4.828622407426227e-11
+Molybdenum,Emissions / Emissions to water,kilogram,4.7810639132340796e-11
+Chloroform,Emissions / Emissions to air,kilogram,4.7617628437012404e-11
+Radium-228,air,kilo Becquerel,4.725504913944861e-11
+"From Agriculture, Mosaic",Land use / Land transformation,square meter,4.668780196254353e-11
+Cadmium,Emissions / Emissions to air,kilogram,4.61112662251645e-11
+Hydrogen Peroxide,Emissions / Emissions to air,kilogram,4.4364613563650113e-11
+Bromochlorodifluoromethane,Emissions / Emissions to air,kilogram,4.3472512705327546e-11
+Tin atom,Emissions / Emissions to water,kilogram,4.336599310359909e-11
+Beryllium,Emissions / Emissions to air,kilogram,4.2606808069917946e-11
+Nitrobenzene,Emissions / Emissions to water,kilogram,4.238684658776695e-11
+Sodium Dichromate,air,kilogram,4.230454429111143e-11
+Phosphorus Trichloride,Emissions / Emissions to air,kilogram,4.198063314257539e-11
+Chloroacetic Acid,Emissions / Emissions to air,kilogram,4.101159231102515e-11
+"Hydrocarbons, Aromatic",Emissions / Emissions to air,kilogram,4.0229428244024904e-11
+Silver,Emissions / Emissions to water,kilogram,4.003782848077778e-11
+Thorium-232,emissions to air / unspecified,kilo Becquerel,3.998503999010099e-11
+"Oils, Unspecified",Emissions / Emissions to air,kilogram,3.976270278316302e-11
+Vanadium,Emissions / Emissions to water,kilogram,3.925134795970345e-11
+Nickel,Emissions / Emissions to soil,kilogram,3.814130522971837e-11
+Praseodymium,natural resource,kilogram,3.7815622048410356e-11
+Formic Acid,Emissions / Emissions to air,kilogram,3.598655699785418e-11
+Thallium,Emissions / Emissions to water,kilogram,3.592342530618288e-11
+Tellurium,Resources / Resources from ground,kilogram,3.553602033229097e-11
+"To Urban, Continuously Built",Land use / Land transformation,square meter,3.529630383781875e-11
+Sulfuric acid,Emissions / Emissions to air,kilogram,3.44999807990369e-11
+Uranium-234,Emissions / Emissions to water,kilo Becquerel,3.26306776420349e-11
+Metribuzin,Emissions / Emissions to soil,kilogram,3.2155603110842005e-11
+Potassium,Resources / Resources from ground,kilogram,3.183859345603937e-11
+Antimony,Emissions / Emissions to air,kilogram,3.043343536057663e-11
+"1,4-Butanediol",Emissions / Emissions to air,kilogram,2.9973757199328367e-11
+Cobalt-58,Emissions / Emissions to air,kilo Becquerel,2.9783368702645714e-11
+Molybdenum,Emissions / Emissions to soil,kilogram,2.941128575085122e-11
+Acenaphthene,Emissions / Emissions to water,kilogram,2.9020876724972294e-11
+Dimethylamine,Emissions / Emissions to water,kilogram,2.8012486272332385e-11
+Cobalt,Emissions / Emissions to air,kilogram,2.707076873003482e-11
+Samarium,natural resource,kilogram,2.698473061655418e-11
+Propionic Acid,Emissions / Emissions to water,kilogram,2.6456888827142257e-11
+Ethanolamine,Emissions / Emissions to air,kilogram,2.6448040427871246e-11
+Thallium,Emissions / Emissions to air,kilogram,2.5795560218297736e-11
+bromine,Emissions / Emissions to soil,kilogram,2.545446484552203e-11
+selenium,Emissions / Emissions to soil,kilogram,2.545446484552203e-11
+Thorium-228,air,kilo Becquerel,2.5445025823926672e-11
+Vinyl Acetate,Emissions / Emissions to air,kilogram,2.5205107522300656e-11
+Silicium Tetrafluoride,air,kilogram,2.518493282414209e-11
+Selenium,Emissions / Emissions to water,kilogram,2.4697980782885145e-11
+Methyl Acetate,Emissions / Emissions to air,kilogram,2.4428033576844638e-11
+Acetone,Emissions / Emissions to air,kilogram,2.4070373546729507e-11
+Acenaphthylene,Emissions / Emissions to water,kilogram,2.400698454114898e-11
+Mercury,Emissions / Emissions to air,kilogram,2.3240077164104104e-11
+Arsenic,Emissions / Emissions to soil,kilogram,2.3124668477363363e-11
+Antimony-125,air,kilo Becquerel,2.290287400957303e-11
+HFC-134a,Emissions / Emissions to air,kilogram,2.254919678882857e-11
+Carbon Monoxide (fossil),Emissions / Emissions to air,kilogram,2.1514593459321552e-11
+"From Urban, Continuously Built",Land use / Land transformation,square meter,2.129634906608636e-11
+Diatomite,soil,kilogram,2.0052290198309e-11
+Chromium-51,air,kilo Becquerel,1.9645966313364924e-11
+CFC-12,Emissions / Emissions to air,kilogram,1.7885283644133456e-11
+HFC-134a,Emissions / Emissions to air,kilogram,1.7870969272721428e-11
+Aldrin,Emissions / Emissions to soil,kilogram,1.774199691466593e-11
+Gallium,Resources / Resources from ground,kilogram,1.7547599950711908e-11
+Ammonium Carbonate,Emissions / Emissions to air,kilogram,1.7471499924237693e-11
+Chloroethane,Emissions / Emissions to air,kilogram,1.665260920044308e-11
+Cobalt,Emissions / Emissions to soil,kilogram,1.6288346099251916e-11
+Octane,Emissions / Emissions to air,kilogram,1.5314725344185294e-11
+Aniline,Emissions / Emissions to water,kilogram,1.5210232170787978e-11
+Benzo[a]pyrene,Emissions / Emissions to air,kilogram,1.5141747847447597e-11
+Total Organic Carbon,air,kilogram,1.5049529662502163e-11
+"Hydrocarbons, Aliphatic, Unsaturated",air,kilogram,1.4827539578800456e-11
+Antimony,Emissions / Emissions to water,kilogram,1.464819906828724e-11
+Barium(2+),Emissions / Emissions to soil,kilogram,1.4625875502375975e-11
+Acenaphthylene,Emissions / Emissions to water,kilogram,1.437099716143437e-11
+Gadolinium,natural resource,kilogram,1.351550877812712e-11
+Octene,Emissions / Emissions to air,kilogram,1.3416158253336575e-11
+CFC-10,Emissions / Emissions to air,kilogram,1.2914414687888547e-11
+Antimony-124,air,kilo Becquerel,1.2857644943865258e-11
+Molybdenum,Emissions / Emissions to water,kilogram,1.2847675371408748e-11
+Hexachlorobenzene,Emissions / Emissions to air,kilogram,1.2527614166350398e-11
+Chlorotrimethylsilane,Emissions / Emissions to air,kilogram,1.2075330544013264e-11
+"1,4-Butanediol",Emissions / Emissions to water,kilogram,1.1989589519071025e-11
+Uranium-235,Emissions / Emissions to air,kilo Becquerel,1.1896904731835832e-11
+Mercury,Emissions / Emissions to soil,kilogram,1.1792485461530758e-11
+"Unspecified, Used",Land use / Land occupation,square meter-year,1.1656197162965882e-11
+"Aldehydes, Unspecified",Emissions / Emissions to air,kilogram,1.1609591537850542e-11
+O-chlorotoluene,Emissions / Emissions to water,kilogram,1.1442990753442368e-11
+Sulfur Dioxide,Emissions / Emissions to air,kilogram,1.1333590290423943e-11
+Gamma-Butyrolactone,Emissions / Emissions to water,kilogram,1.1176698735338934e-11
+Chlorodifluoromethane,Emissions / Emissions to air,kilogram,1.0952423577406421e-11
+Nitrobenzene,Emissions / Emissions to air,kilogram,1.0576904368599396e-11
+Atrazine,Emissions / Emissions to soil,kilogram,1.035508190050346e-11
+Manganese-54,air,kilo Becquerel,1.0060910105143364e-11
+Water,air,cubic meter,9.862707749541225e-12
+Beryllium(2+),Emissions / Emissions to water,kilogram,9.634256857928555e-12
+Helium,air,kilogram,9.14551808089746e-12
+Carbon disulfide,Emissions / Emissions to air,kilogram,9.077975973348505e-12
+Thorium-232,emissions to water / groundwater,kilo Becquerel,8.837605200236733e-12
+Acetone,Emissions / Emissions to water,kilogram,8.805206600927252e-12
+Diethylamine,Emissions / Emissions to water,kilogram,8.741574706437948e-12
+Thiram,Emissions / Emissions to soil,kilogram,8.639918598786361e-12
+Boron,Emissions / Emissions to air,kilogram,8.518188322824035e-12
+Tributyltin,Emissions / Emissions to water,kilogram,8.468783496985527e-12
+Dichloromethane,Emissions / Emissions to air,kilogram,8.226926635578778e-12
+Iodine-131,Emissions / Emissions to water,kilo Becquerel,8.083580245372265e-12
+Isoproturon,Emissions / Emissions to soil,kilogram,7.760316121917978e-12
+"2,4-dichlorophenol",Emissions / Emissions to air,kilogram,7.613372229131164e-12
+Chloroform,Emissions / Emissions to water,kilogram,7.417430847172091e-12
+Isobutanol,Emissions / Emissions to water,kilogram,7.397775726650181e-12
+Trifluoromethane,Emissions / Emissions to air,kilogram,7.327819106914312e-12
+Ethephon,Emissions / Emissions to soil,kilogram,7.113379768201308e-12
+Polychlorinated Biphenyls,Emissions / Emissions to air,kilogram,6.9790120237291555e-12
+Beryllium(2+),Emissions / Emissions to air,kilogram,6.948555653832397e-12
+Cobalt-58,Emissions / Emissions to air,kilo Becquerel,6.918604962831544e-12
+Stibnite,resources / in ground,kilogram,6.69258555065217e-12
+Methylamine,Emissions / Emissions to water,kilogram,6.569748023370472e-12
+Cyanide,Emissions / Emissions to air,kilogram,6.40721749915671e-12
+Aniline,Emissions / Emissions to air,kilogram,6.315447306727352e-12
+Ethyl Acetate,Emissions / Emissions to water,kilogram,6.221121692531071e-12
+O-chlorotoluene,Emissions / Emissions to air,kilogram,5.99752274139323e-12
+Cadmium,Emissions / Emissions to soil,kilogram,5.9965628463288336e-12
+Monochloramine,Emissions / Emissions to air,kilogram,5.988225949779487e-12
+Uranium,emissions to water / unspecified,kilogram,5.796756240237443e-12
+"Wood, unspecified, standing/m3",resources / biotic,cubic meter,5.769312119706122e-12
+Trichloroethylene,Emissions / Emissions to air,kilogram,5.749666303422274e-12
+Chlorosulfonic acid,Emissions / Emissions to water,kilogram,5.705215494437334e-12
+Kerosene,Emissions / Emissions to air,kilogram,5.680111194871954e-12
+Carbon disulfide,Emissions / Emissions to water,kilogram,5.650679231196585e-12
+Magnesium,Emissions / Emissions to air,kilogram,5.5540680142899914e-12
+Mercury(2+),Emissions / Emissions to air,kilogram,5.549146490138536e-12
+Europium,natural resource,kilogram,5.415459884547717e-12
+Zirconium,Emissions / Emissions to air,kilogram,5.407283726408308e-12
+Cyclohexane,Emissions / Emissions to air,kilogram,5.398613491785021e-12
+Methanol,Emissions / Emissions to water,kilogram,5.398436533944531e-12
+Isopropanol,Emissions / Emissions to water,kilogram,5.33167428161258e-12
+Cyclohexane,Emissions / Emissions to air,kilogram,5.1965084473592085e-12
+"1,2-dichlorobenzene",Emissions / Emissions to air,kilogram,5.130926846634416e-12
+Dichlorobenzene,Emissions / Emissions to air,kilogram,5.036164117530743e-12
+Polycyclic Aromatic Hydrocarbons,Emissions / Emissions to soil,kilogram,4.980195648017966e-12
+Tin(2+),Emissions / Emissions to water,kilogram,4.9621175508753284e-12
+Benomyl,Emissions / Emissions to soil,kilogram,4.8699767007120655e-12
+Ethyl Amine,Emissions / Emissions to water,kilogram,4.8623827627350664e-12
+Silver(1+),Emissions / Emissions to air,kilogram,4.8436657663714e-12
+Arsenic,Emissions / Emissions to soil,kilogram,4.839245420478428e-12
+Formamide,Emissions / Emissions to water,kilogram,4.718457016798881e-12
+Gamma-Butyrolactone,Emissions / Emissions to air,kilogram,4.6568729264100265e-12
+Triethylene Glycol,Emissions / Emissions to water,kilogram,4.485481500158704e-12
+Tert-butylamine,Emissions / Emissions to water,kilogram,4.460800875078912e-12
+Chloroacetyl Chloride,Emissions / Emissions to water,kilogram,4.350654289418011e-12
+Chlorodifluoromethane,Emissions / Emissions to air,kilogram,4.166485180964864e-12
+N-propanol,Emissions / Emissions to water,kilogram,4.00946623860613e-12
+"Particulates, unspecified",emissions to air / unspecified,kilogram,3.756286746327385e-12
+Dipropylamine,Emissions / Emissions to water,kilogram,3.728215005777417e-12
+Carbon Monoxide (biogenic),Emissions / Emissions to air,kilogram,3.705214222535485e-12
+Naphthalene,Emissions / Emissions to water,kilogram,3.66786121423804e-12
+Diethylamine,Emissions / Emissions to air,kilogram,3.642281177242924e-12
+HFC-152a,Emissions / Emissions to air,kilogram,3.6016687847814027e-12
+Molybdenum,Emissions / Emissions to soil,kilogram,3.5740407800758557e-12
+Carbon disulfide,Emissions / Emissions to air,kilogram,3.50382901901179e-12
+Acetochlor,Emissions / Emissions to soil,kilogram,3.375983002348097e-12
+L-Alaninol,water,kilogram,3.2621288019425057e-12
+"Benzene, chloro-","emissions to water / river, long-term",kilogram,3.122039057308128e-12
+Isobutanol,Emissions / Emissions to air,kilogram,3.0824329059976163e-12
+Silver-110,air,kilo Becquerel,3.0635041032506194e-12
+Butanol,Emissions / Emissions to air,kilogram,3.0611928559817782e-12
+Urea,Emissions / Emissions to water,kilogram,2.9883037079129687e-12
+Plutonium,Emissions / Emissions to air,kilo Becquerel,2.9444175904241468e-12
+Ethylenediamine,Emissions / Emissions to water,kilogram,2.9375949402779256e-12
+Lactic Acid,Emissions / Emissions to water,kilogram,2.9204713930226144e-12
+Cfc 113,Emissions / Emissions to air,kilogram,2.8551914541226154e-12
+tin,Emissions / Emissions to soil,kilogram,2.817467051523658e-12
+Propanal,Emissions / Emissions to water,kilogram,2.7868520405111187e-12
+Methyl Chloride,Emissions / Emissions to air,kilogram,2.7778249325803542e-12
+Nitrogen Trifluoride,Emissions / Emissions to air,kilogram,2.7657750242914026e-12
+Methyl Ethyl Ketone,Emissions / Emissions to air,kilogram,2.752575819466698e-12
+Methylamine,Emissions / Emissions to air,kilogram,2.7374210464699313e-12
+Metamitron,Emissions / Emissions to soil,kilogram,2.6805570735308513e-12
+Scandium,air,kilogram,2.6652932018217394e-12
+Cobalt,Emissions / Emissions to water,kilogram,2.609782205237616e-12
+Pentan-1-ol,Emissions / Emissions to water,kilogram,2.5799338618665567e-12
+Lithium,Emissions / Emissions to water,kilogram,2.5721191600294475e-12
+antimony,Emissions / Emissions to soil,kilogram,2.545446465462284e-12
+Vanadium(2+),Emissions / Emissions to soil,kilogram,2.512137778449443e-12
+Chromium(3+),Emissions / Emissions to soil,kilogram,2.474862145832097e-12
+"Hydrocarbons, Aliphatic, Alkanes, Cyclic",air,kilogram,2.467442968089023e-12
+Tin-San,water,kilogram,2.3665242484296565e-12
+Dimethyl Malonate,Emissions / Emissions to air,kilogram,2.3495457433089314e-12
+Trifluoromethane,Emissions / Emissions to air,kilogram,2.328213141937964e-12
+Isopropylamine,Emissions / Emissions to water,kilogram,2.311123112123009e-12
+Chlorosulfonic acid,Emissions / Emissions to air,kilogram,2.2878274785474684e-12
+Methyl Chloride,Emissions / Emissions to air,kilogram,2.283481046552963e-12
+Methyl Chloride,Emissions / Emissions to air,kilogram,2.256550372766648e-12
+Teflubenzuron,Emissions / Emissions to soil,kilogram,2.1437067873010398e-12
+Acetyl Chloride,Emissions / Emissions to water,kilogram,2.02669864175337e-12
+Ethyl Amine,Emissions / Emissions to air,kilogram,2.0259817741457523e-12
+M-xylene,Emissions / Emissions to water,kilogram,1.9809949820816855e-12
+Formamide,Emissions / Emissions to air,kilogram,1.9659973451336613e-12
+1-pentene,Emissions / Emissions to water,kilogram,1.9496153815695057e-12
+Antimony-124,air,kilo Becquerel,1.933257726647326e-12
+Methanesulfonic Acid,Emissions / Emissions to air,kilogram,1.893362875047933e-12
+Sulfuric acid,Emissions / Emissions to air,kilogram,1.881785962273193e-12
+Cyanoacetic Acid,Emissions / Emissions to air,kilogram,1.8736343471997853e-12
+Tert-butylamine,Emissions / Emissions to air,kilogram,1.858654853514769e-12
+CFC-12,Emissions / Emissions to air,kilogram,1.749020091936059e-12
+Phosphorus,Emissions / Emissions to soil,kilogram,1.7289980295743707e-12
+Rhodium,natural resource,kilogram,1.7172973221400984e-12
+Lithium,Emissions / Emissions to soil,kilogram,1.660054850744257e-12
+Pendimethalin,Emissions / Emissions to soil,kilogram,1.586125456837452e-12
+Radium-228,water,kilo Becquerel,1.5807071862295158e-12
+Acetonitrile,Emissions / Emissions to water,kilogram,1.5689083571050867e-12
+Trimethylamine,Emissions / Emissions to water,kilogram,1.5586778407308503e-12
+Fenpropimorph,Emissions / Emissions to soil,kilogram,1.5536434429198356e-12
+Dipropylamine,Emissions / Emissions to air,kilogram,1.5533975628274904e-12
+Vinyl Chloride,Emissions / Emissions to water,kilogram,1.5451447387231967e-12
+Dimethoate,Emissions / Emissions to soil,kilogram,1.5274708434060975e-12
+Nitric Acid,Emissions / Emissions to water,kilogram,1.4952614725833584e-12
+Iodine,Emissions / Emissions to air,kilogram,1.488079681356441e-12
+"8-(N-Indolyl)-2,6-dimethyl-7-octen-2-ol",Emissions / Emissions to water,kilogram,1.3821603797313098e-12
+Isopropanol,Emissions / Emissions to air,kilogram,1.3752740866151978e-12
+Formic Acid,Emissions / Emissions to water,kilogram,1.3697371175287736e-12
+Fluoride Ion,Emissions / Emissions to air,kilogram,1.369175873800669e-12
+L-Alaninol,air,kilogram,1.3557231232019694e-12
+2-Nitrobenzoic Acid,air,kilogram,1.3452773881235062e-12
+Methyl Lactate,Emissions / Emissions to air,kilogram,1.3358802940097641e-12
+Vanadium,Emissions / Emissions to soil,kilogram,1.2828537468852371e-12
+Antimony,Emissions / Emissions to soil,kilogram,1.2615133702427842e-12
+1-pentene,Emissions / Emissions to air,kilogram,1.2547988820526744e-12
+Dichloromethane,Emissions / Emissions to air,kilogram,1.2358304015742104e-12
+Lactic Acid,Emissions / Emissions to air,kilogram,1.2168617080465736e-12
+Niobium-95,air,kilo Becquerel,1.2108823632436644e-12
+2-nitrotoluene,Emissions / Emissions to air,kilogram,1.1616760690537365e-12
+Bis(tributyltin) oxide,Emissions / Emissions to water,kilogram,1.1564151591238361e-12
+Dichromate,water,kilogram,1.1058547183989661e-12
+Spiroxamine,Emissions / Emissions to soil,kilogram,1.1015808166200801e-12
+Pentan-1-ol,Emissions / Emissions to air,kilogram,1.0749593030571583e-12
+Anthranilic Acid,Emissions / Emissions to air,kilogram,1.0418170496297258e-12
+Dichloromethane,Emissions / Emissions to air,kilogram,1.034715698476242e-12
+Fluorine,Emissions / Emissions to air,kilogram,9.71162623242281e-13
+Isopropylamine,Emissions / Emissions to air,kilogram,9.62962880354664e-13
+Tert-butyl Methyl Ether,Emissions / Emissions to water,kilogram,9.127913855105171e-13
+Fluoride Ion,Emissions / Emissions to air,kilogram,8.625936014203393e-13
+"Metals, unspecified",emissions to air / unspecified,kilogram,8.363416259838852e-13
+Ioxynil,Emissions / Emissions to soil,kilogram,7.933110777739699e-13
+"1,2-dichloroethane",Emissions / Emissions to water,kilogram,7.901236984711207e-13
+Ammonia,Emissions / Emissions to soil,kilogram,7.595073421247664e-13
+Propylamine,Emissions / Emissions to water,kilogram,7.5532863358247e-13
+"Trans-1,2-Dichloroethylene",Emissions / Emissions to air,kilogram,7.503753592297063e-13
+Methyl Acetate,Emissions / Emissions to water,kilogram,7.475969819577024e-13
+Thallium,Emissions / Emissions to water,kilogram,7.252778608714469e-13
+Ethofumesate,Emissions / Emissions to soil,kilogram,7.033036389554713e-13
+Phosphorus,Emissions / Emissions to air,kilogram,6.844002720180405e-13
+Tert-butyl Methyl Ether,Emissions / Emissions to water,kilogram,6.797679790207446e-13
+Dichlorprop-P,Emissions / Emissions to soil,kilogram,6.676068318921137e-13
+Plutonium,Emissions / Emissions to water,kilo Becquerel,6.608469099117611e-13
+CFC-10,Emissions / Emissions to water,kilogram,6.553235557827809e-13
+Diflufenican,Emissions / Emissions to soil,kilogram,6.475939545008834e-13
+Trimethylamine,Emissions / Emissions to air,kilogram,6.455798510029014e-13
+Fenpropidin,Emissions / Emissions to soil,kilogram,6.108745617601197e-13
+Methyl Formate,Emissions / Emissions to air,kilogram,5.89306811100762e-13
+Chlortoluron,Emissions / Emissions to soil,kilogram,5.4861819226626e-13
+Vinyl Chloride,Emissions / Emissions to water,kilogram,5.449203791893286e-13
+Propionic Acid,Emissions / Emissions to air,kilogram,5.393606920353907e-13
+Rhenium,Resources / Resources from ground,kilogram,5.380587418169587e-13
+Magnesium,Emissions / Emissions to water,kilogram,5.322509477441014e-13
+Beryllium,Emissions / Emissions to water,kilogram,5.143685673434688e-13
+Phenmedipham,Emissions / Emissions to soil,kilogram,4.909855601496521e-13
+Azoxystrobin,Emissions / Emissions to soil,kilogram,4.84017593010092e-13
+Trimethyl borate,Emissions / Emissions to air,kilogram,4.5300323176462194e-13
+Thorium,air,kilogram,4.3450409024792727e-13
+Lead,Emissions / Emissions to soil,kilogram,4.208831285719425e-13
+Chloroform,Emissions / Emissions to air,kilogram,4.175672543873745e-13
+Ethyl Benzene,Emissions / Emissions to air,kilogram,4.006958459870133e-13
+Flurtamone,Emissions / Emissions to soil,kilogram,3.8943603688092563e-13
+1-pentene,Emissions / Emissions to air,kilogram,3.73567300652926e-13
+Uranium,air,kilogram,3.731015314415043e-13
+Beryllium(2+),Emissions / Emissions to air,kilogram,3.716043422350615e-13
+Sodium Dichromate,air,kilogram,3.708305158728234e-13
+Phosphate,Emissions / Emissions to soil,kilogram,3.6349706514310836e-13
+"1,3-Butadiene",Emissions / Emissions to air,kilogram,3.5020161733938325e-13
+Mecoprop-P,Emissions / Emissions to soil,kilogram,3.471655658849151e-13
+Thallium,Emissions / Emissions to air,kilogram,3.403298786312999e-13
+Propylamine,Emissions / Emissions to air,kilogram,3.147162946705494e-13
+Methyl Acetate,Emissions / Emissions to air,kilogram,3.1149846734873086e-13
+Hexachlorobenzene,Emissions / Emissions to air,kilogram,3.013536890798751e-13
+Tungsten,Emissions / Emissions to air,kilogram,2.9880099841104094e-13
+Dimethenamid,Emissions / Emissions to soil,kilogram,2.8565964842169084e-13
+Chlorpyrifos,Emissions / Emissions to soil,kilogram,2.733579555647659e-13
+Particles (PM2.5),Emissions / Emissions to air,kilogram,2.7210965284008544e-13
+sea water,Emissions / Emissions to air,kilogram,2.7182719818086147e-13
+(4-Chloro-2-methylphenoxy)acetic acid,Emissions / Emissions to soil,kilogram,2.670533440422582e-13
+Ruthenium-103,air,kilo Becquerel,2.6239941250290284e-13
+Cyprodinil,Emissions / Emissions to soil,kilogram,2.5369119409312045e-13
+Dichloroacetylene,Emissions / Emissions to air,kilogram,2.5257073406680875e-13
+Pentachlorobenzene,Emissions / Emissions to air,kilogram,2.398305437252926e-13
+Methyl Formate,Emissions / Emissions to water,kilogram,2.352762715203692e-13
+Alachlor,Emissions / Emissions to soil,kilogram,2.350897700430206e-13
+Hexachlorobenzene,Emissions / Emissions to air,kilogram,2.322246169071414e-13
+Granite,soil,kilogram,2.305215133817124e-13
+kresoxim methyl,Emissions / Emissions to soil,kilogram,2.281044260861137e-13
+Tert-butyl Methyl Ether,Emissions / Emissions to water,kilogram,2.2197161017724696e-13
+Uranium,air,kilogram,2.2106381423387563e-13
+Curium,Emissions / Emissions to water,kilo Becquerel,2.2027512459992523e-13
+Cyproconazole,Emissions / Emissions to soil,kilogram,2.1541721528779088e-13
+Antimony,Emissions / Emissions to soil,kilogram,2.1049178639442986e-13
+Chloroform,Emissions / Emissions to water,kilogram,2.0708946985480687e-13
+Bas 480f,Emissions / Emissions to soil,kilogram,1.919386686304111e-13
+Methyl Formate,Emissions / Emissions to air,kilogram,1.9084701152735927e-13
+Lithium,Emissions / Emissions to air,kilogram,1.8567747318654674e-13
+Tetrachloroethylene,Emissions / Emissions to air,kilogram,1.830547406568949e-13
+Formic Acid,Emissions / Emissions to air,kilogram,1.8288809868810927e-13
+Bromine,Emissions / Emissions to water,kilogram,1.8187310202478714e-13
+Methanethiol,Emissions / Emissions to air,kilogram,1.7044379666813924e-13
+"1,2-dichloroethane",Emissions / Emissions to air,kilogram,1.7019029957553028e-13
+Vinyl Acetate,Emissions / Emissions to water,kilogram,1.686624577801808e-13
+Chromium(3+),Emissions / Emissions to water,kilogram,1.6172548081294243e-13
+Propiconazole,Emissions / Emissions to soil,kilogram,1.613391976703183e-13
+Sulfur,Emissions / Emissions to air,kilogram,1.6018601436425964e-13
+Cerium,Emissions / Emissions to water,kilogram,1.5913376225023614e-13
+Oxydemeton-methyl,Emissions / Emissions to soil,kilogram,1.556894727403453e-13
+Pentachlorophenol,Emissions / Emissions to air,kilogram,1.5449889560434677e-13
+Terbufos,Emissions / Emissions to soil,kilogram,1.5307841115317637e-13
+Dithianon,Emissions / Emissions to soil,kilogram,1.4687743301979324e-13
+Plutonium,Emissions / Emissions to air,kilo Becquerel,1.4555008477350157e-13
+Simazine,Emissions / Emissions to soil,kilogram,1.380448869824757e-13
+Flusilazole,Emissions / Emissions to soil,kilogram,1.3405372736004358e-13
+"Pesticides, Unspecified",soil,kilogram,1.3136975185202544e-13
+Silver,Emissions / Emissions to soil,kilogram,1.2758850411881331e-13
+"1,1,2,2-tetrachloroethane",Emissions / Emissions to air,kilogram,1.218412472908588e-13
+Parathion,Emissions / Emissions to soil,kilogram,1.1449584719635337e-13
+Vanadium,Resources / Resources from ground,kilogram,1.0617821032686788e-13
+Dicamba,Emissions / Emissions to soil,kilogram,9.840795127074447e-14
+Methyl Cyclopentane,Emissions / Emissions to water,kilogram,9.305153388448866e-14
+Mesotrione,Emissions / Emissions to soil,kilogram,8.884374588020189e-14
+"Ethane, 1,1,1-trichloro-, HCFC-140",emissions to air / low. pop.,kilogram,8.520059372497243e-14
+Triadimenol,Emissions / Emissions to soil,kilogram,8.067339227478406e-14
+Pyrite,soil,kilogram,7.892078611651707e-14
+Uranium alpha,emissions to water / unspecified,kilo Becquerel,7.825816901099406e-14
+Sulfuric acid,Emissions / Emissions to soil,kilogram,7.800277536818858e-14
+Anthracene,Emissions / Emissions to water,kilogram,7.474698232607365e-14
+Naphthalene,Emissions / Emissions to air,kilogram,7.286537271299886e-14
+CFC-10,Emissions / Emissions to water,kilogram,7.210228631857302e-14
+Tetramethyl Ammonium Hydroxide,Emissions / Emissions to air,kilogram,6.782149198888181e-14
+Glufosinate,soil,kilogram,6.76536933012515e-14
+Plutonium-238,Emissions / Emissions to air,kilo Becquerel,6.349319828241207e-14
+Sulfide ion,soil,kilogram,6.338837264207639e-14
+Sodium carbonate,Emissions / Emissions to air,kilogram,6.145316442507922e-14
+CFC-114,Emissions / Emissions to air,kilogram,5.925983327474635e-14
+Phosphine,Emissions / Emissions to air,kilogram,5.860457841397712e-14
+Acetamide,Emissions / Emissions to soil,kilogram,5.740795380560938e-14
+Tebupirimfos,Emissions / Emissions to soil,kilogram,5.740795380560938e-14
+Furan,Emissions / Emissions to air,kilogram,5.193365802837119e-14
+Tetrachloroethylene,Emissions / Emissions to air,kilogram,5.1221620112926953e-14
+Silver(1+),Emissions / Emissions to air,kilogram,5.067373767147741e-14
+Platinum,air,kilogram,4.9888796620372804e-14
+"Chlorinated Solvents, Unspecified",water,kilogram,4.8033690301512006e-14
+Strontium,Emissions / Emissions to water,kilogram,4.6270990309983763e-14
+"2,3,5,6-tetrafluoro-4-methylbenzyl 3-[(1Z)-2-chloro-3,3,3-trifluoroprop-1-en-1-yl]-2,2-dimethylcyclopropanecarboxylate",Emissions / Emissions to soil,kilogram,4.5103975243179206e-14
+Pentachlorophenol,Emissions / Emissions to air,kilogram,4.46084264235978e-14
+Fluroxypyr,Emissions / Emissions to soil,kilogram,4.406247466657971e-14
+Ethylene Oxide,Emissions / Emissions to water,kilogram,3.88370851804425e-14
+Fenbuconazole,Emissions / Emissions to soil,kilogram,3.83869759002878e-14
+Propylene Oxide,Emissions / Emissions to water,kilogram,3.734653833760266e-14
+Bromoxynil,Emissions / Emissions to soil,kilogram,3.6903409489212025e-14
+Fluorine,Emissions / Emissions to water,kilogram,3.586152209918198e-14
+Silicon,Resources / Resources from ground,kilogram,3.498861322948276e-14
+Paraquat,Emissions / Emissions to soil,kilogram,3.4853125194126076e-14
+Waste Heat,air,megajoule,3.4677619121427955e-14
+"Fungicides, Unspecified",Emissions / Emissions to soil,kilogram,3.3572383597128227e-14
+Fluquinconazole,Emissions / Emissions to soil,kilogram,3.3380340301387604e-14
+Isoxaflutole,Emissions / Emissions to soil,kilogram,3.2802840899040265e-14
+Magnesium,Resources / Resources from ground,kilogram,3.153684594804026e-14
+Selenium,Emissions / Emissions to water,kilogram,3.079502648248655e-14
+Thorium-234,air,kilo Becquerel,2.875862043241024e-14
+Protactinium-234,air,kilo Becquerel,2.8263971833623882e-14
+Silver(1+),Emissions / Emissions to air,kilogram,2.7671057748311488e-14
+Acetonitrile,Emissions / Emissions to air,kilogram,2.7344316805402112e-14
+Trichloroethane,Emissions / Emissions to air,kilogram,2.733203295897433e-14
+HCFC-140,Emissions / Emissions to air,kilogram,2.4414428910509667e-14
+Trichlorofluoromethane,Emissions / Emissions to air,kilogram,2.4067705838078175e-14
+Cumene,Emissions / Emissions to air,kilogram,2.3198181850742895e-14
+Dichlorofluoromethane,Emissions / Emissions to air,kilogram,2.302147244023019e-14
+Phenanthrene,Emissions / Emissions to air,kilogram,2.287132461469907e-14
+"1,1-dichloroethane",Emissions / Emissions to air,kilogram,2.2552769173239856e-14
+Chrysene,Emissions / Emissions to water,kilogram,2.1317759738954454e-14
+Anthracene,Emissions / Emissions to water,kilogram,2.076879706574073e-14
+Hydrogen cyanide,Emissions / Emissions to air,kilogram,1.9701907649585683e-14
+Flumetsulam,Emissions / Emissions to soil,kilogram,1.9135227542631093e-14
+"2,3,7,8-tetrachlorodibenzo-p-dioxin",Emissions / Emissions to air,kilogram,1.9041239348354587e-14
+"Gravel, resource correction",resources / in ground,kilogram,1.81214079470032e-14
+"2-Propenoic acid, 2-chloro-3-(2-chloro-5-(1,3,4,5,6,7-hexahydro-1,3-dioxo-2H-isoindol-2-yl)phenyl)-, ethyl ester, (2Z)-",soil,kilogram,1.7803050046451314e-14
+Tellurium,Emissions / Emissions to air,kilogram,1.7689397458672962e-14
+Cadmium(2+),Emissions / Emissions to air,kilogram,1.7174069779519164e-14
+Dichloromethane,Emissions / Emissions to water,kilogram,1.704470876443687e-14
+Propylene Oxide,Emissions / Emissions to air,kilogram,1.6808550621191652e-14
+Fipronil,Emissions / Emissions to soil,kilogram,1.6401704548509497e-14
+Copper(2+),Emissions / Emissions to air,kilogram,1.6148967948385183e-14
+fluorane,Emissions / Emissions to water,kilogram,1.5593840448076584e-14
+Vinylidene chloride,Emissions / Emissions to air,kilogram,1.5443190080369356e-14
+Nicosulfuron,Emissions / Emissions to soil,kilogram,1.5034658952459336e-14
+PFC-318,Emissions / Emissions to air,kilogram,1.495152250774073e-14
+"Propane, perfluorocyclo-",emissions to air / high. pop.,kilogram,1.495152250774073e-14
+Amidosulfuron,Emissions / Emissions to soil,kilogram,1.4687743733052017e-14
+Platinum,air,kilogram,1.3796069897842596e-14
+Dichlorofluoromethane,Emissions / Emissions to air,kilogram,1.2474653225050879e-14
+Bifenthrin,Emissions / Emissions to soil,kilogram,1.2301135958337742e-14
+Terpenes,air,kilogram,1.201306606143947e-14
+Diflufenzopyr-sodium,Emissions / Emissions to soil,kilogram,1.093409116938698e-14
+Propanal,Emissions / Emissions to air,kilogram,9.438742117746955e-15
+Sulfur Trioxide,Emissions / Emissions to water,kilogram,8.504839743366132e-15
+Tribenuron,soil,kilogram,8.38963805469875e-15
+"1,1,1,3,3-pentafluoropropane",Emissions / Emissions to air,kilogram,7.321992721577297e-15
+Fluorene,Emissions / Emissions to air,kilogram,7.173813505294373e-15
+Primisulfuron-methyl,Emissions / Emissions to soil,kilogram,6.834090777193952e-15
+Rimsulfuron,Emissions / Emissions to soil,kilogram,6.834090777193952e-15
+Fluoranthene,Emissions / Emissions to water,kilogram,6.798569484277015e-15
+"(RS)-1-(2,4-dichlorophenyl)-5-methyl-2-pyrazoline-3,5-dicarboxylic acid",soil,kilogram,6.676068060277522e-15
+Permethrin,Emissions / Emissions to soil,kilogram,6.150284283729207e-15
+Hydrogen Chloride,Emissions / Emissions to water,kilogram,6.049591367448869e-15
+Polychlorinated Biphenyls,Emissions / Emissions to air,kilogram,5.43642531249879e-15
+Sulfur Trioxide,Emissions / Emissions to air,kilogram,5.236383591300047e-15
+Difenoconazole,Emissions / Emissions to soil,kilogram,5.154403320491957e-15
+Sodium Hydroxide,Emissions / Emissions to air,kilogram,4.701564688092142e-15
+BENZ(a)ANTHRACENE,Emissions / Emissions to water,kilogram,4.554112684008906e-15
+Acenaphthylene,Emissions / Emissions to air,kilogram,4.432767540107785e-15
+Metsulfuron-methyl,Emissions / Emissions to soil,kilogram,4.112386343354904e-15
+Sodium nitrate,resources / in ground,kilogram,4.000858250971432e-15
+Ozone,air,kilogram,3.426898460845267e-15
+"2,3,7,8-tetrachlorodibenzo-p-dioxin",Emissions / Emissions to air,kilogram,3.395435156732476e-15
+Thifensulfuron methyl,Emissions / Emissions to soil,kilogram,3.3648039137991197e-15
+sea water,Emissions / Emissions to water,kilogram,3.330045037887588e-15
+Trichlorofluoromethane,Emissions / Emissions to air,kilogram,3.289595160861447e-15
+Acenaphthene,Emissions / Emissions to air,kilogram,3.2769930807357507e-15
+Chlorine Dioxide,Emissions / Emissions to air,kilogram,3.233548679060126e-15
+Cyfluthrin,Emissions / Emissions to soil,kilogram,2.870283969974595e-15
+Esfenvalerate,Emissions / Emissions to soil,kilogram,2.781707777682804e-15
+"2,3,7,8-tetrachlorodibenzo-p-dioxin",Emissions / Emissions to air,kilogram,2.7482982834111513e-15
+Propylene Glycol Monomethyl Ether Acetate,Emissions / Emissions to air,kilogram,2.5107484320671606e-15
+Chloroethane,Emissions / Emissions to water,kilogram,2.458056621358398e-15
+Isoprene,Emissions / Emissions to air,kilogram,2.440477052982559e-15
+Fluoranthene,Emissions / Emissions to air,kilogram,2.2590054908086286e-15
+Iodosulfuron,soil,kilogram,2.2253812558064143e-15
+2-methyl-2-butene,Emissions / Emissions to water,kilogram,2.182286071401163e-15
+Acenaphthene,Emissions / Emissions to air,kilogram,2.17219327128072e-15
+Foramsulfuron,Emissions / Emissions to soil,kilogram,2.0501704940702527e-15
+Sodium borohydride,Emissions / Emissions to air,kilogram,1.8774813054748044e-15
+nickel,Emissions / Emissions to soil,kilogram,1.8684422283337653e-15
+Hexachlorobutadiene,Emissions / Emissions to water,kilogram,1.5744186455496849e-15
+Methyl Chloride,Emissions / Emissions to water,kilogram,1.5071852775411352e-15
+"Energy, gross calorific value, in biomass, resource correction",resources / unspecified,megajoule,1.4185446617236801e-15
+CFC-12,Emissions / Emissions to air,kilogram,1.3755973724089503e-15
+"Ethane, 1,1-dichloro-",emissions to water / unspecified,kilogram,1.2735036423883661e-15
+BENZ(a)ANTHRACENE,Emissions / Emissions to water,kilogram,1.2714314813074164e-15
+Prosulfuron,Emissions / Emissions to soil,kilogram,1.230113616011259e-15
+Boron Trifluoride,air,kilogram,1.2097547716409543e-15
+Pentachlorobenzene,Emissions / Emissions to water,kilogram,1.1733542012269866e-15
+"1,1,2,2-tetrachloroethane",Emissions / Emissions to water,kilogram,1.0370967166582275e-15

@@ -1,0 +1,13 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+9,"Water, decarbonised, at plant",d51355e5-b0a8-3db5-bd7e-c74fd60c87e0,product-flow,S3-top-down-model,11.852732372969955,True,,False
+1,"Disposal, residues, mechanical treatment, IT accessoires, in MSWI",9e153893-4828-4a77-a7cf-f46cc839bd19,product-flow,S3-top-down-model,0.46582198578308337,True,0.47,True
+2,"Disposal, treatment of printed wiring boards",8399296e-6131-4ceb-889e-7a6fb74cd3cc,product-flow,S3-top-down-model,0.16532609958144903,True,0.162,True
+8,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S3-top-down-model,0.05140687031421209,True,,False
+12,"Transport, freight, lorry, 32t-40t gross weight, fleet average",984d5f03-2208-366d-bceb-69003ae01594,product-flow,S3-top-down-model,0.040440905638339186,True,,False
+6,"Oxygen, liquid, at plant",ffa681a6-74f7-36b7-ac25-5523f8a1749e,product-flow,S3-top-down-model,0.011861070003373435,True,,False
+10,"Calcium ammonium nitrate, as N, at regional storehouse",941c6721-d698-3b04-b46a-fe25eaedad6c,product-flow,S3-top-down-model,0.0005133116857158578,True,,False
+4,"Hydrogen sulphide, H2S, at plant",c4fb13df-afca-31f0-a6bc-c7e552b6020a,product-flow,S3-top-down-model,2.577855396752322e-06,False,,False
+3,"Water treatment plant, deionisation",310e3a98-694e-3969-9783-1c2da129d150,product-flow,S3-top-down-model,3.873986789302279e-12,False,,False
+7,"Natural gas, burned in gas turbine",10910352-8988-3c24-adfb-5d64b8b8fd32,product-flow,S3-top-down-model,8.064567430640874e-29,False,,False
+11,"Electricity, oil, at power plant",973e1d4a-97dd-3530-afbb-f331fd0a1568,product-flow,S3-top-down-model,2.729530014375276e-34,False,,False
+5,"Process-specific burdens, slag compartment",ecdf22c7-d4e1-4421-9a03-1315367c1808,product-flow,S3-top-down-model,3.173118543997095e-54,False,,False

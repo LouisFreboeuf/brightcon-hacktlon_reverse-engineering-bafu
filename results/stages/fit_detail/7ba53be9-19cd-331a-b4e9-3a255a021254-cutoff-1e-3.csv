@@ -1,0 +1,28 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+6,"Aluminium, production mix, at plant",ede45db2-bc7b-386a-b3e3-eafcf2dac420,product-flow,S2-template-transfer,0.9198814643560166,True,0.91121,True
+5,"Sheet rolling, aluminium",6113497a-792f-38e7-a69a-420dff702898,product-flow,S2-template-transfer,0.8729638498762055,True,0.87297,True
+10,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S2-template-transfer,0.41003302049678886,True,0.41011,True
+2,"Transport, freight, lorry, 32t-40t gross weight, fleet average",7b09a113-0b6e-33fe-ad56-efc96b9a8b77,product-flow,S2-template-transfer,0.19549060269866544,True,0.1955,True
+4,"Steel product manufacturing, average metal working",89772c02-1f8b-36dc-87eb-de910174d166,product-flow,S2-template-transfer,0.06114265126090711,True,0.022923,True
+16,"Ethylene glycol, at plant",582ad303-7f18-3110-83c2-bccca0dc995f,product-flow,S2-template-transfer,0.047758350981036826,True,0.047755,True
+9,Injection moulding,f7ce1c49-0916-320e-9585-666388269b3d,product-flow,S2-template-transfer,0.020821259501245765,True,0.020821,True
+15,"Steel, low-alloyed, at plant",b9430f24-d0b9-3422-a5ad-f874acbbef18,product-flow,S2-template-transfer,0.014246243125382963,True,0.022923,True
+13,"Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",dad0fc14-f7f9-3292-8754-ac91fe7c2825,product-flow,S2-template-transfer,0.011920314518559827,True,0.01192,True
+14,"Silicon, electronic grade, at plant",ef72c96a-f414-338c-af27-0a5d4bdf719d,product-flow,S2-template-transfer,0.005959845868632572,True,0.0059599,True
+3,"Glass fibre, at plant",e7c90a94-cb2d-34a0-bd20-1d755ba5f0a5,product-flow,S2-template-transfer,0.001985795083628724,True,0.0019866,True
+7,"Polyvinylchloride, at regional storage",36f2eccd-a31b-330a-b685-b87163460c36,product-flow,S2-template-transfer,0.000716313639222018,False,0.0007164,True
+11,"Synthetic rubber, at plant",c66b37b5-67d2-32cf-a5ba-5abcb693cc6f,product-flow,S2-template-transfer,0.0002386121185972246,False,0.0002388,True
+18,"Disposal, residue from cooling tower, 30% water, to sanitary landfill",6671a961-21d8-411a-a1d5-cbb425da8a3e,product-flow,S2-template-transfer,0.00017037587477774108,False,,False
+26,"Natural gas, burned in gas turbine",dc123404-174a-313e-aca5-44694add9665,product-flow,S2-template-transfer,7.708417527775751e-05,False,,False
+25,"Process-specific burdens, municipal waste incineration",edab3419-2301-42b6-869a-5c9c606a2ff3,product-flow,S2-template-transfer,3.2009496119741736e-05,False,,False
+20,"Fuel tank, for diesel vehicle",02d34621-e606-3ecc-83a0-d527b2bb4288,product-flow,S2-template-transfer,5.43501907724847e-06,False,,False
+23,"Aluminium oxide, at plant",cf4b9a68-b9bf-3326-8dbf-5508e6515909,product-flow,S2-template-transfer,3.2070138091082017e-06,False,,False
+1,"Aluminium product manufacturing, average metal working",1ab1ad31-3b88-3d36-9449-c5a15e573c75,product-flow,S2-template-transfer,2.440653500389399e-06,False,0.038244,True
+19,"Electricity, hydropower, at pumped storage power plant",6cf10041-755c-3276-8edb-b5f0e51059d3,product-flow,S2-template-transfer,1.9096472950771148e-06,False,,False
+27,"Wire drawing, copper",7cab0912-ac94-3deb-bd13-5ede9c7d223d,product-flow,S2-template-transfer,1.8427962503915377e-06,False,,False
+21,"Glass wool mat, at plant",3ae98d80-01bb-3de0-9021-a303378d8a99,product-flow,S2-template-transfer,6.69013452199905e-07,False,,False
+22,"Carbon dioxide liquid, at plant",a24fb540-2e25-3291-b3e0-e420a71778f6,product-flow,S2-template-transfer,2.1148190906423572e-07,False,,False
+24,"Scooter, ICE, at regional storage",8d92179d-15f0-3767-83d8-039a4636c7a7,product-flow,S2-template-transfer,1.1723386767038809e-08,False,,False
+12,"Aluminium casting, plant",570c1c6d-665e-328f-a7dd-a9be1c507255,product-flow,S2-template-transfer,1.4021530709589447e-10,False,1.4019e-10,True
+17,Plastics processing factory,57073846-6aa4-310d-801e-f12e9bc1b1d1,product-flow,S2-template-transfer,1.55372112650944e-11,False,1.5564e-11,True
+8,Metal working factory,fdb74cda-5905-32f0-a1fd-1d69b95fa5aa,product-flow,S2-template-transfer,1.0500437265264217e-11,False,1.0499e-11,True

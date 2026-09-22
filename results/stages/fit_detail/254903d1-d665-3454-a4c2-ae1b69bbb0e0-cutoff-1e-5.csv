@@ -1,0 +1,14 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+2,"Electricity, low voltage, production ENTSO-E, at grid",8cebe831-b6c1-4854-a5ab-a08a7ba3e50d,product-flow,S3-top-down-model,0.004000462004298642,True,0.004,True
+1,"Laptop computer, at plant",9d632221-4822-3b69-b3b4-125374d32853,product-flow,S3-top-down-model,2.8539316661752313e-05,True,2.8539e-05,True
+3,"Transport, freight, lorry, fleet average",99f8a4b0-99b5-3130-924c-5de4c10b62ef,product-flow,S3-top-down-model,9.186701790278115e-06,False,8.9897e-06,True
+11,"Transport, freight, rail, electricity with shunting",a169f230-3e05-33d0-a12d-f9d6d4d6abf1,product-flow,S3-top-down-model,4.1399409431446156e-06,False,,False
+9,"Diesel, burned in diesel-electric generating set, at extraction site",3b9ec683-d3db-30b9-b5bd-c3ea85135ec5,product-flow,S3-top-down-model,7.675935103172245e-08,False,,False
+10,"Electricity, medium voltage, production GLO, at grid",b7985b38-0d38-39f0-9676-5be4036b483f,product-flow,S3-top-down-model,7.237277381899223e-13,False,,False
+8,"Gas power plant, 100MWe",817e1ce5-814f-3226-8682-3d1c2967f59a,product-flow,S3-top-down-model,6.638984957163813e-15,False,,False
+7,"Electricity, hydropower, at pumped storage power plant",404ded37-f1da-38bd-9812-88a9ed60e6ed,product-flow,S3-top-down-model,4.894467975509276e-15,False,,False
+4,"Electricity, hydropower, at pumped storage power plant",2cd6361a-a17d-3922-a171-544dc51d161c,product-flow,S3-top-down-model,4.793977396068578e-15,False,,False
+5,"Disposal, bilge oil, 90% water, to hazardous waste incineration",c4e9c774-19d3-4cd7-b122-083773f4d04f,product-flow,S3-top-down-model,7.20715359466172e-16,False,,False
+13,"Glass fibre reinforced plastic, polyamide, injection moulding, at plant",19a9ce72-bdcb-3ea8-a600-9d88b3376b8c,product-flow,S3-top-down-model,1.9270348729199557e-16,False,,False
+6,"Transport, barge tanker",9ff39b71-5d21-3756-85b8-76a08a064a12,product-flow,S3-top-down-model,2.619895482570091e-19,False,,False
+12,Stack,0c566503-0561-3cb3-b5e1-75a71052d65a,product-flow,S3-top-down-model,2.759136661277556e-38,False,,False

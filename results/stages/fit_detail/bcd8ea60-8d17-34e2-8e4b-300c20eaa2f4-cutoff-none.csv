@@ -1,0 +1,13 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Electricity, low voltage, at grid",c4a92617-9f99-3d7b-95c0-15fb110b80ad,product-flow,S3-top-down-model,0.7088968337392781,True,0.70833,True
+5,"Steel product manufacturing, average metal working",89772c02-1f8b-36dc-87eb-de910174d166,product-flow,S3-top-down-model,0.00020431940167700931,True,,False
+9,"Electricity, nuclear, at power plant pressure water reactor",b5fde38b-ee84-39b8-bed7-216d51f4a90e,product-flow,S3-top-down-model,0.00015566156562715433,True,,False
+4,"Disposal, plastics, mixture, 15.3% water, to sanitary landfill",e8828bdf-675f-4add-933f-66d2ed424341,product-flow,S3-top-down-model,7.013247025079384e-06,True,,False
+3,Water supply network,83e88ab5-0a07-3a06-b975-c1bcf39cccae,product-flow,S3-top-down-model,4.0230756144245473e-10,True,,False
+6,Essential BoP,b0c1141a-3434-3e0e-9280-a803355ef328,product-flow,S3-top-down-model,1.7262859193848577e-10,True,,False
+2,"Chemical plant, organics",13ed4fe0-7ba5-3b60-82b6-a63918ee814d,product-flow,S3-top-down-model,9.942054523079934e-11,True,1e-10,True
+8,"Electricity, hydropower, at pumped storage power plant",2cd6361a-a17d-3922-a171-544dc51d161c,product-flow,S3-top-down-model,5.00334978479088e-25,True,,False
+7,"Compressed air, average installation, >30kW, 7 bar gauge, at supply network",30dbefe0-c52f-3631-a6fa-02ed37e2c025,product-flow,S3-top-down-model,2.41756005771759e-34,True,,False
+11,"Polystyrene, high impact, HIPS, at plant",b2ddf286-46b3-3a00-8b8a-c38b11ced364,product-flow,S3-top-down-model,8.69249069116649e-41,True,,False
+12,"Reinforcing steel, at plant",b38bbde0-a4b0-347f-8136-ce520abfa557,product-flow,S3-top-down-model,3.3346376143088147e-41,True,,False
+10,"Tillage, cultivating, chiselling",aecf467b-0f2d-37fb-8114-db986b9d2d68,product-flow,S3-top-down-model,8.748829178509074e-49,True,,False

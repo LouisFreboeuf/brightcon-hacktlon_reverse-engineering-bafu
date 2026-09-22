@@ -1,0 +1,41 @@
+code,name,category,spec_group,group_detail,n_true_inputs
+80edb9d9-1b57-3472-9388-1f6a3961b4c9,"Packing, clay products",Others,S1-report-transcription,input list (10) + direct flows (1) available (report table),10
+392fbd86-4199-3fe3-ae9c-9f89182a06c7,"Green manure IP, until march",agricultural,S1-report-transcription,input list (13) + direct flows (16) available (report table),13
+4290d583-d2ec-3572-b130-a8708c33f8b6,"Methyl ester, from biogenic oils, mix, at regional storage",biomass,S3-top-down-model,"partial input list (4) from a process description, no direct flows",4
+28d0e400-dfe2-3209-8f0e-849dbae9d0c6,"Panelling, aluminium, window frame cover, wall opening, at plant",building components,S3-top-down-model,"partial input list (4) from a process description, no direct flows",4
+ce890b07-c419-41bf-83b9-ff19734f38f6,"Petrol, burned in building machine, with particle filter",building processes,S1-report-transcription,input list (4) + direct flows (21) available (report table),4
+356388ef-8f73-3766-9eac-8ef6fdde9329,Ceramic plant,ceramics,S1-report-transcription,input list (3) + direct flows (5) available (report table),3
+87f791bb-fc12-31eb-ae1e-387398762a32,"Copper oxide, at plant",chemicals,S1-report-transcription,input list (8) + direct flows (6) available (report table),8
+8afc0715-04a0-3089-8522-1515885eaeaf,"Compressed air, best generation, >30kW, 8 bar gauge, at compressor",compressed air,S1-report-transcription,input list (6) + direct flows (1) available (report table),6
+254903d1-d665-3454-a4c2-ae1b69bbb0e0,"Use, computer, laptop, standby/sleep mode",computers & network,S3-top-down-model,"partial input list (4) from a process description, no direct flows",4
+541aeaab-2868-48d7-a530-1c762adc5e23,"Disposal, sewer system, vitrified clay pipe, DN 300, profile 2",construction,S3-top-down-model,"partial input list (10) from a process description, no direct flows",10
+7622063d-6d0d-316d-8455-556556b1731a,"Ground granulated blast furnace slag, no burdens, at plant",construction materials,S1-report-transcription,input list (14) + direct flows (12) available (report table),14
+22054091-22ea-3b0e-9b20-ef284f4dce61,"Bored pile wall, overlapped, strutted apart, Alterssiedlung Seefeldstrasse Zürich",construction processes,S1-report-transcription,input list (6) + direct flows (2) available (report table),6
+7e0b7397-b949-448e-ac9b-cad2f937100b,"Disposal, building, mineral plaster, to sorting plant",construction waste,S1-report-transcription,input list (5) + direct flows (4) available (report table),5
+c392dd88-9aec-3f5b-98f9-9b6ba57c5e20,"Electricity, medium voltage, at grid",electricity,S1-report-transcription,input list (3) + direct flows (3) available (report table),3
+8b83697e-270a-36ef-bcd0-c913b8ee67be,"Electricity, hydropower, net, at reservoir power plant",electricity by fuel,S1-report-transcription,input list (3) + direct flows (17) available (report table),3
+7ba53be9-19cd-331a-b4e9-3a255a021254,"Battery-cooling-system, passive, at plant",electronics,S2-template-transfer,"input list from a template sibling (17), no direct flows",17
+44164692-11a5-427f-8dbb-2f7695294930,"Dismantling, IT accessoires, mechanically, at plant",electronics waste,S3-top-down-model,"partial input list (3) from a process description, no direct flows",3
+02fd8be4-a33b-3cb5-a1ca-40bcbddb251a,"Electricity, low voltage, production from hard coal, at grid","energy supply, kbob recommendation",S1-report-transcription,input list (3) + direct flows (3) available (report table),3
+0700f5ce-f370-3cd5-9297-71b217c0de7e,"Heat, residential, by transfer of geothermal heat using ground source heat pump using electricity from grid","energy, obsolete",S1-report-transcription,input list (9) + direct flows (3) available (report table),9
+3d0ac523-3be7-357d-86cd-37a27771840c,"Flooring, needle felt, at regional storage",flooring,S3-top-down-model,"partial input list (11) from a process description, no direct flows",11
+bcd8ea60-8d17-34e2-8e4b-300c20eaa2f4,Canning of legumes,food industry,S3-top-down-model,"partial input list (3) from a process description, no direct flows",3
+e3ab46d3-e956-39a8-82a7-a3aadad346ff,"Transport, natural gas, offshore pipeline, long distance",fuels,S1-report-transcription,input list (5) + direct flows (9) available (report table),5
+4bf4e6d8-2c49-3042-956a-5778edad98c8,"Tempering, flat glass",glass,S3-top-down-model,"partial input list (4) from a process description, no direct flows",4
+405ca232-c566-37a2-98a7-913d686ea0e3,"Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from Solar PV + Wind (MA)",heat,S1-report-transcription,input list (4) + direct flows (2) available (report table),4
+8fbb543c-4f07-3a5c-944c-1313990c05ba,"PIR insulation with PVC cladding, insulation thickness 40mm",heating,S3-top-down-model,"partial input list (5) from a process description, no direct flows",5
+7d15b5ea-0ff3-4e33-8da0-9a4037f1e717,"Disposal, emulsion paint remains, 0% water, to hazardous waste incineration",incineration,S1-report-transcription,input list (15) + direct flows (45) available (report table),15
+8f5fe6ba-5a3e-4ee7-aa65-77ff99e0cd30,"Disposal, plastic plaster, 0% water, to sanitary landfill",landfill,S1-report-transcription,input list (25) + direct flows (57) available (report table),25
+69f7cbef-0a6c-3b3e-9226-5f33b9726e92,Diesel-electric generating set production 10MW,mechanical,S3-top-down-model,"partial input list (5) from a process description, no direct flows",5
+359ffce6-23b6-3ee0-a57b-6a8dd6712f85,"Reinforcing steel, import to CH",metals,S3-top-down-model,"partial input list (7) from a process description, no direct flows",7
+3653b40f-90e6-3e41-a90f-9a8a6a7f1728,"Process specific emissions and resources, from uranium milling, at mill plant",minerals,S1-report-transcription,input list (12) + direct flows (54) available (report table),12
+3ba9833a-9a61-3a39-bafc-64c8039bb657,"Natural gas, production AZ, at long-distance pipeline",natural gas,S1-report-transcription,input list (4) + direct flows (7) available (report table),4
+069547d2-d40c-40b5-abba-75115b9d2c19,"Nuclear spent fuel, in conditioning, at plant",nuclear waste,S3-top-down-model,"partial input list (8) from a process description, no direct flows",8
+8864a76d-c49e-364e-a29c-e6f058cff472,"Crude oil, at production onshore",oil,S1-report-transcription,input list (16) + direct flows (16) available (report table),16
+9235f765-2c0e-3fc9-afb2-3423071eef4f,"Paper, woodfree, uncoated, at regional storage",paper+ board,S3-top-down-model,"partial input list (5) from a process description, no direct flows",5
+16cdeb49-8b38-415b-b354-053f356a9be3,"3kWp flat roof installation, multi-Si, on roof",photovoltaic,S1-report-transcription,input list (7) + direct flows (1) available (report table),7
+a4273d5b-5258-343d-9462-8369960dc122,"Transport, natural gas, pipeline, long distance",pipeline,S1-report-transcription,input list (14) + direct flows (9) available (report table),14
+4729b77e-908b-3258-a3fd-55f38497291b,"Packaging film, LDPE, at plant",plastics,S3-top-down-model,"partial input list (4) from a process description, no direct flows",4
+d9b34c0e-fef5-3aba-adca-36022bd418c2,"SOx retained, in hard coal flue gas desulphurisation",power plants,S1-report-transcription,input list (8) + direct flows (38) available (report table),8
+9c0e2df6-7ee2-3b42-979d-55913ecb6ee9,"Electronic passive elements, washing machine, at plant",private consumption,S3-top-down-model,"partial input list (15) from a process description, no direct flows",15
+f92cec91-c777-3762-a6d6-6be6706f42a5,"Yarn, cotton, at plant",textiles,S3-top-down-model,"partial input list (4) from a process description, no direct flows",4

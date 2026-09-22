@@ -1,0 +1,14 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+9,"Water, decarbonised, at plant",d51355e5-b0a8-3db5-bd7e-c74fd60c87e0,product-flow,S3-top-down-model,33.86734865602522,True,,False
+1,"Aluminium profile, uncoated, SZFF 2014, recycling share 52%, at plant",c48b5f7a-ac68-3f26-89c1-9eece0e9e878,product-flow,S3-top-down-model,2.798064744280221,True,1.4612,True
+6,"Disposal, steel, 0% water, to municipal incineration",0f1a02cd-9d0c-404e-b233-a810d32a1e85,product-flow,S3-top-down-model,0.5024938766906758,True,,False
+2,"Powder coating, aluminium sheet",b3bbff04-9f71-3acc-b827-19bd99e6f9b6,product-flow,S3-top-down-model,0.3575530391740211,True,0.36092,True
+3,"Anodising, aluminium sheet",82eaafaf-cf02-3075-b837-503fc75c9dae,product-flow,S3-top-down-model,0.33048061767811726,True,0.3308,True
+12,"Transport, barge tanker",9ff39b71-5d21-3756-85b8-76a08a064a12,product-flow,S3-top-down-model,0.2201885402957929,True,,False
+11,"Electricity, from natural gas",6e6e5583-44b7-38c8-8f92-8dc8f85dbf1e,product-flow,S3-top-down-model,0.009889371467681384,True,,False
+7,"Ammonia, liquid, at regional storehouse",5355918b-1afd-3cdd-b57c-b3e92097f2b0,product-flow,S3-top-down-model,0.008753562732408841,True,,False
+4,"Electricity, industrial gas, at power plant",e04bebff-1430-37e9-b9dd-c04d1a166aa8,product-flow,S3-top-down-model,0.005565769877288684,True,,False
+10,"Hydrogen fluoride, at plant",3423baf7-2d25-3025-a6e8-94a7b7bc9da2,product-flow,S3-top-down-model,0.00053792797973972,True,,False
+13,"Copper, at regional storage",3972eb0c-d60e-3537-9ad1-fd6b7bbafce8,product-flow,S3-top-down-model,2.5610848633289167e-05,True,,False
+5,"Maintenance, passenger car",96151dcf-d2fe-3a20-bbf4-ff542777285c,product-flow,S3-top-down-model,9.86610842995406e-07,False,,False
+8,"Wire drawing, steel",0e9b3810-2895-33cb-884b-d0528fa86e8d,product-flow,S3-top-down-model,3.3186109964472863e-15,False,,False

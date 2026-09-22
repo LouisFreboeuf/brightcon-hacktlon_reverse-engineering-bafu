@@ -1,0 +1,15 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Polyurethane, rigid foam, at plant",a7c19342-01d0-37f6-86bf-7ecf91a7d206,product-flow,S3-top-down-model,1.1987593331310007,True,1.2,True
+3,"Extrusion, plastic film",c06a8970-8ec4-359e-887a-0bbf51d9ee6f,product-flow,S3-top-down-model,0.4354454575795251,True,0.4273,True
+2,"Polyvinylchloride, at regional storage",36f2eccd-a31b-330a-b685-b87163460c36,product-flow,S3-top-down-model,0.42704984295127524,True,0.4273,True
+4,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S3-top-down-model,0.09091934178743324,True,0.0814,True
+14,"Solid manure loading and spreading, by hydraulic loader and spreader",876a8348-b458-363d-8fbe-da461b2bd2ea,product-flow,S3-top-down-model,0.059619515769621226,True,,False
+7,"Tempering, flat glass",4bf4e6d8-2c49-3042-956a-5778edad98c8,product-flow,S3-top-down-model,0.05424051889671645,True,,False
+10,"Aluminium sulphate, powder, at plant",548c4bd3-cf47-3c33-af07-9165c9c84efa,product-flow,S3-top-down-model,0.011057059205642643,True,,False
+12,"Crude oil, at production",c738e262-4da5-3fc1-af07-9140556c7345,product-flow,S3-top-down-model,1.7966192232582629e-16,False,,False
+5,"Operation, freight train, diesel",541b1d6f-1e3c-36cf-aa71-57bb8744d908,product-flow,S3-top-down-model,3.405091828360608e-17,False,,False
+11,"Electricity, oil, at power plant",4e5ffd30-7d76-3d77-81cb-b2c5a88b9599,product-flow,S3-top-down-model,3.771060299603295e-18,False,,False
+13,"Electricity, oil, at power plant",bd63179a-3884-38a0-ba76-e6c3776f4867,product-flow,S3-top-down-model,2.1887951964806703e-19,False,,False
+8,"Electricity, oil, at power plant",59d7b81b-1acb-3861-916c-bad19e939b61,product-flow,S3-top-down-model,3.489058039539008e-20,False,,False
+6,"Disposal, building, polyurethane foam, to final disposal",ec464e33-8525-4695-8035-dec3831e6e8e,product-flow,S3-top-down-model,4.1012771113847516e-26,False,,False
+9,"Electricity, production mix photovoltaic, at plant",98c2f03e-61a7-3093-9540-f1b88f2fdf99,product-flow,S3-top-down-model,2.2466534270268717e-43,False,,False

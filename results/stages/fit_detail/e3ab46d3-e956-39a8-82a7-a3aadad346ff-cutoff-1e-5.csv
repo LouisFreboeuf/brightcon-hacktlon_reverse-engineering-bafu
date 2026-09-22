@@ -1,0 +1,16 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+2,"Natural gas, burned in gas turbine",cecd8376-0cf1-3e4d-84ff-4842fe02ef8f,product-flow,S1-report-transcription,0.7949990963591645,True,0.795,True
+1,"Natural gas, at production",4bac1a14-df79-32c9-97d6-9a061208bc08,product-flow,S1-report-transcription,0.002775263618936242,True,0.0027755,True
+12,"Transport, transoceanic tanker",b2a17f00-0798-33f3-a498-dd6da770c269,product-flow,S1-report-transcription,1.1110405397229346e-06,False,,False
+5,"Disposal, used mineral oil, 10% water, to hazardous waste incineration",be69d35d-4a8e-4e4c-88c0-c5df0c7db472,product-flow,S1-report-transcription,1.1101700234379416e-06,False,1.16e-06,True
+14,"Natural gas, high pressure, at consumer",c60999be-6009-3a0e-937a-1f7ed06ba658,product-flow,S1-report-transcription,8.886359138033372e-07,False,,False
+9,"Electricity, from natural gas",23cd53af-d8de-357f-a06a-f84a5d6ca655,product-flow,S1-report-transcription,2.55625442285606e-07,False,,False
+6,"Heat, at hard coal industrial furnace 1-10MW",78fa456f-a455-38b2-9332-67df26933a8c,product-flow,S1-report-transcription,1.2793223931965674e-07,False,,False
+4,"Transport, freight, lorry, 16t-32t gross weight, fleet average",85b3a5a6-2635-3546-b51b-4ccad397650b,product-flow,S1-report-transcription,1.1554363279014617e-07,False,1.16e-07,True
+7,"Glider, for electric scooter",1c1d080b-5eba-30a3-bdfd-6f49052e17c4,product-flow,S1-report-transcription,2.8380695008902318e-09,False,,False
+15,"Disposal, building, polyvinylchloride products, to final disposal",08922178-ab4a-487c-920d-0a97af0bcb58,product-flow,S1-report-transcription,1.944686788424123e-09,False,,False
+11,"Single superphosphate, as P2O5, at regional storehouse",651edf10-9a57-3a06-85e0-37321e05d701,product-flow,S1-report-transcription,1.867137799347997e-09,False,,False
+3,"Pipeline, natural gas, long distance, high capacity, offshore",a3b0ad50-a6b6-3dfa-bca2-5867a81fe0e7,product-flow,S1-report-transcription,1.7799844488670943e-09,False,1.78e-09,True
+13,"Disposal, lorry 28t",3f16b5f7-318a-4cc5-8c22-d41f7b47e549,product-flow,S1-report-transcription,7.277933901128645e-11,False,,False
+8,"Copper, at regional storage",3972eb0c-d60e-3537-9ad1-fd6b7bbafce8,product-flow,S1-report-transcription,5.646467778079136e-11,False,,False
+10,"Gas power plant, 100MWe",817e1ce5-814f-3226-8682-3d1c2967f59a,product-flow,S1-report-transcription,4.528915852154665e-16,False,,False

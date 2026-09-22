@@ -1,0 +1,16 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+2,"Disposal, inert material, 0% water, to sanitary landfill",06b79ab9-2ea0-4ea2-8e0c-d06c96a0cd84,product-flow,S1-report-transcription,0.8499922842231077,True,0.85,True
+4,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S1-report-transcription,0.026199834082326172,True,0.0262,True
+3,"Electricity, low voltage, at grid",c4a92617-9f99-3d7b-95c0-15fb110b80ad,product-flow,S1-report-transcription,0.0036999857445462413,True,0.0037,True
+5,"Excavation, hydraulic digger, average",de7e006b-f5dd-3d18-873a-23959012d5b9,product-flow,S1-report-transcription,0.0005560768837420342,True,0.000556,True
+15,"Silica sand, at plant",a7511c34-4efb-316c-9d45-3fe6cf13a799,product-flow,S1-report-transcription,1.5750968645843803e-06,True,,False
+9,"Heat, light fuel oil, at industrial furnace 1MW",5c9a8f03-0938-3057-a036-97ae8a6f2fb7,product-flow,S1-report-transcription,3.209203879007216e-07,True,,False
+8,"Diesel, burned in diesel-electric generating set",32865dd1-13be-378f-a2cb-8da075b9e203,product-flow,S1-report-transcription,4.8632634320944574e-08,True,,False
+12,"Quicklime, milled, loose, at plant",be8157f1-1512-33e6-8d1d-4afb87975b8a,product-flow,S1-report-transcription,2.938865692261357e-08,True,,False
+10,"Electricity, oil, at power plant",973e1d4a-97dd-3530-afbb-f331fd0a1568,product-flow,S1-report-transcription,1.021634935841329e-08,True,,False
+13,"Aluminium product manufacturing, average metal working",1ab1ad31-3b88-3d36-9449-c5a15e573c75,product-flow,S1-report-transcription,6.178253215032617e-09,True,,False
+11,"Treatment, sewage, to wastewater treatment, class 3",9360a3cb-1d99-43ff-b12b-d12795f0332e,product-flow,S1-report-transcription,1.91208199027526e-09,True,,False
+6,"Polycarbonate, at plant",53117f8b-9311-37b3-bf5b-6e14b2ae711c,product-flow,S1-report-transcription,5.356590338221503e-10,True,,False
+7,"Harvesting, forestry harvester",6e60d365-26dd-32eb-92a6-eba365d2b56a,product-flow,S1-report-transcription,3.205386915089418e-10,True,,False
+1,Sorting plant for construction waste,e27f1d74-b73f-37da-905e-277aed8d8c25,product-flow,S1-report-transcription,9.999677599820164e-11,True,1e-10,True
+14,"Cogen unit 160kWe, components for heat only",41b4ff40-63f9-3f17-88d0-61564aa2f2cc,product-flow,S1-report-transcription,8.18314594509222e-13,True,,False

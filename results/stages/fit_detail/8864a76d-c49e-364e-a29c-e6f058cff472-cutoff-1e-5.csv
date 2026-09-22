@@ -1,0 +1,27 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+12,"Sweet gas, burned in gas turbine, production",5f3b8f7e-ce26-35d4-8860-75c9e3d2016b,product-flow,S1-report-transcription,1.4226034647532866,True,1.4226,True
+1,"Discharge, produced water, onshore",508d7608-1bf8-3cbd-b985-c838622ea784,product-flow,S1-report-transcription,0.2519886124492973,True,0.25199,True
+10,"Diesel, burned in diesel-electric generating set, at extraction site",3b9ec683-d3db-30b9-b5bd-c3ea85135ec5,product-flow,S1-report-transcription,0.1941626897479362,True,0.19416,True
+11,"Heavy fuel oil, burned in industrial furnace 1MW, non-modulating",236c0236-e00a-3ac4-acdc-cbcbfcee85a2,product-flow,S1-report-transcription,0.03628871722040977,True,0.036291,True
+13,"Natural gas, vented",15aa3d58-7814-3dd8-a3c7-cad37db3a9a5,product-flow,S1-report-transcription,0.019922998486049042,True,0.019923,True
+14,"Natural gas, sweet, burned in production flare",7e9ad35b-eb88-3146-8224-cfd4a2558b4a,product-flow,S1-report-transcription,0.019864899691955585,True,0.019865,True
+9,"Electricity, medium voltage, production GLO, at grid",b7985b38-0d38-39f0-9676-5be4036b483f,product-flow,S1-report-transcription,0.005817161796322213,True,0.005817,True
+5,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S1-report-transcription,0.0006053977578788196,True,0.00060644,True
+2,"Chemicals inorganic, at plant",90d675e2-e433-3ef4-abc3-4a6735350d72,product-flow,S1-report-transcription,0.0005732375767669615,True,0.00057336,True
+3,"Chemicals organic, at plant",4d96ad56-9dd3-3fda-bff6-d24796d01043,product-flow,S1-report-transcription,0.00043734798879948753,True,0.00043737,True
+15,"Disposal, hazardous waste, 0% water, to underground deposit",6f8566eb-457a-4589-b974-75b0846cb086,product-flow,S1-report-transcription,0.00020729768654035528,True,0.00020732,True
+16,"Disposal, municipal solid waste, 22.9% water, to municipal incineration",061ad0be-0da4-4a9f-8e90-4f133c3c3b35,product-flow,S1-report-transcription,0.00010277901259207349,True,0.00010366,True
+4,"Transport, freight, lorry, 16t-32t gross weight, fleet average",85b3a5a6-2635-3546-b51b-4ccad397650b,product-flow,S1-report-transcription,9.841572649819952e-05,True,0.00010107,True
+21,"Disposal, residue from cooling tower, 30% water, to sanitary landfill",6671a961-21d8-411a-a1d5-cbb425da8a3e,product-flow,S1-report-transcription,4.895920092152859e-06,False,,False
+18,"Heat, light fuel oil, at industrial furnace 1MW",5c9a8f03-0938-3057-a036-97ae8a6f2fb7,product-flow,S1-report-transcription,4.393915720047666e-06,False,,False
+6,"Well for exploration and production, onshore",3262b4af-fed2-3190-876f-bf5edca24ffd,product-flow,S1-report-transcription,3.1563264423479045e-06,False,3.1563e-06,True
+23,"Section bar rolling, steel",a36dd67e-350c-3400-9b1e-f0353d434a99,product-flow,S1-report-transcription,8.567995177192926e-07,False,,False
+25,"Potassium chloride, as K2O, at regional storehouse",13ce5dc8-cdd7-322f-9d6b-646f27b9af9d,product-flow,S1-report-transcription,1.2511150000587825e-07,False,,False
+20,"Transport, municipal waste collection, lorry 21t",7ff5004b-3e69-330f-a924-60cb03a87b1f,product-flow,S1-report-transcription,1.068604380126601e-07,False,,False
+26,"Steel product manufacturing, average metal working",89772c02-1f8b-36dc-87eb-de910174d166,product-flow,S1-report-transcription,8.935858870706439e-08,False,,False
+19,"Polyurethane, flexible foam, at plant",e661012b-d2ba-37a2-bcf2-b7fd9ceb02a7,product-flow,S1-report-transcription,4.253107034151124e-08,False,,False
+7,"Pipeline, crude oil, onshore",1c6d722e-821a-33ce-9708-8589e0903446,product-flow,S1-report-transcription,2.0658781344105907e-08,False,2.0659e-08,True
+8,"Production plant crude oil, onshore",dfb70048-c550-3ab0-aa5e-ca8b9eda637b,product-flow,S1-report-transcription,5.316894171774174e-09,False,5.3169e-09,True
+17,"Hydrogen sulphide, H2S, at plant",c4fb13df-afca-31f0-a6bc-c7e552b6020a,product-flow,S1-report-transcription,1.5867118933122666e-09,False,,False
+24,"Tillage, ploughing",36638b0b-18c3-37ec-9c65-57acbdefaba1,product-flow,S1-report-transcription,1.3342123545432986e-09,False,,False
+22,"Pesticide unspecified, at regional storehouse",d4e8772e-05bf-3bba-b59f-554c1f3555be,product-flow,S1-report-transcription,6.374079876280936e-10,False,,False

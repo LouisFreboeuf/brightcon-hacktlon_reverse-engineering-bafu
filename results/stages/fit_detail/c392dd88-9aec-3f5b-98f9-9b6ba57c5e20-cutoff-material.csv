@@ -1,0 +1,14 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Electricity, high voltage, at grid",7cb473fc-2443-3beb-a89c-8589dbd20802,product-flow,S1-report-transcription,1.009026055684528,True,1.00902992385057,True
+13,"Natural gas, burned in gas turbine",8f9333a2-1cd4-353a-8a43-96c6910d440a,product-flow,S1-report-transcription,3.05650552375153e-06,False,,False
+4,"Electricity, production mix photovoltaic, at plant",98d8c27e-4603-3c15-b75a-fe61a5997d33,product-flow,S1-report-transcription,9.833225708205726e-07,False,,False
+9,"Electricity, production mix photovoltaic, at plant",d2ecb765-db25-37a5-b678-26606f6e2cf1,product-flow,S1-report-transcription,7.948671151402719e-07,False,,False
+5,"Electricity, hydropower, at pumped storage power plant",d1fd54ad-b901-32d3-9ff3-04c1fc369e9b,product-flow,S1-report-transcription,2.1492581508922406e-07,False,,False
+8,"Electricity, oil, at power plant",a2d692d8-0af5-3bb8-ae7b-8f9db42c9301,product-flow,S1-report-transcription,1.2624332564160227e-07,False,,False
+10,"Electricity, hydropower, at pumped storage power plant",6b1b001e-2301-3690-8f42-ce6992cb886e,product-flow,S1-report-transcription,1.2320645744279618e-07,False,,False
+7,"Reinforcing steel, at regional storage",36f49fc8-c223-3f57-82e4-aef9bab9ee05,product-flow,S1-report-transcription,1.1940944500205475e-07,False,,False
+2,"Sulphur hexafluoride, liquid, at plant",b1ff97f2-2364-3290-86c7-d513fd4be2e9,product-flow,S1-report-transcription,1.1078219599056031e-07,False,1.1169e-07,True
+12,"Calcium carbide, technical grade, at plant",879ab927-95ca-349b-88cb-a1dff6e58d48,product-flow,S1-report-transcription,8.204902656571063e-08,False,,False
+3,"Transmission network, electricity, medium voltage",06d98654-745e-3a79-90f8-65d2aeb01ac3,product-flow,S1-report-transcription,1.8599871587221456e-08,True,1.86e-08,True
+11,"Concrete, normal, at plant",9dc7ef6a-1dcc-3968-b7ac-675141e0f5fa,product-flow,S1-report-transcription,1.1267022077249607e-09,False,,False
+6,"Acetic anhydride, at plant",6b185c51-0cd3-3d75-87b6-baad9bd56832,product-flow,S1-report-transcription,8.219495311548359e-10,False,,False

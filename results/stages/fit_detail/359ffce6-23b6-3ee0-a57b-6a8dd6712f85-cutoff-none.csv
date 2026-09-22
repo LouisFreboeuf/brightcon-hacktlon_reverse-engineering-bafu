@@ -1,0 +1,16 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Reinforcing steel, electric, import CH, at plant",522bacd3-fea1-4699-8113-6b9401cc9a4e,product-flow,S3-top-down-model,0.5641823519433481,True,0.55,True
+2,"Reinforcing steel, electric, import CH, at plant",5d74d38e-0c0d-4561-bbd1-39af82937d43,product-flow,S3-top-down-model,0.34773523501980796,True,0.32,True
+3,"Reinforcing steel, electric, at plant",579f9f75-d7bb-3383-bad2-544f2c80bc24,product-flow,S3-top-down-model,0.1608445439560971,True,0.053,True
+5,"Reinforcing steel, electric, import CH, at plant",53ad0f72-8475-4c1a-8202-4f085d05f7b1,product-flow,S3-top-down-model,0.015540903885491987,True,0.042,True
+8,"Crude oil, at production",45f2f92e-2469-3545-b662-6df659cd7869,product-flow,S3-top-down-model,0.013686299441978548,True,,False
+9,"Electricity, hard coal, at power plant",a3b8fd88-053f-38ce-b819-2a7905118255,product-flow,S3-top-down-model,0.011037165219389123,True,,False
+15,"Electricity, production mix photovoltaic, at plant",98d8c27e-4603-3c15-b75a-fe61a5997d33,product-flow,S3-top-down-model,0.0091552441299024,True,,False
+12,"Phenol, at plant",1c553484-9521-3b68-9790-ed31e187031e,product-flow,S3-top-down-model,0.0002420012492466606,True,,False
+6,"Well for exploration and production, offshore",4e467d03-a80f-37c4-a765-ad723cbd9def,product-flow,S3-top-down-model,1.4439639042862295e-07,True,,False
+4,"Reinforcing steel, electric, import CH, at plant",3e48104e-3380-4ccf-b5e0-689d3e345a4c,product-flow,S3-top-down-model,3.5887905052763776e-08,True,0.035,True
+7,"93 kWp slanted-roof installation, single-Si, laminated,  integrated, on roof",b2787ff0-1d6c-37bb-b9f5-33d729f1dbd8,product-flow,S3-top-down-model,1.666799170435793e-08,True,,False
+14,Road vehicle plant,add62058-528c-3255-b17d-65d0a77cc3d9,product-flow,S3-top-down-model,2.0615912687093522e-11,True,,False
+10,"Electricity, from natural gas",f6a13bf4-70e0-343f-b9be-0daa0d112cf8,product-flow,S3-top-down-model,5.2099886487699177e-14,True,,False
+11,"Electricity, lignite, at power plant",7ecc1d3d-f519-31f9-8b86-9737f94416ce,product-flow,S3-top-down-model,1.139805635749152e-15,True,,False
+13,"Disposal, tailings from hard coal milling, in impoundment",95ff20e4-7e2c-4531-910e-d0d8eeb072c4,product-flow,S3-top-down-model,1.981867724875065e-18,True,,False

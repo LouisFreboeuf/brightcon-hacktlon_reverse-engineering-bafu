@@ -1,0 +1,18 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+6,"Disposal, building, concrete, not reinforced, at sorting plant, to recycling",a063c51d-37fe-45bc-a8d7-fd997e196389,product-flow,S3-top-down-model,4976.433281650338,True,426.0,True
+7,"Disposal, gravel, 0.2% water, to construction waste landfill",fabc49d1-577c-4234-910a-2e0f40e84ba5,product-flow,S3-top-down-model,2294.380949596864,True,1858.0,True
+1,"Transport, freight, lorry, 32t-40t gross weight, fleet average",7b09a113-0b6e-33fe-ad56-efc96b9a8b77,product-flow,S3-top-down-model,587.0014401935639,True,450.54,True
+11,"Water, completely softened, at plant",82ca8b8e-5480-3fae-9187-7399adf84de5,product-flow,S3-top-down-model,350.7289094431899,True,,False
+5,"Small dumper, 3.0m3, four-wheel drive, diesel",5bd0c5ae-bc73-4d94-8526-b02adccb8f5c,product-flow,S3-top-down-model,1.449145922807435,True,0.271,True
+3,"Hydraulic digger, 18t, 100kW, crawler drive, diesel",79356d60-634a-4db9-8977-6d96b7abcc72,product-flow,S3-top-down-model,0.27426269098129646,True,0.504,True
+17,"1-propanol, at plant",183b303d-d07b-3177-b091-c581e9c4ab20,product-flow,S3-top-down-model,0.02930851382211167,False,,False
+14,"Vinyl acetate, at plant",c2a2901a-d00a-377e-aa01-9a1083e40f4e,product-flow,S3-top-down-model,0.009207766261462148,False,,False
+15,"Electricity, industrial gas, at power plant",e04bebff-1430-37e9-b9dd-c04d1a166aa8,product-flow,S3-top-down-model,0.005230893816933358,False,,False
+13,"Glass fibre, at plant",e7c90a94-cb2d-34a0-bd20-1d755ba5f0a5,product-flow,S3-top-down-model,4.004441197298281e-09,False,,False
+4,"Lorry, 26t, dumpling body, four-wheel drive, diesel",ad495f3d-1501-4f25-87a8-453b183f39f6,product-flow,S3-top-down-model,6.422453522758019e-11,False,0.225,True
+9,"Refrigerant R134a, at plant",ddce4dc4-2356-3d77-8208-187e6598018d,product-flow,S3-top-down-model,5.7502138264250425e-12,False,,False
+2,"Disposal, building, concrete gravel, at sorting plant, to recycling",571b7783-65d4-4212-af31-6077b17fdbe6,product-flow,S3-top-down-model,1.3283928044823433e-12,False,3773.0,True
+8,"Electricity, high voltage, production ENTSO-E, at grid",d7cd364e-1d5c-4f92-8c81-942cad46c4bd,product-flow,S3-top-down-model,4.86336129469371e-15,False,,False
+10,"Glider, for passenger car",7ac1e22b-caaf-35bc-972f-827ae4d49296,product-flow,S3-top-down-model,5.698538232847772e-20,False,,False
+12,"Electricity, industrial gas, at power plant",87591918-a1c0-3559-b2b7-e1987b3215b1,product-flow,S3-top-down-model,3.5758799779482496e-23,False,,False
+16,"Platform, crude oil, offshore",adb3bfb7-7eb5-31ca-b34d-fad5194d0c92,product-flow,S3-top-down-model,3.091636014078186e-33,False,,False

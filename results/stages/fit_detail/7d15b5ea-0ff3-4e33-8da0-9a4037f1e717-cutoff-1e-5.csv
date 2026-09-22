@@ -1,0 +1,26 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+11,"Light fuel oil, burned in boiler 100kW, non-modulating",09da51a8-f8ca-3270-bfa4-7749767952a7,product-flow,S1-report-transcription,12.489963336867213,True,12.49,True
+10,"Process-specific burdens, hazardous waste incineration plant",d052f1df-c0b7-4030-b6a6-4cdb4897d573,product-flow,S1-report-transcription,0.9999987735823977,True,1.0,True
+12,"Process-specific burdens, residual material landfill",89a4ae2f-2679-47a7-90b3-834244ba3384,product-flow,S1-report-transcription,0.707000206074773,True,0.70699,True
+2,"Disposal, cement, hydrated, 0% water, to residual material landfill",6eb70d13-4a43-4a65-9090-90749e3369af,product-flow,S1-report-transcription,0.7069900955477795,True,0.70699,True
+9,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S1-report-transcription,0.36007868037721985,True,0.36014,True
+7,"Cement, unspecified, at plant",39f4c4a5-a5f8-3299-8841-9ab862d9e8fa,product-flow,S1-report-transcription,0.28279960455928915,True,0.2828,True
+6,"Sodium hydroxide, 50% in H2O, production mix, at plant",ce8a12aa-ecaa-37d9-8355-5cb7da9ce6c0,product-flow,S1-report-transcription,0.09185369345545101,True,0.091853,True
+15,"Iron (III) chloride, 40% in H2O, at plant",5f0851c6-b2f2-3e4d-b5a0-ab2dd7124638,product-flow,S1-report-transcription,0.07818687575715733,True,0.078188,True
+1,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S1-report-transcription,0.07356420103405562,True,0.07357,True
+4,"Quicklime, milled, packed, at plant",f0199e27-6562-3ac9-bfb6-d161a98e5b12,product-flow,S1-report-transcription,0.007207923119386271,True,0.0072212,True
+3,"Chemicals inorganic, at plant",90d675e2-e433-3ef4-abc3-4a6735350d72,product-flow,S1-report-transcription,0.001602644826777917,True,0.0016041,True
+8,"Hydrochloric acid, 30% in H2O, at plant",2f8b5baa-5930-3460-bca9-ad90d49c1d36,product-flow,S1-report-transcription,0.0009640297295648865,True,0.00096247,True
+21,"Quicklime, in pieces, loose, at plant",4d1cdc70-7926-36dd-80c3-6da9fd9fc9cb,product-flow,S1-report-transcription,1.6916915166065107e-05,True,,False
+16,"Rock wool, packed, at plant",0a20bc7c-7f84-3bb6-94e9-a022fd5cd057,product-flow,S1-report-transcription,1.0228159400645678e-06,False,,False
+18,"Electricity, hydropower, at pumped storage power plant",6c230691-02e1-3ee3-94bd-946cb42ecac1,product-flow,S1-report-transcription,6.955869248013844e-07,False,,False
+19,"Polystyrene, high impact, HIPS, at plant",b2ddf286-46b3-3a00-8b8a-c38b11ced364,product-flow,S1-report-transcription,5.804984599915628e-07,False,,False
+5,"Chemicals organic, at plant",4d96ad56-9dd3-3fda-bff6-d24796d01043,product-flow,S1-report-transcription,5.391004202260867e-07,False,1.3709e-07,True
+22,"Excavation, skid-steer loader",ebf03a6f-4e4e-3d94-8c61-1b862c1161d0,product-flow,S1-report-transcription,3.02459030516091e-07,False,,False
+25,"Electricity, industrial gas, at power plant",87591918-a1c0-3559-b2b7-e1987b3215b1,product-flow,S1-report-transcription,1.9523321287097162e-07,False,,False
+20,"Single superphosphate, as P2O5, at regional storehouse",651edf10-9a57-3a06-85e0-37321e05d701,product-flow,S1-report-transcription,1.9023315659383727e-07,False,,False
+24,"Dimethylamine, at plant",aa8294c2-6270-3b56-861c-676b1f7f35bd,product-flow,S1-report-transcription,5.976331622899237e-09,False,,False
+13,Residual material landfill facility,0311b8c7-c4b4-3863-baee-04ee9d28c324,product-flow,S1-report-transcription,1.4729010833080752e-09,False,1.4729e-09,True
+14,Hazardous waste incineration plant,9ee33d34-8aa5-373b-9848-9f7253a264eb,product-flow,S1-report-transcription,1.2500269108999669e-09,False,1.25e-09,True
+23,"Molybdenum, at regional storage",848c158a-8a4f-3206-a772-ac344d3454f9,product-flow,S1-report-transcription,1.6371749315909283e-10,False,,False
+17,"93 kWp slanted-roof installation, single-Si, panel, mounted, on roof",0a1e3460-fd50-38ba-a3db-317b43c7f6db,product-flow,S1-report-transcription,5.5573946459419374e-12,False,,False

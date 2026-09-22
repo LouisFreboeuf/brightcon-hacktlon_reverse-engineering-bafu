@@ -1,0 +1,25 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+3,"Natural gas, burned in gas turbine, for compressor station",8f80feaa-14a0-3efe-96e1-83d231f8c6d7,product-flow,S1-report-transcription,0.6616496796011598,True,0.66165,True
+16,"Water, decarbonised, at plant",d51355e5-b0a8-3db5-bd7e-c74fd60c87e0,product-flow,S1-report-transcription,0.00017238350308238518,True,,False
+8,"Natural gas, at production onshore",bc642c86-524e-3e7e-97d0-d6caa00dcabe,product-flow,S1-report-transcription,4.9267937133043225e-05,True,4.9416e-05,True
+12,"Natural gas, at production onshore",e36b9129-0bee-33de-880b-a3c2a2d19136,product-flow,S1-report-transcription,4.028489574972473e-05,True,4.0337e-05,True
+7,"Natural gas, at production offshore",5930d790-199a-3577-853c-eb6ad69fcfc5,product-flow,S1-report-transcription,3.220395839933947e-05,True,3.1128e-05,True
+14,"Natural gas, at production",59637f90-cff5-3b25-a61d-cbbf7e2314b7,product-flow,S1-report-transcription,2.5198015569986528e-05,True,2.4808e-05,True
+13,"Natural gas, at production",4bac1a14-df79-32c9-97d6-9a061208bc08,product-flow,S1-report-transcription,1.7083244505670995e-05,True,1.6995e-05,True
+2,"Natural gas, at production offshore",7babae55-a5e5-3777-b487-7dac8952284b,product-flow,S1-report-transcription,1.5990894766901987e-05,True,1.5999e-05,True
+10,"Natural gas, at production offshore",9ce78fcd-9d5d-317f-979d-0f6173d9d8f1,product-flow,S1-report-transcription,1.482662431267687e-05,True,1.5655e-05,True
+1,"Natural gas, at production",18f4d5f5-25e7-3926-932f-4d54752a96d3,product-flow,S1-report-transcription,8.935112464671368e-06,False,9.1746e-06,True
+24,"Disposal, building, paint on metal, to sorting plant",d5dae353-9d60-4989-9432-42e36d1f2d81,product-flow,S1-report-transcription,4.307250568662669e-06,False,,False
+11,"Natural gas, at production onshore",7d5ab4b7-10b7-39e5-856a-c9c48f91c3d7,product-flow,S1-report-transcription,2.4656078430464715e-06,False,2.7746e-06,True
+5,"Disposal, used mineral oil, 10% water, to hazardous waste incineration",be69d35d-4a8e-4e4c-88c0-c5df0c7db472,product-flow,S1-report-transcription,1.1479135615948084e-06,False,1.16e-06,True
+6,"Transport, freight, lorry, fleet average",99f8a4b0-99b5-3130-924c-5de4c10b62ef,product-flow,S1-report-transcription,1.6759714778852557e-07,False,1.16e-07,True
+19,"Crude oil, at production",c738e262-4da5-3fc1-af07-9140556c7345,product-flow,S1-report-transcription,1.0403154038768779e-07,False,,False
+20,"Portland cement, strength class Z 42.5, at plant",cd9549ee-8aa8-3183-84f9-ad0483fe1e73,product-flow,S1-report-transcription,5.0819499971756554e-08,False,,False
+22,"Reinforcing steel, at plant",b38bbde0-a4b0-347f-8136-ce520abfa557,product-flow,S1-report-transcription,2.8699920500400043e-08,False,,False
+15,"Disposal, hazardous waste, 25% water, to hazardous waste incineration",2e9b12dd-3611-491a-bc92-a33b5874aa73,product-flow,S1-report-transcription,9.482149298363812e-09,False,,False
+17,"Potassium chloride, as K2O, at regional storehouse",13ce5dc8-cdd7-322f-9d6b-646f27b9af9d,product-flow,S1-report-transcription,2.4720663086132123e-09,False,,False
+9,"Pipeline, natural gas, long distance, low capacity, onshore",9adb57a2-2c3d-37d0-ab8c-c2832427313d,product-flow,S1-report-transcription,2.3800036073148532e-09,False,2.38e-09,True
+4,"Pipeline, natural gas, long distance, high capacity, offshore",a3b0ad50-a6b6-3dfa-bca2-5867a81fe0e7,product-flow,S1-report-transcription,5.949409469939762e-10,False,5.95e-10,True
+21,"Pesticide unspecified, at regional storehouse",d4e8772e-05bf-3bba-b59f-554c1f3555be,product-flow,S1-report-transcription,1.0823662989102169e-10,False,,False
+18,Combine harvesting,7cdc6a0a-2723-3732-a2e3-e88dd6a61352,product-flow,S1-report-transcription,7.449881708424965e-11,False,,False
+23,"Chromium, at regional storage",25fc8277-894b-36f1-a975-639cd9213e12,product-flow,S1-report-transcription,6.453818557596388e-11,False,,False

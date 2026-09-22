@@ -1,0 +1,14 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Yarn production, cotton fibres",37b6099c-6662-3634-8c61-878b0d3c3b8d,product-flow,S3-top-down-model,1.03393998901004,True,1.0,True
+2,"Cotton fibres, ginned, at farm",4e1dc5c9-832f-3030-8410-143fd7488787,product-flow,S3-top-down-model,0.6599145239180307,True,0.66,True
+3,"Cotton fibres, at farm",1a105ad6-27a0-3257-a28a-457b1fa2ddda,product-flow,S3-top-down-model,0.4374098112969879,True,0.44,True
+7,"Treatment, sewage, to wastewater treatment, class 3",9360a3cb-1d99-43ff-b12b-d12795f0332e,product-flow,S3-top-down-model,0.0033525923733502237,True,,False
+6,"Hydrochloric acid, 30% in H2O, at plant",2f8b5baa-5930-3460-bca9-ad90d49c1d36,product-flow,S3-top-down-model,0.00021511386226965453,False,,False
+4,"Polyvinylchloride, at regional storage",36f2eccd-a31b-330a-b685-b87163460c36,product-flow,S3-top-down-model,7.61617013051307e-11,False,,False
+13,"P-dichlorobenzene, at plant",50f8a5f3-b278-337f-9f18-d3ba0b749c2b,product-flow,S3-top-down-model,2.3327260239625238e-11,False,,False
+12,"Xylene, at plant",a29aa0d5-9e37-34d7-8868-8a4fff95350a,product-flow,S3-top-down-model,9.4282675385554e-18,False,,False
+9,"Nitric acid, 50% in H2O, at plant",7a00c9c5-a12c-35bc-8f31-f557d19bb1d0,product-flow,S3-top-down-model,1.821343225379967e-21,False,,False
+5,"Concrete, normal, at plant",9dc7ef6a-1dcc-3968-b7ac-675141e0f5fa,product-flow,S3-top-down-model,3.785940914816445e-22,False,,False
+11,"Electricity, oil, at power plant",59d7b81b-1acb-3861-916c-bad19e939b61,product-flow,S3-top-down-model,1.420927457835416e-23,False,,False
+8,"Transport, freight, lorry, 7.5t-16t gross weight, fleet average",a4f7817d-ef76-3fb0-943c-12c43ed07da7,product-flow,S3-top-down-model,5.341683878764675e-26,False,,False
+10,"Hard coal mix, at regional storage",18a520da-7695-3a17-a667-0171824c6ccb,product-flow,S3-top-down-model,6.664150567167189e-28,False,,False

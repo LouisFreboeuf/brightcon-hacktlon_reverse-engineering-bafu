@@ -1,0 +1,14 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+5,"Diesel, burned in diesel-electric generating set, at extraction site",3b9ec683-d3db-30b9-b5bd-c3ea85135ec5,product-flow,S1-report-transcription,8.133341758761941e-08,False,,False
+3,"Lubricating oil, at plant",0b14288a-dbf3-3dac-a570-83d083f4b600,product-flow,S1-report-transcription,2.95076665564274e-08,False,3.244e-08,True
+6,"Iron sulphate, at plant",1b541649-c28b-369b-a574-066c98648887,product-flow,S1-report-transcription,2.1604384013303466e-08,False,,False
+13,"Disposal, paper, 11.2% water, to municipal incineration",46eeff89-f26d-44ad-91ac-9974927741c0,product-flow,S1-report-transcription,1.5854711479473455e-08,False,,False
+4,"Transport, freight, lorry, 7.5t-16t gross weight, fleet average",552ef261-d7f3-34e7-83b4-686a98711599,product-flow,S1-report-transcription,1.291935022664836e-08,False,,False
+10,"Electricity, hydropower, at pumped storage power plant",05fba4d5-0909-375f-878b-93c2b7016e62,product-flow,S1-report-transcription,3.690719294921448e-09,False,,False
+7,"Electricity, nuclear, at power plant pressure water reactor",45c5821e-cf95-3d4d-a8f1-525a18bfe93d,product-flow,S1-report-transcription,2.7801779811120706e-09,False,,False
+8,"Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",5603e594-cc40-4c59-8aaf-625bf939228e,product-flow,S1-report-transcription,1.1699648788060624e-09,False,,False
+11,"Powder coating, aluminium sheet",b3bbff04-9f71-3acc-b827-19bd99e6f9b6,product-flow,S1-report-transcription,5.444345310839749e-10,False,,False
+1,"Sulphur hexafluoride, liquid, at plant",b1ff97f2-2364-3290-86c7-d513fd4be2e9,product-flow,S1-report-transcription,3.1372083222546673e-10,False,3.4e-10,True
+2,Reservoir hydropower plant,5d4f0090-160f-314e-976e-9321243a1eda,product-flow,S1-report-transcription,3.347000519691583e-11,False,3.347010465e-11,True
+12,"3kWp slanted-roof installation, CdTe, panel, mounted, on roof",e0c7a37f-365c-3471-ab33-2d88f7e8d6fc,product-flow,S1-report-transcription,2.256917768783323e-13,False,,False
+9,Plastics processing factory,57073846-6aa4-310d-801e-f12e9bc1b1d1,product-flow,S1-report-transcription,1.529515177701511e-17,False,,False

@@ -1,0 +1,14 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Polyethylene, LDPE, granulate, at plant",c4dbbb99-22d0-37c1-8cc7-fc5a8c64329b,product-flow,S3-top-down-model,1.0206321922107178,True,1.02,True
+2,"Extrusion, plastic film",c06a8970-8ec4-359e-887a-0bbf51d9ee6f,product-flow,S3-top-down-model,1.0193828998720056,True,1.02,True
+3,"Transport, freight, lorry, fleet average",99f8a4b0-99b5-3130-924c-5de4c10b62ef,product-flow,S3-top-down-model,0.10408983366806007,True,0.1,True
+11,"Electricity from waste, at municipal waste incineration plant",a9f81d35-ac75-3917-8e35-e9c000a104e6,product-flow,S3-top-down-model,0.1,False,,False
+12,"Electricity, high voltage, production ENTSO-E, at grid",d7cd364e-1d5c-4f92-8c81-942cad46c4bd,product-flow,S3-top-down-model,0.008178805793093697,False,,False
+5,"Aluminium, primary, at plant",5cac9857-21f7-305d-b705-c83a02a94e6e,product-flow,S3-top-down-model,1.3948769333169843e-05,False,,False
+7,"Technical wood drying, infrastructure",6af61017-3945-3789-be63-c211159170a9,product-flow,S3-top-down-model,7.3551010215713205e-09,False,,False
+6,"Alkyd paint, white, 60% in H2O, at plant",4ae47809-79a6-30d0-b679-61fbb0beedf8,product-flow,S3-top-down-model,5.479411865185253e-09,False,,False
+10,Municipal waste incineration plant,c48dd908-0b49-323f-8270-ef772e7c900d,product-flow,S3-top-down-model,4.7024147848712446e-11,False,,False
+9,"Natural gas, burned in gas turbine",21ccb6c1-5291-38de-9547-d458e871fba4,product-flow,S3-top-down-model,3.925806126193551e-14,False,,False
+8,"Plant onshore, natural gas, production",0d4fd0d8-b50d-32d6-84ed-3c1ba80bf901,product-flow,S3-top-down-model,1.330072632370358e-14,False,,False
+4,"Heat, heavy fuel oil, at industrial furnace 1MW",1223f12d-41ed-32f2-a8fa-e9811708964f,product-flow,S3-top-down-model,3.149621115374273e-17,False,,False
+13,"Light fuel oil, burned in boiler 100kW, non-modulating",09da51a8-f8ca-3270-bfa4-7749767952a7,product-flow,S3-top-down-model,9.899051431525869e-37,False,,False

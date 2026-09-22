@@ -1,0 +1,17 @@
+rank,candidate,code,kind,group,fitted_amount,kept,true_amount,is_true_input
+1,"Chromium steel 18/8, at plant",fc9385f8-fe2d-3399-b663-4b66e5062a3f,product-flow,S3-top-down-model,15.700017556684315,True,15.7,True
+5,"Transport, freight, rail",aacc6120-0e68-3835-8303-5ae37d62c030,product-flow,S3-top-down-model,9.428200309052468,True,9.4,True
+4,"Transport, freight, lorry, fleet average",99f8a4b0-99b5-3130-924c-5de4c10b62ef,product-flow,S3-top-down-model,1.2298305543074677,True,1.23,True
+6,"Transport, freight, lorry, 16t-32t gross weight, fleet average",eb5552ed-63a8-374d-8fa4-296f644c37f8,product-flow,S3-top-down-model,0.7777184760757261,True,0.78,True
+2,"Radioactive waste, in final repository for nuclear waste SF, HLW, and ILW",62835b0e-1eaf-40a3-b89b-0dec99d2cc14,product-flow,S3-top-down-model,0.0024000408095639345,True,0.0024,True
+13,"Light fuel oil, burned in boiler 100kW, non-modulating",09da51a8-f8ca-3270-bfa4-7749767952a7,product-flow,S3-top-down-model,0.0020615740773158495,True,,False
+9,"Disposal, spoil from coal mining, in surface landfill",36fc181c-13da-4792-aa29-e2012c405ccd,product-flow,S3-top-down-model,0.0016060066393304216,True,,False
+16,"Disposal, cement, hydrated, 0% water, to residual material landfill",6eb70d13-4a43-4a65-9090-90749e3369af,product-flow,S3-top-down-model,0.0011257856609127813,True,,False
+12,"Electricity, industrial gas, at power plant",50a27d95-1918-3831-b8d4-8fd1bb875c00,product-flow,S3-top-down-model,0.00020341094325066408,True,,False
+10,"Electricity, hard coal, at power plant",a3b8fd88-053f-38ce-b819-2a7905118255,product-flow,S3-top-down-model,0.0001296996830170553,True,,False
+11,"Slurry spreading, by vacuum tanker",4ba7a6fd-484a-3c2b-a00d-289bfa57d3b2,product-flow,S3-top-down-model,0.0001250494906893539,True,,False
+14,"Ammonium sulphate, as N, at regional storehouse",5ed8de24-24f1-318b-b7cc-e9c4d1f8751f,product-flow,S3-top-down-model,7.219303614801502e-05,True,,False
+8,"Isopropanol, at plant",cc16978e-b292-32be-bf38-472e5f5d4156,product-flow,S3-top-down-model,4.4960691768932234e-05,True,,False
+7,"Ammonium nitrate, as N, at regional storehouse",23f3ffba-42da-3167-96ac-808ccb478f9d,product-flow,S3-top-down-model,1.7091402860802792e-05,True,,False
+3,Nuclear spent fuel conditioning plant,78a43b16-2526-37bd-a928-a9118057d41d,product-flow,S3-top-down-model,5.55994751779737e-07,False,5.56e-07,True
+15,"P-dichlorobenzene, at plant",50f8a5f3-b278-337f-9f18-d3ba0b749c2b,product-flow,S3-top-down-model,2.1664304810237495e-07,False,,False
