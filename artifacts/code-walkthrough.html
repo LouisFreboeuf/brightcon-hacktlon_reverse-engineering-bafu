@@ -50,8 +50,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <b>scripts/</b>
   list_system_terminated.py   the 101: ecoSpold type=2 from the XML, joined with Brightway usage
   list_sources.py             source citations, DOIs, report PDFs of the documentation bundle
-  render_pages.py             specs + sandbox + check reports → artifacts/rebuilt-inventories.html
-  screen_aggregated.py        (older branch) heuristic screening incl. the background‑chain fingerprint
+  render_pages.py             specs + sandbox + check reports → artifacts/rebuilt-inventories.html (template in templates/)
 <b>results/</b>
   system_terminated.csv       the 101 with family, sibling, people, representativeness
   sources.csv · dois.csv      the bibliography behind the database
@@ -59,7 +58,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
   benchmark/&lt;name&gt;.{csv,md}  per case × scenario rows, and the summary
 <b>artifacts/</b>                the documentation: method explainer, the 101 (evidence), rebuilt inventories, burnt shale, this page
 <b>.claude/commands/</b>          /draft-spec — runs the drafting chain inside a Claude Code session
-<i>data/, output/, BAFU-2026 v1_Documentation/   gitignored: the ecoSpold XML, screening output, the PDFs</i></div>
+<i>data/, BAFU-2026 v1_Documentation/   gitignored: the ecoSpold XML and the report PDFs</i></div>
 
 <h2>2 · Data flow</h2>
 <figure><div class="diagram">
