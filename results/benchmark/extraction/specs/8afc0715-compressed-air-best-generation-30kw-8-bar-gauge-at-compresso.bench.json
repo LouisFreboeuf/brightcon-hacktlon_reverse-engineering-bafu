@@ -222,7 +222,7 @@
           "mapping_reason": "Waste heat released to air in megajoules, matching the table's 'emission air, high population density' label and its unit; the soil and water variants are the wrong compartment.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
         "database": "ef-3.1-biosphere"
       }
     ],
