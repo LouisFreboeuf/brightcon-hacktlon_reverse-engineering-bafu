@@ -31,6 +31,8 @@ from . import db
 from .spec import slug
 
 PROMPTS = Path("prompts")
+EVIDENCE_ROOT = Path("specs/evidence")   # the benchmark re-points these two
+SPEC_ROOT = Path("specs")
 MODEL = "claude-opus-5"
 EFFORT = "high"
 
@@ -145,7 +147,7 @@ def _now() -> str:
 # ---------------------------------------------------------------- layer 1: evidence
 def evidence(code: str, report: Path, pages: str, ecospold_dir: Path, project: str) -> Path:
     """Write specs/evidence/<code>/: report text, target metadata, direct-resource candidates, manifest."""
-    out = Path("specs/evidence") / code
+    out = EVIDENCE_ROOT / code
     out.mkdir(parents=True, exist_ok=True)
     first, last = (pages.split("-") + [pages])[:2]
     txt = out / f"report-p{first}-{last}.txt"
@@ -223,7 +225,7 @@ def locate_prompt(code: str, pdf: Path, ecospold_dir: Path) -> tuple[str, list[d
 
 def locate(code: str, pdf: Path, ecospold_dir: Path, dry_run: bool, from_response: Path | None, by: str) -> dict | None:
     """Pass 0: which PDF pages hold the dataset's inventory. Returns the validated response or None (dry run)."""
-    ev = Path("specs/evidence") / code
+    ev = EVIDENCE_ROOT / code
     ev.mkdir(parents=True, exist_ok=True)
     prompt, caps = locate_prompt(code, pdf, ecospold_dir)
     (ev / "prompt-0-locate.md").write_text(prompt)
@@ -357,8 +359,8 @@ def _load_response(path: Path, schema: dict, label: str) -> dict:
     return data
 
 
-def draft(code: str, dry_run: bool, from_response: dict[str, Path] | None, project: str) -> None:
-    ev = Path("specs/evidence") / code
+def draft(code: str, dry_run: bool, from_response: dict[str, Path] | None, project: str, variant: str = "draft") -> None:
+    ev = EVIDENCE_ROOT / code
     if not (ev / "manifest.json").exists():
         raise SystemExit(f"no evidence for {code}: run `reverse-bafu evidence` first")
     meta = json.loads((ev / "target.json").read_text())
@@ -394,10 +396,58 @@ def draft(code: str, dry_run: bool, from_response: dict[str, Path] | None, proje
         mp, prov2 = call_model(p2, MAPPING_SCHEMA, "mapping")
     (ev / "response-2-map.json").write_text(json.dumps(mp, indent=1, ensure_ascii=False))
     (ev / "provenance-2-map.json").write_text(json.dumps(prov2, indent=1))
-    assemble(code, project)
+    assemble(code, project, variant)
 
 
 # ---------------------------------------------------------------- batch: every row of the CSV
+def advance(code: str, name: str, pdf: Path, ecospold_dir: Path, project: str, dry_run: bool, by: str,
+            rec: dict, variant: str = "draft") -> None:
+    """Take one dataset as far as its on-disk state allows: locate -> evidence -> extract -> map ->
+    assemble. Fills rec["status"] / rec["note"] / rec["pages"]; never overwrites an existing spec."""
+    existing = SPEC_ROOT / f"{code[:8]}-{slug(name)}.{variant}.json"
+    ev = EVIDENCE_ROOT / code
+    if existing.exists():
+        rec["status"], rec["note"] = "drafted", f"{existing} exists (kept; delete it to re-assemble)"
+        ev0 = ev / "response-0-locate.json"
+        if ev0.exists():
+            r0 = json.loads(ev0.read_text())
+            rec["pages"] = f"{r0.get('first_page')}-{r0.get('last_page')}" if r0.get("found") else ""
+        return
+    try:
+        if (ev / "response-0-locate.json").exists():
+            resp0 = json.loads((ev / "response-0-locate.json").read_text())
+        else:
+            resp0 = locate(code, pdf, ecospold_dir, dry_run, None, by)
+        if resp0 is None:
+            rec["status"], rec["note"] = "prompt-0-written", "answer prompt-0-locate.md, save as response-0-locate.json, rerun"
+            return
+        if not resp0["found"]:
+            rec["status"], rec["note"] = "pages-not-found", resp0["reason"]
+            return
+        pages = f"{resp0['first_page']}-{resp0['last_page']}"
+        rec["pages"] = pages
+        if not (ev / "manifest.json").exists():
+            evidence(code, pdf, pages, ecospold_dir, project)
+        fr = {}
+        if (ev / "response-1-extract.json").exists():
+            fr["extract"] = ev / "response-1-extract.json"
+        if (ev / "response-2-map.json").exists():
+            fr["map"] = ev / "response-2-map.json"
+        fr["by"] = by
+        if dry_run and "extract" not in fr:
+            draft(code, True, None, project, variant)
+            rec["status"], rec["note"] = "prompt-1-written", "answer prompt-1-extract.md, save as response-1-extract.json, rerun"
+            return
+        if dry_run and "map" not in fr:
+            draft(code, False, fr, project, variant)  # renders prompt 2 from the extract response, stops
+            rec["status"], rec["note"] = "prompt-2-written", "answer prompt-2-map.md, save as response-2-map.json, rerun"
+            return
+        draft(code, False, fr if len(fr) > 1 else None, project, variant)
+        rec["status"], rec["note"] = "drafted", str(existing)
+    except SystemExit as exc:
+        rec["status"], rec["note"] = "error", str(exc)[:200]
+
+
 def draft_all(project: str, ecospold_dir: Path, reports: Path, dry_run: bool, only: set[str] | None, by: str,
               status_path: Path = Path("results/drafting_status.csv")) -> None:
     """One entry point for all system-terminated datasets: find the report, locate the pages, extract,
@@ -413,57 +463,13 @@ def draft_all(project: str, ecospold_dir: Path, reports: Path, dry_run: bool, on
             continue
         rec = {"code": code, "name": name, "family": r["family"], "pdf": "", "pages": "", "status": "", "note": ""}
         status.append(rec)
-        existing = Path("specs") / f"{code[:8]}-{slug(name)}.draft.json"
-        if existing.exists():
-            # never overwrite a draft that may have been resolved, calibrated or reviewed since
-            rec["status"], rec["note"] = "drafted", f"{existing} exists (kept; delete it to re-assemble)"
-            ev0 = Path("specs/evidence") / code / "response-0-locate.json"
-            if ev0.exists():
-                r0 = json.loads(ev0.read_text()); rec["pdf"] = (json.loads((Path("specs/evidence") / code / "captions-0-locate.json").read_text()).get("pdf", "") if (Path("specs/evidence") / code / "captions-0-locate.json").exists() else "")
-                rec["pages"] = f"{r0.get('first_page')}-{r0.get('last_page')}" if r0.get("found") else ""
-            continue
         title = r["source"].split(" | ")[-1] if r["source"] else ""
         pdf_name = pdf_by_title.get(title, "")
-        if not pdf_name:
+        if not pdf_name and not (SPEC_ROOT / f"{code[:8]}-{slug(name)}.draft.json").exists():
             rec["status"], rec["note"] = "no-pdf", f"family {r['family']}: no report in the documentation bundle for '{title or 'no source'}'"
             continue
-        pdf = reports / pdf_name
         rec["pdf"] = pdf_name
-        ev = Path("specs/evidence") / code
-        try:
-            resp0 = None
-            if (ev / "response-0-locate.json").exists():
-                resp0 = json.loads((ev / "response-0-locate.json").read_text())
-            else:
-                resp0 = locate(code, pdf, ecospold_dir, dry_run, None, by)
-            if resp0 is None:
-                rec["status"], rec["note"] = "prompt-0-written", "answer prompt-0-locate.md, save as response-0-locate.json, rerun"
-                continue
-            if not resp0["found"]:
-                rec["status"], rec["note"] = "pages-not-found", resp0["reason"]
-                continue
-            pages = f"{resp0['first_page']}-{resp0['last_page']}"
-            rec["pages"] = pages
-            if not (ev / "manifest.json").exists():
-                evidence(code, pdf, pages, ecospold_dir, project)
-            fr = {}
-            if (ev / "response-1-extract.json").exists():
-                fr["extract"] = ev / "response-1-extract.json"
-            if (ev / "response-2-map.json").exists():
-                fr["map"] = ev / "response-2-map.json"
-            fr["by"] = by
-            if dry_run and "extract" not in fr:
-                draft(code, True, None, project)
-                rec["status"], rec["note"] = "prompt-1-written", "answer prompt-1-extract.md, save as response-1-extract.json, rerun"
-                continue
-            if dry_run and "map" not in fr:
-                draft(code, False, fr, project)  # renders prompt 2 from the extract response, stops
-                rec["status"], rec["note"] = "prompt-2-written", "answer prompt-2-map.md, save as response-2-map.json, rerun"
-                continue
-            draft(code, False, fr if len(fr) > 1 else None, project)
-            rec["status"], rec["note"] = "drafted", f"specs/{code[:8]}-{slug(name)}.draft.json"
-        except SystemExit as exc:
-            rec["status"], rec["note"] = "error", str(exc)[:200]
+        advance(code, name, reports / pdf_name, ecospold_dir, project, dry_run, by, rec)
     status_path.parent.mkdir(parents=True, exist_ok=True)
     with status_path.open("w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(status[0]))
@@ -479,9 +485,9 @@ UNITS = {"kg": "kilogram", "MJ": "megajoule", "kWh": "kilowatt hour", "m3": "cub
          "unit": "unit", "m2": "square meter", "m": "meter", "t": "ton", "kBq": "kilo Becquerel"}
 
 
-def assemble(code: str, project: str) -> Path:
+def assemble(code: str, project: str, variant: str = "draft") -> Path:
     db.set_project(project)
-    ev = Path("specs/evidence") / code
+    ev = EVIDENCE_ROOT / code
     meta = json.loads((ev / "target.json").read_text())
     man = json.loads((ev / "manifest.json").read_text())
     ext = json.loads((ev / "response-1-extract.json").read_text())
@@ -541,7 +547,7 @@ def assemble(code: str, project: str) -> Path:
             skipped.append(f"{it['name']}: {it['kind']} — {it['note']}")
     spec = {
         "target": {"code": code, "name": meta["name"], "location": meta["location"]},
-        "variant": "draft",  # sandbox nodes get <code>-draft-disagg so a hand-written rebuild of the same target is kept
+        "variant": variant,  # sandbox nodes get <code>-<variant>-disagg so a hand-written rebuild of the same target is kept
         "strategy": {"code": "S1", "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
                      "note": f"basis: {ext['basis']}; allocation: {ext['allocation'] or 'none stated'}. Review every derivation; unreviewed entries have reviewed_by = null."},
         "evidence": [{"source": man["report"]["file"], "where": f"pages {man['report']['pages']} -> {man['report_text']['file']}",
@@ -553,7 +559,8 @@ def assemble(code: str, project: str) -> Path:
                  **({"mass_sum": ext["mass_sum"] * scale} if ext.get("mass_sum") else {}),
                  "inputs": inputs, "emissions": emissions, "resources": resources},
     }
-    out = Path("specs") / f"{code[:8]}-{slug(meta['name'])}.draft.json"
+    SPEC_ROOT.mkdir(parents=True, exist_ok=True)
+    out = SPEC_ROOT / f"{code[:8]}-{slug(meta['name'])}.{variant}.json"
     out.write_text(json.dumps(spec, indent=2, ensure_ascii=False) + "\n")
     print(f"assembled -> {out}: {len(inputs)} inputs, {len(emissions)} emissions, {len(resources)} resources; skipped {len(skipped)}; gaps: {len(ext['gaps'])}")
     for s in skipped:

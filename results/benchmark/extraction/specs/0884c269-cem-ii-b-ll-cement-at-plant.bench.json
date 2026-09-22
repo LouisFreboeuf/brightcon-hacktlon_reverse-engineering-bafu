@@ -1,0 +1,303 @@
+{
+  "target": {
+    "code": "0884c269-5b53-330c-9fdd-e085230f9768",
+    "name": "CEM II, B-LL cement, at plant",
+    "location": "CH"
+  },
+  "variant": "bench",
+  "strategy": {
+    "code": "S1",
+    "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
+    "note": "basis: per 1 kg CEM II/B-LL cement, ab Werk — the middle column of Tab. 3.13 (three cements side by side); allocation: none. Review every derivation; unreviewed entries have reviewed_by = null."
+  },
+  "evidence": [
+    {
+      "source": "2020 - LCA selected types of concrete - Tschuemperlin.pdf",
+      "where": "pages 24-25 -> report-p24-25.txt",
+      "note": "report sha256 83e2e7ea46d35899…, text sha256 38b024cef9f73212…"
+    }
+  ],
+  "provenance": {
+    "pipeline": "reverse-bafu draft",
+    "evidence_manifest": "results/benchmark/extraction/evidence/0884c269-5b53-330c-9fdd-e085230f9768/manifest.json",
+    "extraction": {
+      "model": "manual",
+      "by": "llm:claude-opus-5 (interactive session, not API)",
+      "prompt_sha256": "19d723b24c5efa2622bf94eb6ffbaad7a6393b203abe15cb76c2f96493f8348c",
+      "at": "2026-09-22T09:54:41Z"
+    },
+    "mapping": {
+      "model": "manual",
+      "by": "llm:claude-opus-5 (interactive session, not API)",
+      "prompt_sha256": "04bf7fe6cbd8c17efb3e4093c1da9fefa7b3f4c84485d82a76142f6f523e6511",
+      "at": "2026-09-22T09:54:49Z"
+    },
+    "gaps_reported_by_model": [
+      "Burnt shale, ground granulated blast furnace slag and heavy fuel oil appear only in the CEM II/B CH-Mix column, not for CEM II/B-LL.",
+      "No water use or packaging in the table."
+    ],
+    "skipped_items": [],
+    "assembled_at": "2026-09-22T09:54:49Z"
+  },
+  "node": {
+    "name": "CEM II, B-LL cement, at plant, disaggregated",
+    "unit": "kg",
+    "location": "CH",
+    "comment": "drafted from 2020 - LCA selected types of concrete - Tschuemperlin.pdf pp. 24-25",
+    "inputs": [
+      {
+        "name": "Cement plant",
+        "amount": 2.73e-11,
+        "unit": "unit",
+        "location": "CH",
+        "note": "",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "technosphere    cement plant                                        CH            1                    unit      2.73E-11        2.73E-11     2.73E-11       1               3.00",
+          "raw_value": 2.73e-11,
+          "raw_unit": "unit",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "unit",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "high",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "search": "cement plant",
+          "mapping_reason": "the infrastructure unit; the cement products are not infrastructure.",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "30df91c3-fac6-3ccf-835b-71863079263a"
+      },
+      {
+        "name": "Clinker, at plant",
+        "amount": 0.71,
+        "unit": "kilogram",
+        "location": "CH",
+        "note": "the text sets the clinker share of CEM II/B-LL to 71 %",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "clinker (data from ecoinvent v3.2), at plant        CH            0                     kg        6.88E-1        7.10E-1       7.88E-1       1               1.31",
+          "raw_value": 0.71,
+          "raw_unit": "kg",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "kg",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "high",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "search": "clinker at plant",
+          "mapping_reason": "only clinker dataset; the table says the same, CH.",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "137152eb-d111-382a-9eae-3e592047418d"
+      },
+      {
+        "name": "Electricity, medium voltage, at grid",
+        "amount": 0.0342,
+        "unit": "kilowatt hour",
+        "location": "CH",
+        "note": "",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "electricity, medium voltage, at grid                CH            0                    kWh        3.42E-2        3.42E-2       3.13E-2       1               1.31",
+          "raw_value": 0.0342,
+          "raw_unit": "kWh",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "kWh",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "high",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "search": "electricity medium voltage grid",
+          "mapping_reason": "plain Swiss grid, as in the table; SBB/import variants are specific supplies.",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "df605f09-34c5-3b3f-94ea-227f7a3c06a7"
+      },
+      {
+        "name": "Ethylene glycol, at plant",
+        "amount": 0.00021,
+        "unit": "kilogram",
+        "location": "RER",
+        "note": "",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "ethylene glycol, at plant                           RER           0                     kg        2.10E-4        2.10E-4       2.12E-4       1               1.13",
+          "raw_value": 0.00021,
+          "raw_unit": "kg",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "kg",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "high",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "search": "ethylene glycol plant",
+          "mapping_reason": "the substance; only candidate that is ethylene glycol itself (aggregated in BAFU).",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "582ad303-7f18-3110-83c2-bccca0dc995f"
+      },
+      {
+        "name": "Gypsum, mineral, at mine",
+        "amount": 0.0211,
+        "unit": "kilogram",
+        "location": "CH",
+        "note": "",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "gypsum, mineral, at mine                            CH            0                     kg        2.11E-2        2.11E-2       4.64E-2       1               1.30",
+          "raw_value": 0.0211,
+          "raw_unit": "kg",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "kg",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "high",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "search": "gypsum mineral mine",
+          "mapping_reason": "exact match of the table's dataset name.",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "23d4e39c-14e5-3290-a4e2-931581ecbc7a"
+      },
+      {
+        "name": "Steel, low-alloyed, at plant",
+        "amount": 4e-05,
+        "unit": "kilogram",
+        "location": "RER",
+        "note": "",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "technosphere    steel, low-alloyed, at plant                        RER           0                     kg        4.00E-5        4.00E-5       4.04E-5       1               1.22",
+          "raw_value": 4e-05,
+          "raw_unit": "kg",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "kg",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "high",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "search": "steel low-alloyed plant",
+          "mapping_reason": "exact match of the table's dataset name and location (RER); the electric/converter variants are process-specific.",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "b9430f24-d0b9-3422-a5ad-f874acbbef18"
+      },
+      {
+        "name": "Limestone, crushed, for mill",
+        "amount": 0.269,
+        "unit": "kilogram",
+        "location": "CH",
+        "note": "",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "limestone, crushed, for mill                        CH            0                     kg        1.51E-1        2.69E-1       1.61E-1       1               1.22",
+          "raw_value": 0.269,
+          "raw_unit": "kg",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "kg",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "high",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "search": "limestone crushed mill",
+          "mapping_reason": "exact match of the table's dataset name.",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "4cf11247-ece6-3e2f-b82a-908ed0b7cd5f"
+      },
+      {
+        "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+        "amount": 0.02,
+        "unit": "ton kilometer",
+        "location": "CH",
+        "note": "the table's lorry class (20-28t) has no BAFU dataset; nearest class searched",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "transport, lorry 20-28t, fleet average              CH            0                    tkm        4.44E-2        2.00E-2       2.00E-2       1               2.05",
+          "raw_value": 0.02,
+          "raw_unit": "tkm",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "tkm",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "medium",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "search": "transport freight lorry 16t-32t",
+          "mapping_reason": "no 20-28t class in BAFU; 16-32t is the enclosing fleet-average class, CH as in the table.",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "eb5552ed-63a8-374d-8fa4-296f644c37f8"
+      },
+      {
+        "name": "Transport, freight, rail",
+        "amount": 0.00015,
+        "unit": "ton kilometer",
+        "location": "RER",
+        "note": "",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "transport, freight, rail                            RER           0                    tkm        1.50E-4        1.50E-4       1.23E-3       1               2.05",
+          "raw_value": 0.00015,
+          "raw_unit": "tkm",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "tkm",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "high",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "search": "transport freight rail",
+          "mapping_reason": "generic rail freight, RER as in the table.",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "aacc6120-0e68-3835-8303-5ae37d62c030"
+      }
+    ],
+    "emissions": [
+      {
+        "name": "Waste Heat",
+        "category": "air",
+        "amount": 0.123,
+        "unit": "megajoule",
+        "note": "",
+        "derivation": {
+          "evidence": "report-p24-25.txt",
+          "quote": "air, unspecified Heat, waste                                         -               -                  MJ        1.23E-1        1.23E-1       1.13E-1       1               1.22",
+          "raw_value": 0.123,
+          "raw_unit": "MJ",
+          "per": "per kg CEM II/B-LL cement (middle column of Tab. 3.13)",
+          "factor": 1.0,
+          "factor_unit": "MJ",
+          "factor_source": "",
+          "scale_to_unit": 1.0,
+          "confidence": "high",
+          "by": "llm:claude-opus-5 (interactive session, not API)",
+          "reviewed_by": null,
+          "mapping_reason": "waste heat released to air, as the table's compartment says.",
+          "mapping_by": "llm:claude-opus-5 (interactive session, not API)"
+        },
+        "code": "08a91e70-3ddc-11dd-9137-0050c2490048",
+        "database": "ef-3.1-biosphere"
+      }
+    ],
+    "resources": []
+  }
+}

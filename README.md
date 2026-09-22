@@ -211,12 +211,11 @@ uv run reverse-bafu benchmark --n 40 --seed 7 --scenarios oracle,bounded,partial
 uv run reverse-bafu benchmark --n 5 --seed 7 --scenarios blind --name blind-n5-seed7           # the no-list control, slow
 ```
 
-**What it tests — and what it does not.** The benchmark tests one step of the pipeline: step 5's
-`calibrate`, the least‑squares recovery of input *amounts* from an aggregated flow vector given an
-input *list*. It does **not** test step 4 — locating the table in a PDF, extracting line items,
-mapping them to BAFU names — nor `resolve`. The reason is ground truth: for calibration, ground
-truth is free (below); for extraction it would need report tables paired with the unit processes
-they describe, which is a different benchmark (see the end of this section).
+**Two modes.** `--mode calibration` (the default, below) tests one step: step 5's `calibrate`, the
+least‑squares recovery of input *amounts* from an aggregated flow vector given an input *list*;
+its ground truth is free, so it runs without any model. `--mode extraction` (end of this section)
+tests the whole route from the PDF to the checked node, on unit processes whose report is in the
+bundle; it needs the model for three prompts per case.
 
 **How it works, step by step.**
 
@@ -256,15 +255,38 @@ drift; with 10 distractors the scores still match in 35/40 cases while **4 cases
 for a wrong one** — the identifiability trap measured; with no list at all, nothing is recovered
 (0/5, 22–27 wrong inputs per case). Interpretation on the method explainer page, §7.
 
-**Benchmarking the extraction (step 4) — not built yet.** Ground truth would be BAFU *unit*
-processes whose report in the bundle prints their inventory table: run `locate → extract → map`
-on them and compare the drafted spec with the real exchanges — page range found, line items
-recovered, names mapped to the right dataset, amounts within tolerance, and the `gaps` the model
-reports versus what was actually missing. The caption indexes from `draft-all --dry-run` are the
-starting point for choosing such cases; the concrete 2020 report alone prints tables for clinker,
-blast‑furnace slag, ground slag and the CEM cements, all unit processes in BAFU. This benchmark
-needs model calls (or a session answering the prompts) for every case and a reviewer's tolerance
-per field, which is why it is listed here rather than shipped.
+### Extraction mode: the whole route, including the PDF
+
+```bash
+uv run reverse-bafu benchmark --mode extraction --n 10 --seed 7            # API route (needs the anthropic SDK and a key)
+uv run reverse-bafu benchmark --mode extraction --n 10 --seed 7 --dry-run  # writes the pending prompts; rerun after answering them
+```
+
+or `/benchmark-extraction --n 10 --seed 7` inside Claude Code, which answers the prompts itself
+([.claude/commands/benchmark-extraction.md](.claude/commands/benchmark-extraction.md)).
+
+This mode tests everything step 4 and step 5 do, on cases with a known answer. The cases are BAFU
+*unit processes* whose cited report is in the documentation bundle (same stratified, seeded
+sampling as above, skipping processes without a report). Each is treated exactly like a real
+aggregated dataset: locate the table in the PDF → evidence → extract → map → assemble → resolve
+→ calibrate (`--apply`) → build → check, with the same three model routes and the same on‑disk
+state machine as `draft-all` (files under `results/benchmark/extraction/`, never under `specs/`).
+The drafted spec is then compared with the process's real exchanges:
+
+| Metric | Meaning |
+|---|---|
+| `pages` / `pages-not-found` | did the locate pass find the table |
+| `inputs_matched` / `inputs_missed` / `inputs_extra` | true inputs recovered *and mapped to the right dataset* (by code); true inputs absent; drafted inputs that are not in the process |
+| `input_amounts_within_20pct` | of the matched inputs, how many amounts (after calibration) are within ±20 % of the real ones |
+| `direct_flows_matched` | direct emissions/resources recovered (by substance and compartment) |
+| `climate_delta_pct`, `categories_within_10pct` | the harness's verdict on the rebuilt node vs the real process |
+| `gaps_reported` | what the model said the excerpt did not cover |
+
+Model calls per case: three (locate, extract, map). The one case run so far, `CEM II, B‑LL
+cement` from the concrete 2020 report (answered by a Claude Code session, labelled so): 9/9 inputs
+found and mapped, 8/9 amounts within ±20 %, the direct flow matched, climate +0.6 %, 24/25
+categories within ±10 %. The one amount miss is a finding about the data, not the pipeline: the
+report prints 2.0E‑2 tkm of lorry transport for that cement, the BAFU dataset carries 4.3E‑4.
 
 ## Layout
 
@@ -276,7 +298,7 @@ specs/              one JSON per rebuilt dataset; specs/evidence/<code>/ = draft
 results/            system_terminated.csv, sources.csv, dois.csv, drafting_status.csv, rebuild_status.csv, checks/, benchmark/
 artifacts/          the documentation: method-explainer, the-101, rebuilt-inventories, burnt-shale-rebuilt, code-walkthrough
 references.txt      the two papers referenced, with their role for this project
-.claude/commands/   /draft-all, /draft-spec
+.claude/commands/   /draft-all, /draft-spec, /benchmark-extraction
 ```
 
 ## Data licence and citation

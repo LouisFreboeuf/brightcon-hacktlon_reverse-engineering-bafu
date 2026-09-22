@@ -191,3 +191,145 @@ def run(n: int, seed: int, scenarios: list[str], name: str, out_dir: Path = Path
     print("\n".join(L[4:4 + 2 + len(scenarios)]))
     print(f"\n-> {csv_path}, {md_path}")
     return md_path
+
+
+# ---------------------------------------------------------------- extraction mode: the whole route
+def pick_extraction_cases(n: int, seed: int, ecospold_dir: Path, reports: Path, only: set[str] | None = None) -> list[dict]:
+    """Unit processes (as pick_cases) whose cited report has a PDF in the bundle; sampled the same
+    stratified way, skipping those without a report until n are found."""
+    import csv
+    import xml.etree.ElementTree as ET
+
+    pdf_by_title = {r["title"]: r["pdf"] for r in csv.DictReader(open("results/sources.csv"))}
+    pool = pick_cases(10 ** 6, seed)  # every eligible unit process, in the seeded round-robin order
+    out = []
+    for c in pool:
+        if only and c["code"] not in only and c["code"][:8] not in only:
+            continue
+        src = ET.parse(ecospold_dir / f"process_{c['code']}.xml").getroot().find("dataset/metaInformation/modellingAndValidation/source")
+        pdf = pdf_by_title.get(src.get("title", ""), "") if src is not None else ""
+        if not pdf or not (reports / pdf).exists():
+            continue
+        out.append({**c, "pdf": pdf})
+        if len(out) >= n:
+            break
+    return out
+
+
+def score_extraction(case: dict, spec_path: Path, project: str) -> dict:
+    """Compare the drafted (and resolved, calibrated) spec with the unit process's real exchanges."""
+    from . import spec as spec_mod
+    from .spec import walk
+
+    sp = spec_mod.load(spec_path)
+    truth_in = {k[1]: v for k, v in case["inputs"].items()}           # code -> amount
+    truth_bio = {k: v for k, v in case["direct"].items()}             # (db, code) -> amount
+    drafted_in: dict[str, float] = {}
+    for node in walk(sp.node):
+        for i in node.inputs:
+            if i.code:
+                base = i.code.split("-disagg")[0].split("-bench")[0]
+                drafted_in[base] = drafted_in.get(base, 0.0) + i.amount
+    import bw2data as bd
+
+    def flow_key(database: str, code: str) -> tuple:
+        """(name, top category): EF 3.1 carries the same substance in several sub-compartment
+        flows (two 'Waste Heat [air]' codes), which a report cannot distinguish."""
+        f = bd.get_node(database=database, code=code)
+        cats = f.get("categories") or ()
+        return (f["name"].lower(), str(cats[0]).lower().replace("emissions to ", "") if cats else "")
+
+    drafted_bio: dict[tuple, float] = {}
+    for f in sp.node.emissions + sp.node.resources:
+        if f.code:
+            k = flow_key(f.database, f.code)
+            drafted_bio[k] = drafted_bio.get(k, 0.0) + f.amount
+    truth_bio_named: dict[tuple, float] = {}
+    for (database, code), amt in truth_bio.items():
+        k = flow_key(database, code)
+        truth_bio_named[k] = truth_bio_named.get(k, 0.0) + amt
+    hit = set(truth_in) & set(drafted_in)
+    ratios = [drafted_in[c] / truth_in[c] for c in hit if truth_in[c]]
+    bio_hit = set(truth_bio_named) & set(drafted_bio)
+    bio_ratios = [drafted_bio[k] / truth_bio_named[k] for k in bio_hit if truth_bio_named[k]]
+    return {
+        "true_inputs": len(truth_in), "drafted_inputs": len(drafted_in), "inputs_matched": len(hit),
+        "inputs_missed": len(set(truth_in) - hit), "inputs_extra": len(set(drafted_in) - hit),
+        "input_amounts_within_20pct": f"{sum(1 for r in ratios if 0.8 <= r <= 1.2)}/{len(ratios)}",
+        "input_amount_ratio_median": float(np.median(ratios)) if ratios else float("nan"),
+        "true_direct_flows": len(truth_bio_named), "drafted_direct_flows": len(drafted_bio), "direct_flows_matched": len(bio_hit),
+        "direct_amounts_within_20pct": f"{sum(1 for r in bio_ratios if 0.8 <= r <= 1.2)}/{len(bio_ratios)}",
+        "gaps_reported": len(sp.raw.get("provenance", {}).get("gaps_reported_by_model", [])),
+    }
+
+
+def run_extraction(n: int, seed: int, name: str, project: str, ecospold_dir: Path, reports: Path, dry_run: bool, by: str,
+                   only: set[str] | None = None, out_dir: Path = Path("results/benchmark")) -> Path:
+    """The whole route on unit processes with a report: locate -> evidence -> extract -> map ->
+    assemble -> resolve -> calibrate -> build -> check, then scored against the real exchanges.
+    Same on-disk state machine and model routes as draft-all; files under out_dir/extraction/."""
+    import csv
+
+    from . import build, calibrate, check, draft as draft_mod, resolve, spec as spec_mod
+    from .spec import node_prefix
+
+    root = out_dir / "extraction"
+    draft_mod.EVIDENCE_ROOT, draft_mod.SPEC_ROOT = root / "evidence", root / "specs"
+    db.set_project(project)
+    cases = pick_extraction_cases(n, seed, ecospold_dir, reports, only)
+    print(f"{len(cases)} unit processes with a report in the bundle", file=sys.stderr)
+    rows = []
+    for i, case in enumerate(cases, 1):
+        rec = {"code": case["code"], "name": case["name"], "category": case["category"], "pdf": case["pdf"], "pages": "",
+               "status": "", "note": "", "climate_delta_pct": "", "categories_within_10pct": ""}
+        rows.append(rec)
+        draft_mod.advance(case["code"], case["name"], reports / case["pdf"], ecospold_dir, project, dry_run, by, rec, variant="bench")
+        print(f"  {i}/{len(cases)} {case['name'][:50]} -> {rec['status']}", file=sys.stderr)
+        if rec["status"] != "drafted":
+            continue
+        spec_path = draft_mod.SPEC_ROOT / f"{case['code'][:8]}-{draft_mod.slug(case['name'])}.bench.json"
+        try:
+            sp = spec_mod.load(spec_path)
+            if not resolve.run(sp):
+                rec["status"], rec["note"] = "unresolved", "an input or flow of the drafted spec has no BAFU counterpart"
+                continue
+            spec_mod.save(sp)
+            calibrate.run(sp, apply=True)
+            sp = spec_mod.load(spec_path)
+            build.run(sp, hybrid=True)
+            report = check.run(spec_mod.load(spec_path), out_dir=root / "checks")
+            text = report.read_text()
+            table = text[text.index("## Scores"):text.index("## Flow diff")]  # the 25-row score table only
+            deltas = {m.group(1): float(m.group(2)) for m in re.finditer(r"^\| (.+?) \| [-\d.e+]+ \| [-\d.e+]+ \| ([-+\d.]+)% \|", table, re.M)}
+            rec["climate_delta_pct"] = f"{deltas.get('Climate change', float('nan')):+.1f}"
+            rec["categories_within_10pct"] = sum(1 for d in deltas.values() if abs(d) <= 10)
+            rec.update(score_extraction(case, spec_path, project))
+            rec["status"] = "scored"
+        except SystemExit as exc:
+            rec["status"], rec["note"] = "error", str(exc)[:200]
+    root.mkdir(parents=True, exist_ok=True)
+    csv_path = out_dir / f"extraction-{name}.csv"
+    fields = ["code", "name", "category", "pdf", "pages", "status", "note", "climate_delta_pct", "categories_within_10pct",
+              "true_inputs", "drafted_inputs", "inputs_matched", "inputs_missed", "inputs_extra", "input_amounts_within_20pct",
+              "input_amount_ratio_median", "true_direct_flows", "drafted_direct_flows", "direct_flows_matched", "direct_amounts_within_20pct", "gaps_reported"]
+    with csv_path.open("w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=fields, restval=""); w.writeheader(); w.writerows(rows)
+    scored = [r for r in rows if r["status"] == "scored"]
+    L = [f"# Extraction benchmark `{name}`: {len(cases)} unit processes with a report, seed {seed}", "",
+         "The whole route (locate → evidence → extract → map → assemble → resolve → calibrate → build → check) on unit processes whose "
+         "report is in the bundle, scored against their real exchanges.", "",
+         "| status | n |", "|---|---|"] + [f"| {k} | {v} |" for k, v in Counter(r["status"] for r in rows).most_common()]
+    if scored:
+        rec_in = sum(r["inputs_matched"] for r in scored) / max(1, sum(r["true_inputs"] for r in scored))
+        prec_in = sum(r["inputs_matched"] for r in scored) / max(1, sum(r["drafted_inputs"] for r in scored))
+        w20 = [tuple(map(int, r["input_amounts_within_20pct"].split("/"))) for r in scored]
+        rec_bio = sum(r["direct_flows_matched"] for r in scored) / max(1, sum(r["true_direct_flows"] for r in scored))
+        L += ["", f"Scored cases: {len(scored)}. Inputs: recall {rec_in:.0%}, precision {prec_in:.0%}, amounts within ±20 % "
+              f"{sum(a for a, _ in w20)}/{sum(b for _, b in w20)} of matched; direct flows: recall {rec_bio:.0%}; "
+              f"climate |Δ| median {np.nanmedian([abs(float(r['climate_delta_pct'])) for r in scored if r['climate_delta_pct'] != '']):.1f} %; "
+              f"categories within ±10 % median {np.median([r['categories_within_10pct'] for r in scored]):.0f}/25."]
+    md_path = out_dir / f"extraction-{name}.md"
+    md_path.write_text("\n".join(L) + "\n")
+    print("\n".join(L[4:]))
+    print(f"\n-> {csv_path}, {md_path}")
+    return md_path
