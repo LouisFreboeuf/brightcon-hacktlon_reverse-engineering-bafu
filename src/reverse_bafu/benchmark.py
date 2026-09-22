@@ -49,9 +49,18 @@ def pick_cases(n: int, seed: int, min_inputs: int = 3, max_inputs: int = 30) -> 
         if not (min_inputs <= len(techno) <= max_inputs):
             continue
         m = re.search(r"BAFU category: (.+?) /", act.get("comment", ""))
+        # sum duplicates: a process may list the same input (or the same elementary flow) on several
+        # exchanges - two aluminium profile lines, two land-occupation lines that map to one EF flow.
+        # A dict comprehension keeps only the last one and silently loses the rest of the amount.
+        inputs_: dict[tuple, float] = defaultdict(float)
+        direct_: dict[tuple, float] = defaultdict(float)
+        for e in techno:
+            inputs_[tuple(e["input"])] += e["amount"]
+        for e in bio:
+            direct_[tuple(e["input"])] += e["amount"]
         by_cat[m.group(1) if m else "?"].append(
             {"code": key[1], "name": act["name"], "location": act.get("location", ""), "category": m.group(1) if m else "?",
-             "inputs": {tuple(e["input"]): e["amount"] for e in techno}, "direct": {tuple(e["input"]): e["amount"] for e in bio}})
+             "inputs": dict(inputs_), "direct": dict(direct_)})
     cats = sorted(by_cat)
     for c in cats:
         by_cat[c].sort(key=lambda x: x["code"])  # database load order is not guaranteed; sort before shuffling
