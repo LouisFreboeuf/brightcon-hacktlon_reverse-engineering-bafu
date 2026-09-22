@@ -89,16 +89,44 @@ def relative_weights(target: np.ndarray, model: np.ndarray) -> np.ndarray:
     return w
 
 
-def flow_agreement(target: np.ndarray, model: np.ndarray) -> dict:
+def determined_flows(sys_: "System", activity_id: int, tol: float = 1e-2) -> np.ndarray:
+    """Which flows of ``B·A⁻¹·e`` the arithmetic actually pins down.
+
+    A cumulative inventory spans ~25 orders of magnitude, and the sparse solve carries an
+    absolute error set by the largest entries of the scaling vector. Flows far below that
+    floor come out of the solve as round-off: their value is not determined by the data. The
+    test is direct rather than a magnitude threshold - take one step of iterative refinement
+    and keep the flows that barely move. On the BAFU inventory this excludes ~120 of ~1,790
+    flows per process, and the excluded ones move by 100 % under refinement while the kept
+    ones move by ~1e-10. Unlike a magnitude cutoff it keeps genuine trace emissions (dioxins,
+    benzo[a]pyrene, mercury), which are tiny but well determined.
+    """
+    D = np.zeros(sys_.A.shape[1])
+    D[sys_.lca.dicts.activity[activity_id]] = 1.0
+    s = sys_.lu.solve(D)
+    s2 = s + sys_.lu.solve(D - sys_.A @ s)               # one refinement step
+    t1, t2 = sys_.B @ s, sys_.B @ s2
+    with np.errstate(divide="ignore", invalid="ignore"):
+        move = np.where(np.abs(t1) > 0, np.abs(t2 - t1) / np.maximum(np.abs(t1), 1e-300), 0.0)
+    return move <= tol
+
+
+def flow_agreement(target: np.ndarray, model: np.ndarray, scored: np.ndarray | None = None) -> dict:
     """Flow-by-flow comparison of two cumulative inventories. ``delta`` is model/target − 1 per
     flow present in the target (NaN where the target is 0); the summary counts flows, not impact."""
     nz = target != 0
     with np.errstate(divide="ignore", invalid="ignore"):
         delta = np.where(nz, model / target - 1, np.nan)
-    d = np.abs(delta[nz])
+    # ``scored``: restrict the counts to the flows the solve determines (``determined_flows``).
+    # Everything the target has is still reported as n_target; n_excluded says how many of those
+    # carry no information, so the two numbers can always be reconciled.
+    keep = nz if scored is None else (nz & scored)
+    d = np.abs(delta[keep])
     return {
+        "n_scored": int(keep.sum()),
+        "n_excluded": int((nz & ~keep).sum()),
         "n_target": int(nz.sum()),                                   # flows present in the target
-        "n_missing": int((nz & (model == 0)).sum()),                 # in the target, not in the model
+        "n_missing": int((keep & (model == 0)).sum()),                 # in the target, not in the model
         "n_extra": int((~nz & (model != 0)).sum()),                  # in the model, not in the target
         "within_10pct": int((d <= 0.10).sum()), "within_20pct": int((d <= 0.20).sum()),
         "within_50pct": int((d <= 0.50).sum()), "beyond_100pct": int((d > 1.0).sum()),

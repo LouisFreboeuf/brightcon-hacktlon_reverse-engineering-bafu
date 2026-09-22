@@ -47,11 +47,11 @@ def _summary(report: Path) -> dict:
     text = report.read_text()
     top = re.search(r"the 50 largest kilogram flows: (\d+)/(\d+) within ±10 %, median \|Δ\| ([\d.]+)%", text)
     mass = re.search(r"kilogram mass covered within ±10 %: ([\d.]+)% of", text)
-    allf = re.search(r"all (\d+) flows of the target: (\d+) within ±10 % \((\d+)%\), median \|Δ\| ([\d.]+)%, (\d+) missing", text)
+    allf = re.search(r"- (\d+) of those (\d+) within ±10 % \((\d+)%\), median \|Δ\| ([\d.]+)%, (\d+) missing", text)
     if not (top and allf and mass):
         return {}
     return {"top_flows_within_10pct": f"{top.group(1)}/{top.group(2)}", "top_flow_median_abs_delta_pct": top.group(3), "kg_mass_covered_pct": mass.group(1),
-            "flows_within_10pct": f"{allf.group(2)}/{allf.group(1)}", "flows_within_10pct_share": f"{allf.group(3)}%",
+            "flows_within_10pct": f"{allf.group(1)}/{allf.group(2)}", "flows_within_10pct_share": f"{allf.group(3)}%",
             "flow_median_abs_delta_pct": allf.group(4), "flows_missing": allf.group(5)}
 
 

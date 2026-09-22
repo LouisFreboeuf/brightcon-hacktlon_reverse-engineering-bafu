@@ -7,4 +7,4 @@ The whole route (locate → evidence → extract → map → assemble → resolv
 | scored | 9 |
 | pages-not-found | 1 |
 
-Scored cases: 9. Inputs: recall 69%, precision 85%, amounts within ±20 % 43/47 of matched; direct flows: recall 53%; rebuilt inventory: flows within ±10 % median 73 %, median |Δ flow| median 2.7 %.
+Scored cases: 9. Inputs: recall 69%, precision 85%, amounts within ±20 % 43/47 of matched; direct flows: recall 53%; rebuilt inventory: flows within ±10 % median 77 %, median |Δ flow| median 2.2 %.

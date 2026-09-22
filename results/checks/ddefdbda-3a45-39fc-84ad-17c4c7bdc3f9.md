@@ -8,18 +8,19 @@ target `bafu-2026` vs explicit model `ddefdbda-3a45-39fc-84ad-17c4c7bdc3f9-disag
 
 ## Flow agreement (explicit vs target, per elementary flow)
 
-- the 50 largest kilogram flows: 3/50 within ±10 %, median |Δ| 62.6%
+- the 50 largest kilogram flows: 3/50 within ±10 %, median |Δ| 61.2%
 - kilogram mass covered within ±10 %: 0.1% of the target's total kg mass
-- all 1146 flows of the target: 51 within ±10 % (4%), median |Δ| 127.7%, 0 missing from the model, 631 extra
+- of the 1146 flows of the target, 1146 are determined by the solve (0 are round-off and are not scored; see lci.determined_flows)
+- 51 of those 1146 within ±10 % (4%), median |Δ| 127.7%, 0 missing from the model, 630 extra
 - hybrid vs target: 1 flows differ
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
 | ≤ 10 % | 51 | 4% |
 | 10–20 % | 53 | 5% |
-| 20–50 % | 142 | 12% |
-| 50–100 % | 285 | 25% |
-| > 100 % | 615 | 54% |
+| 20–50 % | 141 | 12% |
+| 50–100 % | 287 | 25% |
+| > 100 % | 614 | 54% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
@@ -83,7 +84,7 @@ target `bafu-2026` vs explicit model `ddefdbda-3a45-39fc-84ad-17c4c7bdc3f9-disag
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Waste Heat [air] (megajoule) | 10.2 | 5.1 | -50.0% | +5.1 |
+| Waste Heat [air] (megajoule) | 10.2 | 13.7 | +34.6% | -3.53 |
 | Natural Gas [Resources/Resources from ground] (megajoule) | 8.11 | 3.16 | -61.0% | +4.95 |
 | Crude Oil [Resources/Resources from ground] (megajoule) | 1.11 | 3.56 | +219.9% | -2.45 |
 | Waste Heat [air] (megajoule) | 1.04 | 0.923 | -11.1% | +0.115 |
@@ -128,7 +129,7 @@ target `bafu-2026` vs explicit model `ddefdbda-3a45-39fc-84ad-17c4c7bdc3f9-disag
 - ✓ mass in: 0.763 kg technosphere + 0 kg resources per 1 kilogram product (informational)
 - ✓ all inputs resolved
 
-residual: 426 flows under-explained, 1351 over-explained (negative residual)
+residual: 427 flows under-explained, 1349 over-explained (negative residual)
 
 ## Evidence
 

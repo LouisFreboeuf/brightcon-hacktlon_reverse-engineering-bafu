@@ -322,7 +322,7 @@
           "mapping_reason": "Waste heat to air in megajoules, matching the table's 'air / unspecified' category and its unit; the soil and water variants are the wrong compartment and 'Energy, waste heat, air' sits under resources in the residual database.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9137-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere"
       }
     ],

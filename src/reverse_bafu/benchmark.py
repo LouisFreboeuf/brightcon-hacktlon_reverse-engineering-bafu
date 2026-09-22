@@ -30,7 +30,7 @@ import scipy.optimize as so
 import bw2data as bd
 
 from . import db
-from .lci import System, contribution_breadth, flow_agreement
+from .lci import System, contribution_breadth, determined_flows, flow_agreement
 
 SCENARIOS = ("oracle", "bounded", "partial", "distractors", "blind")
 
@@ -79,10 +79,16 @@ class Bench:
         self.ids = ids
         self.used = used
         self._col: dict[int, np.ndarray] = {}
+        self._det: dict[str, np.ndarray] = {}
         # sorted: the pool is built from a Counter over Database.load(), whose order is not
         # guaranteed. Unsorted, rng.sample draws a different distractor set on every run and the
         # `distractors` scenario stops being reproducible (as pick_cases already guards against).
         self.blind_pool = sorted(k for k, n in used.items() if n >= 30)
+
+    def determined(self, code: str) -> np.ndarray:
+        if code not in self._det:
+            self._det[code] = determined_flows(self.sys, self.ids[(db.INVENTORY_DB, code)])
+        return self._det[code]
 
     def col(self, act_id: int) -> np.ndarray:
         if act_id not in self._col:
@@ -135,7 +141,7 @@ class Bench:
         t0 = time.time()
         x, M = self.fit(target, cand, lo, hi, direct)
         explicit = M @ x + direct
-        ag = flow_agreement(target, explicit)
+        ag = flow_agreement(target, explicit, self.determined(case["code"]))
         # structure: judged by the inventory, not by coefficient size. An input is "material" when its
         # true contribution reaches 1 % of the target amount of some flow; a candidate counts as
         # chosen when its fitted contribution does.
@@ -151,7 +157,8 @@ class Bench:
             "code": case["code"], "name": case["name"], "category": case["category"], "n_true_inputs": len(truth), "n_material_inputs": len(true_material),
             "scenario": scenario, "n_candidates": n, "n_chosen": len(chosen), "true_positives": tp, "false_positives": fp, "false_negatives": fn,
             "amounts_within_20pct": f"{within20}/{len(ratios)}", "amount_ratio_median": float(np.median(ratios)) if ratios else float("nan"),
-            "n_target_flows": ag["n_target"], "flows_within_10pct": ag["within_10pct"], "flows_within_10pct_share": round(ag["within_10pct"] / max(1, ag["n_target"]), 4),
+            "n_target_flows": ag["n_target"], "n_scored_flows": ag["n_scored"], "n_excluded_flows": ag["n_excluded"],
+            "flows_within_10pct": ag["within_10pct"], "flows_within_10pct_share": round(ag["within_10pct"] / max(1, ag["n_scored"]), 4),
             "flow_median_abs_delta_pct": round(100 * ag["median_abs_delta"], 3), "flows_missing": ag["n_missing"], "flows_extra": ag["n_extra"],
             "seconds": round(time.time() - t0, 2),
         }
@@ -192,7 +199,9 @@ def run(n: int, seed: int, scenarios: list[str], name: str, out_dir: Path = Path
                  f"{np.median([r['flows_missing'] for r in R]):.0f} | {sum(a for a, _ in w20)}/{sum(b for _, b in w20)} | "
                  f"{np.median([r['n_chosen'] for r in R]):.0f} / {np.median([r['n_material_inputs'] for r in R]):.0f} | {np.median([r['false_positives'] for r in R]):.0f} | "
                  f"{np.median([r['false_negatives'] for r in R]):.0f} |")
-    L += ["", "Medians over cases; no impact assessment — agreement is counted per elementary flow of the target's cumulative inventory. "
+    L += ["", "Medians over cases; no impact assessment — agreement is counted per elementary flow of the target's cumulative inventory, "
+          "over the flows the solve determines (about 120 of ~1,790 per process come out of the sparse solve as round-off and are not scored; "
+          "see lci.determined_flows). "
           "'Material' inputs are those whose true contribution reaches 1 % of the target amount of some flow. `partial` removes the 30 % of inputs that explain the fewest flows before fitting; "
           "`distractors` adds 10 random frequently-used processes; `blind` offers every process used ≥ 30 times and no direct flows.", ""]
     md_path = out_dir / f"{name}.md"

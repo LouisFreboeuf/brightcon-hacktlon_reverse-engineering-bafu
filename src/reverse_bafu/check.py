@@ -13,7 +13,7 @@ import numpy as np
 import bw2data as bd
 
 from . import db
-from .lci import System, flow_agreement, mass_coverage, top_flow_agreement
+from .lci import System, determined_flows, flow_agreement, mass_coverage, top_flow_agreement
 from .spec import Spec, node_prefix, walk
 
 POWER_PLANT = re.compile(r"at power plant|power plant$|at run-of-river|at reservoir", re.I)
@@ -23,7 +23,8 @@ BUCKETS = (("≤ 10 %", 0.10), ("10–20 %", 0.20), ("20–50 %", 0.50), ("50–
 def summary_line(ag: dict, top: dict, mass_cov: float) -> str:
     return (f"flows: {top['within_10pct']}/{top['n']} of the largest kg flows within ±10 % (median |Δ| {top['median_abs_delta']:.1%}); "
             f"{mass_cov:.0%} of the kg mass; "
-            f"all flows {ag['within_10pct']}/{ag['n_target']} within ±10 % ({ag['within_10pct'] / max(1, ag['n_target']):.0%}), "
+            f"{ag['within_10pct']}/{ag['n_scored']} of the determined flows within ±10 % ({ag['within_10pct'] / max(1, ag['n_scored']):.0%}"
+            + (f", {ag['n_excluded']} round-off excluded" if ag['n_excluded'] else "") + "), "
             f"median |Δ| {ag['median_abs_delta']:.1%}, {ag['n_missing']} missing, {ag['n_extra']} extra")
 
 
@@ -38,7 +39,8 @@ def run(spec: Spec, out_dir: Path = Path("results/checks")) -> Path:
     ids = [target.id, explicit.id] + ([hybrid.id] if hybrid else [])
     inv = sys_.cumulative(ids)
     b_t, b_e = inv[:, 0], inv[:, 1]
-    ag = flow_agreement(b_t, b_e)
+    det = determined_flows(sys_, target.id)
+    ag = flow_agreement(b_t, b_e, det)
     delta = ag["delta"]
     r = b_t - b_e
     units: dict[str, list[int]] = {}
@@ -61,7 +63,9 @@ def run(spec: Spec, out_dir: Path = Path("results/checks")) -> Path:
          "## Flow agreement (explicit vs target, per elementary flow)", "",
          f"- the 50 largest kilogram flows: {top['within_10pct']}/{top['n']} within ±10 %, median |Δ| {top['median_abs_delta']:.1%}",
          f"- kilogram mass covered within ±10 %: {mass_cov:.1%} of the target's total kg mass",
-         f"- all {ag['n_target']} flows of the target: {ag['within_10pct']} within ±10 % ({ag['within_10pct'] / max(1, ag['n_target']):.0%}), median |Δ| {ag['median_abs_delta']:.1%}, {ag['n_missing']} missing from the model, {ag['n_extra']} extra",
+         f"- of the {ag['n_target']} flows of the target, {ag['n_scored']} are determined by the solve "
+         f"({ag['n_excluded']} are round-off and are not scored; see lci.determined_flows)",
+         f"- {ag['within_10pct']} of those {ag['n_scored']} within ±10 % ({ag['within_10pct'] / max(1, ag['n_scored']):.0%}), median |Δ| {ag['median_abs_delta']:.1%}, {ag['n_missing']} missing from the model, {ag['n_extra']} extra",
          f"- hybrid vs target: {'identical on every flow' if hyb_off == 0 else f'{hyb_off} flows differ'}" if hybrid else "- no hybrid node", "",
          "| \\|Δ\\| bucket | flows | share of target flows |", "|---|---|---|"]
     d = np.abs(delta[b_t != 0])
