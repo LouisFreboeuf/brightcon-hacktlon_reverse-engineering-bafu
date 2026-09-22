@@ -7,7 +7,7 @@ Ground truth = BAFU unit processes (3-30 inputs, stratified over categories); ta
 | oracle | 94% | 0.0 % | 0 | 49/63 | 4 / 4 | 0 | 0 |
 | bounded | 94% | 0.0 % | 0 | 53/63 | 4 / 4 | 0 | 0 |
 | partial | 87% | 0.8 % | 0 | 24/47 | 4 / 5 | 0 | 2 |
-| distractors | 73% | 3.9 % | 0 | 18/63 | 10 / 4 | 6 | 0 |
+| distractors | 82% | 1.3 % | 0 | 25/63 | 7 / 4 | 4 | 1 |
 
 Medians over cases; no impact assessment — agreement is counted per elementary flow of the target's cumulative inventory. 'Material' inputs are those whose true contribution reaches 1 % of the target amount of some flow. `partial` removes the 30 % of inputs that explain the fewest flows before fitting; `distractors` adds 10 random frequently-used processes; `blind` offers every process used ≥ 30 times and no direct flows.
 

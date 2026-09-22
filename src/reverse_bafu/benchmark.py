@@ -70,7 +70,10 @@ class Bench:
         self.ids = ids
         self.used = used
         self._col: dict[int, np.ndarray] = {}
-        self.blind_pool = [k for k, n in used.items() if n >= 30]
+        # sorted: the pool is built from a Counter over Database.load(), whose order is not
+        # guaranteed. Unsorted, rng.sample draws a different distractor set on every run and the
+        # `distractors` scenario stops being reproducible (as pick_cases already guards against).
+        self.blind_pool = sorted(k for k, n in used.items() if n >= 30)
 
     def col(self, act_id: int) -> np.ndarray:
         if act_id not in self._col:
