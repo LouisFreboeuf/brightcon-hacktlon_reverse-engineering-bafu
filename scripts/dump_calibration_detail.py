@@ -1,4 +1,17 @@
-import json, random, time, warnings
+"""Per-candidate detail JSON for a calibration benchmark run.
+
+Re-runs the same fits as `benchmark.run` (same rng stream, so `distractors` draws the same
+candidates) and stores, per case and scenario, every candidate with its truth/fitted amount plus
+the largest flows of the target. Usage:
+
+    python scripts/dump_calibration_detail.py [-n N] [--seed S] [--project P] [-o OUT]
+                                              [--top-flows K] [--scenarios a,b,c]
+
+Defaults reproduce results/benchmark/flow-n10-seed7-detail.json. The file grows roughly linearly
+with N (~45 kB per case at --top-flows 40); lower --top-flows if it gets unwieldy.
+"""
+
+import argparse, json, random, time, warnings
 from collections import Counter
 from pathlib import Path
 import numpy as np
@@ -9,9 +22,22 @@ from reverse_bafu import db, benchmark
 from reverse_bafu.benchmark import Bench, pick_cases
 from reverse_bafu.lci import System, flow_agreement, contribution_breadth
 
-N, SEED = 10, 7
-SCEN = ["oracle", "bounded", "partial", "distractors"]
-db.set_project("bafu-2026-bench")
+ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+ap.add_argument("-n", "--n", type=int, default=10, help="number of synthetic cases (default 10)")
+ap.add_argument("--seed", type=int, default=7, help="same seed as the benchmark run (default 7)")
+ap.add_argument("--project", default="bafu-2026-bench", help="Brightway project (default bafu-2026-bench)")
+ap.add_argument("--scenarios", default="oracle,bounded,partial,distractors",
+                help="comma-separated; must match the benchmark run so the rng stream lines up")
+ap.add_argument("--top-flows", type=int, default=40, help="largest target flows stored per scenario (default 40)")
+ap.add_argument("-o", "--out", default=None,
+                help="output path (default results/benchmark/flow-n<N>-seed<SEED>-detail.json)")
+args = ap.parse_args()
+
+N, SEED = args.n, args.seed
+SCEN = [s.strip() for s in args.scenarios.split(",") if s.strip()]
+TOP_FLOWS = args.top_flows
+OUT = Path(args.out or f"results/benchmark/flow-n{N}-seed{SEED}-detail.json")
+db.set_project(args.project)
 
 rng = random.Random(SEED)                      # same stream as benchmark.run
 cases = pick_cases(N, SEED)
@@ -61,7 +87,9 @@ for case in cases:
         n = len(cand)
         lo, hi = np.zeros(n), np.full(n, np.inf)
         if sc == "bounded":
-            lo = np.array([0.5 * truth[k] for k in cand]); hi = np.array([2.0 * truth[k] for k in cand])
+            a = np.array([truth[k] for k in cand], dtype=float)   # same ordering/widening as Bench.run_case
+            lo, hi = np.minimum(0.5 * a, 2.0 * a), np.maximum(0.5 * a, 2.0 * a)
+            hi = np.where(hi > lo, hi, lo + 1e-12)
         t0 = time.time()
         x, M = bench.fit(target, cand, lo, hi, direct)
         secs = time.time() - t0
@@ -91,7 +119,7 @@ for case in cases:
 
         ratios = [x[i] / truth[k] for i, k in enumerate(cand) if k in true_material and truth[k]]
         nz = np.where(target != 0)[0]
-        top = sorted(nz, key=lambda r: -abs(target[r]))[:40]
+        top = sorted(nz, key=lambda r: -abs(target[r]))[:TOP_FLOWS]
         frows = []
         for r in top:
             fn = bench.sys.flow_node(int(r))
@@ -114,5 +142,6 @@ for case in cases:
     out.append(rec)
     print("done", case["name"][:45], flush=True)
 
-Path("results/benchmark/flow-n10-seed7-detail.json").write_text(json.dumps(out, ensure_ascii=False))
-print("bytes:", Path("results/benchmark/flow-n10-seed7-detail.json").stat().st_size)
+OUT.parent.mkdir(parents=True, exist_ok=True)
+OUT.write_text(json.dumps(out, ensure_ascii=False))
+print(f"-> {OUT} ({OUT.stat().st_size:,} bytes)")

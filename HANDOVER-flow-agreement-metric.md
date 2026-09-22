@@ -214,7 +214,13 @@ most 10 % cannot trip a ">10 %" test by construction. That is an independent kno
 - All runs in this thread used `--project bafu-2026-bench`, a copy of `bafu-2026` made to avoid
   colliding with a parallel session. Identical databases; results are not affected.
 - `results/benchmark/*-detail.json` are the data the two HTML result pages embed; regenerate with
-  `scripts/dump_calibration_detail.py` and `scripts/dump_extraction_detail.py`.
+  `scripts/dump_calibration_detail.py` and `scripts/dump_extraction_detail.py`. The calibration one
+  takes `-n/--seed/--project/--scenarios/--top-flows/-o` on the command line (defaults reproduce
+  `flow-n10-seed7-detail.json`), so a run at another size needs no edit to the file.
+- The calibration detail JSON still scores **every** non-zero target flow, while `benchmark.run`
+  scores only the flows the solve determines, so its `flows_within_10pct` is lower than the
+  matching `.md` row. Pass `determined_flows` into `flow_agreement` there when the HTML pages are
+  next refreshed.
 
 ## How to check any of this
 
