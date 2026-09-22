@@ -6,102 +6,139 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 **Calibrated inputs:** Clinker, at plant [0.4–0.7], Gypsum, mineral, at mine [0–0.1], Recycling aggregate from mixed demolition, dry, at plant [0.15–0.3], Burnt shale, at plant [0.15–0.3], Iron sulphate, at plant [0–0.01], Limestone, milled, loose, at plant [0–0.1]; mass sum 1.0
 **Links to rebuilt nodes:** Burnt shale, at plant
 
-## Scores (EF 3.1)
+## Flow agreement (explicit vs target, per elementary flow)
 
-| category | target | explicit | Δ explicit | residual share | hybrid/target |
-|---|---|---|---|---|---|
-| Acidification | 0.001134 | 0.0008311 | -26.7% | +26.7% | 1.000000 |
-| Climate change | 0.534 | 0.4277 | -19.9% | +19.9% | 1.000000 |
-| Climate change-Biogenic | 0.000226 | 0.0002455 | +8.6% | -8.6% | 1.000000 |
-| Climate change-Fossil | 0.5337 | 0.4275 | -19.9% | +19.9% | 1.000000 |
-| Climate change-Land use and land use change | 4.704e-05 | 3.447e-05 | -26.7% | +26.7% | 1.000000 |
-| EF-particulate Matter | 6.448e-09 | 4.875e-09 | -24.4% | +24.4% | 1.000000 |
-| Ecotoxicity, freshwater | 0.4855 | 0.2234 | -54.0% | +54.0% | 1.000000 |
-| Ecotoxicity, freshwater_inorganics | 0.4755 | 0.219 | -53.9% | +53.9% | 1.000000 |
-| Ecotoxicity, freshwater_organics | 0.009985 | 0.0044 | -55.9% | +55.9% | 1.000015 |
-| Eutrophication marine | 0.0002738 | 0.0002258 | -17.5% | +17.5% | 1.000000 |
-| Eutrophication, freshwater | 6.223e-05 | 6.018e-05 | -3.3% | +3.3% | 1.000000 |
-| Eutrophication, terrestrial | 0.003075 | 0.00263 | -14.5% | +14.5% | 1.000000 |
-| Human toxicity, cancer | 3.231e-11 | 3.51e-11 | +8.7% | -8.7% | 0.999232 |
-| Human toxicity, cancer_inorganics | 2.31e-11 | 2.476e-11 | +7.2% | -7.2% | 1.000000 |
-| Human toxicity, cancer_organics | 9.207e-12 | 1.034e-11 | +12.3% | -12.3% | 0.997306 |
-| Human toxicity, non-cancer | 1.335e-09 | 1.677e-09 | +25.6% | -25.6% | 1.000000 |
-| Human toxicity, non-cancer_inorganics | 1.287e-09 | 1.633e-09 | +26.9% | -26.9% | 1.000000 |
-| Human toxicity, non-cancer_organics | 4.809e-11 | 4.387e-11 | -8.8% | +8.8% | 1.000000 |
-| Ionising radiation, human health | 0.07777 | 0.05941 | -23.6% | +23.6% | 1.000000 |
-| Land use | 0.3176 | 0.3005 | -5.4% | +5.4% | 1.000000 |
-| Ozone depletion | 3.052e-09 | 1.728e-09 | -43.4% | +43.4% | 1.000000 |
-| Photochemical ozone formation - human health | 0.0008464 | 0.0007225 | -14.6% | +14.6% | 1.000000 |
-| Resource use, fossils | 2.632 | 1.955 | -25.7% | +25.7% | 1.000000 |
-| Resource use, minerals and metals | 1.394e-07 | 1.493e-07 | +7.1% | -7.1% | 1.000000 |
-| Water use | 0.03857 | 0.03928 | +1.9% | -1.9% | 1.000000 |
+- the 50 largest kilogram flows: 8/50 within ±10 %, median |Δ| 44.2%
+- kilogram mass covered within ±10 %: 0.5% of the target's total kg mass
+- all 1326 flows of the target: 249 within ±10 % (19%), median |Δ| 28.6%, 0 missing from the model, 465 extra
+- hybrid vs target: identical on every flow
 
-## Flow diff — worst categories, flows driving the gap (explicit − target, characterised)
+| \|Δ\| bucket | flows | share of target flows |
+|---|---|---|
+| ≤ 10 % | 249 | 19% |
+| 10–20 % | 186 | 14% |
+| 20–50 % | 404 | 30% |
+| 50–100 % | 299 | 23% |
+| > 100 % | 188 | 14% |
+| missing (0 in model) | 0 | 0% |
 
-### Ecotoxicity, freshwater_organics (Δ +55.9%)
+## Largest target flows (by amount, per unit) and their agreement
 
-| flow | target | explicit | Δ impact | share of target score |
+### kilogram (1084 flows)
+
+| flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Hydrocarbons, Aromatic [Emissions/Emissions to water] (kilogram) | 2.29e-07 | 5.75e-08 | -0.00382 | -38.2% |
-| Polycyclic Aromatic Hydrocarbons [Emissions/Emissions to water] (kilogram) | 1e-08 | 2.9e-09 | -0.0017 | -17.0% |
-| Non-methane Volatile Organic Compounds [Emissions/Emissions to air] (kilogram) | 4.02e-05 | 0.000101 | +0.000523 | +5.2% |
-| Non-methane Volatile Organic Compounds [Emissions/Emissions to air] (kilogram) | 5.23e-05 | 2.02e-06 | -0.000388 | -3.9% |
-| Phenol [Emissions/Emissions to water] (kilogram) | 3.59e-08 | 2.38e-08 | -0.000211 | -2.1% |
-| Cumene [Emissions/Emissions to water] (kilogram) | 1.08e-08 | 5.51e-08 | +0.000108 | +1.1% |
-| Methane (fossil) [Emissions/Emissions to air] (kilogram) | 0.000359 | 6.34e-05 | -9.44e-05 | -0.9% |
-| Methyl Cyclopentane [Emissions/Emissions to water] (kilogram) | 1.66e-07 | 4.86e-08 | -4.27e-05 | -0.4% |
+| Calcite [resources/in ground] (kilogram) | 0.833 | 1.04 | +24.8% | -0.206 |
+| Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.483 | 0.584 | +20.9% | -0.101 |
+| Shale [soil] (kilogram) | 0.13 | 0.144 | +10.7% | -0.014 |
+| Clay [soil] (kilogram) | 0.0547 | 0.0605 | +10.5% | -0.00572 |
+| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.58e-06 | -100.0% | +0.0303 |
+| Carbon Dioxide (biogenic) [Emissions/Emissions to air] (kilogram) | 0.0263 | 0.0428 | +62.7% | -0.0165 |
+| Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.0229 | 0.0253 | +10.7% | -0.00245 |
+| Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.0161 | 0.0124 | -22.8% | +0.00366 |
+| Gravel [soil] (kilogram) | 0.0102 | 0.0162 | +58.8% | -0.00601 |
+| Waste mass, total, placed in landfill [resources/in ground] (kilogram) | 0.00705 | 0.00765 | +8.4% | -0.000593 |
+| Sulfate [emissions to water/groundwater, long-term] (kilogram) | 0.00443 | 0.00665 | +50.0% | -0.00221 |
+| carbon dioxide (biogenic) [Resources/Resources from air] (kilogram) | 0.00259 | 0.00378 | +46.2% | -0.0012 |
+| calcium [Emissions/Emissions to water] (kilogram) | 0.00202 | 0.00261 | +29.4% | -0.000593 |
+| Carbon Dioxide (biogenic) [Emissions/Emissions to air] (kilogram) | 0.00178 | 0.00296 | +65.7% | -0.00117 |
+| Carbon Monoxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.000985 | 0.00179 | +81.6% | -0.000804 |
+| Chloride [Emissions/Emissions to water] (kilogram) | 0.000979 | 0.000348 | -64.4% | +0.000631 |
+| Carbon Dioxide (biogenic) [Emissions/Emissions to air] (kilogram) | 0.000919 | 0.000423 | -54.0% | +0.000496 |
+| Silicon [Emissions/Emissions to water] (kilogram) | 0.000742 | 0.000998 | +34.4% | -0.000255 |
+| Iron [Resources/Resources from ground] (kilogram) | 0.000718 | 0.000733 | +2.1% | -1.51e-05 |
+| Nitrogen Oxides [Emissions/Emissions to air] (kilogram) | 0.000602 | 0.000636 | +5.8% | -3.47e-05 |
 
-### Ecotoxicity, freshwater (Δ +54.0%)
+### kilo Becquerel (138 flows)
 
-| flow | target | explicit | Δ impact | share of target score |
+| flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Chloride [Emissions/Emissions to water] (kilogram) | 0.000979 | 0.00027 | -0.214 | -44.0% |
-| Strontium [Emissions/Emissions to water] (kilogram) | 3.28e-06 | 9.17e-07 | -0.0427 | -8.8% |
-| Iron [Emissions/Emissions to water] (kilogram) | 2.94e-05 | 3.4e-05 | +0.00985 | +2.0% |
-| Hydrocarbons, Aromatic [Emissions/Emissions to water] (kilogram) | 2.29e-07 | 5.75e-08 | -0.00382 | -0.8% |
-| Barium(2+) [Emissions/Emissions to water] (kilogram) | 1.14e-06 | 3.09e-07 | -0.00308 | -0.6% |
-| Ammonium [Emissions/Emissions to water] (kilogram) | 1.73e-06 | 6.43e-07 | -0.0027 | -0.6% |
-| Hydrogen Sulfide [Emissions/Emissions to air] (kilogram) | 1.79e-07 | 2.83e-08 | -0.00221 | -0.5% |
-| Polycyclic Aromatic Hydrocarbons [Emissions/Emissions to water] (kilogram) | 1e-08 | 2.9e-09 | -0.0017 | -0.4% |
+| Radon-222 [Emissions/Emissions to air] (kilo Becquerel) | 45.9 | 45.3 | -1.5% | +0.683 |
+| Noble Gases, Radioactive, Unspecified [air] (kilo Becquerel) | 17.8 | 15.4 | -13.5% | +2.41 |
+| Hydrogen-3 [Emissions/Emissions to water] (kilo Becquerel) | 0.717 | 0.62 | -13.5% | +0.0968 |
+| Radon-222 [Emissions/Emissions to air] (kilo Becquerel) | 0.71 | 0.402 | -43.4% | +0.308 |
+| Hydrogen-3 [Emissions/Emissions to water] (kilo Becquerel) | 0.0783 | 0.486 | +520.3% | -0.408 |
 
-### Ecotoxicity, freshwater_inorganics (Δ +53.9%)
+### square meter (37 flows)
 
-| flow | target | explicit | Δ impact | share of target score |
+| flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Chloride [Emissions/Emissions to water] (kilogram) | 0.000979 | 0.00027 | -0.214 | -44.9% |
-| Strontium [Emissions/Emissions to water] (kilogram) | 3.28e-06 | 9.17e-07 | -0.0427 | -9.0% |
-| Iron [Emissions/Emissions to water] (kilogram) | 2.94e-05 | 3.4e-05 | +0.00985 | +2.1% |
-| Barium(2+) [Emissions/Emissions to water] (kilogram) | 1.14e-06 | 3.09e-07 | -0.00308 | -0.6% |
-| Ammonium [Emissions/Emissions to water] (kilogram) | 1.73e-06 | 6.43e-07 | -0.0027 | -0.6% |
-| Hydrogen Sulfide [Emissions/Emissions to air] (kilogram) | 1.79e-07 | 2.83e-08 | -0.00221 | -0.5% |
-| Aluminium [Emissions/Emissions to water] (kilogram) | 9.03e-07 | 6.55e-07 | -0.00108 | -0.2% |
-| Ammonia [Emissions/Emissions to air] (kilogram) | 1.8e-05 | 2.39e-05 | +0.000787 | +0.2% |
+| To Arable, Non-irrigated, Intensive [Land use/Land transformation] (square meter) | 7.7e-05 | 9.73e-05 | +26.4% | -2.03e-05 |
+| From Arable, Non-irrigated, Intensive [Land use/Land transformation] (square meter) | 5.46e-05 | 6.82e-05 | +24.8% | -1.35e-05 |
+| To Arable, Non-irrigated [Land use/Land transformation] (square meter) | 3.09e-05 | 4.56e-05 | +47.3% | -1.46e-05 |
+| From Arable, Non-irrigated [Land use/Land transformation] (square meter) | 2.98e-05 | 4.21e-05 | +41.4% | -1.23e-05 |
+| To Forest, Intensive [Land use/Land transformation] (square meter) | 2.5e-05 | 3.83e-05 | +53.1% | -1.33e-05 |
 
-### Ozone depletion (Δ +43.4%)
+### cubic meter (23 flows)
 
-| flow | target | explicit | Δ impact | share of target score |
+| flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Bromochlorodifluoromethane [Emissions/Emissions to air] (kilogram) | 1.91e-10 | 3.29e-12 | -1.3e-09 | -42.4% |
-| CFC-114 [Emissions/Emissions to air] (kilogram) | 2.57e-09 | 1.55e-09 | -5.07e-10 | -16.6% |
-| Bromotrifluoromethane [Emissions/Emissions to air] (kilogram) | 2.45e-11 | 5.49e-11 | +4.61e-10 | +15.1% |
-| Cfc 113 [Emissions/Emissions to air] (kilogram) | 2.01e-11 | 5.72e-11 | +3.01e-11 | +1.0% |
-| Chlorodifluoromethane [Emissions/Emissions to air] (kilogram) | 8.68e-10 | 1.87e-10 | -2.31e-11 | -0.8% |
-| CFC-10 [Emissions/Emissions to air] (kilogram) | 7.28e-16 | 1.08e-11 | +7.78e-12 | +0.3% |
-| CFC-12 [Emissions/Emissions to air] (kilogram) | 3.59e-12 | 5.38e-12 | +1.3e-12 | +0.0% |
-| Cfc 113 [Emissions/Emissions to air] (kilogram) | 2.94e-13 | 1.33e-12 | +8.4e-13 | +0.0% |
+| Water [Emissions/Emissions to water] (cubic meter) | 1.03 | 0.934 | -9.2% | +0.0944 |
+| Water to turbine [Resources/Resources from water] (cubic meter) | 1.03 | 0.932 | -9.2% | +0.0946 |
+| Water [Resources/Resources from water] (cubic meter) | 0.000992 | 0.00158 | +59.1% | -0.000586 |
+| river water [Resources/Resources from water] (cubic meter) | 0.000586 | 0.00054 | -7.8% | +4.58e-05 |
+| Water To Cooling [Resources/Resources from water] (cubic meter) | 0.000568 | 0.000541 | -4.9% | +2.77e-05 |
 
-### Human toxicity, non-cancer_inorganics (Δ +26.9%)
+### megajoule (21 flows)
 
-| flow | target | explicit | Δ impact | share of target score |
+| flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Mercury [Emissions/Emissions to air] (kilogram) | 6.67e-09 | 1.01e-08 | +4.42e-10 | +34.3% |
-| Arsenic [Emissions/Emissions to air] (kilogram) | 2.37e-08 | 4.83e-09 | -4.7e-11 | -3.7% |
-| Mercury [Emissions/Emissions to air] (kilogram) | 6.13e-10 | 3.97e-10 | -2.8e-11 | -2.2% |
-| Lead [Emissions/Emissions to air] (kilogram) | 2.24e-08 | 9.1e-09 | -2.32e-11 | -1.8% |
-| Barium(2+) [Emissions/Emissions to water] (kilogram) | 1.14e-06 | 3.09e-07 | -1.18e-11 | -0.9% |
-| Mercury [Emissions/Emissions to air] (kilogram) | 9.31e-11 | 1.69e-10 | +9.55e-12 | +0.7% |
-| Arsenic [Emissions/Emissions to water] (kilogram) | 1.35e-08 | 1.66e-08 | +4.23e-12 | +0.3% |
-| Cadmium [Emissions/Emissions to air] (kilogram) | 1.37e-09 | 9.98e-10 | -2.72e-12 | -0.2% |
+| Crude Oil [Resources/Resources from ground] (megajoule) | 0.994 | 1.03 | +3.7% | -0.0364 |
+| Waste Heat [air] (megajoule) | 0.938 | 0.91 | -2.9% | +0.0276 |
+| Uranium [Resources/Resources from ground] (megajoule) | 0.707 | 0.612 | -13.5% | +0.0951 |
+| Hard Coal [Resources/Resources from ground] (megajoule) | 0.583 | 0.174 | -70.2% | +0.409 |
+| Waste Heat [air] (megajoule) | 0.559 | 0.532 | -4.9% | +0.0273 |
+
+### square meter-year (17 flows)
+
+| flow | target | explicit | Δ | residual |
+|---|---|---|---|---|
+| Forest, Intensive [Land use/Land occupation] (square meter-year) | 0.00215 | 0.00337 | +56.8% | -0.00122 |
+| Forest [Land use/Land occupation] (square meter-year) | 0.00128 | 0.00146 | +14.0% | -0.00018 |
+| Industrial Area [Land use/Land occupation] (square meter-year) | 0.000426 | 0.000374 | -12.3% | +5.26e-05 |
+| Mineral Extraction Site [Land use/Land occupation] (square meter-year) | 0.000197 | 0.00017 | -14.0% | +2.76e-05 |
+| Traffic Area, Road Network [Land use/Land occupation] (square meter-year) | 0.000195 | 0.000223 | +14.3% | -2.8e-05 |
+
+### kilometer (2 flows)
+
+| flow | target | explicit | Δ | residual |
+|---|---|---|---|---|
+| Noise, road, lorry, average [non material emissions/unspecified] (kilometer) | 0.00406 | 0.00792 | +95.0% | -0.00386 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (kilometer) | 2.48e-05 | 2.3e-05 | -7.4% | +1.82e-06 |
+
+### ton kilometer (2 flows)
+
+| flow | target | explicit | Δ | residual |
+|---|---|---|---|---|
+| Noise, rail, freight train [non material emissions/unspecified] (ton kilometer) | 0.0595 | 0.108 | +81.3% | -0.0484 |
+| Noise, aircraft, freight [non material emissions/unspecified] (ton kilometer) | 3.24e-07 | 3.75e-07 | +15.8% | -5.1e-08 |
+
+### cubic meter-year (1 flows)
+
+| flow | target | explicit | Δ | residual |
+|---|---|---|---|---|
+| Volume Occupied, Reservoir [land use] (cubic meter-year) | 0.00455 | 0.00396 | -13.0% | +0.000591 |
+
+### person kilometer (1 flows)
+
+| flow | target | explicit | Δ | residual |
+|---|---|---|---|---|
+| Noise, aircraft, passenger [non material emissions/unspecified] (person kilometer) | 1.89e-06 | 2.41e-06 | +27.4% | -5.18e-07 |
+
+## Worst deviations among the 50 largest kilogram flows
+
+| flow | target | explicit | Δ |
+|---|---|---|---|
+| Gypsum [resources/in ground] (kilogram) | 0.0303 | 3.58e-06 | -100.0% |
+| Non-methane Volatile Organic Compounds [Emissions/Emissions to air] (kilogram) | 5.23e-05 | 2.58e-06 | -95.1% |
+| Platinum [air] (kilogram) | 0.00047 | 0.000868 | +84.7% |
+| Solids, Inorganic [water] (kilogram) | 6.44e-05 | 0.000118 | +83.8% |
+| Aluminium [Resources/Resources from ground] (kilogram) | 0.000499 | 0.000915 | +83.5% |
+| Carbon Monoxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.000985 | 0.00179 | +81.6% |
+| Sodium [water] (kilogram) | 8.45e-05 | 0.00015 | +77.3% |
+| Methane (fossil) [Emissions/Emissions to air] (kilogram) | 0.000359 | 9.78e-05 | -72.7% |
+| Sodium chloride [resources/in ground] (kilogram) | 7.06e-05 | 0.000117 | +66.2% |
+| Sodium [water] (kilogram) | 0.000319 | 0.000108 | -66.1% |
 
 ## Structural checks
 
@@ -111,7 +148,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 - ✓ mass in: 1.05 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 876 flows under-explained, 915 over-explained (negative residual)
+residual: 584 flows under-explained, 1207 over-explained (negative residual)
 
 ## Evidence
 

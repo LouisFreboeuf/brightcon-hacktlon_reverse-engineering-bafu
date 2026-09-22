@@ -36,8 +36,8 @@ svg .grid{stroke:var(--rule)} svg .zero{stroke:var(--ink2);stroke-width:1.5} svg
 <p class="lede">Aggregated BAFU‑2026 datasets rebuilt as unit processes with links into the existing database, each by a different route. Every rebuild is one JSON spec, run through resolve → calibrate → build → check; the pages below are those specs and check reports rendered.</p>
 
 <h2>Overview</h2>
-<div class="tbl"><table><thead><tr><th>Dataset · strategy</th><th style="text-align:right">Inputs<br><span class="muted">orig → rebuilt</span></th><th style="text-align:right">Elementary flows<br><span class="muted">orig → direct</span></th><th style="text-align:right">Calibrated amounts</th><th style="text-align:right">Climate Δ</th><th style="text-align:right">Within ±10 %</th><th style="text-align:right">Residual<br><span class="muted">negative / total</span></th><th>Flags</th></tr></thead><tbody>{{OVERVIEW}}</tbody></table></div>
-<p class="muted small">Δ is the explicit model against the original, EF 3.1. The hybrid node of each equals the original by construction. "Calibrated amounts" were fitted by bounded least squares with the input list fixed; inputs at a bound signal the report's range disagrees with the original vector.</p>
+<div class="tbl"><table><thead><tr><th>Dataset · strategy</th><th style="text-align:right">Inputs<br><span class="muted">orig → rebuilt</span></th><th style="text-align:right">Elementary flows<br><span class="muted">orig → direct</span></th><th style="text-align:right">Calibrated amounts</th><th style="text-align:right">50 largest kg flows<br><span class="muted">within ±10 %</span></th><th style="text-align:right">kg mass<br><span class="muted">within ±10 %</span></th><th style="text-align:right">All flows<br><span class="muted">within ±10 %</span></th><th style="text-align:right">Residual<br><span class="muted">negative / total</span></th><th>Flags</th></tr></thead><tbody>{{OVERVIEW}}</tbody></table></div>
+<p class="muted small">Agreement is measured on the cumulative inventory itself — flow by flow, no impact assessment, so the verdict does not depend on a characterisation method. Three views of the same comparison: the 50 largest kilogram flows, the share of the original’s total kilogram mass that the rebuilt process reproduces within ±10 %, and every flow counted alike (which the long tail of small background flows dominates). The hybrid node of each equals the original flow for flow by construction. "Calibrated amounts" were fitted by bounded least squares with the input list fixed; inputs at a bound signal the report's range disagrees with the original vector.</p>
 
 <div class="tabs" role="tablist">{{TABS}}</div>
 {{PANELS}}
@@ -45,7 +45,7 @@ svg .grid{stroke:var(--rule)} svg .zero{stroke:var(--ink2);stroke-width:1.5} svg
 <div id="tip" hidden></div>
 <script>
 const INV = {{DATA}};
-const short = c => c.replace('Climate change-','CC · ').replace('Human toxicity','HT').replace('Ecotoxicity, freshwater','Ecotox. fw').replace('_',' · ').replace('Photochemical ozone formation - human health','Photochem. ozone formation');
+const short = c => c.length > 34 ? c.slice(0, 33) + '…' : c;
 const sl = x => Math.sign(x) * Math.log10(1 + Math.abs(x));
 const ticks = [-100,-10,0,10,100,1000];
 function draw(el, S) {
@@ -53,7 +53,7 @@ function draw(el, S) {
   const x0 = L, x1 = W - R, dmin = sl(-100), dmax = sl(1000);
   const X = v => x0 + (sl(Math.max(-100, Math.min(1000, v))) - dmin)/(dmax-dmin)*(x1-x0);
   const rows = [...S].sort((a,b) => Math.abs(a.delta) - Math.abs(b.delta));
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:640px;display:block" role="img" aria-label="Deviation of the explicit model from the original per EF 3.1 category">`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:640px;display:block" role="img" aria-label="Deviation of the explicit model from the original, per elementary flow">`;
   s += `<rect class="band" x="${X(-10)}" y="${T-8}" width="${X(10)-X(-10)}" height="${rows.length*rowH+8}"/>`;
   for (const t of ticks) s += `<line class="${t===0?'zero':'grid'}" x1="${X(t)}" x2="${X(t)}" y1="${T-8}" y2="${T+rows.length*rowH}"/><text class="ax" x="${X(t)}" y="${T+rows.length*rowH+16}" text-anchor="middle">${t>0?'+':''}${t.toLocaleString()}%</text>`;
   rows.forEach((r, i) => {
@@ -67,7 +67,7 @@ function draw(el, S) {
   const tip = document.getElementById('tip');
   el.querySelectorAll('.row').forEach(g => {
     g.addEventListener('mousemove', e => { const r = rows[+g.dataset.i];
-      tip.innerHTML = `<b>${r.cat}</b><br>original ${r.target.toPrecision(3)} ${r.unit}<br>explicit ${r.explicit.toPrecision(3)} (${r.delta>0?'+':''}${r.delta.toFixed(1)}%)`;
+      tip.innerHTML = `<b>${r.cat}</b><br><span class="muted">${r.where||''}</span><br>original ${r.target.toPrecision(3)} ${r.unit}<br>explicit ${r.explicit.toPrecision(3)} (${r.delta>0?'+':''}${r.delta.toFixed(1)}%)`;
       tip.hidden = false; tip.style.left = Math.min(e.clientX+14, window.innerWidth-300)+'px'; tip.style.top = (e.clientY+14)+'px'; });
     g.addEventListener('mouseleave', () => tip.hidden = true);
   });

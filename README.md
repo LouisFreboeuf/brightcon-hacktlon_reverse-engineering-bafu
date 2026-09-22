@@ -59,7 +59,10 @@ uv run sentier-brightway db --project reverse-bafu   # ~3-4 min; --overwrite rep
 (11,947 processes), `ef-3.1-biosphere` (EF 3.1 flows, BAFU emissions relinked: 95.8 % of flows),
 `bafu-2026-residual` (113 flows without EF counterpart) and the 25 methods
 `("sentier", "EF v3.1", <category>)`. Every command below takes `--project <name>` if you chose
-another name.
+another name. The methods are installed by the import and are handy for a smoke test, but the
+pipeline itself never uses them: every rebuild is judged against the original's elementary flows
+directly, so no characterisation method and no weighting between impact categories enters the
+result.
 
 Smoke test:
 
@@ -186,12 +189,12 @@ uv run python scripts/render_pages.py   # regenerate artifacts/rebuilt-inventori
 
 `run-all` orders the specs so that one linking a rebuilt node (an input with `"sandbox"`, e.g.
 cement → burnt shale) runs after the spec that builds it, and writes `results/rebuild_status.csv`:
-per spec the status (`rebuilt` / `unresolved` / `error`), the climate‑change deviation, the number
-of EF 3.1 categories within ±10 %, the worst category and the report path. A spec whose inputs do
+per spec the status (`rebuilt` / `unresolved` / `error`) and the flow‑by‑flow agreement with the
+original: how many of the 50 largest kilogram flows are within ±10 %, how much of the total
+kilogram mass is, how many of *all* flows are, the median deviation and the report path. A spec whose inputs do
 not all resolve is skipped with `unresolved` and does not stop the batch. The committed specs
 already carry their calibrated amounts, so `run-all` without `--apply` reproduces `results/checks/`;
-with `--apply` the amounts are re‑derived (they change only if the code or the category weighting
-changes). The nodes land in the Brightway database `reverse-bafu-sandbox`; the original datasets
+with `--apply` the amounts are re‑derived (they change only if the code changes). The nodes land in the Brightway database `reverse-bafu-sandbox`; the original datasets
 are never touched.
 
 The four steps, per spec (`uv run reverse-bafu run|resolve|calibrate|build|check specs/<spec>.json`
@@ -200,9 +203,9 @@ for one dataset):
 | Step | Does | Writes |
 |---|---|---|
 | resolve | maps every input name to a BAFU dataset: *unit* (link), *aggregated* (link, flag as dependency), *missing* (stop, suggest names); checks units | codes into the spec; exit 2 on anything missing |
-| calibrate | bounded least squares for the inputs marked `free`, input list held fixed | prints spec vs fitted amounts; `--apply` writes them into the spec |
+| calibrate | bounded least squares for the inputs marked `free`, input list held fixed; one equation per elementary flow, weighted by 1/max(\|target\|, \|model\|) — relative error — and normalised so that every (unit, compartment) group of flows carries the same total weight, run twice so the result does not depend on the spec's starting amounts | prints spec vs fitted amounts; `--apply` writes them into the spec |
 | build | the explicit node `<code>-disagg` and the hybrid `<code>-hybrid` (explicit + residual flows = original exactly) | `reverse-bafu-sandbox` |
-| check | 25‑category score diff, flow diff, residual share, structural checks | `results/checks/<code>.md` |
+| check | flow‑by‑flow agreement: deviation buckets, the largest flows per unit, the worst deviations, kilogram mass covered, structural checks | `results/checks/<code>.md` |
 
 ## 6. Benchmark: how well does the calibration recover a unit process?
 
@@ -234,26 +237,31 @@ bundle; it needs the model for three prompts per case.
    |---|---|---|---|
    | `oracle` | exactly the true inputs, amounts unknown | 0…∞ | a complete, correct table |
    | `bounded` | the true inputs | 0.5×–2× the true amount | a table with ranges |
-   | `partial` | the true inputs minus the 30 % with the smallest climate contribution | 0…∞ | a report that omits minor lines |
+   | `partial` | the true inputs minus the 30 % that explain the fewest flows | 0…∞ | a report that omits minor lines |
    | `distractors` | the true inputs plus 10 random processes used ≥ 30 times in BAFU | 0…∞ | an over‑proposed list (an LLM guessing inputs) |
    | `blind` | every process used ≥ 30 times (~675), no direct flows | 0…∞ | no evidence at all (field‑agnostic fitting) |
 
-4. *Fit.* Exactly the pipeline's calibration: rows = characterised flows, each EF 3.1 category
-   weighted equally by the sum of its absolute contributions in the target, columns normalised;
-   NNLS when unbounded, BVLS when bounded (both run and the smaller residual kept when ≤ 150
-   columns).
-5. *Metrics per case and scenario* (`results/benchmark/<name>.csv`): score deviation over the 25
-   EF categories (median |Δ|, categories within ±10 %, climate Δ); amount recovery — the share of
-   *material* inputs (true contribution ≥ 1 % of some category score) fitted within ±20 %; structure —
-   false positives (candidates given a material amount that are not true inputs), false negatives
-   (material true inputs dropped); residual share; runtime. `<name>.md` holds the medians per scenario.
+4. *Fit.* Exactly the pipeline's calibration: one row per elementary flow, weighted by
+   1/max(|target|, |model|) so a kilogram of CO₂ and a microgram of a trace metal weigh the same,
+   then normalised per (unit, compartment) group so that land use, water, radioactivity and each
+   emission compartment carry equal weight — without the grouping the ~1,300 flows of
+   "kilogram/emissions" outvote everything else. No impact assessment enters. Columns normalised;
+   NNLS when unbounded, BVLS when bounded.
+5. *Metrics per case and scenario* (`results/benchmark/<name>.csv`): inventory agreement — the
+   share of the target's flows the fit reproduces within ±10 %, the median deviation, flows missing
+   and flows added; amount recovery — the share of *material* inputs (those supplying ≥ 1 % of some
+   flow of the target) fitted within ±20 %; structure — false positives (candidates given a material
+   amount that are not true inputs), false negatives (material true inputs dropped); runtime.
+   `<name>.md` holds the medians per scenario.
 
-**What the latest run says** (`results/benchmark/n40-seed7.md`): with the correct list, 37/40
-cases match all 25 categories and 92 % of material amounts come back within ±20 %; with ranges
-93 %; with 30 % of the inputs missing the headline scores hold (27/40) but small‑score categories
-drift; with 10 distractors the scores still match in 35/40 cases while **4 cases swap a true input
-for a wrong one** — the identifiability trap measured; with no list at all, nothing is recovered
-(0/5, 22–27 wrong inputs per case). Interpretation on the method explainer page, §7.
+**What the latest run says** (`results/benchmark/flow-n8-seed7.md`, 8 cases): with the correct
+list the fit reproduces 89 % of the target's flows within ±10 % (median deviation 2.7 %) and
+recovers 27/49 material amounts within ±20 %; with ranges 90 %; with 30 % of the inputs missing
+86 %, at the price of 2 material inputs dropped per case; with 10 distractors the *inventory* is
+matched even better (93 %) while the fit hands a material amount to 6 processes that are not in
+the real one — **the identifiability trap: a better inventory fit with the wrong structure**; with
+no list at all the fit collapses (8 % of flows, 144 false positives per case). Interpretation on
+the method explainer page, §7.
 
 ### Extraction mode: the whole route, including the PDF
 
@@ -279,13 +287,12 @@ The drafted spec is then compared with the process's real exchanges:
 | `inputs_matched` / `inputs_missed` / `inputs_extra` | true inputs recovered *and mapped to the right dataset* (by code); true inputs absent; drafted inputs that are not in the process |
 | `input_amounts_within_20pct` | of the matched inputs, how many amounts (after calibration) are within ±20 % of the real ones |
 | `direct_flows_matched` | direct emissions/resources recovered (by substance and compartment) |
-| `climate_delta_pct`, `categories_within_10pct` | the harness's verdict on the rebuilt node vs the real process |
+| `top_flows_within_10pct`, `kg_mass_covered_pct`, `flows_within_10pct` | the harness's verdict on the rebuilt node vs the real process: the 50 largest kilogram flows, the share of kilogram mass, all flows |
 | `gaps_reported` | what the model said the excerpt did not cover |
 
 Model calls per case: three (locate, extract, map). The one case run so far, `CEM II, B‑LL
 cement` from the concrete 2020 report (answered by a Claude Code session, labelled so): 9/9 inputs
-found and mapped, 8/9 amounts within ±20 %, the direct flow matched, climate +0.6 %, 24/25
-categories within ±10 %. The one amount miss is a finding about the data, not the pipeline: the
+found and mapped, 8/9 amounts within ±20 %, the direct flow matched. The one amount miss is a finding about the data, not the pipeline: the
 report prints 2.0E‑2 tkm of lorry transport for that cement, the BAFU dataset carries 4.3E‑4.
 
 ## Layout

@@ -49,7 +49,7 @@
     "inputs": [
       {
         "name": "Clinker, at plant",
-        "amount": 0.4197564889986279,
+        "amount": 0.6899838927660851,
         "unit": "kilogram",
         "location": "CH",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range",
@@ -79,7 +79,7 @@
       },
       {
         "name": "Gypsum, mineral, at mine",
-        "amount": 0.09999999999999998,
+        "amount": 3.5200193161816927e-06,
         "unit": "kilogram",
         "location": "CH",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; '< 10 %'",
@@ -109,7 +109,7 @@
       },
       {
         "name": "Recycling aggregate from mixed demolition, dry, at plant",
-        "amount": 0.2046525816996887,
+        "amount": 0.15000948526444072,
         "unit": "kilogram",
         "location": "CH",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; recycled mixed construction rubble, dry",
@@ -139,7 +139,7 @@
       },
       {
         "name": "Burnt shale, at plant",
-        "amount": 0.16774531841329754,
+        "amount": 0.15000333472444727,
         "unit": "kilogram",
         "location": "DE",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; the burnt-shale dataset is itself aggregated in BAFU — link the rebuilt node if available",
@@ -171,7 +171,7 @@
       },
       {
         "name": "Iron sulphate, at plant",
-        "amount": 0.007845611182028459,
+        "amount": 0.00999999990674299,
         "unit": "kilogram",
         "location": "RER",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; '< 1 %'",
@@ -201,7 +201,7 @@
       },
       {
         "name": "Limestone, milled, loose, at plant",
-        "amount": 0.09999999999999999,
+        "amount": 5.986288274707395e-09,
         "unit": "kilogram",
         "location": "CH",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; '< 10 %'; filter dust modelled as milled limestone",
