@@ -137,7 +137,13 @@ class Bench:
         n = len(cand)
         lo, hi = np.zeros(n), np.full(n, np.inf)
         if scenario == "bounded":
-            lo = np.array([0.5 * truth[k] for k in cand]); hi = np.array([2.0 * truth[k] for k in cand])
+            # a "known to a factor of 2" range is [0.5a, 2a] for a positive amount but [2a, 0.5a]
+            # for a negative one (a credit line, e.g. the scrap credit on a zinc-coated duct), and
+            # it collapses to a point for an amount of exactly 0. lsq_linear wants lo < hi
+            # strictly, so order the pair and widen a degenerate interval by a hair.
+            a = np.array([truth[k] for k in cand], dtype=float)
+            lo, hi = np.minimum(0.5 * a, 2.0 * a), np.maximum(0.5 * a, 2.0 * a)
+            hi = np.where(hi > lo, hi, lo + 1e-12)
         t0 = time.time()
         x, M = self.fit(target, cand, lo, hi, direct)
         explicit = M @ x + direct
