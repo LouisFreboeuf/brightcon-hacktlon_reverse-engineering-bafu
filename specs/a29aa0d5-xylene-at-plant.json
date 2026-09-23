@@ -44,7 +44,7 @@
     "inputs": [
       {
         "name": "Naphtha, at refinery",
-        "amount": 1.178082191780822,
+        "amount": 1.1780821917808217,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -70,7 +70,7 @@
       },
       {
         "name": "Steam, for chemical processes, at plant",
-        "amount": 0.6849315068493151,
+        "amount": 0.684931506849315,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -83,7 +83,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 2.2126475627286753e-20,
+        "amount": 0.0,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "free": true,
@@ -96,7 +96,7 @@
       },
       {
         "name": "Refinery gas, burned in furnace",
-        "amount": 1.2864433690515846e-08,
+        "amount": 0.0,
         "unit": "megajoule",
         "location": "RER",
         "free": true,
@@ -113,7 +113,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 3.613405658491869e-29,
+        "amount": 0.0,
         "unit": "unit",
         "location": "RER",
         "free": true,

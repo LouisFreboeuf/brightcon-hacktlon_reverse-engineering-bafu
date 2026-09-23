@@ -10,22 +10,22 @@ target `bafu-2026` vs explicit model `f44d9ac3-f0cb-311d-bdba-3fd3946b573c-draft
 
 - the 50 largest kilogram flows: 1/50 within ±10 %, median |Δ| 123.6%
 - kilogram mass covered within ±10 %: 0.0% of the target's total kg mass
-- of the 1770 flows of the target, 1667 are determined by the solve (103 are round-off and are not scored; see lci.determined_flows)
-- 1 of those 1667 within ±10 % (0%), median |Δ| 36033.5%, 0 missing from the model, 0 extra
-- hybrid vs target: 4 flows differ
+- of the 1782 flows of the target, 1666 are determined by the solve (116 are round-off and are not scored; see lci.determined_flows)
+- 1 of those 1666 within ±10 % (0%), median |Δ| 36139.8%, 0 missing from the model, 0 extra
+- hybrid vs target: 6 flows differ
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
 | ≤ 10 % | 1 | 0% |
 | 10–20 % | 0 | 0% |
-| 20–50 % | 11 | 1% |
-| 50–100 % | 30 | 2% |
-| > 100 % | 1728 | 98% |
+| 20–50 % | 10 | 1% |
+| 50–100 % | 41 | 2% |
+| > 100 % | 1730 | 97% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
 
-### kilogram (1455 flows)
+### kilogram (1467 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -57,7 +57,7 @@ target `bafu-2026` vs explicit model `f44d9ac3-f0cb-311d-bdba-3fd3946b573c-draft
 | Radon-222 [Emissions/Emissions to air] (kilo Becquerel) | 0.638 | 235 | +36797.4% | -235 |
 | Noble Gases, Radioactive, Unspecified [air] (kilo Becquerel) | 0.223 | 83.3 | +37288.0% | -83.1 |
 | Hydrogen-3 [Emissions/Emissions to water] (kilo Becquerel) | 0.00897 | 3.35 | +37293.0% | -3.35 |
-| Radon-222 [Emissions/Emissions to air] (kilo Becquerel) | 0.00584 | 2.17 | +37011.2% | -2.16 |
+| Radon-222 [Emissions/Emissions to air] (kilo Becquerel) | 0.00584 | 2.17 | +37011.1% | -2.16 |
 | Hydrogen-3 [Emissions/Emissions to water] (kilo Becquerel) | 0.00411 | 0.904 | +21903.3% | -0.9 |
 
 ### square meter (50 flows)
@@ -87,7 +87,7 @@ target `bafu-2026` vs explicit model `f44d9ac3-f0cb-311d-bdba-3fd3946b573c-draft
 | Forest, Intensive [Land use/Land occupation] (square meter-year) | 0.000103 | 0.0434 | +41966.4% | -0.0433 |
 | Traffic Area, Road Network [Land use/Land occupation] (square meter-year) | 4.98e-05 | 0.00078 | +1466.4% | -0.000731 |
 | Dump Site [Land use/Land occupation] (square meter-year) | 3.3e-05 | 0.000875 | +2549.2% | -0.000842 |
-| Forest [Land use/Land occupation] (square meter-year) | 2.5e-05 | 0.0278 | +111470.5% | -0.0278 |
+| Forest [Land use/Land occupation] (square meter-year) | 2.5e-05 | 0.0278 | +111470.4% | -0.0278 |
 | Industrial Area [Land use/Land occupation] (square meter-year) | 9.09e-06 | 0.00418 | +45869.2% | -0.00417 |
 
 ### cubic meter (23 flows)
@@ -104,11 +104,11 @@ target `bafu-2026` vs explicit model `f44d9ac3-f0cb-311d-bdba-3fd3946b573c-draft
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Uranium alpha [emissions to water/river] (Becquerel) | 1.6e-20 | 6.19e-17 | +386888.9% | -6.18e-17 |
-| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 8.26e-22 | 3.11e-18 | +376509.1% | -3.11e-18 |
-| Uranium alpha [emissions to water/lake] (Becquerel) | 1.99e-22 | -3.99e-19 | -200534.2% | +3.99e-19 |
-| Thorium-232 [emissions to water/river] (Becquerel) | 1.49e-22 | 5.98e-19 | +401182.0% | -5.98e-19 |
-| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 1.5e-23 | 5.95e-20 | +397800.7% | -5.95e-20 |
+| Uranium alpha [emissions to water/river] (Becquerel) | 9.16e-22 | 7.05e-20 | +7594.8% | -6.96e-20 |
+| Uranium alpha [emissions to water/lake] (Becquerel) | 4.29e-22 | 3.3e-20 | +7594.8% | -3.26e-20 |
+| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 7.8e-23 | 6e-21 | +7594.8% | -5.92e-21 |
+| Thorium-232 [emissions to water/river] (Becquerel) | 9.26e-25 | 7.13e-23 | +7594.8% | -7.04e-23 |
+| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 2.74e-25 | 2.11e-23 | +7594.8% | -2.08e-23 |
 
 ### kilometer (2 flows)
 
@@ -128,8 +128,8 @@ target `bafu-2026` vs explicit model `f44d9ac3-f0cb-311d-bdba-3fd3946b573c-draft
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Noise, road, lorry, average [non material emissions/unspecified] (meter) | -6.51e-19 | 6.22e-16 | -95580.1% | -6.23e-16 |
-| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 3.33e-20 | 1.34e-16 | +402193.4% | -1.34e-16 |
+| Noise, road, lorry, average [non material emissions/unspecified] (meter) | -5.61e-19 | -2.36e-17 | +4103.3% | +2.3e-17 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 8.66e-23 | 6.67e-21 | +7594.8% | -6.58e-21 |
 
 ### cubic meter-year (1 flows)
 
@@ -147,7 +147,7 @@ target `bafu-2026` vs explicit model `f44d9ac3-f0cb-311d-bdba-3fd3946b573c-draft
 
 | flow | target | explicit | Δ |
 |---|---|---|---|
-| Waste mass, total, placed in landfill [resources/in ground] (kilogram) | 0.000146 | 0.118 | +80716.4% |
+| Waste mass, total, placed in landfill [resources/in ground] (kilogram) | 0.000146 | 0.118 | +80716.3% |
 | Platinum [air] (kilogram) | 9.43e-05 | 0.0468 | +49499.3% |
 | carbon dioxide (biogenic) [Resources/Resources from air] (kilogram) | 0.000106 | 0.0501 | +47119.6% |
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.000455 | 0.127 | +27733.2% |
@@ -166,7 +166,7 @@ target `bafu-2026` vs explicit model `f44d9ac3-f0cb-311d-bdba-3fd3946b573c-draft
 - ✓ mass in: 2.3 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 44 flows under-explained, 1726 over-explained (negative residual)
+residual: 46 flows under-explained, 1736 over-explained (negative residual)
 
 ## Evidence
 

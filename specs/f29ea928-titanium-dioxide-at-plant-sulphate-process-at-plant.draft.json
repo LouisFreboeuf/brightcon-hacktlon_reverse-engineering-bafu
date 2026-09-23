@@ -51,7 +51,7 @@
     "inputs": [
       {
         "name": "Sulphuric acid, liquid, at plant",
-        "amount": 2.4000001323899505,
+        "amount": 2.4,
         "unit": "kilogram",
         "location": "RER",
         "note": "Printed as a range 2.4-3.5 kg/kg; entered as a bounded free input over exactly that range, raw_value is its midpoint.",
@@ -106,7 +106,7 @@
       },
       {
         "name": "xxx Electricity, medium voltage, production UCTE, at grid",
-        "amount": 0.6194445420581427,
+        "amount": 0.6194444444444445,
         "unit": "kilowatt hour",
         "location": "UCTE",
         "note": "Three column ranges on one row; min = 1.5+0.6+0.13 = 2.23 MJ, max = 2.31+1.46+1.3 = 5.07 MJ, raw_value is the midpoint. Entered as a bounded free input. The text says power and steam come from a CHP plant plus UCTE grid electricity.",
@@ -136,7 +136,7 @@
       },
       {
         "name": "Heat, natural gas, at industrial furnace 1MW",
-        "amount": 10.400001656979848,
+        "amount": 10.4,
         "unit": "megajoule",
         "location": "CH",
         "note": "min = 3.7+6.7+0 = 10.4 MJ, max = 7.7+10.47+6.07 = 24.24 MJ. The text: 'Both steam and electricity can be generated from combined heat and power plants ... Steam can stem from sulphuric acid plants'. Entered as generic industrial heat over the printed range.",
@@ -166,7 +166,7 @@
       },
       {
         "name": "Natural gas, burned in industrial furnace 1MW",
-        "amount": 9.670000778205853,
+        "amount": 9.67,
         "unit": "megajoule",
         "location": "CH",
         "note": "min = 7.3+2.37+0 = 9.67 MJ, max = 11.85+4.22+0.1 = 16.17 MJ.",
@@ -196,7 +196,7 @@
       },
       {
         "name": "Hard coal, burned in industrial furnace 1-10MW",
-        "amount": 5.800000331751846,
+        "amount": 5.8,
         "unit": "megajoule",
         "location": "RER",
         "note": "Only the acid-concentration / filter-salt-decomposition step uses coal, 5.8-8.5 MJ/kg.",

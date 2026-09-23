@@ -42,7 +42,7 @@
       },
       {
         "name": "Nitrogen, liquid, at plant",
-        "amount": 0.0006250000000000001,
+        "amount": 0.000625,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -55,7 +55,7 @@
       },
       {
         "name": "Compressed air, average installation, >30kW, 8 bar gauge, at supply network",
-        "amount": 0.8660000000000002,
+        "amount": 0.866,
         "unit": "cubic meter",
         "location": "RER",
         "free": true,
@@ -68,7 +68,7 @@
       },
       {
         "name": "Tap water, at user",
-        "amount": 1.2375000000000005,
+        "amount": 1.2375,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -81,7 +81,7 @@
       },
       {
         "name": "Natural gas, burned in industrial furnace 1MWth",
-        "amount": 0.44250000000000006,
+        "amount": 0.44249999999999995,
         "unit": "megajoule",
         "location": "CH",
         "free": true,
@@ -94,7 +94,7 @@
       },
       {
         "name": "Steam, for chemical processes, at plant",
-        "amount": 0.6975000000000001,
+        "amount": 0.6975,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -107,7 +107,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 0.18820000000000003,
+        "amount": 0.1882,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "free": true,
@@ -120,7 +120,7 @@
       },
       {
         "name": "Chemicals organic, at plant",
-        "amount": 0.012500000000000002,
+        "amount": 0.0125,
         "unit": "kilogram",
         "location": "GLO",
         "free": true,
@@ -133,7 +133,7 @@
       },
       {
         "name": "Treatment, sewage, unpolluted, to wastewater treatment, class 3",
-        "amount": 0.0012375000000000016,
+        "amount": 0.0012375,
         "unit": "cubic meter",
         "location": "CH",
         "free": true,
@@ -146,7 +146,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 4.6625033266636546e-27,
+        "amount": 0.0,
         "unit": "unit",
         "location": "RER",
         "free": true,
@@ -159,7 +159,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 7.577599521088502e-16,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -168,7 +168,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 2.501337290601451e-10,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,

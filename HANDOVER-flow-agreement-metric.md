@@ -327,3 +327,42 @@ Two things this leaves open:
   Every *fixed* input's arithmetic checks out across all 58 specs (`amount == raw x factor x scale`,
   0 mismatches), so this is isolated to that one bound. Not fixed, because it moves a published
   amount rather than a label.
+
+## Addendum, 2026-09-23: two faults in the fit itself, and what fixing them moved
+
+Both the benchmark and `calibrate` solved the weighted system badly, in two independent ways.
+
+1. **The solver stopped early.** `lsq_linear`'s default trust-region method tests an *absolute*
+   tolerance, and the weighted system is badly scaled (a unit of plant next to a kg of material,
+   condition numbers up to 1e37). On the complete-list benchmark it declared convergence in 14 of 100
+   cases at an objective 1e2-1e13 above that of the true amounts - which reproduce the target
+   exactly in all 100. Fix: `lci.solve_weighted` scales columns and right-hand side and uses an
+   active-set solver (NNLS when the only bound is x >= 0, BVLS otherwise).
+2. **The group normalisation silenced most flows.** `fit_weights` divided each flow's relative
+   weight by the sum over its (unit, compartment) group. That sum is set by the group's smallest
+   flow, so a group counted in proportion to its tiniest value: on a typical target
+   "kilogram/emissions" (CO2 and ~1,200 others) weighed 1e-58 of the single land-use flow, and the
+   fit saw ~20 of ~1,670 flows. Fix: divide by sqrt(flows in the group), so each group contributes
+   its mean squared relative error; round-off flows (`determined_flows`) get weight 0.
+
+Calibration benchmark (flow-n100-seed7; blind-n25-seed7), before -> after both fixes:
+
+| scenario | flows within ±10 % | material amounts within ±20 % | wrong inputs used |
+|---|---|---|---|
+| oracle | 100 % -> 100 % | 614/803 -> 787/803 | 0 -> 0 |
+| bounded | 100 % -> 100 % | 761/803 -> 795/803 | 0 -> 0 |
+| partial | 91 % -> 99 % | 307/605 -> 539/605 | 0 -> 0 |
+| distractors | 63 % -> 100 % | 256/803 -> 785/803 | 5 -> 0 |
+| blind | 6 % -> 98 % | 2/122 -> 56/122 | 81 -> 86 |
+
+The story changes in two places. The padded list no longer hurts (the fit sets the ten wrong
+candidates to zero) - optimistic, since a synthetic target is reproduced exactly by its true inputs.
+And the no-list row becomes the identifiability trap in its clearest form: 98 % of the flows matched
+with a process of ~86 wrong inputs.
+
+Real rebuilds (`run-all --apply`, 58 specs), before -> after: flows within ±10 % summed over specs
+14,499 -> 18,124 (22 specs better, 9 worse, 27 unchanged); pooled over the 51 counted datasets,
+18 % -> 23 % of flows within ±10 % and 42 % -> 43 % within ×2; fossil CO2 within ±10 % 13 -> 12 of
+51, median -14 % -> -16 %; bounded free amounts on a bound 102 -> 116 of 146. The five
+identifiability-trap compositions in exports/README.md are still chemically impossible, with higher
+flow agreement than before (ABS 73 % -> 90 %).

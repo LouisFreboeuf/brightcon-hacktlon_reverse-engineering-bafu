@@ -63,7 +63,7 @@
       },
       {
         "name": "Steam, for chemical processes, at plant",
-        "amount": 0.47000000000000025,
+        "amount": 0.47,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -76,7 +76,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 0.09700000000000002,
+        "amount": 0.09699999999999999,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "free": true,
@@ -89,7 +89,7 @@
       },
       {
         "name": "Heat, natural gas, at industrial furnace 1MW",
-        "amount": 0.3325000000000002,
+        "amount": 0.3325000000000001,
         "unit": "megajoule",
         "location": "CH",
         "free": true,
@@ -102,7 +102,7 @@
       },
       {
         "name": "Heat, heavy fuel oil, at industrial furnace 1MW",
-        "amount": 0.24700000000000114,
+        "amount": 0.24699999999999997,
         "unit": "megajoule",
         "location": "RER",
         "free": true,
@@ -115,7 +115,7 @@
       },
       {
         "name": "Heat, at hard coal industrial furnace 1-10MW",
-        "amount": 0.1530000000000001,
+        "amount": 0.153,
         "unit": "megajoule",
         "location": "RER",
         "free": true,
@@ -128,7 +128,7 @@
       },
       {
         "name": "Heat, light fuel oil, at industrial furnace 1MW",
-        "amount": 0.08250000000000042,
+        "amount": 0.0825,
         "unit": "megajoule",
         "location": "RER",
         "free": true,
@@ -141,7 +141,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 8.549712906907011e-26,
+        "amount": 0.0,
         "unit": "unit",
         "location": "RER",
         "free": true,
@@ -154,7 +154,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 1.5779401318522123e-14,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -163,7 +163,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 1.3231535979108537e-09,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,

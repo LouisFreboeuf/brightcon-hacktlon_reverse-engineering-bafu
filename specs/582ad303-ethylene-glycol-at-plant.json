@@ -60,7 +60,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 4.921347124367084e-24,
+        "amount": 0.0,
         "unit": "unit",
         "location": "RER",
         "note": "Tab. 35.3 4.00E-10 unit x 0.85/0.825 = 4.1212E-10, and Rajabihamedani sec. 3.6 gives the same 4.0E-10 p for the target - both vintages agree on it, which is why that is the upper bound. It is a bound and not the amount because 'Ethylene oxide, at plant' already carries its own 4.0E-10, and this one exchange is where 1316 of the target's 1790 cumulative flows get more than 90 % of their value from, so stacking two doubles three quarters of the vector; the fit decides how much of it belongs here (see scripts/plasticseurope_infrastructure_diagnostic.py).",
@@ -73,7 +73,7 @@
       },
       {
         "name": "Steam, for chemical processes, at plant",
-        "amount": 4.721016391902357e-12,
+        "amount": 0.0,
         "unit": "kilogram",
         "location": "RER",
         "free": true,

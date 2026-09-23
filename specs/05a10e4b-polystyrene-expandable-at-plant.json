@@ -42,7 +42,7 @@
       },
       {
         "name": "Pentane, at plant",
-        "amount": 1.820563620625543e-07,
+        "amount": 0.0,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -51,7 +51,7 @@
       },
       {
         "name": "Tap water, at user",
-        "amount": 3.435457341750702e-07,
+        "amount": 0.0,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -60,7 +60,7 @@
       },
       {
         "name": "Chemicals organic, at plant",
-        "amount": 5.1954304085668364e-08,
+        "amount": 0.0,
         "unit": "kilogram",
         "location": "GLO",
         "free": true,
@@ -69,7 +69,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 1.5476783959864294e-10,
+        "amount": 0.0,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "free": true,
@@ -78,7 +78,7 @@
       },
       {
         "name": "Steam, for chemical processes, at plant",
-        "amount": 8.52491520718931e-09,
+        "amount": 0.0,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -87,7 +87,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 3.1594574726682524e-20,
+        "amount": 2.535883558472248e-11,
         "unit": "unit",
         "location": "RER",
         "free": true,
@@ -100,7 +100,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 3.79565213319559e-09,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -109,7 +109,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 1.4519973626560234e-08,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,

@@ -241,15 +241,15 @@ for one dataset):
 | Step | Does | Writes |
 |---|---|---|
 | resolve | maps every input name to a BAFU dataset: *unit* (link), *aggregated* (link, flag as dependency), *missing* (stop, suggest names); checks units | codes into the spec; exit 2 on anything missing |
-| calibrate | bounded least squares for the inputs marked `free`, input list held fixed; one equation per elementary flow, weighted by 1/max(\|target\|, \|model\|) — relative error — and normalised so that every (unit, compartment) group of flows carries the same total weight, run twice so the result does not depend on the spec's starting amounts | prints spec vs fitted amounts; `--apply` writes them into the spec |
+| calibrate | bounded least squares for the inputs marked `free`, input list held fixed; one equation per elementary flow, weighted by 1/max(\|target\|, \|model\|) — relative error — and by 1/√(flows in the group), so every (unit, compartment) group contributes its mean squared relative error and counts equally; round-off flows get weight 0; solved with an active-set solver (NNLS/BVLS) on the column-scaled system, run twice so the result does not depend on the spec's starting amounts | prints spec vs fitted amounts; `--apply` writes them into the spec |
 | build | the explicit node `<code>-disagg` and the hybrid `<code>-hybrid` (explicit + residual flows = original exactly) | `reverse-bafu-sandbox` |
 | check | flow‑by‑flow agreement: deviation buckets, the largest flows per unit, the worst deviations, kilogram mass covered, structural checks | `results/checks/<code>.md` |
 
 ## 6. Benchmark: how well does the calibration recover a unit process?
 
 ```bash
-uv run reverse-bafu benchmark --n 40 --seed 7 --scenarios oracle,bounded,partial,distractors   # ~12 min -> results/benchmark/n40-seed7.{csv,md}
-uv run reverse-bafu benchmark --n 5 --seed 7 --scenarios blind --name blind-n5-seed7           # the no-list control, slow
+uv run reverse-bafu benchmark --project bafu-2026-bench --n 100 --seed 7 --scenarios oracle,bounded,partial,distractors --name flow-n100-seed7
+uv run reverse-bafu benchmark --project bafu-2026-bench --n 25 --seed 7 --scenarios blind --name blind-n25-seed7   # the no-list control
 ```
 
 **Two modes.** `--mode calibration` (the default, below) tests one step: step 5's `calibrate`, the
@@ -281,10 +281,12 @@ bundle; it needs the model for three prompts per case.
 
 4. *Fit.* Exactly the pipeline's calibration: one row per elementary flow, weighted by
    1/max(|target|, |model|) so a kilogram of CO₂ and a microgram of a trace metal weigh the same,
-   then normalised per (unit, compartment) group so that land use, water, radioactivity and each
-   emission compartment carry equal weight — without the grouping the ~1,300 flows of
-   "kilogram/emissions" outvote everything else. No impact assessment enters. Columns normalised;
-   NNLS when unbounded, BVLS when bounded.
+   and by 1/√(flows in the group), so every (unit, compartment) group — land use, water,
+   radioactivity, each emission compartment — contributes its mean squared relative error and
+   counts equally; the ~1,200 flows of "kilogram/emissions" do not outvote the rest. Round-off flows
+   (`lci.determined_flows`) get weight 0. The weights are computed against a first unweighted fit,
+   then once more against the weighted one. No impact assessment enters. Columns and right-hand side
+   scaled to unit norm; NNLS when unbounded, BVLS when bounded (`lci.solve_weighted`).
 5. *Metrics per case and scenario* (`results/benchmark/<name>.csv`): inventory agreement — the
    share of the target's flows the fit reproduces within ±10 %, the median deviation, flows missing
    and flows added; amount recovery — the share of *material* inputs (those supplying ≥ 1 % of some
@@ -292,14 +294,31 @@ bundle; it needs the model for three prompts per case.
    amount that are not true inputs), false negatives (material true inputs dropped); runtime.
    `<name>.md` holds the medians per scenario.
 
-**What the latest run says** (`results/benchmark/flow-n8-seed7.md`, 8 cases): with the correct
-list the fit reproduces 89 % of the target's flows within ±10 % (median deviation 2.7 %) and
-recovers 27/49 material amounts within ±20 %; with ranges 90 %; with 30 % of the inputs missing
-86 %, at the price of 2 material inputs dropped per case; with 10 distractors the *inventory* is
-matched even better (93 %) while the fit hands a material amount to 6 processes that are not in
-the real one — **the identifiability trap: a better inventory fit with the wrong structure**; with
-no list at all the fit collapses (8 % of flows, 144 false positives per case). Interpretation on
-the method explainer page, §7.
+**What the latest run says** (`results/benchmark/flow-n100-seed7.md`, 100 cases;
+`blind-n25-seed7.md`, 25 cases). Flows: median share of a case's determined flows within ±10 %.
+Amounts: material inputs within ±20 % of the true amount, pooled over all cases.
+
+| Scenario | Flows within ±10 % | Amounts within ±20 % | Wrong inputs used (median) |
+|---|---|---|---|
+| `oracle` | 100 % | 787 / 803 | 0 |
+| `bounded` | 100 % | 795 / 803 | 0 |
+| `partial` | 99 % | 539 / 605 | 0 (2 material inputs lost) |
+| `distractors` | 100 % | 785 / 803 | 0 |
+| `blind` | 98 % | 56 / 122 | 86 |
+
+With the right inputs on the list the fit recovers the amounts; the misses are mostly pairs of
+inputs whose cumulative inventories are (near-)identical, e.g. inert waste and gravel to the same
+landfill, where any split gives the same flows. Ten wrong candidates are set to zero — an optimistic
+result, since a synthetic target is reproduced exactly by its true inputs and a wrong one has
+nothing left to absorb; real originals were computed on older background data. With no list the fit
+reproduces 98 % of the flows with a made-up process of ~86 wrong inputs: **the identifiability
+trap, a near-perfect inventory fit with the wrong structure.**
+
+Earlier runs (before 2026-09-23) read much worse — 614/803 for `oracle`, 63 % of flows for
+`distractors`, 6 % for `blind` — because of two faults in the fit, not the method: `lsq_linear`'s
+trust-region solver stopped early on the badly scaled system, and the group normalisation (dividing
+by the group's sum of weights) weighted each group by its smallest flow, so "kilogram/emissions"
+counted 1e-58 of one land-use flow and the fit saw ~20 of ~1,670 flows.
 
 ### Extraction mode: the whole route, including the PDF
 
@@ -355,7 +374,7 @@ if a referenced code is missing in the target project, naming every one.
 Format, flags, what the strategies mean and — importantly — the per-dataset quality limits are in
 [exports/README.md](exports/README.md). The short version: import the `*-hybrid` nodes if you need
 results that match BAFU-2026 (they reproduce the originals to 1e-8), the `*-disagg` nodes only if
-you want the evidence-only model, which reproduces between 0 % and 83 % of a dataset's flows. The
+you want the evidence-only model, which reproduces between 0 % and 90 % of a dataset's flows. The
 spread is wide, the high end is not what it looks like and the low end is often not either — both
 traps are documented in [exports/README.md](exports/README.md), under *The PlasticsEurope family*
 and *The APME eco-profiles the ecoSpold type=2 flag missed*. The sharpest single illustration is in

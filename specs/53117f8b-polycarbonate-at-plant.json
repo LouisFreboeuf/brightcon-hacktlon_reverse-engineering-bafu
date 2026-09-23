@@ -63,7 +63,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 4.272115373495676e-13,
+        "amount": 0.0,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "free": true,
@@ -72,7 +72,7 @@
       },
       {
         "name": "Heat, natural gas, at industrial furnace 1MW",
-        "amount": 5.5387705162210056e-11,
+        "amount": 0.0,
         "unit": "megajoule",
         "location": "CH",
         "free": true,
@@ -81,7 +81,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 1.0388719932605066e-11,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -90,7 +90,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 1.9208107931154763e-11,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -99,7 +99,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 2.7956029723475195e-23,
+        "amount": 0.0,
         "unit": "unit",
         "location": "RER",
         "free": true,

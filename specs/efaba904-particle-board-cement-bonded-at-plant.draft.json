@@ -200,7 +200,7 @@
       },
       {
         "name": "xxx Electricity, medium voltage, production UCTE, at grid",
-        "amount": 1.0000000000000002,
+        "amount": 1.0,
         "unit": "kilowatt hour",
         "location": "UCTE",
         "note": "The Mean value column reads 'confidential' for this row. The input is explicitly named, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, making it a free parameter that the calibration step determines. The Source column does state '437 MJ of 1383 MJ Primary energy' for the chip-production share, but that is a primary-energy share, not this row's amount.",
@@ -230,7 +230,7 @@
       },
       {
         "name": "Heat, light fuel oil, at industrial furnace 1MW",
-        "amount": 1.0000000000000002,
+        "amount": 1.0,
         "unit": "megajoule",
         "location": "RER",
         "note": "The Mean value column reads 'confidential' for this row. The input is explicitly named, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, making it a free parameter that the calibration step determines.",

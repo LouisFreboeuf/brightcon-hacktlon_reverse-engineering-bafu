@@ -51,7 +51,7 @@
     "inputs": [
       {
         "name": "Boric acid, anhydrous, powder, at plant",
-        "amount": 0.015613800474379099,
+        "amount": 0.001,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",
@@ -81,7 +81,7 @@
       },
       {
         "name": "Ethylenediamine, at plant",
-        "amount": 0.0010016390939774442,
+        "amount": 0.001,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",
@@ -111,7 +111,7 @@
       },
       {
         "name": "Copper carbonate, at plant",
-        "amount": 0.0010000000000003723,
+        "amount": 0.001,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",
@@ -141,7 +141,7 @@
       },
       {
         "name": "Triethanolamine, at plant",
-        "amount": 0.00010075040884638323,
+        "amount": 0.00010000000000000002,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines. The remark column does print a total: 'Total Copper-HDO 0.061 kg. Balanced as ethanolmanine and copperoxide'. The split between the two rows is not given, so raw_max is that stated total (0.061 kg) for each of the two rows.",
@@ -171,7 +171,7 @@
       },
       {
         "name": "Copper oxide, at plant",
-        "amount": 0.00010004315983390165,
+        "amount": 0.00010000000000000002,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines. Second half of the 0.061 kg Copper-HDO stated in the remark column.",
@@ -201,7 +201,7 @@
       },
       {
         "name": "xxx Electricity, medium voltage, production UCTE, at grid",
-        "amount": 0.7893050918306035,
+        "amount": 0.25819394627730424,
         "unit": "kilowatt hour",
         "location": "UCTE",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",
@@ -231,7 +231,7 @@
       },
       {
         "name": "Tap water, at user",
-        "amount": 0.0010002519281197542,
+        "amount": 0.54440548462518,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",

@@ -5,17 +5,16 @@ the process (see the method explainer in artifacts/, §2 and §7); with the list
 amounts to ~10 %.
 
 No impact assessment: every flow present in the target or the model is one equation, weighted by
-its relative error, with each (unit, compartment) group of flows carrying the same total weight
-(``lci.System.fit_weights``). There is no per-category emphasis to choose."""
+its relative error, with each (unit, compartment) group of flows counting equally and round-off
+flows left out (``lci.System.fit_weights``). There is no per-category emphasis to choose."""
 
 from __future__ import annotations
 
 import numpy as np
-import scipy.optimize as so
 import bw2data as bd
 
 from . import db
-from .lci import System
+from .lci import System, determined_flows, solve_weighted
 from .spec import Spec
 
 
@@ -37,6 +36,7 @@ def run(spec: Spec, apply: bool = False) -> None:
     sys_ = System(demand)
     ids = {i.code: bd.get_node(database=db.SANDBOX_DB if i.sandbox else db.INVENTORY_DB, code=i.code).id for i in inputs}
     b = sys_.cumulative([target.id])[:, 0]
+    det = determined_flows(sys_, target.id)
     M_fixed = sys_.cumulative([ids[i.code] for i in fixed]) if fixed else np.zeros((sys_.n_flows, 0))
     M_free = sys_.cumulative([ids[i.code] for i in free])
     # direct flows of the node itself are part of the fixed contribution too
@@ -55,7 +55,7 @@ def run(spec: Spec, apply: bool = False) -> None:
     def fit(model: np.ndarray) -> tuple[np.ndarray, float, int]:
         """One weighted solve. The weights are relative to ``model``, so a flow the model brings in
         that the target does not have counts by its own size rather than being divided by zero."""
-        w = sys_.fit_weights(b, model)
+        w = sys_.fit_weights(b, model, det)
         rows = np.where(w > 0)[0]
         A = w[rows, None] * M_free[rows]
         y = w[rows] * residual_target[rows]
@@ -64,11 +64,7 @@ def run(spec: Spec, apply: bool = False) -> None:
             wt = 1e3 * np.linalg.norm(y)
             A = np.vstack([A, wt * kg])
             y = np.append(y, wt * node.mass_sum)
-        # normalise columns (a "unit" of plant vs a kg of material differ by many orders of magnitude)
-        scale = np.linalg.norm(A, axis=0)
-        scale[scale == 0] = 1.0
-        res = so.lsq_linear(A / scale, y, bounds=(lo * scale, hi * scale), max_iter=20000)
-        x = res.x / scale
+        x = solve_weighted(A, y, lo, hi)
         return x, float(np.linalg.norm(A @ x - y)), len(rows)
 
     # two passes: the first weights against the spec's own amounts, the second against the fit, so

@@ -50,7 +50,7 @@
     "inputs": [
       {
         "name": "Boric acid, anhydrous, powder, at plant",
-        "amount": 0.0010000198804521526,
+        "amount": 0.001,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",
@@ -80,7 +80,7 @@
       },
       {
         "name": "Chromium oxide, flakes, at plant",
-        "amount": 0.0010000179808643303,
+        "amount": 0.001,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",
@@ -110,7 +110,7 @@
       },
       {
         "name": "Copper oxide, at plant",
-        "amount": 0.0010000240712985777,
+        "amount": 0.001,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",
@@ -140,7 +140,7 @@
       },
       {
         "name": "xxx Electricity, medium voltage, production UCTE, at grid",
-        "amount": 0.27344670810598065,
+        "amount": 0.24614977273492664,
         "unit": "kilowatt hour",
         "location": "UCTE",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",
@@ -170,7 +170,7 @@
       },
       {
         "name": "Tap water, at user",
-        "amount": 0.0010064479759758571,
+        "amount": 0.7752375860098146,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report prints 'confidential' in the Mean value column for this row. The input itself is explicitly listed, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, which makes it a free parameter the calibration step determines.",

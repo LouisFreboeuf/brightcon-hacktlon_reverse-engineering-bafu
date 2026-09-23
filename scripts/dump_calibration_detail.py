@@ -82,9 +82,11 @@ for case in cases:
         elif sc == "partial":
             contrib = {k: contribution_breadth(target, bench.col(bench.ids[k]) * truth[k]) for k in keys}
             cand = sorted(keys, key=lambda k: -contrib[k])[: max(1, round(0.7 * len(keys)))]
-        else:  # distractors  -- consumes rng exactly as benchmark.run does
+        elif sc == "distractors":  # consumes rng exactly as benchmark.run does
             pool = [k for k in bench.blind_pool if k not in truth and k != (db.INVENTORY_DB, case["code"])]
             cand = keys + rng.sample(pool, min(10, len(pool)))
+        else:  # blind: every process used >= 30 times, no direct flows
+            cand = [k for k in bench.blind_pool if k != (db.INVENTORY_DB, case["code"])]
         n = len(cand)
         lo, hi = np.zeros(n), np.full(n, np.inf)
         if sc == "bounded":
@@ -92,7 +94,7 @@ for case in cases:
             lo, hi = np.minimum(0.5 * a, 2.0 * a), np.maximum(0.5 * a, 2.0 * a)
             hi = np.where(hi > lo, hi, lo + 1e-12)
         t0 = time.time()
-        x, M = bench.fit(target, cand, lo, hi, direct)
+        x, M = bench.fit(target, cand, lo, hi, direct, det)
         secs = time.time() - t0
         model = M @ x + direct
         ag = flow_agreement(target, model, det)
@@ -105,8 +107,10 @@ for case in cases:
         rows = []
         for i, k in enumerate(cand):
             t = truth.get(k)
+            if sc == "blind" and t is None and x[i] <= 0:
+                continue   # ~600 of the ~675 blind candidates end at zero; storing them adds only size
             rows.append({**info(k),
-                         "role": "true input" if k in truth else "distractor",
+                         "role": "true input" if k in truth else ("distractor" if sc == "distractors" else "candidate"),
                          "truth": t, "fitted": float(x[i]),
                          "ratio": (float(x[i]) / t) if t else None,
                          "lo": float(lo[i]) if sc == "bounded" else None,
@@ -137,7 +141,7 @@ for case in cases:
             "amounts_within_20pct": sum(1 for r in ratios if 0.8 <= r <= 1.2), "amounts_scored": len(ratios),
             "amount_ratio_median": None if not ratios else float(np.median(ratios)),
             "flows_within_10pct": ag["within_10pct"], "flows_within_20pct": ag["within_20pct"],
-            "n_target_flows": ag["n_target"], "flows_missing": ag["n_missing"], "flows_extra": ag["n_extra"],
+            "n_target_flows": ag["n_target"], "n_scored_flows": ag["n_scored"], "flows_missing": ag["n_missing"], "flows_extra": ag["n_extra"],
             "median_abs_delta": None if np.isnan(ag["median_abs_delta"]) else float(ag["median_abs_delta"]),
             "seconds": round(secs, 3), "candidates": rows, "top_flows": frows}
     out.append(rec)

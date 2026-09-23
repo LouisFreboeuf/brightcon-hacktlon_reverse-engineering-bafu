@@ -37,7 +37,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 11.100000005039053,
+        "amount": 11.099999999999998,
         "unit": "ton kilometer",
         "location": "RER",
         "code": "99f8a4b0-99b5-3130-924c-5de4c10b62ef",
@@ -50,7 +50,7 @@
       },
       {
         "name": "Chemicals organic, at plant",
-        "amount": 3.5000000583881716,
+        "amount": 3.5,
         "unit": "kilogram",
         "location": "GLO",
         "code": "4d96ad56-9dd3-3fda-bff6-d24796d01043",
@@ -63,7 +63,7 @@
       },
       {
         "name": "Cement, unspecified, at plant",
-        "amount": 107.5000000308454,
+        "amount": 107.50000000000001,
         "unit": "kilogram",
         "location": "CH",
         "code": "39f4c4a5-a5f8-3299-8841-9ab862d9e8fa",
@@ -76,7 +76,7 @@
       },
       {
         "name": "Heat, hardwood chips from industry, at furnace 300kW",
-        "amount": 36.650000075445725,
+        "amount": 36.65,
         "unit": "megajoule",
         "location": "CH",
         "code": "3c7bfd5c-8c13-3393-86ae-305c8ff436df",
@@ -89,7 +89,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 5.403941980204612,
+        "amount": 4.56,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "code": "648e3bb3-7b98-46f8-9da1-f45627c309ef",
@@ -102,7 +102,7 @@
       },
       {
         "name": "Wooden board manufacturing plant, cement bonded boards",
-        "amount": 2.0000000035701744e-07,
+        "amount": 2e-07,
         "unit": "unit",
         "location": "RER",
         "code": "3d785591-507e-3c4a-8c69-f689c5bf5bc7",
@@ -115,7 +115,7 @@
       },
       {
         "name": "Wood wool, at plant",
-        "amount": 75.00000000000001,
+        "amount": 75.0,
         "unit": "kilogram",
         "location": "RER",
         "code": "36c4bb40-13ca-3fdf-9440-5d28e360ccb7",

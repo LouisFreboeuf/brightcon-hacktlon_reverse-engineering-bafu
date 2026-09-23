@@ -132,7 +132,7 @@
       },
       {
         "name": "Heat, natural gas, at industrial furnace 1MW",
-        "amount": 23.15400009502169,
+        "amount": 23.154000000000003,
         "unit": "megajoule",
         "location": "CH",
         "note": "Tab. 43.3 'Energy consumption for the production of HCN (kg/kg)' gives two columns, 'Hydrogen export route' 0.78 and 'Hydrogen combustion route' 0.51. The point estimate is the combustion route because Tab. 43.4's air emissions are stated to belong to it: 'These figures ... are calculated values based on the combustion of hydrogen gas in the process as a fuel that replaces part of the natural gas burned as a fuel.' The two columns are the printed range, so the amount is calibratable between them. Mapped to a heat-from-natural-gas dataset because BAFU has no 'natural gas burned' dataset in kg; the MJ of gas is charged as MJ of heat, which understates the gas by the furnace efficiency (~10 %). Flagged medium.",

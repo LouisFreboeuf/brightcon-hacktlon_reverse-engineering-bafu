@@ -108,7 +108,7 @@
       },
       {
         "name": "Sulphuric acid, liquid, at plant",
-        "amount": 0.7833600040629984,
+        "amount": 0.78336,
         "unit": "kilogram",
         "location": "RER",
         "note": "The report explicitly rejects this number: 'As then the above listed amount of sulphuric acid is not sufficient for the process equation, instead the stoechiometric value based on an efficiency of 95% is used here.' The stoichiometric value is not printed, so this is a bounded free input: raw_min is the printed 48 % active substance (4896 kg/3000 kg) and raw_max is a wide upper search bound chosen here, NOT a report value.",
@@ -163,7 +163,7 @@
       },
       {
         "name": "xxx Electricity, medium voltage, production UCTE, at grid",
-        "amount": 2.069586515290703,
+        "amount": 0.06919219753502041,
         "unit": "kilowatt hour",
         "location": "UCTE",
         "note": "The input is named by the report but no amount is given for the chromic acid process ('In case of the chromic acid process no information about energy production is given. Therefore, it is assumed that the energy consumption is similar like in the other dataset.'). Entered as a free parameter with a wide search range; raw_value is a seed, not a report number.",
@@ -193,7 +193,7 @@
       },
       {
         "name": "Steam, for chemical processes, at plant",
-        "amount": 0.010000000521996512,
+        "amount": 0.009999999999999998,
         "unit": "kilogram",
         "location": "RER",
         "note": "Named by the report, no amount given. Free parameter with a wide search range; raw_value is a seed, not a report number.",
@@ -223,7 +223,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 3.333392026655293e-13,
+        "amount": 3.333333333333334e-13,
         "unit": "unit",
         "location": "RER",
         "note": "Named by the report, no amount given. Free parameter; raw_value is a seed, not a report number.",
@@ -253,7 +253,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 0.03333334331976385,
+        "amount": 0.03333333333333333,
         "unit": "ton kilometer",
         "location": "RER",
         "note": "The report says standard ecoinvent distances are used but prints none. Free parameter with a wide search range; raw_value is a seed, not a report number.",
@@ -283,7 +283,7 @@
       },
       {
         "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
-        "amount": 0.016666666692665765,
+        "amount": 0.01666666666666667,
         "unit": "ton kilometer",
         "location": "RER",
         "note": "As for rail: named, not quantified. Free parameter; raw_value is a seed, not a report number.",

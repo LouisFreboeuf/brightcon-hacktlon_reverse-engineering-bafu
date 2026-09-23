@@ -29,7 +29,7 @@
     "inputs": [
       {
         "name": "Electricity, medium voltage, at grid",
-        "amount": 0.4685004289773557,
+        "amount": 0.4685,
         "unit": "kilowatt hour",
         "location": "DE",
         "code": "76a85da2-7e4e-3e7e-a3df-f3df5951c9ec",
@@ -50,7 +50,7 @@
       },
       {
         "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
-        "amount": 1.500000948140127,
+        "amount": 1.5,
         "unit": "ton kilometer",
         "location": "CH",
         "code": "eb5552ed-63a8-374d-8fa4-296f644c37f8",
@@ -63,7 +63,7 @@
       },
       {
         "name": "Potato starch, at plant",
-        "amount": 0.014500012076835543,
+        "amount": 0.014499999999999999,
         "unit": "kilogram",
         "location": "DE",
         "code": "4cabab9c-da5b-32e6-b114-02a06c1deccb",
@@ -76,7 +76,7 @@
       },
       {
         "name": "Tap water, at user",
-        "amount": 1.8200016621183603,
+        "amount": 5.810464355608591,
         "unit": "kilogram",
         "location": "RER",
         "code": "6556440f-cd03-3975-9615-023309701fe2",
@@ -97,7 +97,7 @@
       },
       {
         "name": "Stucco, at plant",
-        "amount": 4.05500340791,
+        "amount": 4.0550000000000015,
         "unit": "kilogram",
         "location": "CH",
         "code": "08c050ee-36ba-3999-9fee-24321d6a6787",
@@ -126,7 +126,7 @@
       },
       {
         "name": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
-        "amount": 6.800004130600254,
+        "amount": 6.800000000000001,
         "unit": "megajoule",
         "location": "RER",
         "code": "82c07b68-8bf9-3537-9934-91924132e976",

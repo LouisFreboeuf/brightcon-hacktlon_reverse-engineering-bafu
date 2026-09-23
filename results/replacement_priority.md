@@ -2,7 +2,7 @@
 
 138 aggregated datasets, ranked by the share of BAFU's impact that passes through them (dataset-equivalents, mean over the 16 EF 3.1 categories). See the docstring of `scripts/replacement_priority.py` for the definition.
 
-Recommendations: domain expert 53, algorithm next 34, rebuilt: review and adopt 27, rebuilt: expert revision 24
+Recommendations: domain expert 53, algorithm next 34, rebuilt: review and adopt 26, rebuilt: expert revision 25
 
 | # | system process | importance (mean) | climate | median | dominant category | breadth | blocks rebuilds | evidence | recommendation |
 |---|---|---|---|---|---|---|---|---|---|

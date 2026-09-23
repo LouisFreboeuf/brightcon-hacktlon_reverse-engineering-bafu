@@ -10,22 +10,22 @@ target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft
 
 - the 50 largest kilogram flows: 1/50 within ±10 %, median |Δ| 97.6%
 - kilogram mass covered within ±10 %: 0.1% of the target's total kg mass
-- of the 1773 flows of the target, 1668 are determined by the solve (105 are round-off and are not scored; see lci.determined_flows)
-- 6 of those 1668 within ±10 % (0%), median |Δ| 11380.3%, 0 missing from the model, 1 extra
-- hybrid vs target: 3 flows differ
+- of the 1781 flows of the target, 1678 are determined by the solve (103 are round-off and are not scored; see lci.determined_flows)
+- 6 of those 1678 within ±10 % (0%), median |Δ| 11380.3%, 0 missing from the model, 1 extra
+- hybrid vs target: 4 flows differ
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
 | ≤ 10 % | 6 | 0% |
 | 10–20 % | 5 | 0% |
 | 20–50 % | 15 | 1% |
-| 50–100 % | 61 | 3% |
-| > 100 % | 1686 | 95% |
+| 50–100 % | 57 | 3% |
+| > 100 % | 1698 | 95% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
 
-### kilogram (1459 flows)
+### kilogram (1466 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -60,7 +60,7 @@ target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft
 | Hydrogen-3 [Emissions/Emissions to water] (kilo Becquerel) | 0.0178 | 1.13 | +6214.1% | -1.11 |
 | Radon-222 [Emissions/Emissions to air] (kilo Becquerel) | 0.0174 | 1.45 | +8246.5% | -1.43 |
 
-### square meter (48 flows)
+### square meter (50 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -70,7 +70,7 @@ target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft
 | To Dump Site [Land use/Land transformation] (square meter) | 6.06e-06 | 0.000412 | +6695.6% | -0.000406 |
 | From Arable, Non-irrigated, Intensive [Land use/Land transformation] (square meter) | 5.97e-06 | 0.00194 | +32446.5% | -0.00194 |
 
-### megajoule (28 flows)
+### megajoule (27 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -87,7 +87,7 @@ target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft
 | Forest, Intensive [Land use/Land occupation] (square meter-year) | 0.000271 | 0.0284 | +10373.6% | -0.0281 |
 | Traffic Area, Road Network [Land use/Land occupation] (square meter-year) | 0.000261 | 0.00241 | +821.7% | -0.00215 |
 | Dump Site [Land use/Land occupation] (square meter-year) | 0.000172 | 0.00102 | +495.4% | -0.000852 |
-| Forest [Land use/Land occupation] (square meter-year) | 7.12e-05 | 0.0143 | +19963.8% | -0.0142 |
+| Forest [Land use/Land occupation] (square meter-year) | 7.12e-05 | 0.0143 | +19963.9% | -0.0142 |
 | Construction Site [Land use/Land occupation] (square meter-year) | 2.89e-05 | 0.0011 | +3714.9% | -0.00107 |
 
 ### cubic meter (23 flows)
@@ -104,18 +104,18 @@ target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Uranium alpha [emissions to water/river] (Becquerel) | 6.5e-21 | 3.28e-19 | +4945.0% | -3.22e-19 |
-| Uranium alpha [emissions to water/lake] (Becquerel) | 3.05e-21 | 1.54e-19 | +4945.0% | -1.51e-19 |
-| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 5.54e-22 | 2.79e-20 | +4945.0% | -2.74e-20 |
-| Thorium-232 [emissions to water/river] (Becquerel) | 6.58e-24 | 3.32e-22 | +4945.0% | -3.25e-22 |
-| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 1.94e-24 | 9.8e-23 | +4945.0% | -9.61e-23 |
+| Uranium alpha [emissions to water/river] (Becquerel) | 3.21e-19 | 1.03e-17 | +3104.2% | -9.98e-18 |
+| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 1.65e-20 | 5.8e-19 | +3407.3% | -5.63e-19 |
+| Thorium-232 [emissions to water/river] (Becquerel) | 3.02e-21 | 8.42e-20 | +2692.0% | -8.12e-20 |
+| Uranium alpha [emissions to water/lake] (Becquerel) | 2.81e-21 | 7.72e-19 | +27400.9% | -7.7e-19 |
+| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 3.02e-22 | 8.73e-21 | +2789.0% | -8.43e-21 |
 
 ### kilometer (2 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
 | Noise, road, lorry, average [non material emissions/unspecified] (kilometer) | 0.00105 | 0.0417 | +3888.0% | -0.0407 |
-| Noise, road, passenger car, average [non material emissions/unspecified] (kilometer) | 1.81e-06 | 0.00261 | +144195.8% | -0.00261 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (kilometer) | 1.81e-06 | 0.00261 | +144195.9% | -0.00261 |
 
 ### ton kilometer (2 flows)
 
@@ -128,8 +128,8 @@ target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Noise, road, lorry, average [non material emissions/unspecified] (meter) | 2.82e-19 | 7.74e-18 | +2643.8% | -7.46e-18 |
-| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 6.15e-22 | 3.1e-20 | +4945.0% | -3.04e-20 |
+| Noise, road, lorry, average [non material emissions/unspecified] (meter) | 2.12e-18 | 1.45e-16 | +6742.9% | -1.43e-16 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 6.74e-19 | 1.86e-17 | +2663.0% | -1.79e-17 |
 
 ### cubic meter-year (1 flows)
 
@@ -141,7 +141,7 @@ target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Noise, aircraft, passenger [non material emissions/unspecified] (person kilometer) | 2.68e-07 | 0.00153 | +568716.9% | -0.00153 |
+| Noise, aircraft, passenger [non material emissions/unspecified] (person kilometer) | 2.68e-07 | 0.00153 | +568716.3% | -0.00153 |
 
 ## Worst deviations among the 50 largest kilogram flows
 
@@ -166,7 +166,7 @@ target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft
 - ✓ mass in: 1.02 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 143 flows under-explained, 1631 over-explained (negative residual)
+residual: 97 flows under-explained, 1685 over-explained (negative residual)
 
 ## Evidence
 

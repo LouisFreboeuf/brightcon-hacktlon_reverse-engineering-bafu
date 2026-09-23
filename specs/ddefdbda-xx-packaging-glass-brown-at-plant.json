@@ -37,7 +37,7 @@
       },
       {
         "name": "Dolomite, at plant",
-        "amount": 0.029400234778018397,
+        "amount": 0.0294,
         "unit": "kilogram",
         "location": "RER",
         "code": "633c6310-6b84-330b-bb26-e836f6eba2bd",
@@ -50,7 +50,7 @@
       },
       {
         "name": "Natural gas, high pressure, at consumer",
-        "amount": 1.7850111576497256,
+        "amount": 1.7850000000000001,
         "unit": "megajoule",
         "location": "RER",
         "code": "52167408-1c86-310c-ab50-a92f15e84379",
@@ -63,7 +63,7 @@
       },
       {
         "name": "Silica sand, at plant",
-        "amount": 0.1435009688969584,
+        "amount": 0.15578504741347562,
         "unit": "kilogram",
         "location": "DE",
         "code": "a7511c34-4efb-316c-9d45-3fe6cf13a799",
@@ -76,7 +76,7 @@
       },
       {
         "name": "Heavy fuel oil, at regional storage",
-        "amount": 0.02165012107249185,
+        "amount": 0.02165,
         "unit": "kilogram",
         "location": "RER",
         "code": "d3e849a4-c9c1-3474-8b09-a71f4d412130",
@@ -97,7 +97,7 @@
       },
       {
         "name": "Limestone, milled, loose, at plant",
-        "amount": 0.02095016495976754,
+        "amount": 0.025614255332405307,
         "unit": "kilogram",
         "location": "CH",
         "code": "f8e122b3-92fb-37d6-aade-43ee2f2de640",
@@ -110,7 +110,7 @@
       },
       {
         "name": "Light fuel oil, at regional storage",
-        "amount": 0.020950108360703924,
+        "amount": 0.020949999999999996,
         "unit": "kilogram",
         "location": "RER",
         "code": "80b22bf0-10cb-3af0-b63a-d3cf38d0ccb5",
@@ -139,7 +139,7 @@
       },
       {
         "name": "Soda, powder, at plant",
-        "amount": 0.04295033413844798,
+        "amount": 0.04636996423167236,
         "unit": "kilogram",
         "location": "RER",
         "code": "8c1442f6-cec0-30c1-9b55-b15cb77aee4b",
@@ -168,7 +168,7 @@
       },
       {
         "name": "Glass, from public collection, unsorted",
-        "amount": 0.2775017262453659,
+        "amount": 0.2775,
         "unit": "kilogram",
         "location": "RER",
         "code": "3a36045b-fc25-3ecc-8d54-00ed5a29f230",
@@ -197,7 +197,7 @@
       },
       {
         "name": "Electricity, medium voltage, at grid",
-        "amount": 0.12200098622243763,
+        "amount": 0.12200000000000003,
         "unit": "kilowatt hour",
         "location": "CH",
         "code": "df605f09-34c5-3b3f-94ea-227f7a3c06a7",

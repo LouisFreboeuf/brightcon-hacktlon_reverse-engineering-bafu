@@ -7,6 +7,7 @@ categories are weighted against each other."""
 from __future__ import annotations
 
 import numpy as np
+import scipy.optimize as so
 import scipy.sparse.linalg as spl
 import bw2calc as bc
 import bw2data as bd
@@ -45,21 +46,26 @@ class System:
             self._groups = g
         return self._groups
 
-    def fit_weights(self, target: np.ndarray, model: np.ndarray) -> np.ndarray:
-        """Row weights for the calibration: relative error per flow (``relative_weights``), then
-        normalised so that every (unit, compartment) group carries the same total weight.
+    def fit_weights(self, target: np.ndarray, model: np.ndarray, determined: np.ndarray | None = None) -> np.ndarray:
+        """Row weights for the calibration: relative error per flow (``relative_weights``), divided
+        by sqrt(flows in the group), so the objective is the sum over (unit, compartment) groups of
+        each group's mean squared relative error. Every flow counts equally within its group and
+        every group counts equally: the ~1,200 flows of "kilogram/emissions" do not outvote land
+        use, water or radioactivity. ``determined`` (``determined_flows``) gives round-off flows
+        weight 0; their relative error is noise.
 
-        Without the grouping the ~1,300 flows of "kilogram/emissions" outvote everything else and
-        the fit drifts away from the true amounts; with it, land use, water, radioactivity and the
-        emission compartments each get a say. It is the impact-free analogue of weighting the 25 EF
-        categories equally — on the benchmark it recovers as many amounts as that did (44/49 of the
-        material amounts within ±20 %, against 43/49 characterised and 27/49 ungrouped)."""
+        Until 2026-09 the groups were normalised by the sum of their weights instead. That sum is
+        set by the group's smallest flow, so a group counted in proportion to its tiniest value:
+        "kilogram/emissions" (CO2 and ~1,200 others) weighed 1e-58 of a single land-use flow, and
+        the fit saw ~20 of ~1,670 flows."""
         base = relative_weights(target, model)
+        if determined is not None:
+            base = base * determined
         w = np.zeros_like(base)
         for rows in self.groups.values():
-            total = base[rows].sum()
-            if total > 0:
-                w[rows] = base[rows] / total
+            n = int((base[rows] > 0).sum())
+            if n:
+                w[rows] = base[rows] / np.sqrt(n)
         return w
 
     def flow_row(self, database: str, code: str) -> int | None:
@@ -76,6 +82,24 @@ class System:
         node = self.flow_node(row)
         cats = node.get("categories") or ()
         return f"{node['name']} [{'/'.join(str(c) for c in cats[:2])}] ({node.get('unit', '')})"
+
+
+def solve_weighted(A: np.ndarray, y: np.ndarray, lo: np.ndarray, hi: np.ndarray) -> np.ndarray:
+    """min |A x - y| subject to lo <= x <= hi, for the weighted calibration system.
+
+    Columns and right-hand side are scaled to unit norm first, and the solver is an active-set one
+    (NNLS when the only bound is x >= 0, BVLS otherwise). The weighted matrix mixes "a unit of
+    plant" with "a kg of material" (condition numbers up to 1e37); lsq_linear's default
+    trust-region method stopped early on it with an absolute tolerance, in 14 of the 100 oracle
+    benchmark cases at an objective 1e2-1e13 above that of the true amounts."""
+    cs = np.linalg.norm(A, axis=0)
+    cs[cs == 0] = 1.0
+    rs = np.linalg.norm(y) or 1.0
+    if np.all(lo == 0) and np.all(np.isinf(hi)):
+        x = so.nnls(A / cs, y / rs, maxiter=50 * A.shape[1] + 1000)[0]
+    else:
+        x = so.lsq_linear(A / cs, y / rs, bounds=(lo * cs / rs, hi * cs / rs), method="bvls", max_iter=20000).x
+    return x / cs * rs
 
 
 def relative_weights(target: np.ndarray, model: np.ndarray) -> np.ndarray:

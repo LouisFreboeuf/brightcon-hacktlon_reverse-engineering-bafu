@@ -44,7 +44,7 @@
     "inputs": [
       {
         "name": "Styrene, at plant",
-        "amount": 0.00010198870529083035,
+        "amount": 0.0018943654814734198,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -53,7 +53,7 @@
       },
       {
         "name": "Polybutadiene, at plant",
-        "amount": 0.9998154664477517,
+        "amount": 0.9981056216811677,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -62,7 +62,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 8.251499961584008e-05,
+        "amount": 0.0,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "free": true,
@@ -71,7 +71,7 @@
       },
       {
         "name": "Heat, natural gas, at industrial furnace 1MW",
-        "amount": 0.015977087625634417,
+        "amount": 0.002208273510251095,
         "unit": "megajoule",
         "location": "CH",
         "free": true,
@@ -80,7 +80,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 0.003948365673379406,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -89,7 +89,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 0.0023976869089821335,
+        "amount": 4.05520773888074e-06,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -98,7 +98,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 9.838166100038568e-15,
+        "amount": 0.0,
         "unit": "unit",
         "location": "RER",
         "free": true,

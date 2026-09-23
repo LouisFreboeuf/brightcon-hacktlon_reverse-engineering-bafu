@@ -50,7 +50,7 @@
     "inputs": [
       {
         "name": "xxx Wood wool, u=20%, at plant",
-        "amount": 120.00000000173011,
+        "amount": 120.0,
         "unit": "kilogram",
         "location": "RER",
         "note": "Mean value 1.50E+02 kg printed; the Remarks column gives the range 120-180 kg, so it is entered as a bounded free input.",
@@ -80,7 +80,7 @@
       },
       {
         "name": "Cement, unspecified, at plant",
-        "amount": 180.00000000257347,
+        "amount": 180.00000000000003,
         "unit": "kilogram",
         "location": "CH",
         "note": "Mean value 2.15E+02 kg printed; Remarks give the range 180-250 kg.",
@@ -110,7 +110,7 @@
       },
       {
         "name": "Chemicals organic, at plant",
-        "amount": 6.000000000089962,
+        "amount": 6.0,
         "unit": "kilogram",
         "location": "GLO",
         "note": "Mean value 7 kg printed; Remarks give 6-8 kg.",
@@ -140,7 +140,7 @@
       },
       {
         "name": "xxx Electricity, medium voltage, production UCTE, at grid",
-        "amount": 1.0000000042508572,
+        "amount": 0.9999999999999999,
         "unit": "kilowatt hour",
         "location": "UCTE",
         "note": "The Mean value column reads 'confidential' for this row. The input is explicitly named, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, making it a free parameter that the calibration step determines.",
@@ -170,7 +170,7 @@
       },
       {
         "name": "Heat, light fuel oil, at industrial furnace 1MW",
-        "amount": 1.000000040227826,
+        "amount": 0.9999999999999999,
         "unit": "megajoule",
         "location": "RER",
         "note": "The Mean value column reads 'confidential' for this row. The input is explicitly named, so it is kept with raw_value as a seed only (NOT a reported number) and a wide raw_min/raw_max range, making it a free parameter that the calibration step determines.",

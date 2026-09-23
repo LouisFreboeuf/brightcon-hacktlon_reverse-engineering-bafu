@@ -60,7 +60,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 4.532230817077961e-10,
+        "amount": 0.0,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "free": true,
@@ -69,7 +69,7 @@
       },
       {
         "name": "Steam, for chemical processes, at plant",
-        "amount": 2.0047902599721823e-08,
+        "amount": 0.0,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -78,7 +78,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 2.9184750679309683e-20,
+        "amount": 0.0,
         "unit": "unit",
         "location": "RER",
         "free": true,
@@ -91,7 +91,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 1.1008263936853932e-08,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -100,7 +100,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 1.673540855620412e-08,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,

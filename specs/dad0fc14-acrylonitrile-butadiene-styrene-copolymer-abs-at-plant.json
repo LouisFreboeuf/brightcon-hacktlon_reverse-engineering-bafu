@@ -39,7 +39,7 @@
     "inputs": [
       {
         "name": "Acrylonitrile from Sohio process, at plant",
-        "amount": 8.93667412165903e-10,
+        "amount": 1.2671112209313905e-07,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -48,7 +48,7 @@
       },
       {
         "name": "Butadiene, at plant",
-        "amount": 0.6005955172080293,
+        "amount": 0.5597386003476038,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -57,7 +57,7 @@
       },
       {
         "name": "Styrene, at plant",
-        "amount": 0.3909209568054951,
+        "amount": 0.4402612785428662,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -66,7 +66,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 0.008483525092805623,
+        "amount": 0.0,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "free": true,
@@ -75,7 +75,7 @@
       },
       {
         "name": "Heat, natural gas, at industrial furnace 1MW",
-        "amount": 0.0815574171967636,
+        "amount": 0.0,
         "unit": "megajoule",
         "location": "CH",
         "free": true,
@@ -84,7 +84,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 5.17826866750247e-05,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -93,7 +93,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 0.011464688092247113,
+        "amount": 0.0,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -102,7 +102,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 8.960501403969993e-14,
+        "amount": 0.0,
         "unit": "unit",
         "location": "RER",
         "free": true,

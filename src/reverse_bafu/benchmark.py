@@ -30,7 +30,7 @@ import scipy.optimize as so
 import bw2data as bd
 
 from . import db
-from .lci import System, contribution_breadth, determined_flows, flow_agreement
+from .lci import System, contribution_breadth, determined_flows, flow_agreement, solve_weighted
 
 SCENARIOS = ("oracle", "bounded", "partial", "distractors", "blind")
 
@@ -103,16 +103,19 @@ class Bench:
                 v[row] += amt
         return v
 
-    def fit(self, target: np.ndarray, cand: list[tuple], lo: np.ndarray, hi: np.ndarray, direct: np.ndarray) -> np.ndarray:
+    def fit(self, target: np.ndarray, cand: list[tuple], lo: np.ndarray, hi: np.ndarray, direct: np.ndarray,
+            determined: np.ndarray | None = None) -> np.ndarray:
         M = np.column_stack([self.col(self.ids[k]) for k in cand])
-        # relative weights; the model side of the weight is the unweighted NNLS solution, so flows the
-        # target lacks but a candidate would bring count by their own size
+        # relative weights; the model side of the weight is first the unweighted NNLS solution, so
+        # flows the target lacks but a candidate would bring count by their own size, then the fit
+        # itself - two passes, as calibrate does
         scale = np.linalg.norm(M, axis=0); scale[scale == 0] = 1.0
-        x0 = so.nnls(M / scale, target - direct, maxiter=20000)[0] / scale
-        w = self.sys.fit_weights(target, M @ x0 + direct)
-        rows = np.where(w > 0)[0]
-        res = so.lsq_linear(w[rows, None] * M[rows], w[rows] * (target - direct)[rows], bounds=(lo, hi), max_iter=5000)
-        return res.x, M
+        x = so.nnls(M / scale, target - direct, maxiter=20000)[0] / scale
+        for _ in range(2):
+            w = self.sys.fit_weights(target, M @ x + direct, determined)
+            rows = np.where(w > 0)[0]
+            x = solve_weighted(w[rows, None] * M[rows], w[rows] * (target - direct)[rows], lo, hi)
+        return x, M
 
     def run_case(self, case: dict, scenario: str, rng: random.Random) -> dict:
         truth = case["inputs"]
@@ -145,7 +148,7 @@ class Bench:
             lo, hi = np.minimum(0.5 * a, 2.0 * a), np.maximum(0.5 * a, 2.0 * a)
             hi = np.where(hi > lo, hi, lo + 1e-12)
         t0 = time.time()
-        x, M = self.fit(target, cand, lo, hi, direct)
+        x, M = self.fit(target, cand, lo, hi, direct, self.determined(case["code"]))
         explicit = M @ x + direct
         ag = flow_agreement(target, explicit, self.determined(case["code"]))
         # structure: judged by the inventory, not by coefficient size. An input is "material" when its

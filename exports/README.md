@@ -248,38 +248,38 @@ them it is small.
 
 | BAFU dataset | strategy | flows within +-10 % | of the 50 largest kg flows | kg mass covered | median deviation |
 |---|---|---|---|---|---|
-| Polyvinylchloride, suspension polymerised, at plant | S3 | 1380/1671 (83%) | 36/50 | 34.1 % | 1.2 % |
-| Polyethylene, LLDPE, granulate, at plant | S3 | 1280/1667 (77%) | 26/50 | 7.7 % | 1.9 % |
-| Polyethylene, HDPE, granulate, at plant | S3 | 1275/1670 (76%) | 26/50 | 7.6 % | 1.9 % |
-| Polyethylene, LDPE, granulate, at plant | S3 | 1168/1678 (70%) | 24/50 | 7.4 % | 2.6 % |
-| Polypropylene, granulate, at plant | S3 | 1078/1668 (65%) | 17/50 | 4.0 % | 8.9 % |
-| Purified terephthalic acid, at plant | S3 | 547/1671 (33%) | 3/50 | 0.3 % | 11.4 % |
-| Polyvinylchloride, emulsion polymerised, at plant | S3 | 269/1668 (16%) | 14/50 | 25.9 % | 79.5 % |
-| Cement ZN, D, at plant (draft) | S1 | 249/1326 (19%) | 8/50 | 0.5 % | 28.7 % |
-| Cement ZN, D, at plant | S1 | 249/1326 (19%) | 8/50 | 0.5 % | 28.6 % |
+| Polyvinylchloride, suspension polymerised, at plant | S3 | 1403/1667 (84%) | 36/50 | 34.1 % | 1.7 % |
+| Purified terephthalic acid, at plant | S3 | 1332/1667 (80%) | 24/50 | 6.1 % | 2.4 % |
+| Polyethylene, LLDPE, granulate, at plant | S3 | 1299/1667 (78%) | 26/50 | 7.7 % | 1.1 % |
+| Polyethylene, HDPE, granulate, at plant | S3 | 1296/1667 (78%) | 26/50 | 7.6 % | 1.1 % |
+| Polyethylene, LDPE, granulate, at plant | S3 | 1259/1667 (76%) | 23/50 | 6.5 % | 2.2 % |
+| Polypropylene, granulate, at plant | S3 | 1245/1667 (75%) | 21/50 | 6.3 % | 3.9 % |
+| Polyvinylchloride, emulsion polymerised, at plant | S3 | 268/1667 (16%) | 14/50 | 25.9 % | 79.6 % |
+| Cement ZN, D, at plant | S1 | 213/1326 (16%) | 11/50 | 5.3 % | 27.9 % |
+| Cement ZN, D, at plant (draft) | S1 | 192/1326 (14%) | 16/50 | 4.0 % | 25.8 % |
 | Particle board, cement bonded, at plant (draft) | S3 | 140/1149 (12%) | 8/50 | 42.7 % | 63.0 % |
-| Burnt shale, at plant | S1 | 128/1326 (10%) | 9/50 | 99.5 % | 66.2 % |
 | Polyethylene terephthalate, granulate, bottle grade, at plant | S2 | 127/1679 (8%) | 9/50 | 4.7 % | 69.6 % |
 | Titanium dioxide at plant, sulphate process, at plant (draft) | S1 | 117/1148 (10%) | 11/50 | 13.3 % | 75.2 % |
 | xxx Wood wool boards, cement bonded, at plant (draft) | S3 | 111/1149 (10%) | 7/50 | 30.6 % | 63.0 % |
-| Ethylene glycol, at plant | S2 | 105/1671 (6%) | 8/50 | 4.6 % | 180.3 % |
-| Burnt shale, at plant (draft) | S1 | 81/1326 (6%) | 3/50 | 30.4 % | 148.2 % |
+| Ethylene glycol, at plant | S2 | 105/1668 (6%) | 8/50 | 4.6 % | 180.3 % |
+| Burnt shale, at plant | S1 | 97/1326 (7%) | 5/50 | 99.5 % | 66.1 % |
+| Burnt shale, at plant (draft) | S1 | 81/1326 (6%) | 3/50 | 30.4 % | 144.5 % |
 | xx Packaging glass, white, at regional storage | S2 | 76/1146 (7%) | 5/50 | 0.1 % | 88.5 % |
-| Anthraquinone, at plant (draft) | S3 | 75/1149 (7%) | 5/50 | 8.3 % | 68.1 % |
-| xx Packaging glass, green, at regional storage | S2 | 72/1146 (6%) | 4/50 | 0.1 % | 90.0 % |
-| xx Packaging glass, brown, at regional storage | S2 | 69/1146 (6%) | 3/50 | 0.1 % | 86.4 % |
-| Xylene, at plant | S3 | 62/1670 (4%) | 2/50 | 0.6 % | 120.1 % |
-| Gypsum plaster board, at plant | S2 | 59/1171 (5%) | 2/50 | 1.0 % | 99.9 % |
-| xx Packaging glass, white, at plant | S2 | 51/1146 (4%) | 4/50 | 0.2 % | 152.2 % |
-| xx Packaging glass, brown, at plant | S2 | 51/1146 (4%) | 3/50 | 0.1 % | 130.2 % |
-| xx Packaging glass, green, at plant | S2 | 45/1146 (4%) | 4/50 | 0.6 % | 176.5 % |
+| xx Packaging glass, green, at regional storage | S2 | 74/1146 (6%) | 4/50 | 0.1 % | 90.0 % |
+| xx Packaging glass, brown, at regional storage | S2 | 73/1146 (6%) | 3/50 | 0.1 % | 86.5 % |
+| Anthraquinone, at plant (draft) | S3 | 64/1149 (6%) | 4/50 | 7.7 % | 78.5 % |
+| Gypsum plaster board, at plant | S2 | 64/1171 (5%) | 2/50 | 1.0 % | 99.9 % |
+| Xylene, at plant | S3 | 60/1664 (4%) | 2/50 | 0.6 % | 120.7 % |
+| xx Packaging glass, brown, at plant | S2 | 54/1146 (5%) | 3/50 | 0.1 % | 130.7 % |
+| xx Packaging glass, white, at plant | S2 | 53/1146 (5%) | 4/50 | 0.2 % | 152.3 % |
+| Gypsum fibre board, at plant | S2 | 52/1172 (4%) | 4/50 | 1.4 % | 86.3 % |
+| xx Packaging glass, green, at plant | S2 | 45/1146 (4%) | 4/50 | 0.6 % | 177.8 % |
 | Titanium dioxide, chloride process, at plant (draft) | S1 | 42/1147 (4%) | 5/50 | 38.2 % | 70.7 % |
-| Vinyl chloride, at plant | S3 | 33/1671 (2%) | 0/50 | 0.0 % | 191.2 % |
-| Wood preservative, inorganic salt, containing Cr, at plant (draft) | S3 | 28/1148 (2%) | 0/50 | 0.0 % | 89.2 % |
-| Gypsum fibre board, at plant | S2 | 27/1172 (2%) | 2/50 | 0.5 % | 245.9 % |
-| xxx Wood wool boards, cement bonded, at plant | S2 | 26/1149 (2%) | 2/50 | 0.0 % | 70.1 % |
-| Polystyrene, expandable, at plant | S3 | 20/1670 (1%) | 0/50 | 0.0 % | 100.0 % |
-| Wood preservative, organic salt, Cr-free, at plant (draft) | S3 | 8/1149 (1%) | 0/50 | 0.0 % | 86.0 % |
+| Vinyl chloride, at plant | S3 | 32/1665 (2%) | 0/50 | 0.0 % | 191.2 % |
+| Wood preservative, inorganic salt, containing Cr, at plant (draft) | S3 | 31/1148 (3%) | 1/50 | 0.0 % | 89.2 % |
+| xxx Wood wool boards, cement bonded, at plant | S2 | 25/1149 (2%) | 2/50 | 0.0 % | 70.3 % |
+| Wood preservative, organic salt, Cr-free, at plant (draft) | S3 | 18/1149 (2%) | 0/50 | 0.0 % | 91.8 % |
+| Polystyrene, expandable, at plant | S3 | 17/1670 (1%) | 0/50 | 0.0 % | 100.0 % |
 
 Sorted best-first. "flows within ±10 %" counts the elementary flows of the original aggregated
 dataset that the **explicit** node reproduces within ±10 %, out of the flows the solve determines.
@@ -328,13 +328,14 @@ are properties of BAFU-2026 rather than of the rebuilds:
    consequence for a rebuild: ESU added one chemical plant per *dataset*, i.e. one per
    cradle-to-gate chain, so a rebuilt unit process that links to a precursor which already carries
    one and then adds its own doubles ~1300 flows. Every spec in this family therefore carries the
-   infrastructure as a free input bounded by `[0, 4.0E-10]`, and the fit drives it to zero. Getting
-   this one exchange right moved HDPE from 4 % to 76 %.
-2. **A high score here mostly means "the precursor is another PlasticsEurope dataset".** The five
-   best rows — S-PVC, LLDPE, HDPE, LDPE, PP — are all a monomer at 1 kg per kg of polymer plus
+   infrastructure as a free input bounded by `[0, 4.0E-10]`, and the fit drives it to zero or close to
+   it in all but two (polypropylene sits at the bound, PTA at 40 % of it). Getting this one exchange
+   right moved HDPE from 4 % to 76 % (78 % with the current fit).
+2. **A high score here mostly means "the precursor is another PlasticsEurope dataset".** Five of
+   the six best rows — S-PVC, LLDPE, HDPE, LDPE, PP — are all a monomer at 1 kg per kg of polymer plus
    calibrated energy, and the monomer is itself a PlasticsEurope (or APME-derived) aggregate, so
    the two vectors share a background by construction. That is a genuine disaggregation — the
-   polymer's burden is now traceable to its monomer's dataset — but 83 % is not a statement about
+   polymer's burden is now traceable to its monomer's dataset — but 84 % is not a statement about
    the quality of the polymerisation model, whose fitted electricity and steam come out at
    essentially zero.
 3. **Sub-compartments split across data vintages.** The 2025 PlasticsEurope implementations put
@@ -356,9 +357,9 @@ Specific things to keep in mind:
    improvement in accuracy — it is the part of the supply chain the rebuild does not yet cover
    going missing. Use `-hybrid` unless you know exactly why you want otherwise.
 2. **A good flow agreement does not prove a correct structure.** The project's calibration
-   benchmark (project README §6) found the opposite case explicitly: adding ten random distractor
-   inputs *improved* the inventory fit while giving a material amount to processes that are not in
-   the real process at all. Inventory agreement and structural correctness are different things.
+   benchmark (project README §6) shows it explicitly: offered every frequently used process and no
+   input list, the fit reproduces 98 % of the flows within ±10 % with a process made of ~86 inputs
+   that are not in the real one. Inventory agreement and structural correctness are different things.
 3. **Calibrated amounts are fits, not measurements.** Where a report printed "confidential", the
    input is in the list because the report names it, and the amount comes from the least-squares
    fit within the stated bounds. Those entries carry `"calibrated": true` and, usually,
@@ -412,31 +413,31 @@ sibling unit process BAFU already contains; their evidence is in the spec, not i
 
 | BAFU dataset | route | flows within ±10 % | of the 50 largest kg flows | kg mass | median \|Δ\| | of the flows the eco-profile itself declares |
 |---|---|---|---|---|---|---|
-| Acrylonitrile-butadiene-styrene copolymer, ABS, at plant | S3 | 1221/1668 (73%) | 9/50 | 1.3 % | 6.7 % | 17/137 (12.4 %) |
-| xx Acetone cyanohydrin, at plant | S3 | 966/1670 (58%) | 13/50 | 95.5 % | 6.5 % | 11/135 (8.1 %) |
-| Polymethyl methacrylate, beads, at plant | S3 | 763/1667 (46%) | 25/50 | 96.6 % | 13.6 % | 25/135 (18.5 %) |
-| Polystyrene, high impact, HIPS, at plant | S3 | 621/1671 (37%) | 7/50 | 0.2 % | 11.3 % | 5/136 (3.7 %) |
-| Nylon 66, glass-filled, at plant | S3 | 601/1667 (36%) | 20/50 | 89.2 % | 12.2 % | 13/134 (9.7 %) |
-| Polymethyl methacrylate, sheet, at plant | S3 | 442/1668 (26%) | 4/50 | 0.5 % | 18.7 % | 25/138 (18.1 %) |
-| xx Nylon 6, glass-filled, at plant | S3 | 429/1678 (26%) | 2/50 | 85.1 % | 20.0 % | 9/139 (6.5 %) |
-| Polybutadiene, at plant | S3 | 211/1671 (13%) | 1/50 | 0.0 % | 40.8 % | 13/128 (10.2 %) |
-| Styrene, at plant | S3 | 55/1670 (3%) | 2/50 | 2.4 % | 123.8 % | 5/135 (3.7 %) |
+| Acrylonitrile-butadiene-styrene copolymer, ABS, at plant | S3 | 1507/1667 (90%) | 12/50 | 3.9 % | 2.7 % | 13/137 (9.5 %) |
+| xx Acetone cyanohydrin, at plant | S3 | 1395/1667 (84%) | 16/50 | 1.3 % | 5.3 % | 10/135 (7.4 %) |
+| Polystyrene, high impact, HIPS, at plant | S3 | 1366/1668 (82%) | 9/50 | 0.5 % | 2.4 % | 4/136 (2.9 %) |
+| Nylon 66, glass-filled, at plant | S3 | 1136/1679 (68%) | 22/50 | 89.2 % | 6.8 % | 14/134 (10.4 %) |
+| Polymethyl methacrylate, beads, at plant | S3 | 1071/1667 (64%) | 24/50 | 96.5 % | 6.7 % | 26/135 (19.3 %) |
+| Polymethyl methacrylate, sheet, at plant | S3 | 694/1668 (42%) | 4/50 | 0.2 % | 17.1 % | 25/138 (18.1 %) |
+| xx Nylon 6, glass-filled, at plant | S3 | 456/1668 (27%) | 2/50 | 85.1 % | 16.6 % | 9/139 (6.5 %) |
+| Polybutadiene, at plant | S3 | 237/1666 (14%) | 2/50 | 0.0 % | 41.3 % | 14/128 (10.9 %) |
+| Styrene, at plant | S3 | 55/1666 (3%) | 2/50 | 2.4 % | 123.8 % | 5/135 (3.7 %) |
 | Polystyrene, general purpose, GPPS, at plant | S3 | 25/1668 (1%) | 8/50 | 2.3 % | 4633.1 % | 14/137 (10.2 %) |
-| Methyl methacrylate, at plant | S3 | 18/1668 (1%) | 2/50 | 0.4 % | 2931.5 % | 10/135 (7.4 %) |
-| Nylon 66, at plant | S3 | 11/1670 (1%) | 2/50 | 0.1 % | 21539.2 % | 6/134 (4.5 %) |
+| Methyl methacrylate, at plant | S3 | 18/1666 (1%) | 2/50 | 0.4 % | 2942.3 % | 10/135 (7.4 %) |
+| Nylon 66, at plant | S3 | 11/1678 (1%) | 2/50 | 0.1 % | 21538.9 % | 6/134 (4.5 %) |
 | Acetone, liquid, at plant | S3 | 8/1667 (0%) | 2/50 | 0.1 % | 13689.2 % | 3/132 (2.3 %) |
-| Epoxy resin, liquid, at plant (draft) | S1 | 8/1667 (0%) | 3/50 | 75.0 % | 105812.4 % | 6/102 (5.9 %) |
-| Polystyrene, general purpose, GPPS, at plant (chained) | S3 | 8/1667 (0%) | 0/50 | 0.0 % | 10126.5 % | — |
-| Polyols, at plant | S3 | 7/1678 (0%) | 0/50 | 0.0 % | 8621.6 % | 5/137 (3.6 %) |
-| Epoxy resin, liquid, at plant | S2 | 6/1668 (0%) | 3/50 | 75.0 % | 105836.9 % | 4/102 (3.9 %) |
-| Hydrogen cyanide, at plant (draft) | S1 | 6/1668 (0%) | 1/50 | 0.1 % | 11380.3 % | 4/131 (3.1 %) |
-| Methylene diphenyl diisocyanate, at plant | S3 | 6/1667 (0%) | 2/50 | 12.6 % | 38890.3 % | 4/135 (3.0 %) |
-| Toluene diisocyanate, at plant | S3 | 6/1670 (0%) | 0/50 | 0.0 % | 25588.9 % | 6/134 (4.5 %) |
-| Naphtha, APME mix, at refinery | S2 | 4/1670 (0%) | 0/50 | 0.0 % | 31471.9 % | 4/110 (3.6 %) |
-| Styrene-acrylonitrile copolymer, SAN, at plant | S3 | 3/1671 (0%) | 2/50 | 1.1 % | 132.9 % | 3/135 (2.2 %) |
-| Acetone, liquid, at plant (draft) | S1 | 1/1667 (0%) | 1/50 | 0.0 % | 36033.5 % | 1/132 (0.8 %) |
-| Benzene, at plant | S2 | 1/1665 (0%) | 0/50 | 0.0 % | 9096.8 % | 0/133 (0.0 %) |
-| Polycarbonate, at plant | S3 | 0/1670 (0%) | 0/50 | 0.0 % | 26077.4 % | 0/135 (0.0 %) |
+| Epoxy resin, liquid, at plant (draft) | S1 | 8/1667 (0%) | 3/50 | 75.0 % | 105811.4 % | 6/102 (5.9 %) |
+| Polystyrene, general purpose, GPPS, at plant (chained) | S3 | 8/1668 (0%) | 0/50 | 0.0 % | 10123.3 % | — |
+| Polyols, at plant | S3 | 7/1666 (0%) | 0/50 | 0.0 % | 8640.6 % | 5/137 (3.6 %) |
+| Epoxy resin, liquid, at plant | S2 | 6/1667 (0%) | 3/50 | 75.0 % | 105836.1 % | 4/102 (3.9 %) |
+| Hydrogen cyanide, at plant (draft) | S1 | 6/1678 (0%) | 1/50 | 0.1 % | 11380.3 % | 4/131 (3.1 %) |
+| Methylene diphenyl diisocyanate, at plant | S3 | 6/1668 (0%) | 2/50 | 12.6 % | 38831.4 % | 4/135 (3.0 %) |
+| Toluene diisocyanate, at plant | S3 | 6/1678 (0%) | 0/50 | 0.0 % | 24967.9 % | 6/134 (4.5 %) |
+| Naphtha, APME mix, at refinery | S2 | 4/1679 (0%) | 0/50 | 0.0 % | 30857.6 % | 4/110 (3.6 %) |
+| Styrene-acrylonitrile copolymer, SAN, at plant | S3 | 3/1668 (0%) | 2/50 | 1.1 % | 132.9 % | 3/135 (2.2 %) |
+| Acetone, liquid, at plant (draft) | S1 | 1/1666 (0%) | 1/50 | 0.0 % | 36139.8 % | 1/132 (0.8 %) |
+| Benzene, at plant | S2 | 1/1664 (0%) | 0/50 | 0.0 % | 9145.4 % | 0/133 (0.0 %) |
+| Polycarbonate, at plant | S3 | 0/1665 (0%) | 0/50 | 0.0 % | 26053.5 % | 0/135 (0.0 %) |
 
 Sorted by the third column. `(draft)` is the spec the LLM route produced, `(chained)` a variant
 that links a rebuilt node instead of an aggregated one. The last column comes from
@@ -516,11 +517,11 @@ the fit produced a composition that is chemically impossible:
 
 | dataset | what the fit did | inventory agreement it bought |
 |---|---|---|
-| ABS | acrylonitrile → 8.9e-10 kg; 0.601 kg butadiene / 0.391 kg styrene | **73 %** of flows, median \|Δ\| 6.7 % — the best in the family |
-| SAN | acrylonitrile → 1.2e-10 kg; 1.000 kg styrene | 0 % |
-| HIPS | styrene → 1.0e-4 kg; 0.9998 kg polybutadiene | 37 % |
-| Nylon 66, glass-filled | glass fibre → 2.3e-4 kg | 36 %, 89 % of the kg mass |
-| xx Nylon 6, glass-filled | glass fibre → 4e-6 kg | 26 %, 85 % of the kg mass |
+| ABS | acrylonitrile → 1.3e-7 kg; 0.560 kg butadiene / 0.440 kg styrene | **90 %** of flows, median \|Δ\| 2.7 % — the best in the family |
+| SAN | acrylonitrile → 0 kg; 1.000 kg styrene | 0 % |
+| HIPS | styrene → 1.9e-3 kg; 0.998 kg polybutadiene | 82 % |
+| Nylon 66, glass-filled | glass fibre → 1.9e-6 kg | 68 %, 89 % of the kg mass |
+| xx Nylon 6, glass-filled | glass fibre → 0 kg | 27 %, 85 % of the kg mass |
 
 The mechanism is not random. Under a mass constraint, when one candidate is another dataset of the
 same APME family and the other is an ecoinvent unit process, the fit empties the ecoinvent one:
@@ -606,9 +607,9 @@ to resolve it are not missing, the *decision* is, and two databases made it diff
 `Polystyrene, expandable, at plant` was one of the rebuilds recorded as "still terminates on an
 aggregated ancestor", with styrene as the blocker. Styrene is now rebuilt, so the blocker is gone.
 The `-chained` variant that links the rebuilt styrene instead of the aggregated one scores 24 of
-1670 flows within ±10 % (median |Δ| 103.0 %) against the committed spec's 20 of 1671 (median
+1670 flows within ±10 % (median |Δ| 103.0 %) against the committed spec's 17 of 1670 (median
 100.0 %). For general-purpose polystyrene the same substitution makes it **worse**: 8 of 1668
-against 25 of 1667. Removing an aggregated ancestor is a gain in transparency — the burden becomes
+against 25 of 1668. Removing an aggregated ancestor is a gain in transparency — the burden becomes
 traceable to ethylbenzene dehydrogenation — and not a gain in agreement, because the target's
 background was an industry survey and never ecoinvent's chain. Both variants are in the export;
 pick on that basis, not on the score.

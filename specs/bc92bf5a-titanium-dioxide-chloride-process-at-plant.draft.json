@@ -201,7 +201,7 @@
       },
       {
         "name": "xx Disposal, residue from TiO2 prod. Cl, 56% water, to residual material landfill",
-        "amount": 0.18400000258173502,
+        "amount": 0.184,
         "unit": "kilogram",
         "location": "CH",
         "note": "The excerpt gives 184 g/kg from the BAT notes and says industry suggests up to 1 kg/kg; entered as a bounded free input over exactly that printed range.",

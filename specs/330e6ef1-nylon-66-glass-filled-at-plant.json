@@ -34,7 +34,7 @@
     "inputs": [
       {
         "name": "Nylon 66, at plant",
-        "amount": 0.9995020935771194,
+        "amount": 0.9974704081267227,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -43,7 +43,7 @@
       },
       {
         "name": "Glass fibre, at plant",
-        "amount": 0.00022610094023855148,
+        "amount": 1.8838790620646332e-06,
         "unit": "kilogram",
         "location": "RER",
         "free": true,
@@ -52,7 +52,7 @@
       },
       {
         "name": "Electricity, medium voltage, production ENTSO-E, at grid",
-        "amount": 0.00027180431089103053,
+        "amount": 0.0025277221807825673,
         "unit": "kilowatt hour",
         "location": "ENTSO-E",
         "free": true,
@@ -61,7 +61,7 @@
       },
       {
         "name": "Heat, natural gas, at industrial furnace 1MW",
-        "amount": 0.0635944251040071,
+        "amount": 0.0027094194180352737,
         "unit": "megajoule",
         "location": "CH",
         "free": true,
@@ -70,7 +70,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 0.021227989532136435,
+        "amount": 0.0030909859947464897,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -79,7 +79,7 @@
       },
       {
         "name": "Transport, freight, lorry, fleet average",
-        "amount": 0.009377458813233649,
+        "amount": 0.0005888022632335473,
         "unit": "ton kilometer",
         "location": "RER",
         "free": true,
@@ -88,7 +88,7 @@
       },
       {
         "name": "Chemical plant, organics",
-        "amount": 4.802806567585229e-14,
+        "amount": 8.914623997332245e-13,
         "unit": "unit",
         "location": "RER",
         "free": true,
