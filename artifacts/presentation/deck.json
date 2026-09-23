@@ -16,7 +16,7 @@
     "evidence-not-this-dataset",
     "real-cases",
     "benchmark",
-    "conclusion"
+    "community"
   ],
   "cover": "cover",
   "sections": {
@@ -41,8 +41,8 @@
       "start": "real-cases"
     },
     "conclusion": {
-      "description": "What we showed, and where the method stops",
-      "start": "conclusion"
+      "description": "What works, and what should come next",
+      "start": "community"
     }
   },
   "faces": {
