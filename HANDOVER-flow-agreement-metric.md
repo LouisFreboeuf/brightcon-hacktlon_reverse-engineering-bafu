@@ -246,3 +246,39 @@ PYTHONPATH=$PWD/src ./.venv/bin/python -m reverse_bafu.cli benchmark \
 | `76707d1` | duplicate-exchange fix; first diagnosis of the 94 % ceiling |
 | `a133386` | artifacts refreshed against the fixed run |
 | `b0663be` | `determined_flows`, wired into check / benchmark / runall; artifacts and deck regenerated |
+
+---
+
+## Addendum, 2026-09-23 — a third metric lesson, from the eco-profile family
+
+Two more things were learned after this note was first written. Both are about the denominator,
+like the rest of the note.
+
+**1. The n=10 distractors figure was a sampling artefact.** At n=10 `distractors` read 95 % and
+appeared to beat `partial` (93 %) — presented at the time as the identifiability trap. At n=100 it
+is **63 %** against `partial` 91 %. The ten published cases are a prefix of the hundred and
+re-scoring the n=100 run on just those ten reproduces 94.5 %, so this is sampling, not regression.
+44 of 100 cases fall below 50 %. The honest headline is the opposite of the old one:
+**over-proposing inputs is worse than omitting real ones.**
+
+**2. For the APME / PlasticsEurope eco-profiles, "% of flows within ±10 %" is close to meaningless.**
+BAFU ships both an aggregated and an official disaggregated epoxy resin (`c80b8e9e` and `6ac7f2be`).
+Substituting one for the other, 1 kg for 1 kg, with no modelling at all:
+
+    fossil CO2  +1.5 %   sodium chloride  +3.6 %   chloride  +11.2 %
+    flows within +-10 %:  6 / 1670  =  0.4 %      median |delta| 105,836 %
+
+BAFU's own disaggregation of its own dataset scores 0.4 %. The cause is the denominator: the
+aggregate declares 107 elementary flows, but 1,670 are scored, so **94 % of the score comes from
+the background chains of its waste-treatment exchanges, not from the eco-profile**. Those exchanges
+differ between the two versions, and their trace flows swamp the substances the profile actually
+reports — which agree within a few percent.
+
+Consequence: the S3 numbers for this family (HDPE 76 %, ABS 73 % and so on) are NOT comparable to
+the S1 numbers for a transcribed unit process, in either direction. `scripts/ecoprofile_agreement.py`
+reports agreement over the flows the aggregate *declares*, which is the defensible denominator here;
+on ABS that is 12 % against the 73 % the headline metric gives.
+
+This is the same mistake three times over: a count-based score whose denominator includes flows that
+carry no information about the thing being measured. Worth deciding once, globally, which denominator
+each published figure uses.
