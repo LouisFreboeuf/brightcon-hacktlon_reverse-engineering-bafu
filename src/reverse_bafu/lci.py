@@ -182,10 +182,15 @@ def mass_coverage(target: np.ndarray, model: np.ndarray, rows: list[int], tol: f
     return ok / tot
 
 
-def contribution_breadth(target: np.ndarray, contribution: np.ndarray, threshold: float = 0.01) -> float:
+def contribution_breadth(target: np.ndarray, contribution: np.ndarray, threshold: float = 0.01,
+                         mask: np.ndarray | None = None) -> float:
     """Share of the target's flows to which ``contribution`` supplies at least ``threshold`` of the
-    amount — an impact-free measure of how much of an inventory an input explains."""
+    amount — an impact-free measure of how much of an inventory an input explains. ``mask``
+    (``determined_flows``) leaves out round-off flows: their target value is arithmetic noise
+    (1e-21 m of lorry noise, -4e-32 kg of 1-pentene), so 1 % of it says nothing about an input."""
     nz = target != 0
+    if mask is not None:
+        nz = nz & mask
     if not nz.any():
         return 0.0
     return float((np.abs(contribution[nz] / target[nz]) >= threshold).mean())

@@ -3,7 +3,7 @@
     python scripts/slide_amount_parity.py     # needs the two detail files below and google-chrome
 
 Reads results/benchmark/flow-n100-seed7-detail.json (complete, ranges, missing minor lines, padded)
-and results/benchmark/blind-n25-seed7-detail.json (none at all), and writes
+and results/benchmark/blind-n100-seed7-detail.json (none at all), and writes
 artifacts/presentation/screenshots/amount-parity-<scenario>.png, all on the same log axes.
 
 Each dot is one input of one synthetic case. The dots are the inputs the benchmark scores: true
@@ -25,7 +25,7 @@ S = 640
 OUT = Path("artifacts/presentation/screenshots")
 SOURCES = [("oracle", "results/benchmark/flow-n100-seed7-detail.json"), ("bounded", "results/benchmark/flow-n100-seed7-detail.json"),
            ("partial", "results/benchmark/flow-n100-seed7-detail.json"), ("distractors", "results/benchmark/flow-n100-seed7-detail.json"),
-           ("blind", "results/benchmark/blind-n25-seed7-detail.json")]
+           ("blind", "results/benchmark/blind-n100-seed7-detail.json")]
 LO, HI = -19, 10          # decades on both axes, the same for every panel
 
 PAGE = """<!doctype html><html><head><meta charset="utf-8">

@@ -56,8 +56,8 @@ function draw() {
     g.textAlign = 'right'; g.fillText('10' + sup(d), M.l - 14, y + 10);
   }
   g.textAlign = 'center'; g.fillStyle = '#555B57'; g.font = '500 30px "Quicksand", sans-serif';
-  g.fillText('original amount', (X0 + X1) / 2, Y1 + B + 8 + 92);
-  g.save(); g.translate(34, (Y0 + Y1) / 2); g.rotate(-Math.PI / 2); g.fillText('rebuilt amount', 0, 0); g.restore();
+  g.fillText('original elementary flow', (X0 + X1) / 2, Y1 + B + 8 + 92);
+  g.save(); g.translate(34, (Y0 + Y1) / 2); g.rotate(-Math.PI / 2); g.fillText('rebuilt elementary flow', 0, 0); g.restore();
   const band = (f, fill) => { g.fillStyle = fill; g.beginPath(); g.moveTo(sx(10 ** lo), sy(10 ** lo * f)); g.lineTo(sx(10 ** hi / f), sy(10 ** hi));
     g.lineTo(sx(10 ** hi), sy(10 ** hi)); g.lineTo(sx(10 ** hi), sy(10 ** hi / f)); g.lineTo(sx(10 ** lo * f), sy(10 ** lo)); g.lineTo(sx(10 ** lo), sy(10 ** lo)); g.closePath(); g.fill(); };
   band(2, 'rgba(132,174,153,0.16)'); band(1.1, 'rgba(132,174,153,0.45)');

@@ -366,3 +366,21 @@ Real rebuilds (`run-all --apply`, 58 specs), before -> after: flows within ±10 
 51, median -14 % -> -16 %; bounded free amounts on a bound 102 -> 116 of 146. The five
 identifiability-trap compositions in exports/README.md are still chemically impossible, with higher
 flow agreement than before (ABS 73 % -> 90 %).
+
+**Follow-up, 2026-09-24: "material" is now judged on determined flows only.** The test for whether an
+input is material (true inputs scored) or used (wrong candidates counted) looked at every nonzero
+flow of the target, including the ~120 per process that are round-off noise (lorry noise at
+7.5e-21 m, 1-pentene at -4.3e-32 kg). A speck of a wrong input exceeds 1 % of such a value: 18 of the
+22 wrong inputs counted as used in `distractors` contributed < 1 % of every determined flow.
+`contribution_breadth` takes a mask now, and the benchmark and the detail dump pass the determined
+flows, as the flow score already did; an input left off the list in `partial` is judged the same way
+instead of counting as material by default. Denominators shrink (803 -> 786 material inputs):
+oracle 772/786, bounded 780/786, partial 538/596 (1 lost per case), distractors 770/786 (wrong inputs
+used 22 -> 4, in 3 cases: the duct's credit twice, a rail-transport look-alike, one at exactly 1.0 %),
+blind 56/122 with 84 wrong inputs per case. Still open: the duct's -19.11 credit cannot be fitted
+under x >= 0 in the complete-list scenarios.
+
+**`blind` now runs on all 100 cases** (`blind-n100-seed7`, 2 min 46 s with the exact solver; the
+25-case run was a runtime compromise of the old solver, ~7 min per case). Same story at four times
+the sample: 97 % of flows within ±10 % (median), 264/599 amounts within ±20 %, a median of 96 wrong
+inputs used per case. The 25-case files are kept for reference.

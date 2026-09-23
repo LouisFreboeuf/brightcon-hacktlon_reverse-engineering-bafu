@@ -80,7 +80,7 @@ for case in cases:
         if sc in ("oracle", "bounded"):
             cand = keys
         elif sc == "partial":
-            contrib = {k: contribution_breadth(target, bench.col(bench.ids[k]) * truth[k]) for k in keys}
+            contrib = {k: contribution_breadth(target, bench.col(bench.ids[k]) * truth[k], mask=det) for k in keys}
             cand = sorted(keys, key=lambda k: -contrib[k])[: max(1, round(0.7 * len(keys)))]
         elif sc == "distractors":  # consumes rng exactly as benchmark.run does
             pool = [k for k in bench.blind_pool if k not in truth and k != (db.INVENTORY_DB, case["code"])]
@@ -100,8 +100,8 @@ for case in cases:
         ag = flow_agreement(target, model, det)
 
         cols = {k: M[:, i] for i, k in enumerate(cand)}
-        mat = lambda col, amt: contribution_breadth(target, col * amt) > 0
-        true_material = {k for k in truth if k in cols and mat(cols[k], truth[k])} | {k for k in truth if k not in cols}
+        mat = lambda col, amt: contribution_breadth(target, col * amt, mask=det) > 0   # determined flows only, as Bench.run_case
+        true_material = {k for k in truth if mat(cols[k] if k in cols else bench.col(bench.ids[k]), truth[k])}
         chosen = {k for i, k in enumerate(cand) if mat(cols[k], x[i])}
 
         rows = []
@@ -119,7 +119,7 @@ for case in cases:
         for k in truth:                                   # true inputs never offered (partial)
             if k not in cols:
                 rows.append({**info(k), "role": "withheld", "truth": truth[k], "fitted": None, "ratio": None,
-                             "lo": None, "hi": None, "material_true": True, "material_fitted": False})
+                             "lo": None, "hi": None, "material_true": k in true_material, "material_fitted": False})
         rows.sort(key=lambda r: -(abs(r["truth"]) if r["truth"] else 0))
 
         ratios = [x[i] / truth[k] for i, k in enumerate(cand) if k in true_material and truth[k]]

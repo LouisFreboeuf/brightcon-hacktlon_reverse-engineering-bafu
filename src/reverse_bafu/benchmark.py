@@ -122,14 +122,15 @@ class Bench:
         keys = list(truth)
         target = self.sys.cumulative([self.ids[(db.INVENTORY_DB, case["code"])]])[:, 0]
         direct = np.zeros(self.sys.n_flows) if scenario == "blind" else self.direct_vector(case["direct"])
+        det = self.determined(case["code"])
         if scenario == "oracle":
             cand = keys
         elif scenario == "bounded":
             cand = keys
         elif scenario == "partial":
             # drop the 30 % of inputs that explain the least of the inventory (what a report omits):
-            # ranked by the share of target flows to which the input supplies >= 1 %
-            contrib = {k: contribution_breadth(target, self.col(self.ids[k]) * truth[k]) for k in keys}
+            # ranked by the share of determined target flows to which the input supplies >= 1 %
+            contrib = {k: contribution_breadth(target, self.col(self.ids[k]) * truth[k], mask=det) for k in keys}
             keep = sorted(keys, key=lambda k: -contrib[k])[: max(1, round(0.7 * len(keys)))]
             cand = keep
         elif scenario == "distractors":
@@ -148,16 +149,18 @@ class Bench:
             lo, hi = np.minimum(0.5 * a, 2.0 * a), np.maximum(0.5 * a, 2.0 * a)
             hi = np.where(hi > lo, hi, lo + 1e-12)
         t0 = time.time()
-        x, M = self.fit(target, cand, lo, hi, direct, self.determined(case["code"]))
+        x, M = self.fit(target, cand, lo, hi, direct, det)
         explicit = M @ x + direct
-        ag = flow_agreement(target, explicit, self.determined(case["code"]))
+        ag = flow_agreement(target, explicit, det)
         # structure: judged by the inventory, not by coefficient size. An input is "material" when its
-        # true contribution reaches 1 % of the target amount of some flow; a candidate counts as
-        # chosen when its fitted contribution does.
+        # true contribution reaches 1 % of the target amount of some determined flow; a candidate
+        # counts as chosen when its fitted contribution does. Round-off flows are left out here as in
+        # the flow score: a speck of a wrong input can exceed 1 % of a 1e-21 noise value. An input
+        # left off the list (partial) is judged the same way, with its own column.
         def material(col: np.ndarray, amount: float) -> bool:
-            return contribution_breadth(target, col * amount) > 0
+            return contribution_breadth(target, col * amount, mask=det) > 0
         cols = {k: M[:, i] for i, k in enumerate(cand)}
-        true_material = {k for k in truth if k in cols and material(cols[k], truth[k])} | {k for k in truth if k not in cols}
+        true_material = {k for k in truth if material(cols[k] if k in cols else self.col(self.ids[k]), truth[k])}
         chosen = {k for i, k in enumerate(cand) if material(cols[k], x[i])}
         tp = len(chosen & true_material); fp = len(chosen - set(truth)); fn = len(true_material - chosen)
         ratios = [x[i] / truth[k] for i, k in enumerate(cand) if k in true_material and truth[k]]
@@ -211,7 +214,7 @@ def run(n: int, seed: int, scenarios: list[str], name: str, out_dir: Path = Path
     L += ["", "Medians over cases; no impact assessment — agreement is counted per elementary flow of the target's cumulative inventory, "
           "over the flows the solve determines (about 120 of ~1,790 per process come out of the sparse solve as round-off and are not scored; "
           "see lci.determined_flows). "
-          "'Material' inputs are those whose true contribution reaches 1 % of the target amount of some flow. `partial` removes the 30 % of inputs that explain the fewest flows before fitting; "
+          "'Material' inputs are those whose true contribution reaches 1 % of the target amount of some determined flow (round-off flows are left out, as in the flow score). `partial` removes the 30 % of inputs that explain the fewest flows before fitting; "
           "`distractors` adds 10 random frequently-used processes; `blind` offers every process used ≥ 30 times and no direct flows.", ""]
     md_path = out_dir / f"{name}.md"
     md_path.write_text("\n".join(L) + "\n")

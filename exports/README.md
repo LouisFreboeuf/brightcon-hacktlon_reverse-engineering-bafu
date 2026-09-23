@@ -358,7 +358,7 @@ Specific things to keep in mind:
    going missing. Use `-hybrid` unless you know exactly why you want otherwise.
 2. **A good flow agreement does not prove a correct structure.** The project's calibration
    benchmark (project README §6) shows it explicitly: offered every frequently used process and no
-   input list, the fit reproduces 98 % of the flows within ±10 % with a process made of ~86 inputs
+   input list, the fit reproduces 97 % of the flows within ±10 % with a process made of ~96 inputs
    that are not in the real one. Inventory agreement and structural correctness are different things.
 3. **Calibrated amounts are fits, not measurements.** Where a report printed "confidential", the
    input is in the list because the report names it, and the amount comes from the least-squares

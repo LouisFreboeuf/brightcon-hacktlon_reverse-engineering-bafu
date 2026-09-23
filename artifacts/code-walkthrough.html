@@ -207,7 +207,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <div class="eq"><span style="padding-left:1.5em">Stucco, at plant [CH]: &nbsp; ‖<var>d</var>‖/‖<var>c</var>‖ = 6.6×10<sup>−3</sup></span></div>
 <p class="where">So 99.3 % of stucco's cumulative inventory is reproduced exactly by 1.16 kg gypsum (at mine) + 0.70 MJ natural-gas heat + 0.175 MJ heavy-fuel-oil heat + 0.027 kWh electricity + 1.4×10<sup>−4</sup> industrial machine. That is the arithmetic behind the failure reported in §2 of the concept page: given a free structure, the solver reproduced a known process's whole cumulative inventory while choosing <b>116 inputs, of which 2 had the right amount</b>, and turned 0.71 kg of stucco into 4.7 kg of lime plus 0.8 kg of anhydrite. It did not malfunction — it walked down a flat direction that the supply chain guarantees exists.</p>
 </div>
-<p><b>Fixing the list removes the cone.</b> With <var>q</var> ≈ 10 named columns chosen from evidence rather than 2,965 drawn from a database, the substitutions above are no longer available, and the amounts come back to ~10 %. Bounds narrow what is left. This is why §5 fits amounts and never names, and why the benchmark's <em>blind</em> row is the number that matters: offered every frequently used process and no list, the fit reproduces 98 % of the flows within ±10 % with a process of ~86 wrong inputs.</p>
+<p><b>Fixing the list removes the cone.</b> With <var>q</var> ≈ 10 named columns chosen from evidence rather than 2,965 drawn from a database, the substitutions above are no longer available, and the amounts come back to ~10 %. Bounds narrow what is left. This is why §5 fits amounts and never names, and why the benchmark's <em>blind</em> row is the number that matters: offered every frequently used process and no list, the fit reproduces 97 % of the flows within ±10 % with a process of ~96 wrong inputs.</p>
 
 <h3>5.8 · Amounts that land on a bound</h3>
 <p>At the optimum the KKT conditions on the box read, with gradient <var>∇</var> = 2(<var>M</var><sup>f</sup>)<sup>⊤</sup><var>W</var><sup>2</sup>(<var>M</var><sup>f</sup><var>â</var> − <var>r</var>):</p>
@@ -236,7 +236,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
  <li><div class="if">always</div><div class="then">the solve runs <b>twice</b> — truncated IRLS, §5.6. Pass 1 weights against the spec's own amounts, pass 2 against the fit of pass 1, so the result barely depends on the amounts a draft happened to start from</div></li>
  <li><div class="if">--apply (or run --apply)</div><div class="then">fitted amounts written into the spec; otherwise only printed as spec / fitted / ratio</div></li>
 </ul>
-<div class="note">Why the list is never changed here: with a free structure the same solver reproduced a known process's whole cumulative inventory while choosing 116 wrong inputs — §5.7 derives why that is guaranteed rather than unlucky. The benchmark's <em>blind</em> row measures it: with no list, 98 % of the flows match within ±10 % and the median case uses 86 inputs the real process does not have.</div>
+<div class="note">Why the list is never changed here: with a free structure the same solver reproduced a known process's whole cumulative inventory while choosing 116 wrong inputs — §5.7 derives why that is guaranteed rather than unlucky. The benchmark's <em>blind</em> row measures it: with no list, 97 % of the flows match within ±10 % and the median case uses 96 inputs the real process does not have.</div>
 
 <h2>6 · Step 3 — build <span class="muted mono">build.py</span></h2>
 <ul class="ladder">
@@ -268,9 +268,9 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
  <li><div class="if">scenario bounded</div><div class="then">candidates = true keys; lo = 0.5·true, hi = 2·true</div></li>
  <li><div class="if">scenario partial</div><div class="then">candidates = the true keys ranked by how many of the target's flows they supply ≥ 1 % of, keeping the top round(0.7·n) (at least 1)</div></li>
  <li><div class="if">scenario distractors</div><div class="then">true keys + 10 sampled (shared <code>Random(seed)</code>) from the pool of processes used ≥ 30 times, excluding truth and the case</div></li>
- <li><div class="if">scenario blind</div><div class="then">the whole pool (~675), no direct flows; published at n = 25 (<code>blind-n25-seed7</code>)</div></li>
+ <li><div class="if">scenario blind</div><div class="then">the whole pool (~675), no direct flows; run on the same 100 cases (<code>blind-n100-seed7</code>)</div></li>
  <li><div class="if">solver</div><div class="then">first weights against an unweighted NNLS fit, then the same two weighted passes and the same <code>lci.solve_weighted</code> as <code>calibrate</code></div></li>
- <li><div class="if">metrics · "material"</div><div class="then">an input is material when its true contribution reaches 1 % of the target amount of some flow; a candidate is "chosen" when its fitted contribution does. TP/FP/FN, amounts within ±20 % over material inputs, flows within ±10 %, median flow deviation</div></li>
+ <li><div class="if">metrics · "material"</div><div class="then">an input is material when its true contribution reaches 1 % of the target amount of some determined flow (round-off flows are left out, as in the flow score); a candidate is "chosen" when its fitted contribution does. TP/FP/FN, amounts within ±20 % over material inputs, flows within ±10 %, median flow deviation</div></li>
  <li><div class="if">output</div><div class="then"><code>results/benchmark/&lt;name&gt;.csv</code> (one row per case × scenario) and <code>.md</code> (medians per scenario)</div></li>
 </ul>
 

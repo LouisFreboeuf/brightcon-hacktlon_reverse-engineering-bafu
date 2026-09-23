@@ -249,7 +249,7 @@ for one dataset):
 
 ```bash
 uv run reverse-bafu benchmark --project bafu-2026-bench --n 100 --seed 7 --scenarios oracle,bounded,partial,distractors --name flow-n100-seed7
-uv run reverse-bafu benchmark --project bafu-2026-bench --n 25 --seed 7 --scenarios blind --name blind-n25-seed7   # the no-list control
+uv run reverse-bafu benchmark --project bafu-2026-bench --n 100 --seed 7 --scenarios blind --name blind-n100-seed7   # the no-list control
 ```
 
 **Two modes.** `--mode calibration` (the default, below) tests one step: step 5's `calibrate`, the
@@ -290,28 +290,28 @@ bundle; it needs the model for three prompts per case.
 5. *Metrics per case and scenario* (`results/benchmark/<name>.csv`): inventory agreement — the
    share of the target's flows the fit reproduces within ±10 %, the median deviation, flows missing
    and flows added; amount recovery — the share of *material* inputs (those supplying ≥ 1 % of some
-   flow of the target) fitted within ±20 %; structure — false positives (candidates given a material
+   determined flow of the target) fitted within ±20 %; structure — false positives (candidates given a material
    amount that are not true inputs), false negatives (material true inputs dropped); runtime.
    `<name>.md` holds the medians per scenario.
 
-**What the latest run says** (`results/benchmark/flow-n100-seed7.md`, 100 cases;
-`blind-n25-seed7.md`, 25 cases). Flows: median share of a case's determined flows within ±10 %.
+**What the latest run says** (`results/benchmark/flow-n100-seed7.md` and
+`blind-n100-seed7.md`, the same 100 cases). Flows: median share of a case's determined flows within ±10 %.
 Amounts: material inputs within ±20 % of the true amount, pooled over all cases.
 
 | Scenario | Flows within ±10 % | Amounts within ±20 % | Wrong inputs used (median) |
 |---|---|---|---|
-| `oracle` | 100 % | 787 / 803 | 0 |
-| `bounded` | 100 % | 795 / 803 | 0 |
-| `partial` | 99 % | 539 / 605 | 0 (2 material inputs lost) |
-| `distractors` | 100 % | 785 / 803 | 0 |
-| `blind` | 98 % | 56 / 122 | 86 |
+| `oracle` | 100 % | 772 / 786 | 0 |
+| `bounded` | 100 % | 780 / 786 | 0 |
+| `partial` | 99 % | 538 / 596 | 0 (1 material input lost) |
+| `distractors` | 100 % | 770 / 786 | 0 |
+| `blind` | 97 % | 264 / 599 | 96 |
 
 With the right inputs on the list the fit recovers the amounts; the misses are mostly pairs of
 inputs whose cumulative inventories are (near-)identical, e.g. inert waste and gravel to the same
 landfill, where any split gives the same flows. Ten wrong candidates are set to zero — an optimistic
 result, since a synthetic target is reproduced exactly by its true inputs and a wrong one has
 nothing left to absorb; real originals were computed on older background data. With no list the fit
-reproduces 98 % of the flows with a made-up process of ~86 wrong inputs: **the identifiability
+reproduces 97 % of the flows with a made-up process of ~96 wrong inputs: **the identifiability
 trap, a near-perfect inventory fit with the wrong structure.**
 
 Earlier runs (before 2026-09-23) read much worse — 614/803 for `oracle`, 63 % of flows for

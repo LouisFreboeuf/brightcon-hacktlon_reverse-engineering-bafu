@@ -10,13 +10,13 @@
     "the-101",
     "pipeline",
     "approach",
-    "evidence-exact",
     "evidence-ranges",
-    "evidence-no-number",
-    "evidence-not-this-dataset",
     "real-cases",
     "benchmark",
-    "community"
+    "community",
+    "evidence-exact",
+    "evidence-no-number",
+    "evidence-not-this-dataset"
   ],
   "cover": "cover",
   "sections": {
@@ -33,8 +33,8 @@
       "start": "pipeline"
     },
     "evidence": {
-      "description": "What a report page actually gives: four examples",
-      "start": "evidence-exact"
+      "description": "What a report page actually gives: an example",
+      "start": "evidence-ranges"
     },
     "results": {
       "description": "51 system processes rebuilt, and how far the method can be trusted",
@@ -43,6 +43,10 @@
     "conclusion": {
       "description": "What works, and what should come next",
       "start": "community"
+    },
+    "backup": {
+      "description": "Backup: three more example reports",
+      "start": "evidence-exact"
     }
   },
   "faces": {
