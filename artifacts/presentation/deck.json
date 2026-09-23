@@ -14,7 +14,8 @@
     "evidence-no-number",
     "evidence-not-this-dataset",
     "real-cases",
-    "benchmark"
+    "benchmark",
+    "conclusion"
   ],
   "cover": "cover",
   "sections": {
@@ -37,6 +38,10 @@
     "results": {
       "description": "51 system processes rebuilt, and how far the method can be trusted",
       "start": "real-cases"
+    },
+    "conclusion": {
+      "description": "What we showed, and where the method stops",
+      "start": "conclusion"
     }
   },
   "faces": {
