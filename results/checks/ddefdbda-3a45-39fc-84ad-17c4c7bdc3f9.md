@@ -11,16 +11,16 @@ target `bafu-2026` vs explicit model `ddefdbda-3a45-39fc-84ad-17c4c7bdc3f9-disag
 - the 50 largest kilogram flows: 3/50 within ±10 %, median |Δ| 62.6%
 - kilogram mass covered within ±10 %: 0.1% of the target's total kg mass
 - of the 1146 flows of the target, 1146 are determined by the solve (0 are round-off and are not scored; see lci.determined_flows)
-- 51 of those 1146 within ±10 % (4%), median |Δ| 127.7%, 0 missing from the model, 642 extra
+- 51 of those 1146 within ±10 % (4%), median |Δ| 130.2%, 0 missing from the model, 636 extra
 - hybrid vs target: 1 flows differ
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
 | ≤ 10 % | 51 | 4% |
 | 10–20 % | 52 | 5% |
-| 20–50 % | 142 | 12% |
+| 20–50 % | 140 | 12% |
 | 50–100 % | 287 | 25% |
-| > 100 % | 614 | 54% |
+| > 100 % | 616 | 54% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
@@ -129,7 +129,7 @@ target `bafu-2026` vs explicit model `ddefdbda-3a45-39fc-84ad-17c4c7bdc3f9-disag
 - ✓ mass in: 0.763 kg technosphere + 0 kg resources per 1 kilogram product (informational)
 - ✓ all inputs resolved
 
-residual: 373 flows under-explained, 1415 over-explained (negative residual)
+residual: 392 flows under-explained, 1390 over-explained (negative residual)
 
 ## Evidence
 

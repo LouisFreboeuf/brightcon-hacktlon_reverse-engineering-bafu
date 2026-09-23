@@ -7,8 +7,12 @@ BAFU-2026 v1_Documentation/
 # generated outputs (sentier-brightway files/backtest, notebooks, ...)
 output/
 
-# pdf text cache of reverse-bafu locate/draft-all
+# pdf text cache of reverse-bafu locate/draft-all (may be a symlink into the main checkout)
 .cache/
+.cache
+
+# per-agent scratch (pdftotext dumps, one-off generators)
+.scratch/
 
 # python / uv
 .venv/

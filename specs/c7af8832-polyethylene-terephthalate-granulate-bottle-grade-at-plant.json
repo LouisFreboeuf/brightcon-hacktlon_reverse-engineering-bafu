@@ -187,7 +187,7 @@
         "amount": 3.2e-07,
         "unit": "kilogram",
         "note": "template direct flow",
-        "code": "9fbb2b3e-ed5b-11e6-bc64-92361f002671",
+        "code": "08a91e70-3ddc-11dd-94fd-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -214,7 +214,7 @@
         "amount": 0.7,
         "unit": "megajoule",
         "note": "template direct flow",
-        "code": "08a91e70-3ddc-11dd-9137-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -232,7 +232,7 @@
         "amount": 0.00016,
         "unit": "kilogram",
         "note": "template direct flow",
-        "code": "08a91e70-3ddc-11dd-97df-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-97de-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -241,7 +241,7 @@
         "amount": 0.00102,
         "unit": "kilogram",
         "note": "template direct flow",
-        "code": "08a91e70-3ddc-11dd-97ee-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-97ed-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -250,7 +250,7 @@
         "amount": 0.000262,
         "unit": "kilogram",
         "note": "template direct flow",
-        "code": "4d9a8790-3ddd-11dd-8e80-0050c2490048",
+        "code": "4d9a8790-3ddd-11dd-8e7d-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {

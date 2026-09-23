@@ -373,7 +373,7 @@
           "mapping_reason": "Dissolved sulfate in wastewater; the EF 3.1 sulfate ion in the water compartment, beating the named metal sulfates and the residual-database long-term groundwater flow.",
           "mapping_by": "claude-code:claude-opus-5[1m]"
         },
-        "code": "fe0acd60-3ddc-11dd-ac5a-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-ac59-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -398,7 +398,7 @@
           "mapping_reason": "Same substance and compartment as the Tab. 85.8 sulfate row.",
           "mapping_by": "claude-code:claude-opus-5[1m]"
         },
-        "code": "fe0acd60-3ddc-11dd-ac5a-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-ac59-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {

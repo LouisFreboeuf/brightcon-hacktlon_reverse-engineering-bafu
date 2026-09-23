@@ -93,6 +93,44 @@ from the metadata. A 102nd flagged dataset has no exchanges and is skipped.
 `sources.csv`: the 129 distinct source citations, with the report PDF for 112 of them when the
 documentation bundle is present; `dois.csv`: the 36 DOIs embedded in dataset comments.
 
+### The 37 the flag misses
+
+```bash
+PYTHONPATH=$PWD/src python scripts/find_system_processes.py --project reverse-bafu   # -> results/system_terminated_extended.csv
+```
+
+The `type=2` flag is reliable but not complete. BAFU-2026 also carries the APME / PlasticsEurope
+era eco-profiles, which were never marked. They are found by structure instead — a dataset with no
+production input at all (its only technosphere exchanges are waste-treatment services) but a real
+elementary-flow vector — and there are **37**: benzene, toluene, styrene, propylene, butadiene,
+butene, pentane, acetone, hydrogen cyanide, the chloromethanes, epoxy resin, the nylons, ABS, SAN,
+GPPS, HIPS, polycarbonate, the PMMAs, polybutadiene, PVDC, polyols, MDI, TDI, methyl methacrylate,
+acetone cyanohydrin, naphtha APME mix and the ethylene/propylene pipeline-system datasets.
+
+All 37 confirm it in their own metadata, which the structural test never reads: *"Aggregated data
+for all processes from raw material extraction until delivery at plant"*, or *"The data source for
+this process is a system inventory from Boustead. Due to the cumulated form of this data only the
+ressources and emissions included in the data source were considered."*
+
+They matter because they are not at the edge of the database: **466 BAFU-2026 datasets consume at
+least one of the 37** (936 consume one of the 101). `Ethyl benzene, at plant` consumes `Benzene, at
+plant`; `Cumene, at plant` consumes benzene and propylene; `Glass fibre, at plant` consumes
+`Nylon 6, at plant`. Ordinary unit processes terminate on them, which is exactly what the flag-based
+survey could not see (`scripts/ecoprofile_consumers.py`). 22 of the 37 are rebuilt — 51 of the 138
+aggregated datasets in total.
+
+`results/system_terminated_extended.csv` has the same schema as `system_terminated.csv` plus
+`detected_by` (flag | structure) and `n_flows`. `db.aggregated_codes_all()` is the union of the two
+and is what `resolve` and `check` use, so a rebuild terminating on one of these is now reported as
+the dependency it is; `db.aggregated_codes()` stays flag-based because `benchmark.py` uses it to
+choose synthetic test cases and widening it would move every published benchmark number.
+
+Step 4 works through them with `--datasets results/system_terminated_extended.csv`;
+`results/drafting_status_extended.csv` records where each one stands, and
+`scripts/ecoprofile_agreement.py` reports their agreement against the flows the eco-profile itself
+declares, which is the only denominator that means anything for them (see
+[exports/README.md](exports/README.md), *The APME eco-profiles the ecoSpold type=2 flag missed*).
+
 ## 4. Make the specs
 
 A spec is one JSON file per dataset holding the evidence-derived unit process — target, strategy,
@@ -317,15 +355,21 @@ if a referenced code is missing in the target project, naming every one.
 Format, flags, what the strategies mean and — importantly — the per-dataset quality limits are in
 [exports/README.md](exports/README.md). The short version: import the `*-hybrid` nodes if you need
 results that match BAFU-2026 (they reproduce the originals to 1e-8), the `*-disagg` nodes only if
-you want the evidence-only model, which reproduces between 1 % and 83 % of a dataset's flows (the
-spread is wide and the high end is not what it looks like: see *The PlasticsEurope family* in
-[exports/README.md](exports/README.md)).
+you want the evidence-only model, which reproduces between 0 % and 83 % of a dataset's flows. The
+spread is wide, the high end is not what it looks like and the low end is often not either — both
+traps are documented in [exports/README.md](exports/README.md), under *The PlasticsEurope family*
+and *The APME eco-profiles the ecoSpold type=2 flag missed*. The sharpest single illustration is in
+the second one: substituting BAFU's own disaggregated epoxy resin for BAFU's own aggregated epoxy
+resin, with no modelling at all, gets fossil CO₂ to +1.5 % and 75 % of the kilogram mass — and
+scores 0 % on "flows within ±10 %".
 
 ## Layout
 
 ```
 src/reverse_bafu/   pipeline: cli, spec, db, lci, resolve, calibrate, build, check, runall, draft, benchmark
-scripts/            list_system_terminated.py, list_sources.py, render_pages.py (+ templates/),
+scripts/            list_system_terminated.py, find_system_processes.py, list_sources.py,
+                    render_pages.py (+ templates/), ecoprofile_agreement.py, ecoprofile_consumers.py,
+                    transcription_vs_truth.py,
                     export_disaggregated.py, import_disaggregated.py, verify_import_roundtrip.py
 prompts/            the three fixed LLM prompt templates (locate, extract, map)
 specs/              one JSON per rebuilt dataset; specs/evidence/<code>/ = drafting records

@@ -335,7 +335,7 @@
           "mapping_reason": "Sulphuric acid released into treated wastewater is dissociated sulfate; the EF 3.1 sulfate ion in water is the closest available flow, and no undissociated sulphuric-acid water flow exists in the candidate list.",
           "mapping_by": "claude-code:claude-opus-5[1m]"
         },
-        "code": "fe0acd60-3ddc-11dd-ac5a-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-ac59-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -360,7 +360,7 @@
           "mapping_reason": "The report says '1 mol of sodium' released in treated water, i.e. the dissolved ion; Sodium-24 is a radionuclide.",
           "mapping_by": "claude-code:claude-opus-5[1m]"
         },
-        "code": "99c541c4-8876-4b9b-b8bc-040ac301b34c",
+        "code": "2ece367c-6949-4a4c-8751-db695223e0d4",
         "database": "ef-3.1-biosphere"
       },
       {
