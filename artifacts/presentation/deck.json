@@ -9,6 +9,10 @@
     "cover",
     "the-101",
     "approach",
+    "evidence-exact",
+    "evidence-ranges",
+    "evidence-no-number",
+    "evidence-not-this-dataset",
     "real-cases",
     "benchmark"
   ],
@@ -19,15 +23,19 @@
       "start": "cover"
     },
     "survey": {
-      "description": "How many of BAFU's system processes can be dis-aggregated at all",
+      "description": "How many system processes BAFU actually has, and how much evidence exists",
       "start": "the-101"
     },
     "method": {
       "description": "The four routes and where the optimiser comes in",
       "start": "approach"
     },
+    "evidence": {
+      "description": "What a report page actually gives: four examples",
+      "start": "evidence-exact"
+    },
     "results": {
-      "description": "Eleven system processes rebuilt, and how far the method can be trusted",
+      "description": "51 system processes rebuilt, and how far the method can be trusted",
       "start": "real-cases"
     }
   },

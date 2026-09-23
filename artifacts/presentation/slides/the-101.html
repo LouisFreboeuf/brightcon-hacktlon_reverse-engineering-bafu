@@ -1,39 +1,37 @@
-<section id="the-101" data-section="How many of BAFU's system processes can be dis-aggregated at all" data-transition="fade" style="background:#F5F4EF; color:#14212B; font-family:'IBM Plex Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:52px">
-
-  <div style="display:flex; flex-direction:column; gap:16px">
-    <p style="font-size:28px; letter-spacing:2px; text-transform:uppercase; color:#C8842A">Step one · what are we up against</p>
-    <h2 style="font-family:'EB Garamond', Georgia, serif; font-size:76px; font-weight:500; line-height:1.08">We found 101 system processes. Two thirds cannot be dis-aggregated.</h2>
+<section id="the-101" data-transition="fade" style="background:#f5f4ef">
+  <p style="position:absolute; bottom:64px; left:128px; font-family:'IBM Plex Sans', Arial, sans-serif; font-size:24px; color:#7a8792">results/system_terminated_extended.csv · results/drafting_status.csv · scripts/find_system_processes.py</p>
+  <div style="position:absolute; top:112px; left:128px; width:1664px; display:flex; flex-direction:column; gap:16px">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:28px; letter-spacing:2px; text-transform:uppercase; color:#c8842a">Step one · what are we up against</p>
+    <h2 style="font-family:'EB Garamond', Georgia, serif; font-size:76px; font-weight:500; line-height:1.08; color:#14212b">The flag finds 101 system processes. There are 138.</h2>
   </div>
-
-  <div style="display:flex; gap:32px">
-
-    <div style="flex:1; display:flex; flex-direction:column; gap:20px; background:#FFFFFF; padding:44px; border:1px solid #DDD9D0; border-radius:18px">
-      <p style="font-size:100px; font-weight:600; line-height:1; color:#24695C">34</p>
-      <h3 style="font-size:36px; font-weight:600; line-height:1.2">have a public report behind them</h3>
-      <p style="font-size:28px; line-height:1.45; color:#4E5B66">The system process cites a study, and that study is in the documentation bundle. Something can be read.</p>
-      <ul style="font-size:26px; line-height:1.6; color:#4E5B66">
-        <li>24 · ecoinvent chemicals, detergents, wood</li>
-        <li>10 · treeze / KBOB concrete and binders</li>
-      </ul>
+  <div style="position:absolute; top:330px; left:128px; width:1664px; height:330px; display:flex; flex-direction:row; gap:32px">
+    <div style="display:flex; flex-direction:column; gap:18px; flex:1; padding:40px 44px; background:#ffffff; border:1px solid #ddd9d0; border-radius:18px">
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:96px; font-weight:600; line-height:1; color:#24695c">101</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:34px; font-weight:600; line-height:1.2; color:#14212b">carry the ecoSpold <span style="font-family:monospace">type=2</span> flag</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:27px; line-height:1.45; color:#4e5b66">The export says so outright. ecoinvent confidential chemicals, KBOB manufacturer data, French bio-based materials.</p>
     </div>
-
-    <div style="flex:1; display:flex; flex-direction:column; gap:20px; background:#FFFFFF; padding:44px; border:1px solid #DDD9D0; border-radius:18px">
-      <p style="font-size:100px; font-weight:600; line-height:1; color:#A8412F">67</p>
-      <h3 style="font-size:36px; font-weight:600; line-height:1.2">have nothing at all</h3>
-      <p style="font-size:28px; line-height:1.45; color:#4E5B66">No report in the bundle. Confidential member data, or a study nobody shipped.</p>
-      <ul style="font-size:26px; line-height:1.6; color:#4E5B66">
-        <li>29 · French bio‑based materials</li>
-        <li>24 · KBOB manufacturer data</li>
-        <li>14 · PlasticsEurope polymers</li>
-      </ul>
+    <div style="display:flex; flex-direction:column; gap:18px; flex:1; padding:40px 44px; background:#14212b; border-radius:18px">
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:96px; font-weight:600; line-height:1; color:#7fd1bc">+37</p>
+      <h3 style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:34px; font-weight:600; line-height:1.2; color:#f5f4ef">carry no flag. We found them by structure.</h3>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:27px; line-height:1.45; color:#bfcbd4"><b style="color:#f5f4ef">No production input at all</b> — only waste-treatment services and a plant unit. Styrene, benzene, the nylons, ABS, polycarbonate, MDI/TDI: the APME era eco-profiles.</p>
     </div>
   </div>
-
-  <div style="background:#EDE9DF; border-left:6px solid #C8842A; padding:32px 40px; border-radius:0px 14px 14px 0px">
-    <p style="font-size:32px; line-height:1.45; color:#14212B">For those 67 the honest answer is not a cleverer algorithm. It is a domain expert writing a new unit process from scratch — out of scope for two days. <b>We worked on the 34 where evidence exists.</b></p>
+  <div style="position:absolute; top:690px; left:128px; width:1664px; height:150px; display:flex; flex-direction:row; gap:20px">
+    <div style="flex:53; display:flex; flex-direction:column; justify-content:center; gap:6px; padding:24px 30px; background:#e6ddd6; border-radius:14px">
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:52px; font-weight:600; color:#a8412f">53</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:25px; line-height:1.3; color:#4e5b66">no report in the bundle at all</p>
+    </div>
+    <div style="flex:73; display:flex; flex-direction:column; justify-content:center; gap:6px; padding:24px 30px; background:#ece5d8; border-radius:14px">
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:52px; font-weight:600; color:#c8842a">73</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:25px; line-height:1.3; color:#4e5b66">cite a report we have — but it never prints the inventory table</p>
+    </div>
+    <div style="flex:12; display:flex; flex-direction:column; justify-content:center; gap:6px; padding:24px 22px; background:#d7e6e0; border-radius:14px">
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:52px; font-weight:600; color:#24695c">12</p>
+      <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:25px; line-height:1.3; color:#4e5b66">a readable table</p>
+    </div>
   </div>
-
-  <p style="position:absolute; left:128px; bottom:64px; font-size:24px; color:#7A8792">Source: results/system_terminated.csv · 101 datasets flagged type=2 in the BAFU‑2026 ecoSpold export</p>
-
-  <aside>The first job was just counting. 101 datasets in BAFU-2026 are shipped as system processes. We joined every one to its cited source and to the 114 report PDFs in the documentation bundle. Only 34 have a report we can actually read. The 67 without documentation are not a failure of method — PlasticsEurope states explicitly that its data is nowadays only available as system processes. Note the uncomfortable part: the family with the biggest downstream impact, PlasticsEurope polymers, is the one with no public data. Impact and feasibility are anti-correlated here.</aside>
+  <div style="position:absolute; top:872px; left:128px; width:1664px; display:flex; flex-direction:column; padding:28px 40px; background:#ede9df; border-left:6px solid #c8842a; border-radius:0 14px 14px 0">
+    <p style="font-family:'IBM Plex Sans', Arial, sans-serif; font-size:31px; line-height:1.4; color:#14212b">Reading a printed table is the <b>rare</b> case, not the normal one. Everything else has to be rebuilt from an existing unit process of the same product, or from chemistry.</p>
+  </div>
+  <aside>The first job was just counting. The ecoSpold export marks 101 datasets as system processes, and we started there. That flag turns out to be incomplete. If you ignore the flag and ask a structural question instead — does this dataset consume anything that is actually a production input, or only waste-treatment services and a plant unit — you find 37 more. Those are the old APME and PlasticsEurope eco-profiles: styrene, benzene, butadiene, the nylons, ABS, polycarbonate, the isocyanates. They confirm it in their own metadata, which the test never reads: their includedProcesses field says aggregated data from raw material extraction until delivery at plant. So 138, not 101. The bottom band is the uncomfortable part. Fifty-three cite no report we have. Seventy-three cite a report that is in the bundle but never prints an inventory table — it gives a process description, or an impact result, and that is all. Only twelve hand us a table we can transcribe. So a method that only knows how to read tables would finish with twelve datasets. That is why most of what comes next is not transcription.</aside>
 </section>
