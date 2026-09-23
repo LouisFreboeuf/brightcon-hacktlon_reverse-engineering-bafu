@@ -4,7 +4,7 @@
 
 Draws the same density as the "All flows, all 51 datasets" chart on artifacts/flow-parity.html
 (rebuilt vs original, one cell per bin, shaded by how many flows fall into it), in the deck's
-colours and at slide scale, and writes artifacts/presentation/screenshots/pooled-parity.png.
+colours (Départ de Sentier palette) and at slide scale, and writes artifacts/presentation/screenshots/pooled-parity.png.
 No CO2 markers: on 24 decades a +-50 % miss looks like a hit, so the slide states CO2 in text.
 """
 
@@ -18,7 +18,7 @@ W, H = 1400, 1300
 OUT = Path("artifacts/presentation/screenshots/pooled-parity.png")
 
 PAGE = """<!doctype html><html><head><meta charset="utf-8">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap">
 <style>html,body{margin:0;background:#ffffff}canvas{display:block}</style></head><body>
 <canvas id="c" width="%(W)d" height="%(H)d"></canvas>
 <script id="data" type="application/json">%(DATA)s</script>
@@ -48,27 +48,27 @@ function draw() {
   let cmax = 1; cells.forEach(c => { cmax = Math.max(cmax, c); });
   const a = c => 0.10 + 0.90 * Math.log(1 + c) / Math.log(1 + cmax);
   const cw = (X1 - X0) / NX, ch = (Y1 - Y0) / NY;
-  g.font = '500 30px "IBM Plex Sans", sans-serif'; g.fillStyle = '#7a8792'; g.strokeStyle = '#e4e1d8'; g.lineWidth = 2;
+  g.font = '500 30px "Quicksand", sans-serif'; g.fillStyle = '#7E857F'; g.strokeStyle = '#E3DBCF'; g.lineWidth = 2;
   for (let d = Math.ceil(lo / 4) * 4; d <= hi; d += 4) {
     const x = sx(10 ** d), y = sy(10 ** d);
     g.beginPath(); g.moveTo(x, Y0); g.lineTo(x, Y1); g.stroke(); g.beginPath(); g.moveTo(X0, y); g.lineTo(X1, y); g.stroke();
     g.textAlign = 'center'; g.fillText('10' + sup(d), x, Y1 + B + 8 + 40);
     g.textAlign = 'right'; g.fillText('10' + sup(d), M.l - 14, y + 10);
   }
-  g.textAlign = 'center'; g.fillStyle = '#4e5b66'; g.font = '500 30px "IBM Plex Sans", sans-serif';
+  g.textAlign = 'center'; g.fillStyle = '#555B57'; g.font = '500 30px "Quicksand", sans-serif';
   g.fillText('original amount', (X0 + X1) / 2, Y1 + B + 8 + 92);
   g.save(); g.translate(34, (Y0 + Y1) / 2); g.rotate(-Math.PI / 2); g.fillText('rebuilt amount', 0, 0); g.restore();
   const band = (f, fill) => { g.fillStyle = fill; g.beginPath(); g.moveTo(sx(10 ** lo), sy(10 ** lo * f)); g.lineTo(sx(10 ** hi / f), sy(10 ** hi));
     g.lineTo(sx(10 ** hi), sy(10 ** hi)); g.lineTo(sx(10 ** hi), sy(10 ** hi / f)); g.lineTo(sx(10 ** lo * f), sy(10 ** lo)); g.lineTo(sx(10 ** lo), sy(10 ** lo)); g.closePath(); g.fill(); };
-  band(2, 'rgba(200,132,42,0.10)'); band(1.1, 'rgba(200,132,42,0.28)');
-  g.fillStyle = 'rgba(20,33,43,0.05)'; g.fillRect(X0, Y1 + 8, X1 - X0, B); g.fillRect(M.l, Y0, B, Y1 - Y0);
-  cells.forEach((c, k) => { g.fillStyle = `rgba(20,33,43,${a(c)})`; g.fillRect(X0 + (k %% NX) * cw, Y1 - (Math.floor(k / NX) + 1) * ch, Math.ceil(cw), Math.ceil(ch)); });
-  bottom.forEach((c, i) => { g.fillStyle = `rgba(20,33,43,${a(c)})`; g.fillRect(X0 + i * cw, Y1 + 8, Math.ceil(cw), B); });
-  left.forEach((c, j) => { g.fillStyle = `rgba(20,33,43,${a(c)})`; g.fillRect(M.l, Y1 - (j + 1) * ch, B, Math.ceil(ch)); });
-  g.strokeStyle = '#b8741f'; g.lineWidth = 2.5; g.beginPath(); g.moveTo(sx(10 ** lo), sy(10 ** lo)); g.lineTo(sx(10 ** hi), sy(10 ** hi)); g.stroke();
+  band(2, 'rgba(132,174,153,0.16)'); band(1.1, 'rgba(132,174,153,0.45)');
+  g.fillStyle = 'rgba(60,83,67,0.06)'; g.fillRect(X0, Y1 + 8, X1 - X0, B); g.fillRect(M.l, Y0, B, Y1 - Y0);
+  cells.forEach((c, k) => { g.fillStyle = `rgba(60,83,67,${a(c)})`; g.fillRect(X0 + (k %% NX) * cw, Y1 - (Math.floor(k / NX) + 1) * ch, Math.ceil(cw), Math.ceil(ch)); });
+  bottom.forEach((c, i) => { g.fillStyle = `rgba(60,83,67,${a(c)})`; g.fillRect(X0 + i * cw, Y1 + 8, Math.ceil(cw), B); });
+  left.forEach((c, j) => { g.fillStyle = `rgba(60,83,67,${a(c)})`; g.fillRect(M.l, Y1 - (j + 1) * ch, B, Math.ceil(ch)); });
+  g.strokeStyle = '#2B2B2B'; g.lineWidth = 2.5; g.beginPath(); g.moveTo(sx(10 ** lo), sy(10 ** lo)); g.lineTo(sx(10 ** hi), sy(10 ** hi)); g.stroke();
   document.title = 'done';
 }
-Promise.all([document.fonts.load('500 30px "IBM Plex Sans"'), document.fonts.load('400 30px "IBM Plex Sans"')]).catch(() => {}).then(draw);
+Promise.all([document.fonts.load('500 30px "Quicksand"'), document.fonts.load('600 30px "Quicksand"')]).catch(() => {}).then(draw);
 </script></body></html>"""
 
 

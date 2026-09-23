@@ -46,13 +46,9 @@
     }
   },
   "faces": {
-    "eb-garamond": {
-      "family": "EB Garamond",
-      "href": "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap"
-    },
-    "ibm-plex-sans": {
-      "family": "IBM Plex Sans",
-      "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    "quicksand": {
+      "family": "Quicksand",
+      "href": "https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
     }
   },
   "designSystems": []
