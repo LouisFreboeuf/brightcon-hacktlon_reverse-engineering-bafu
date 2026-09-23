@@ -8,7 +8,7 @@
   "strategy": {
     "code": "S1",
     "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
-    "note": "basis: per 1 kg of liquid epoxy resin, the column header of Tab. 31.2; allocation: None stated; Tab. 31.2 has a single output, 'epoxy resin, liquid, disaggregated data, at plant, 1.00E+0 kg'.. Review every derivation; unreviewed entries have reviewed_by = null."
+    "note": "basis: per 1 kg of liquid epoxy resin, the column header of Tab. 31.2; allocation: None stated; Tab. 31.2 has a single output, 'epoxy resin, liquid, disaggregated data, at plant, 1.00E+0 kg'.; 9 of 9 inputs carry a printed amount, 0 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null."
   },
   "evidence": [
     {

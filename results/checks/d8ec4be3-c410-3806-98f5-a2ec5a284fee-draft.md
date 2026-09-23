@@ -2,7 +2,7 @@
 
 target `bafu-2026` vs explicit model `d8ec4be3-c410-3806-98f5-a2ec5a284fee-draft-disagg` and hybrid `d8ec4be3-c410-3806-98f5-a2ec5a284fee-draft-hybrid`
 
-**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per tonne of burnt shale (GÖS), 71.30 % economic-allocation column of Tab. 3.9; transport from Tab. 3.10; allocation: economic allocation between the co-products electricity (28.7 %) and burnt shale (71.3 %) per Werner (2018); the 71.30 % column is used. Review every derivation; unreviewed entries have reviewed_by = null.
+**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per tonne of burnt shale (GÖS), 71.30 % economic-allocation column of Tab. 3.9; transport from Tab. 3.10; allocation: economic allocation between the co-products electricity (28.7 %) and burnt shale (71.3 %) per Werner (2018); the 71.30 % column is used; 22 of 22 inputs carry a printed amount, 0 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null.
 **Calibrated inputs:** none
 **Links to rebuilt nodes:** none
 
@@ -149,7 +149,7 @@ target `bafu-2026` vs explicit model `d8ec4be3-c410-3806-98f5-a2ec5a284fee-draft
 - ✓ mass in: 0.568 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 457 flows under-explained, 1325 over-explained (negative residual)
+residual: 513 flows under-explained, 1269 over-explained (negative residual)
 
 ## Evidence
 

@@ -6,9 +6,9 @@
   },
   "variant": "draft",
   "strategy": {
-    "code": "S1",
-    "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
-    "note": "basis: per 1 m3 of cement-bonded particle board; the product row reads 'particle board, cement bonded, at plant  1.00E+00 m3' (Duripanel, medium-high density 1'200 kg/m3, range 1000-1350 kg/m3); allocation: none stated. Review every derivation; unreviewed entries have reviewed_by = null."
+    "code": "S3",
+    "label": "top-down model drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
+    "note": "basis: per 1 m3 of cement-bonded particle board; the product row reads 'particle board, cement bonded, at plant  1.00E+00 m3' (Duripanel, medium-high density 1'200 kg/m3, range 1000-1350 kg/m3); allocation: none stated; 9 of 11 inputs carry a printed amount, 1 a printed range, 1 no number in the report (xxx Electricity, medium voltage, production UCTE, at grid). Review every derivation; unreviewed entries have reviewed_by = null."
   },
   "evidence": [
     {

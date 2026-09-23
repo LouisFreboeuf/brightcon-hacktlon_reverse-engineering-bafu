@@ -31,7 +31,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--name", default=None, help="benchmark: output name (default n<N>-seed<S>)")
     p.add_argument("--mode", choices=["calibration", "extraction"], default="calibration",
                    help="benchmark: calibration (amounts from a given list) or extraction (the whole route incl. the PDF)")
-    p.add_argument("--project", default="reverse-bafu")
+    p.add_argument("--project", default="bafu-2026")
     p.add_argument("--apply", action="store_true", help="calibrate / run / run-all: write fitted amounts back into the spec")
     p.add_argument("--no-hybrid", action="store_true", help="build: skip the residual (hybrid) node")
     args = p.parse_args(argv)

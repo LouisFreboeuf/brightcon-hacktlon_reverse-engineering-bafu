@@ -8,7 +8,7 @@
   "strategy": {
     "code": "S1",
     "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
-    "note": "basis: per 1 kg cement ZN/D, ab Werk (Tab. 3.14, Werner 2018); the composition rows are percentage ranges of the kg; allocation: none stated for the cement itself; the burnt-shale input carries the economic allocation of section 3.6. Review every derivation; unreviewed entries have reviewed_by = null."
+    "note": "basis: per 1 kg cement ZN/D, ab Werk (Tab. 3.14, Werner 2018); the composition rows are percentage ranges of the kg; allocation: none stated for the cement itself; the burnt-shale input carries the economic allocation of section 3.6; 7 of 13 inputs carry a printed amount, 6 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null."
   },
   "evidence": [
     {

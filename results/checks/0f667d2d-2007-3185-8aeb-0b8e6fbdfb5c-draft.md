@@ -2,9 +2,7 @@
 
 target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft-disagg` and hybrid `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft-hybrid`
 
-**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per kg of hydrogen cyanide, Tab. 43.2 / 43.3 / 43.4 of chapter 43 of ecoinvent report No. 8 (Althaus et al. 2007), all printed per kg or per kg in grams; allocation: None stated. The chapter reports three co-products per kg HCN - 0.23 kg hydrogen (BMA route, if not burnt), 0.34 kg ammonium sulfate sold as fertiliser and 0.02 kg sodium cyanide - but gives no allocation factor, so every burden below stays with the HCN.. Review every derivation; unreviewed entries have reviewed_by = null.
-
-ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and here S1 is right - every amount is a cell of Tab. 43.2, 43.3 or 43.4 of chapter 43, transcribed with its quote. Two caveats that S1 does not carry: the process-fuel line is a printed *range* (0.51-0.78 kg of natural gas, the hydrogen-combustion and hydrogen-export routes), so it is the one free amount and the fit left it at the lower bound; and the three co-products the chapter names (0.23 kg hydrogen, 0.34 kg ammonium sulfate sold as fertiliser, 0.02 kg sodium cyanide per kg of HCN) get no credit, because the chapter states no allocation.
+**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per kg of hydrogen cyanide, Tab. 43.2 / 43.3 / 43.4 of chapter 43 of ecoinvent report No. 8 (Althaus et al. 2007), all printed per kg or per kg in grams; allocation: None stated. The chapter reports three co-products per kg HCN - 0.23 kg hydrogen (BMA route, if not burnt), 0.34 kg ammonium sulfate sold as fertiliser and 0.02 kg sodium cyanide - but gives no allocation factor, so every burden below stays with the HCN.; 3 of 4 inputs carry a printed amount, 1 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null.
 **Calibrated inputs:** Heat, natural gas, at industrial furnace 1MW [23.2–35.4]
 **Links to rebuilt nodes:** none
 
@@ -12,22 +10,22 @@ ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and h
 
 - the 50 largest kilogram flows: 1/50 within ±10 %, median |Δ| 97.6%
 - kilogram mass covered within ±10 %: 0.1% of the target's total kg mass
-- of the 1771 flows of the target, 1667 are determined by the solve (104 are round-off and are not scored; see lci.determined_flows)
-- 6 of those 1667 within ±10 % (0%), median |Δ| 11380.3%, 0 missing from the model, 1 extra
+- of the 1773 flows of the target, 1668 are determined by the solve (105 are round-off and are not scored; see lci.determined_flows)
+- 6 of those 1668 within ±10 % (0%), median |Δ| 11380.3%, 0 missing from the model, 1 extra
 - hybrid vs target: 3 flows differ
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
 | ≤ 10 % | 6 | 0% |
 | 10–20 % | 5 | 0% |
-| 20–50 % | 16 | 1% |
-| 50–100 % | 57 | 3% |
-| > 100 % | 1687 | 95% |
+| 20–50 % | 15 | 1% |
+| 50–100 % | 61 | 3% |
+| > 100 % | 1686 | 95% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
 
-### kilogram (1456 flows)
+### kilogram (1459 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -62,7 +60,7 @@ ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and h
 | Hydrogen-3 [Emissions/Emissions to water] (kilo Becquerel) | 0.0178 | 1.13 | +6214.1% | -1.11 |
 | Radon-222 [Emissions/Emissions to air] (kilo Becquerel) | 0.0174 | 1.45 | +8246.5% | -1.43 |
 
-### square meter (50 flows)
+### square meter (48 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -72,7 +70,7 @@ ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and h
 | To Dump Site [Land use/Land transformation] (square meter) | 6.06e-06 | 0.000412 | +6695.6% | -0.000406 |
 | From Arable, Non-irrigated, Intensive [Land use/Land transformation] (square meter) | 5.97e-06 | 0.00194 | +32446.5% | -0.00194 |
 
-### megajoule (27 flows)
+### megajoule (28 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -89,7 +87,7 @@ ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and h
 | Forest, Intensive [Land use/Land occupation] (square meter-year) | 0.000271 | 0.0284 | +10373.6% | -0.0281 |
 | Traffic Area, Road Network [Land use/Land occupation] (square meter-year) | 0.000261 | 0.00241 | +821.7% | -0.00215 |
 | Dump Site [Land use/Land occupation] (square meter-year) | 0.000172 | 0.00102 | +495.4% | -0.000852 |
-| Forest [Land use/Land occupation] (square meter-year) | 7.12e-05 | 0.0143 | +19963.9% | -0.0142 |
+| Forest [Land use/Land occupation] (square meter-year) | 7.12e-05 | 0.0143 | +19963.8% | -0.0142 |
 | Construction Site [Land use/Land occupation] (square meter-year) | 2.89e-05 | 0.0011 | +3714.9% | -0.00107 |
 
 ### cubic meter (23 flows)
@@ -106,18 +104,18 @@ ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and h
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Uranium alpha [emissions to water/river] (Becquerel) | 1.75e-19 | 3.18e-17 | +18025.3% | -3.16e-17 |
-| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 9.46e-21 | 1.64e-18 | +17258.6% | -1.63e-18 |
-| Uranium alpha [emissions to water/lake] (Becquerel) | 7.58e-21 | 3.87e-19 | +4998.8% | -3.79e-19 |
-| Thorium-232 [emissions to water/river] (Becquerel) | 1.53e-21 | 2.96e-19 | +19198.0% | -2.95e-19 |
-| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 1.56e-22 | 2.97e-20 | +18907.2% | -2.96e-20 |
+| Uranium alpha [emissions to water/river] (Becquerel) | 6.5e-21 | 3.28e-19 | +4945.0% | -3.22e-19 |
+| Uranium alpha [emissions to water/lake] (Becquerel) | 3.05e-21 | 1.54e-19 | +4945.0% | -1.51e-19 |
+| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 5.54e-22 | 2.79e-20 | +4945.0% | -2.74e-20 |
+| Thorium-232 [emissions to water/river] (Becquerel) | 6.58e-24 | 3.32e-22 | +4945.0% | -3.25e-22 |
+| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 1.94e-24 | 9.8e-23 | +4945.0% | -9.61e-23 |
 
 ### kilometer (2 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
 | Noise, road, lorry, average [non material emissions/unspecified] (kilometer) | 0.00105 | 0.0417 | +3888.0% | -0.0407 |
-| Noise, road, passenger car, average [non material emissions/unspecified] (kilometer) | 1.81e-06 | 0.00261 | +144195.9% | -0.00261 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (kilometer) | 1.81e-06 | 0.00261 | +144195.8% | -0.00261 |
 
 ### ton kilometer (2 flows)
 
@@ -130,8 +128,8 @@ ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and h
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Noise, road, lorry, average [non material emissions/unspecified] (meter) | -2.64e-18 | 3.42e-16 | -13073.1% | -3.45e-16 |
-| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 3.41e-19 | 6.61e-17 | +19286.7% | -6.58e-17 |
+| Noise, road, lorry, average [non material emissions/unspecified] (meter) | 2.82e-19 | 7.74e-18 | +2643.8% | -7.46e-18 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 6.15e-22 | 3.1e-20 | +4945.0% | -3.04e-20 |
 
 ### cubic meter-year (1 flows)
 
@@ -143,7 +141,7 @@ ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and h
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Noise, aircraft, passenger [non material emissions/unspecified] (person kilometer) | 2.68e-07 | 0.00153 | +568716.2% | -0.00153 |
+| Noise, aircraft, passenger [non material emissions/unspecified] (person kilometer) | 2.68e-07 | 0.00153 | +568716.9% | -0.00153 |
 
 ## Worst deviations among the 50 largest kilogram flows
 
@@ -152,7 +150,7 @@ ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and h
 | Chemically polluted water [emissions to water/river] (kilogram) | 0.000323 | 0.215 | +66529.8% |
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.00122 | 0.544 | +44511.4% |
 | Carbon Dioxide (fossil) [Emissions/Emissions to air] (kilogram) | 0.012 | 2.57 | +21384.9% |
-| Waste mass, total, placed in landfill [resources/in ground] (kilogram) | 0.000424 | 0.0884 | +20758.4% |
+| Waste mass, total, placed in landfill [resources/in ground] (kilogram) | 0.000424 | 0.0884 | +20758.5% |
 | Platinum [air] (kilogram) | 0.000226 | 0.0305 | +13413.0% |
 | Iron [Resources/Resources from ground] (kilogram) | 0.000196 | 0.0226 | +11416.5% |
 | carbon dioxide (biogenic) [Resources/Resources from air] (kilogram) | 0.0003 | 0.034 | +11233.4% |
@@ -168,7 +166,7 @@ ON THE STRATEGY LABEL: the assembler writes S1 for everything it produces, and h
 - ✓ mass in: 1.02 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 92 flows under-explained, 1680 over-explained (negative residual)
+residual: 143 flows under-explained, 1631 over-explained (negative residual)
 
 ## Evidence
 

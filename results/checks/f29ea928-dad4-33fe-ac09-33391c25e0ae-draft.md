@@ -2,7 +2,7 @@
 
 target `bafu-2026` vs explicit model `f29ea928-dad4-33fe-ac09-33391c25e0ae-draft-disagg` and hybrid `f29ea928-dad4-33fe-ac09-33391c25e0ae-draft-hybrid`
 
-**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per 1 kg of TiO2; Tab. 85.3 'Kg per kg of product', Tab. 85.4 'Consumption per kg of product (MJ/kg)', Tab. 85.6 and Tab. 85.8 'Gram per kg of product'. The SULFATE-process column is used.; allocation: none stated; the report notes filter salts 'that are produced can be sold' but gives no allocation. Review every derivation; unreviewed entries have reviewed_by = null.
+**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per 1 kg of TiO2; Tab. 85.3 'Kg per kg of product', Tab. 85.4 'Consumption per kg of product (MJ/kg)', Tab. 85.6 and Tab. 85.8 'Gram per kg of product'. The SULFATE-process column is used.; allocation: none stated; the report notes filter salts 'that are produced can be sold' but gives no allocation; 2 of 7 inputs carry a printed amount, 5 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null.
 **Calibrated inputs:** Sulphuric acid, liquid, at plant [2.4–3.5], xxx Electricity, medium voltage, production UCTE, at grid [0.619–1.41], Heat, natural gas, at industrial furnace 1MW [10.4–24.2], Natural gas, burned in industrial furnace 1MW [9.67–16.2], Hard coal, burned in industrial furnace 1-10MW [5.8–8.5]
 **Links to rebuilt nodes:** none
 
@@ -11,7 +11,7 @@ target `bafu-2026` vs explicit model `f29ea928-dad4-33fe-ac09-33391c25e0ae-draft
 - the 50 largest kilogram flows: 11/50 within ±10 %, median |Δ| 41.6%
 - kilogram mass covered within ±10 %: 13.3% of the target's total kg mass
 - of the 1148 flows of the target, 1148 are determined by the solve (0 are round-off and are not scored; see lci.determined_flows)
-- 117 of those 1148 within ±10 % (10%), median |Δ| 75.2%, 0 missing from the model, 636 extra
+- 117 of those 1148 within ±10 % (10%), median |Δ| 75.2%, 0 missing from the model, 625 extra
 - hybrid vs target: identical on every flow
 
 | \|Δ\| bucket | flows | share of target flows |
@@ -129,7 +129,7 @@ target `bafu-2026` vs explicit model `f29ea928-dad4-33fe-ac09-33391c25e0ae-draft
 - ✓ mass in: 5.5 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 549 flows under-explained, 1235 over-explained (negative residual)
+residual: 547 flows under-explained, 1226 over-explained (negative residual)
 
 ## Evidence
 

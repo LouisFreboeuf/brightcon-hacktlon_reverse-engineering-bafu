@@ -8,7 +8,7 @@
   "strategy": {
     "code": "S1",
     "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
-    "note": "basis: per 1 kg of TiO2; Tab. 85.3 is headed 'Kg per kg of product', Tab. 85.5 'Consumption per kg of product (MJ/kg)', Tab. 85.7 and Tab. 85.9 'Gram per kg of product'. The CHLORIDE-process column is used.; allocation: none stated for the TiO2 process itself. Review every derivation; unreviewed entries have reviewed_by = null."
+    "note": "basis: per 1 kg of TiO2; Tab. 85.3 is headed 'Kg per kg of product', Tab. 85.5 'Consumption per kg of product (MJ/kg)', Tab. 85.7 and Tab. 85.9 'Gram per kg of product'. The CHLORIDE-process column is used.; allocation: none stated for the TiO2 process itself; 6 of 7 inputs carry a printed amount, 1 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null."
   },
   "evidence": [
     {

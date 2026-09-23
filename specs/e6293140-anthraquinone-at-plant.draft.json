@@ -6,9 +6,9 @@
   },
   "variant": "draft",
   "strategy": {
-    "code": "S1",
-    "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
-    "note": "basis: the chromic acid column of Tab. 44.3, whose Output row is 'anthraquinone kg 3000' - i.e. per 3000 kg of anthraquinone; allocation: none stated. Review every derivation; unreviewed entries have reviewed_by = null."
+    "code": "S3",
+    "label": "top-down model drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
+    "note": "basis: the chromic acid column of Tab. 44.3, whose Output row is 'anthraquinone kg 3000' - i.e. per 3000 kg of anthraquinone; allocation: none stated; 3 of 9 inputs carry a printed amount, 4 a printed range, 2 no number in the report (xxx Electricity, medium voltage, production UCTE, at grid, Chemical plant, organics). Review every derivation; unreviewed entries have reviewed_by = null."
   },
   "evidence": [
     {

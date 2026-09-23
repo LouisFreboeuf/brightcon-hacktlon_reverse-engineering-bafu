@@ -2,7 +2,7 @@
 
 target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft-disagg` and hybrid `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft-hybrid`
 
-**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per 1 kg cement ZN/D, ab Werk (Tab. 3.14, Werner 2018); the composition rows are percentage ranges of the kg; allocation: none stated for the cement itself; the burnt-shale input carries the economic allocation of section 3.6. Review every derivation; unreviewed entries have reviewed_by = null.
+**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per 1 kg cement ZN/D, ab Werk (Tab. 3.14, Werner 2018); the composition rows are percentage ranges of the kg; allocation: none stated for the cement itself; the burnt-shale input carries the economic allocation of section 3.6; 7 of 13 inputs carry a printed amount, 6 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null.
 **Calibrated inputs:** Clinker, at plant [0.4–0.7], Gypsum, mineral, at mine [0–0.1], Recycling aggregate from mixed demolition, dry, at plant [0.15–0.3], Burnt shale, at plant [0.15–0.3], Iron sulphate, at plant [0–0.01], Limestone, milled, loose, at plant [0–0.1]; mass sum 1.0
 **Links to rebuilt nodes:** Burnt shale, at plant
 
@@ -11,7 +11,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 - the 50 largest kilogram flows: 8/50 within ±10 %, median |Δ| 44.2%
 - kilogram mass covered within ±10 %: 0.5% of the target's total kg mass
 - of the 1326 flows of the target, 1326 are determined by the solve (0 are round-off and are not scored; see lci.determined_flows)
-- 249 of those 1326 within ±10 % (19%), median |Δ| 28.7%, 0 missing from the model, 453 extra
+- 249 of those 1326 within ±10 % (19%), median |Δ| 28.7%, 0 missing from the model, 446 extra
 - hybrid vs target: identical on every flow
 
 | \|Δ\| bucket | flows | share of target flows |
@@ -19,8 +19,8 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 | ≤ 10 % | 249 | 19% |
 | 10–20 % | 186 | 14% |
 | 20–50 % | 403 | 30% |
-| 50–100 % | 299 | 23% |
-| > 100 % | 189 | 14% |
+| 50–100 % | 298 | 22% |
+| > 100 % | 190 | 14% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
@@ -149,7 +149,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 - ✓ mass in: 1.05 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 543 flows under-explained, 1236 over-explained (negative residual)
+residual: 542 flows under-explained, 1230 over-explained (negative residual)
 
 ## Evidence
 

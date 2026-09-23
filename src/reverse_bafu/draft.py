@@ -532,6 +532,42 @@ UNITS = {"kg": "kilogram", "MJ": "megajoule", "kWh": "kilowatt hour", "m3": "cub
          "unit": "unit", "m2": "square meter", "m": "meter", "t": "ton", "kBq": "kilo Becquerel"}
 
 
+
+def drafted_strategy(inputs: list[dict], ext: dict) -> dict:
+    """Classify a drafted spec by what the report actually gave, not by the fact that a report was read.
+
+    S1 is defined (exports/README.md) as "the report prints the dataset's inventory table - transcribed
+    line by line, each amount traceable to a quoted line". The test is therefore traceability, NOT whether
+    the calibrator ran: an input marked `free` because the report printed a *range* ("Sulphuric acid 2.4 -
+    3.5", "Mischgranulat 15-30 %") is still transcribed - the report constrains it, and the fit only picks a
+    point inside the printed interval. That is the hand-written Cement ZN pattern, and it is S1.
+
+    What breaks S1 is a free input whose quoted line carries no number at all - "an average European medium
+    voltage mix (UCTE-mix) is used", "the module 'chemical plant, organics (RER)' is used here". The report
+    names the input but gives no amount, so the amount comes from fitting against the target, not from the
+    page. That is S3: the input *list* is the report's, the *amounts* are the calibrator's.
+
+    So: S1 iff every free input's derivation quote contains a numeral; otherwise S3. S2 is template transfer
+    from an existing unit process and cannot arise here - the drafting pipeline always starts from a report.
+
+    Before this existed, `assemble` stamped "S1" as a literal on every drafted spec. Anthraquinone - 3 of 9
+    inputs quoted, and electricity and infrastructure named with no number anywhere in the report - was
+    published as a transcription. Five of the twelve drafts were mislabelled that way.
+    """
+    fitted = [i for i in inputs if i.get("free")]
+    untraceable = [i for i in fitted if not re.search(r"\d", ((i.get("derivation") or {}).get("quote") or ""))]
+    counts = (f"{len(inputs) - len(fitted)} of {len(inputs)} inputs carry a printed amount, "
+              f"{len(fitted) - len(untraceable)} a printed range, {len(untraceable)} no number in the report")
+    if untraceable:
+        code, label = "S3", "top-down model drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)"
+        counts += " (" + ", ".join(i["name"] for i in untraceable) + ")"
+    else:
+        code, label = "S1", "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)"
+    return {"code": code, "label": label,
+            "note": f"basis: {ext['basis']}; allocation: {ext['allocation'] or 'none stated'}; {counts}. "
+                    "Review every derivation; unreviewed entries have reviewed_by = null."}
+
+
 def assemble(code: str, project: str, variant: str = "draft") -> Path:
     db.set_project(project)
     ev = EVIDENCE_ROOT / code
@@ -595,8 +631,7 @@ def assemble(code: str, project: str, variant: str = "draft") -> Path:
     spec = {
         "target": {"code": code, "name": meta["name"], "location": meta["location"]},
         "variant": variant,  # sandbox nodes get <code>-<variant>-disagg so a hand-written rebuild of the same target is kept
-        "strategy": {"code": "S1", "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
-                     "note": f"basis: {ext['basis']}; allocation: {ext['allocation'] or 'none stated'}. Review every derivation; unreviewed entries have reviewed_by = null."},
+        "strategy": drafted_strategy(inputs, ext),
         "evidence": [{"source": man["report"]["file"], "where": f"pages {man['report']['pages']} -> {man['report_text']['file']}",
                       "note": f"report sha256 {man['report']['sha256'][:16]}…, text sha256 {man['report_text']['sha256'][:16]}…"}],
         "provenance": {"pipeline": "reverse-bafu draft", "evidence_manifest": str(ev / "manifest.json"), "extraction": prov1, "mapping": prov2,

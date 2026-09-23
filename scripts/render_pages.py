@@ -9,6 +9,7 @@ with the Artifact tool or open it locally.
 from __future__ import annotations
 
 import argparse
+import csv
 import glob
 import html
 import json
@@ -43,7 +44,7 @@ def collect(project: str) -> list[dict]:
     by how many of the target's flows they supply, and the deviation chart is per elementary flow."""
     db.set_project(project)
     # the union of the type=2 flag and the structural survey: an input that is an unflagged APME
-    # eco-profile (styrene, benzene, butadiene, ...) is just as sealed as a flagged one
+    # eco-profile (styrene, benzene, butadiene, ...) is just as aggregated as a flagged one
     agg = db.aggregated_codes_all()
     out = []
     for path in sorted(glob.glob("specs/*.json")):
@@ -162,13 +163,15 @@ def render(inv: list[dict]) -> str:
 </section>'''
     tmpl = Path("scripts/templates/rebuilt-inventories.tmpl.html").read_text()
     data = json.dumps({o["key"]: o["flows"] for o in inv})
-    return (tmpl.replace("{{N}}", str(len(inv))).replace("{{OVERVIEW}}", ov).replace("{{TABS}}", tabs)
+    total = sum(1 for _ in csv.DictReader(open("results/system_terminated_extended.csv")))
+    return (tmpl.replace("{{N}}", str(len(inv))).replace("{{D}}", str(len({o["code"] for o in inv})))
+                .replace("{{T}}", str(total)).replace("{{OVERVIEW}}", ov).replace("{{TABS}}", tabs)
                 .replace("{{PANELS}}", panels).replace("{{DATA}}", data))
 
 
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    p.add_argument("--project", default="reverse-bafu")
+    p.add_argument("--project", default="bafu-2026")
     args = p.parse_args()
     warnings.filterwarnings("ignore")
     inv = collect(args.project)

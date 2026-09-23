@@ -6,9 +6,9 @@
   },
   "variant": "draft",
   "strategy": {
-    "code": "S1",
-    "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
-    "note": "basis: per 1 kg of wood preservative; the table's product row reads 'wood preservative, inorganic salt, containing Cr, at plant  1.00E+00 kg'; allocation: none stated; single-product process. Review every derivation; unreviewed entries have reviewed_by = null."
+    "code": "S3",
+    "label": "top-down model drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
+    "note": "basis: per 1 kg of wood preservative; the table's product row reads 'wood preservative, inorganic salt, containing Cr, at plant  1.00E+00 kg'; allocation: none stated; single-product process; 3 of 8 inputs carry a printed amount, 4 a printed range, 1 no number in the report (xxx Electricity, medium voltage, production UCTE, at grid). Review every derivation; unreviewed entries have reviewed_by = null."
   },
   "evidence": [
     {

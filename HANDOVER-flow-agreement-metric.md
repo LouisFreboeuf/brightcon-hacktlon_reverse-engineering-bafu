@@ -282,3 +282,48 @@ on ABS that is 12 % against the 73 % the headline metric gives.
 This is the same mistake three times over: a count-based score whose denominator includes flows that
 carry no information about the thing being measured. Worth deciding once, globally, which denominator
 each published figure uses.
+
+---
+
+## Addendum, 2026-09-23: the strategy labels were not derived, they were stamped
+
+`draft.assemble` wrote `"strategy": {"code": "S1", ...}` as a literal on every spec the drafting
+pipeline produced. Nothing tested what the report had actually given, so "S1 — transcription" was a
+statement about *which code path ran*, not about the evidence. Twelve drafted specs carried it.
+
+Anthraquinone is the case that exposed it. The report (Althaus 2007, Tab. 44.3) prints a literature
+table for four synthesis routes; BAFU's dataset is an 80/20 average of the chromic-acid route and
+confidential EMPA data. Three of nine inputs carry a printed amount. Electricity, steam, plant
+infrastructure and both transports are *named* by the report with no number anywhere — they were
+free parameters, and the fit drove four of them to their lower bound.
+
+`draft.drafted_strategy()` now derives the code. The test is **traceability, not calibration**:
+
+    S1  iff every free input's derivation quote contains a numeral
+    S3  otherwise
+
+The first rule tried was "any fitted amount ⇒ S3". It is wrong, and the hand-written specs are what
+show it. Cement ZN is hand-labelled S1 with 6 of 13 amounts fitted, but its bounds are printed
+ranges quoted from the report ("Mischgranulat 15-30 %", "< 10 %"); TiO2 sulphate likewise
+("Sulphuric acid 2.4 - 3.5"). The report constrains every amount there and the calibrator only picks
+a point inside the printed interval — that is transcription. What breaks S1 is an input the report
+names without quantifying ("an average European medium voltage mix (UCTE-mix) is used").
+
+Five drafts moved S1 -> S3: anthraquinone, particle board cement bonded, wood wool boards, and both
+wood preservatives. Per dataset the split went **S1 9 / S2 14 / S3 28  ->  S1 5 / S2 14 / S3 32**.
+The strategy note now records the counts ("3 of 9 inputs carry a printed amount, 4 a printed range,
+2 no number in the report") so the call is checkable instead of asserted.
+
+Two things this leaves open:
+
+* **The hand-written specs are not covered by the test.** Their numbers live in `note`, not in a
+  `derivation.quote`, so the digit test cannot run on them. Cement ZN and burnt shale were checked by
+  hand and are correctly S1; the rest were not re-derived. Give hand-written specs a `derivation`
+  block and the same test applies everywhere.
+* **Anthraquinone's sulphuric acid bound is wrong, independently of the label.** The lower bound is
+  0.78336 kg = the printed 48 % active substance with the 0.48 factor applied a second time; it
+  should be 1.632. The fit is pinned to that floor, i.e. below a value the report itself calls
+  insufficient ("instead the stoechiometric value based on an efficiency of 95% is used here").
+  Every *fixed* input's arithmetic checks out across all 58 specs (`amount == raw x factor x scale`,
+  0 mismatches), so this is isolated to that one bound. Not fixed, because it moves a published
+  amount rather than a label.
