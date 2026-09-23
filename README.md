@@ -117,7 +117,7 @@ least one of the 37** (936 consume one of the 101). `Ethyl benzene, at plant` co
 plant`; `Cumene, at plant` consumes benzene and propylene; `Glass fibre, at plant` consumes
 `Nylon 6, at plant`. Ordinary unit processes terminate on them, which is exactly what the flag-based
 survey could not see (`scripts/ecoprofile_consumers.py`). 22 of the 37 are rebuilt — 51 of the 138
-aggregated datasets in total.
+aggregated datasets we found (a lower bound: a partly aggregated dataset passes both tests unseen).
 
 `results/system_terminated_extended.csv` has the same schema as `system_terminated.csv` plus
 `detected_by` (flag | structure) and `n_flows`. `db.aggregated_codes_all()` is the union of the two
