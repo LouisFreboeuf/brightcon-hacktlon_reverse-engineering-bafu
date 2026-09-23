@@ -136,10 +136,10 @@ release is not the one this export was generated against.
 
 | | |
 |---|---|
-| **S1** | the report prints the dataset's inventory table — transcribed line by line, each amount traceable to a quoted line. A printed **range** still counts: where the report gives "Sulphuric acid 2.4 – 3.5" or "Mischgranulat 15-30 %", the calibrator only picks a point inside the interval the report set |
-| **S2** | no table, but a *unit process of the same product* exists elsewhere in BAFU — its input structure is reused and the amounts are calibrated against the aggregated vector |
-| **S3** | the report gives only a process description or a partial table (typical when the amounts are confidential) — the input **list** comes from the report, the **amounts** come from calibration. The dividing line against S1 is whether the report puts a number on the input at all: "an average European medium voltage mix (UCTE-mix) is used" names an input and constrains nothing |
-| **S4** | nothing but the aggregated vector. Never used on its own: fitting an input list with no evidence produces a good-looking inventory with the wrong structure (see the `blind` row of the benchmark in the project README §6) |
+| **S1** | **transcription** — the report prints *this dataset's own* inventory, and every technosphere input carries one printed number. We copy it; the only arithmetic we add is unit conversion (litres to MJ, distances to tkm). A printed range is not enough, and neither is a table the report itself calls comparison data or literature |
+| **S2** | **template transfer** — no usable inventory, but a *unit process of the same product* already exists: at another site, in another grade, as an older ecoinvent version, or as BAFU's own dis-aggregated twin. Its input structure is reused, site-specific inputs such as the electricity grid are switched, and the amounts are calibrated, usually within 0.5–2× of the template |
+| **S3** | **top-down model** — something names the inputs, but not every amount: the dataset's own process description, a partial table, printed ranges, or published comparison data. The main feedstock comes from the reaction equation or a mass balance, utilities from BAFU's generic chemicals module, and the calibration sets whatever the evidence leaves open |
+| **S4** | **inventory fitting alone** — nothing but the aggregated vector. Used on none of the real datasets, only in the benchmark: fitting an input list with no evidence produces a good-looking inventory with the wrong structure (see the `blind` row of the benchmark in the project README §6) |
 | **S5** | hybrid: whatever S1–S3 produced, plus the residual block. Always built, so every rebuild can reproduce the original exactly |
 
 "Calibrated" amounts are fitted by bounded least squares against the dataset's own aggregated flow
