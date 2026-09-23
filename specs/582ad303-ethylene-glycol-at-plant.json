@@ -88,7 +88,7 @@
         "amount": 1.3909090909090909,
         "unit": "megajoule",
         "note": "Tab. 35.3 'Heat, waste' 1.35E+00 MJ x 0.85/0.825",
-        "code": "08a91e70-3ddc-11dd-9137-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -115,7 +115,7 @@
         "amount": 0.0002967272727272727,
         "unit": "kilogram",
         "note": "Tab. 35.3 'BOD5' 2.88E-04 kg x 0.85/0.825",
-        "code": "08a91e70-3ddc-11dd-97df-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-97de-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -124,7 +124,7 @@
         "amount": 0.0002967272727272727,
         "unit": "kilogram",
         "note": "Tab. 35.3 prints 'COD' 2.88E-01 kg; BAFU's DEG/TEG co-products carry COD = BOD, so the printed exponent is a typo for 2.88E-04. x 0.85/0.825",
-        "code": "08a91e70-3ddc-11dd-97ee-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-97ed-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -142,7 +142,7 @@
         "amount": 7.727272727272726e-05,
         "unit": "kilogram",
         "note": "Tab. 35.3 7.50E-05 kg x 0.85/0.825",
-        "code": "4d9a8790-3ddd-11dd-8e80-0050c2490048",
+        "code": "4d9a8790-3ddd-11dd-8e7d-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {

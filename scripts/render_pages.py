@@ -42,7 +42,9 @@ def collect(project: str) -> list[dict]:
     No impact assessment — inputs are ranked by the kilogram mass they bring into the inventory and
     by how many of the target's flows they supply, and the deviation chart is per elementary flow."""
     db.set_project(project)
-    agg = db.aggregated_codes()
+    # the union of the type=2 flag and the structural survey: an input that is an unflagged APME
+    # eco-profile (styrene, benzene, butadiene, ...) is just as sealed as a flagged one
+    agg = db.aggregated_codes_all()
     out = []
     for path in sorted(glob.glob("specs/*.json")):
         sp = spec_mod.load(path)

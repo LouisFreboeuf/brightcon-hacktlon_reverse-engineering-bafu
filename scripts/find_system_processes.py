@@ -27,13 +27,24 @@ of tailings, produced-water discharge, land provision, resource corrections) als
 input — by design, because they model an emission, not a production. They are excluded by name.
 
 Measured on BAFU-2026: the structural test recovers all 93 flagged datasets that have a biosphere
-vector, and finds 39 more that the flag missed — benzene, styrene, propylene, butadiene, toluene,
+vector, and finds 37 more that the flag missed — benzene, styrene, propylene, butadiene, toluene,
 the nylons, ABS, polycarbonate, PMMA, polyols, MDI/TDI, naphtha APME mix, and the ethylene and
-propylene pipeline-system datasets.
+propylene pipeline-system datasets. All 37 confirm themselves in their own metadata, which the test
+never reads: their `includedProcesses` field says "Aggregated data for all processes from raw
+material extraction until delivery at plant", or their comment says "The data source for this
+process is a system inventory from Boustead. Due to the cumulated form of this data only the
+ressources and emissions included in the data source were considered."
 
-NOTE: this does not change db.aggregated_codes(), which still reads the flag-based CSV. Switching
-the benchmark's exclusion list over to the extended set would change every published benchmark
-number, so that is a separate decision (see HANDOVER-flow-agreement-metric.md).
+(It found 39 until the guard below was fixed: "Tyre wear emissions, lorry" and "Tyre wear emissions,
+passenger car" slipped through because the `emissions?$` alternative was anchored at the end of the
+name and both carry a qualifier after a comma. They are emission-only by design, not aggregated.)
+
+NOTE: ``db.aggregated_codes()`` still reads the flag-based CSV and is used only by ``benchmark.py``
+to choose synthetic test cases - switching that over would move every published benchmark number, so
+it is left alone (see HANDOVER-flow-agreement-metric.md). ``db.aggregated_codes_all()`` reads the
+flag-based CSV *plus* this one, and is what ``resolve`` and ``check`` use, so a rebuild that links
+one of the unflagged eco-profiles is now reported as the dependency it is. Before that split, a spec
+terminating on "Styrene, at plant" was ticked "no dependency on another aggregated dataset".
 """
 
 from __future__ import annotations
@@ -53,7 +64,12 @@ from reverse_bafu import db  # noqa: E402
 
 WASTE = re.compile(r"^(disposal|treatment|recycling|waste)\b", re.I)
 # datasets whose product IS an emission or a land movement: no supply chain by design
-EMISSION_ONLY = re.compile(r"emissions?$|^disposal|^discharge|^provision|resource correction", re.I)
+# NOTE: the "emissions" alternative must not be anchored at the end of the name. BAFU calls these datasets
+# "Tyre wear emissions, lorry" / "Brake wear emissions, passenger car" - the qualifier after the comma defeated an
+# end-anchor, and the two tyre-wear datasets were reported as newly found aggregated datasets when they are
+# emission-only by design ("The activity starts with the abrasion of lorry tyres on the road. The activity ends
+# with emissions of lorry tyre wear." - their own includedProcesses field). Found while working through the 39.
+EMISSION_ONLY = re.compile(r"emissions?($|,)|^disposal|^discharge|^provision|resource correction", re.I)
 
 
 def is_supply(node) -> bool:

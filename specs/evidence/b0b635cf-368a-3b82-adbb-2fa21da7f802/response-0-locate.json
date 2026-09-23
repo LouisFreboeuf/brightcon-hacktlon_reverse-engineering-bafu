@@ -1,0 +1,7 @@
+{
+ "found": false,
+ "first_page": null,
+ "last_page": null,
+ "captions": [],
+ "reason": "The cited report `2016 - Mobitool - Frischknecht.pdf` contains no table or figure caption at all that the deterministic caption index can find (0 captions over the whole file) and no occurrence of the phrase 'tyre wear'. But the decisive finding is upstream of that: **this dataset is not an aggregated dataset**. It is a false positive of the structural detector in `scripts/find_system_processes.py`. Its ecoSpold includedProcesses field reads 'The activity starts with the abrasion of passenger car tyres on the road. The activity ends with emissions of passenger car tyre wear.' - it is an emission-only dataset that models an emission, not a production, so having no technosphere supply input is its design, not a collapsed supply chain. The detector's own docstring says such datasets ('tyre and brake wear ...') are meant to be excluded by name, but its guard `EMISSION_ONLY = re.compile(r\"emissions?$|^disposal|...\")` anchors 'emissions' at the end of the name, and these two are called 'Tyre wear emissions, lorry' and 'Tyre wear emissions, passenger car' - the qualifier after the comma defeats the anchor. There is nothing here to rebuild: the dataset has zero technosphere exchanges and its entire content is the wear emission vector itself."
+}

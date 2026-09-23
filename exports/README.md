@@ -286,6 +286,10 @@ dataset that the **explicit** node reproduces within ±10 %, out of the flows th
 Source: `results/rebuild_status.csv`, and the per-dataset report named in each dataset's
 `quality.report`.
 
+This table is the 29 datasets of the flag-based survey. A second family — the 37 APME
+eco-profiles the `type=2` flag never marked — is rebuilt too and has its own table below, under
+*The APME eco-profiles the ecoSpold type=2 flag missed*; `results/rebuild_status.csv` holds both.
+
 Two caveats about the `strategy` column:
 
 * Every spec produced by the drafting pipeline is labelled **S1**, because that is what the
@@ -368,6 +372,278 @@ Specific things to keep in mind:
    the reports state outright that the unit-process data are confidential. The rest cannot be
    rebuilt from public evidence at all, and are deliberately absent from this export rather than
    invented. `results/drafting_status.csv` records the reason for each one.
+
+### The APME eco-profiles the ecoSpold type=2 flag missed
+
+BAFU-2026 carries a second family of aggregated datasets that the `type=2` flag does not mark.
+`scripts/find_system_processes.py` finds them by structure — a dataset with no production input at
+all (only waste-treatment services) but a real elementary-flow vector — and there are **37** of
+them: benzene, toluene, styrene, propylene, butadiene, butene, pentane, acetone, hydrogen cyanide,
+the chloromethanes, epoxy resin, the nylons, ABS, SAN, GPPS, HIPS, polycarbonate, the two PMMAs,
+polybutadiene, PVDC, polyols, MDI, TDI, methyl methacrylate, acetone cyanohydrin, naphtha APME mix,
+and the ethylene and propylene pipeline-system datasets.
+
+These are not a curiosity at the edge of the database. **466 BAFU-2026 datasets consume at least
+one of the 37** — against 936 that consume one of the 101 flagged ones — so the unflagged black
+boxes sit inside the database's own unit processes, not only at the top of a survey: `Ethyl
+benzene, at plant` consumes `Benzene, at plant`, `Cumene, at plant` consumes benzene and propylene,
+`Acrylonitrile from Sohio process` consumes propylene, and `Glass fibre, at plant` consumes
+`Nylon 6, at plant`. The most-consumed are epoxy resin (82 consumers), ABS (68), toluene and
+hydrogen cyanide (60 each), polycarbonate (55) and acetone (53). Only the four `xx`-marked
+datasets have no consumer at all. (`scripts/ecoprofile_consumers.py`.)
+
+They are not a guess either. All 37 say so in their own metadata, which the structural test never reads:
+`includedProcesses` = *"Aggregated data for all processes from raw material extraction until
+delivery at plant"*, or the comment *"The data source for this process is a system inventory from
+Boustead. Due to the cumulated form of this data only the ressources and emissions included in the
+data source were considered."* Their own chapters in ecoinvent report No. 8 say it a third time:
+*"Due to the fact that this dataset is cumulated it was not possible to use the other processes
+modelled in econvent to obtain a transparent process chain."*
+
+**22 of the 37 are rebuilt** (24 specs — acetone and epoxy resin each have two — plus two
+`-chained` variants that re-point an existing rebuild at the rebuilt styrene). The remaining 15 are
+recorded with a quoted reason in `results/drafting_status_extended.csv`.
+
+One warning about that file: it records the *report* route, so it reads `pages-not-found` for 34 of
+the 37 — only acetone, hydrogen cyanide and epoxy resin have a report that prints unit-process data.
+That is not the same as "not rebuilt". The other 19 rebuilds are S3 models written from the
+dataset's own ecoSpold `technology` field plus reaction stoichiometry, and S2 transfers from a
+sibling unit process BAFU already contains; their evidence is in the spec, not in a PDF page range.
+
+| BAFU dataset | route | flows within ±10 % | of the 50 largest kg flows | kg mass | median \|Δ\| | of the flows the eco-profile itself declares |
+|---|---|---|---|---|---|---|
+| Acrylonitrile-butadiene-styrene copolymer, ABS, at plant | S3 | 1221/1667 (73%) | 9/50 | 1.3 % | 6.7 % | 17/137 (12.4 %) |
+| xx Acetone cyanohydrin, at plant | S3 | 964/1667 (58%) | 13/50 | 95.5 % | 6.5 % | 11/135 (8.1 %) |
+| Polymethyl methacrylate, beads, at plant | S3 | 763/1666 (46%) | 25/50 | 96.6 % | 13.6 % | 25/135 (18.5 %) |
+| Polystyrene, high impact, HIPS, at plant | S3 | 621/1679 (37%) | 7/50 | 0.2 % | 11.3 % | 5/136 (3.7 %) |
+| Nylon 66, glass-filled, at plant | S3 | 602/1667 (36%) | 20/50 | 89.2 % | 12.2 % | 13/134 (9.7 %) |
+| Polymethyl methacrylate, sheet, at plant | S3 | 442/1668 (26%) | 4/50 | 0.5 % | 18.7 % | 25/138 (18.1 %) |
+| xx Nylon 6, glass-filled, at plant | S3 | 429/1678 (26%) | 2/50 | 85.1 % | 20.0 % | 9/139 (6.5 %) |
+| Polybutadiene, at plant | S3 | 211/1677 (13%) | 1/50 | 0.0 % | 40.9 % | 13/128 (10.2 %) |
+| Styrene, at plant | S3 | 55/1668 (3%) | 2/50 | 2.4 % | 123.8 % | 5/135 (3.7 %) |
+| Polystyrene, general purpose, GPPS, at plant | S3 | 25/1668 (1%) | 8/50 | 2.3 % | 4633.1 % | 14/137 (10.2 %) |
+| Methyl methacrylate, at plant | S3 | 18/1666 (1%) | 2/50 | 0.4 % | 2942.4 % | 10/135 (7.4 %) |
+| Nylon 66, at plant | S3 | 11/1666 (1%) | 2/50 | 0.1 % | 21539.0 % | 6/134 (4.5 %) |
+| Acetone, liquid, at plant | S3 | 8/1666 (0%) | 2/50 | 0.1 % | 13729.7 % | 3/132 (2.3 %) |
+| Epoxy resin, liquid, at plant (draft) | S1 | 8/1668 (0%) | 3/50 | 75.0 % | 105811.6 % | 6/102 (5.9 %) |
+| Polystyrene, general purpose, GPPS, at plant (chained) | S3 | 8/1667 (0%) | 0/50 | 0.0 % | 10126.5 % | — |
+| Polyols, at plant | S3 | 7/1667 (0%) | 0/50 | 0.0 % | 8633.8 % | 5/137 (3.6 %) |
+| Epoxy resin, liquid, at plant | S2 | 6/1668 (0%) | 3/50 | 75.0 % | 105836.4 % | 4/102 (3.9 %) |
+| Hydrogen cyanide, at plant (draft) | S1 | 6/1667 (0%) | 1/50 | 0.1 % | 11380.3 % | 4/131 (3.1 %) |
+| Methylene diphenyl diisocyanate, at plant | S3 | 6/1666 (0%) | 2/50 | 12.6 % | 38892.1 % | 4/135 (3.0 %) |
+| Toluene diisocyanate, at plant | S3 | 6/1679 (0%) | 0/50 | 0.0 % | 25621.2 % | 6/134 (4.5 %) |
+| Naphtha, APME mix, at refinery | S2 | 4/1667 (0%) | 0/50 | 0.0 % | 31471.9 % | 4/110 (3.6 %) |
+| Styrene-acrylonitrile copolymer, SAN, at plant | S3 | 3/1667 (0%) | 2/50 | 1.1 % | 132.9 % | 3/135 (2.2 %) |
+| Acetone, liquid, at plant (draft) | S1 | 1/1677 (0%) | 1/50 | 0.0 % | 35890.9 % | 1/132 (0.8 %) |
+| Benzene, at plant | S2 | 1/1665 (0%) | 0/50 | 0.0 % | 9096.7 % | 0/133 (0.0 %) |
+| Polycarbonate, at plant | S3 | 0/1677 (0%) | 0/50 | 0.0 % | 26101.6 % | 0/135 (0.0 %) |
+
+Sorted by the third column. `(draft)` is the spec the LLM route produced, `(chained)` a variant
+that links a rebuilt node instead of an aggregated one. The last column comes from
+`results/ecoprofile_agreement.csv`; read the next section before reading the table.
+
+#### The three numbers disagree, and the disagreement is the finding
+
+Read the table with the last column next to the third, because they say opposite things. ABS
+reproduces **73 %** of the target's determined flows — the best in the family — and **12 %** of the
+flows the eco-profile itself declares, with 0 % of the declared kilogram mass. Polymethyl
+methacrylate beads reproduce 46 % of all flows, 18 % of the declared flows, and **97 %** of the
+declared kilogram mass. Those are not small differences in emphasis; they are three different
+questions.
+
+The arithmetic behind it: these datasets are not pure system processes. Each carries seven to nine
+explicit `Disposal, …` exchanges (34 of the 37 carry exactly eight), and those waste chains, not
+the eco-profile, generate about 92 % of the ~1780 flows the harness compares — the eco-profile
+itself declares only 78 to 139 substances, 4 to 8 % of the total. So:
+
+* **"flows within ±10 %" is mostly a measure of the waste-treatment background.** A model that
+  links another dataset of the same APME family inherits that dataset's disposal chains, which have
+  the same shape as the target's, and the long tail agrees. That is why ABS, HIPS and the
+  glass-filled nylons score high — and it is also why the fit, left free, chooses the composition
+  that matches the waste chains rather than the chemistry (see the identifiability trap below).
+* **"of the flows the eco-profile itself declares" is a measure of the chemistry**, and on this
+  family it is hard: 0–18 %. Part of that is real modelling gap; part of it is structural. These
+  datasets put their air emissions in *Emissions to urban air close to ground* and their water
+  emissions in *Emissions to fresh water*, while `resolve` maps a spec's flow by name and
+  top-level compartment only and prefers the *unspecified* sub-compartment, so a substance total
+  that is exactly right can still be counted as two large deviations.
+* **The kilogram-mass columns are the ones to quote** when the question is "does this node carry
+  the right burden?": 97 % (PMMA beads), 96 % (acetone cyanohydrin), 89 and 85 % (the glass-filled
+  nylons), 75 % (epoxy resin).
+
+The control that fixes the scale is **epoxy resin**, the one dataset of the family where BAFU ships
+both versions. Chapter 31 of `2007 - LCI chemicals - Althaus.pdf` prints Tab. 31.1 (the cumulative
+inventory = the aggregated dataset) and Tab. 31.2 (*"Disaggregated life cycle inventory for the
+production of liquid epoxy resin"*), and BAFU-2026 carries the second as
+`Epoxy resin, liquid, disaggregated data, at plant` [RER]. Substituting BAFU's own disaggregated
+dataset for BAFU's own aggregated one, 1 kg for 1 kg, with no modelling at all, gives:
+
+| | |
+|---|---|
+| fossil CO₂ | **+1.5 %** |
+| rock salt (resource) | +3.6 % |
+| chloride to water | +11.2 % |
+| sodium to water | +11.8 % |
+| suspended solids | −13.7 % |
+| calcium to water | +18.4 % |
+| calcite (resource) | +53.2 % |
+| kilogram mass covered | **75 %** |
+| **share of all determined flows within ±10 %** | **0 %** (6 of 1669) |
+
+That row is what a perfect answer looks like on this metric. Nothing in the table above should be
+read as a verdict on a rebuild before it is read against it.
+
+#### Two findings about the data itself
+
+**`Styrene, at plant` declares 0.5615 kg of hazardous waste to incineration per kg of styrene.**
+Its own feedstock benzene declares 0.0022 kg, toluene 0.0017, butadiene 0.0020, propylene 0.0021 —
+and its own polymer, `Polystyrene, general purpose, GPPS`, which contains a kilogram of styrene per
+kilogram of product, declares 0.0070 kg. A cradle-to-gate polymer profile cannot carry 80× less
+waste than its monomer, so one of the two is wrong, and the rest of the family says it is the
+styrene figure. `2010 - Changes in ecoinvent v2.1 and v2.2 - Althaus.pdf` sec. 2.5.1 documents
+exactly this shape of error for the neighbouring dataset — *"especially in case of the ABS dataset
+(DS ID 1817) where the amount of 'regulated chemical waste' had grown for a factor more than 20
+compared to the former data used"* — and prints the mg→kg mapping rule (*"1 mg regulated chemical
+waste → 10⁻⁶ kg disposal, hazardous waste, 25 % water, to hazardous waste incineration"*) whose
+slip by a factor 1000 would produce it. ABS (0.2393 kg) and SAN (0.2398 kg) carry the same
+signature. Consequence: any rebuild that links styrene inherits that waste chain, which is why GPPS
+scores 1 % of flows while its fossil CO₂, methane, biogenic CO₂, SO₂, NOₓ and NMVOC are all within
+2–29 %.
+
+**The identifiability trap, measured on real data.** Five specs here give the calibrator a free
+composition under a 1 kg mass constraint, because no report in the bundle prints one. In all five
+the fit produced a composition that is chemically impossible:
+
+| dataset | what the fit did | inventory agreement it bought |
+|---|---|---|
+| ABS | acrylonitrile → 8.9e-10 kg; 0.601 kg butadiene / 0.391 kg styrene | **73 %** of flows, median \|Δ\| 6.7 % — the best in the family |
+| SAN | acrylonitrile → 1.2e-10 kg; 1.000 kg styrene | 0 % |
+| HIPS | styrene → 1.0e-4 kg; 0.9998 kg polybutadiene | 37 % |
+| Nylon 66, glass-filled | glass fibre → 2.3e-4 kg | 36 %, 89 % of the kg mass |
+| xx Nylon 6, glass-filled | glass fibre → 4e-6 kg | 26 %, 85 % of the kg mass |
+
+The mechanism is not random. Under a mass constraint, when one candidate is another dataset of the
+same APME family and the other is an ecoinvent unit process, the fit empties the ecoinvent one:
+it drags a ~1670-flow background into a target that reports 83-146 substances, and every extra flow
+counts against it. Among same-family candidates the fit then follows the waste-treatment exchanges
+rather than the chemistry — which is why it prefers polybutadiene (0.0078 kg hazardous waste) to
+styrene (0.5615) in HIPS. **The amounts of those five nodes reproduce the target's inventory and
+must not be quoted as compositions.** Each spec says so in its own `strategy.note`.
+
+#### How accurate is the LLM extraction route? Here it has an answer key
+
+The drafted epoxy-resin spec is a transcription of Tab. 31.2 produced by the locate → extract → map
+route, and BAFU-2026 contains the dataset that table describes. So for once the route can be scored
+against a ground truth rather than against a cumulative vector. Comparing
+`c80b8e9e-…-draft-disagg` with `Epoxy resin, liquid, disaggregated data, at plant` exchange by
+exchange:
+
+* **Technosphere: 9 of 9 amounts exactly right** — 4.0E-10 units of chemical plant, 0.298 and
+  0.0058 kg of the two disposal services, 11 MJ heavy fuel oil, 13 kg tap water, 60.6 tkm lorry,
+  1.74 tkm rail, 2.19 kWh electricity, 57.7 MJ natural gas, all to the printed digits. Two of the
+  nine were mapped to a near-synonym of the dataset BAFU itself chose: *Electricity, medium
+  voltage, production **RER**, at grid* instead of *…production ENTSO-E…*, and *Natural gas, burned
+  in industrial furnace **1MW*** instead of *…1MWth*. Same amount, neighbouring dataset.
+* **Elementary flows: 34 matched by (name, compartment), and all 34 within 1 %** — in fact to the
+  printed digits; the largest deviation among them is +0.1 % on natural gas, from the 36.0 MJ/Nm³
+  conversion.
+* The remaining ~22 flows on each side are the *same substances in a different sub-compartment*
+  (nitrogen oxides, ammonium, cyanide, iron, chromium, …), which is `resolve_flow`'s
+  name-plus-top-level-compartment matching, not a transcription error — plus the three items the
+  candidate search could not offer at all (water of unspecified natural origin, hydrogen fluoride
+  to air, CFC-13), which the map step recorded as unmapped rather than guessing.
+
+So on the one case in this batch where the answer is knowable: the reading of the PDF is exact, and
+everything that is lost is lost in the mapping from a report's substance name to an EF 3.1 flow.
+(`scripts/transcription_vs_truth.py` reproduces this comparison.)
+
+#### A reproducibility bug this family exposed, now fixed
+
+Running the same spec twice gave two different answers. The drafted epoxy-resin spec covered 75 %
+of the target's kilogram mass on one run and 57 % on the next, with no change to the spec, because
+its 1.8 kg of rock salt resolved to `resources / in ground` the first time and to
+`resources / in water` the second.
+
+The cause is in `db.resolve_flow`, which scores a candidate flow on three things — does the
+top-level compartment match the hint, is the sub-compartment "unspecified", is it the EF 3.1
+database — and then takes `max()`. "Sodium chloride" exists in `in ground` and `in water`, both
+score identically, and `max()` returns whichever the index happened to list first; the index was
+built from `Database.load()`, whose dict order is not stable between processes. `activity_index`
+had the same weakness on its fallback path. Both indexes are now sorted before use, so the
+tie-break is deterministic (and on that case it also picks the right compartment). This is the same
+class of defect as the unsorted `Bench.blind_pool` recorded in
+`HANDOVER-flow-agreement-metric.md`.
+
+What it cost the numbers already published: re-running `run-all` over the 32 previously committed
+spec rows moved 11 of them, every one by **1 to 3 flows out of ~1670**, with the 50-largest-flows
+column and the kilogram-mass column unchanged in all 32. So the fix is a reproducibility fix, not a
+correction — except on the drafted epoxy spec, where the tie was on a flow carrying 1.8 kg and the
+effect was 18 points of kilogram mass.
+
+#### Three measurements of how far two databases are apart
+
+Three of the rebuilds are pure S2 transfers with nothing calibrated — one BAFU dataset substituted
+for another, 1 kg for 1 kg. They contain no modelling at all, so what their check reports is not a
+verdict on this project's method but a measurement of the distance between two inventories of the
+same product. All three are worth having on record.
+
+| substitution | fossil CO₂ | other headline flows | kg mass covered |
+|---|---|---|---|
+| **Epoxy resin**: BAFU's own *disaggregated* epoxy for BAFU's aggregated epoxy | **+1.5 %** | rock salt +3.6 %, chloride to water +11.2 %, sodium +11.8 %, suspended solids −13.7 % | 75 % |
+| **Benzene**: ecoinvent's `Benzene, at refinery` [CH] for PlasticsEurope's `Benzene, at plant` [RER] | **−84.8 %** | methane −99.6 %, SO₂ −97.2 %, NOₓ −95.9 % | 0 % |
+| **Naphtha**: ecoinvent's `Naphtha, at refinery` [RER] for `Naphtha, APME mix, at refinery` [RER] | −15.9 % | methane −98.9 %, NMVOC −98.3 %, NOₓ −84.8 %, CO −82.3 % | 0 % |
+
+The epoxy row is the same product modelled twice by the same people, and it agrees. The other two
+are the same product modelled by two different industries, and they do not: ecoinvent spreads a
+refinery's burden over its whole product slate, the APME profiles charge the aromatics extraction
+and reforming to the aromatics, and the gap between the two is roughly the size of that one
+decision. Both nodes are legitimate disaggregations and neither is a drop-in replacement — which is
+also the honest answer to the BTX allocation problem that blocks the rest of the family: the data
+to resolve it are not missing, the *decision* is, and two databases made it differently.
+
+#### Chaining a rebuild onto another rebuild changes almost nothing
+
+`Polystyrene, expandable, at plant` was one of the rebuilds recorded as "still terminates on an
+aggregated ancestor", with styrene as the blocker. Styrene is now rebuilt, so the blocker is gone.
+The `-chained` variant that links the rebuilt styrene instead of the aggregated one scores 24 of
+1670 flows within ±10 % (median |Δ| 103.0 %) against the committed spec's 20 of 1671 (median
+100.0 %). For general-purpose polystyrene the same substitution makes it **worse**: 8 of 1668
+against 25 of 1667. Removing an aggregated ancestor is a gain in transparency — the burden becomes
+traceable to ethylbenzene dehydrogenation — and not a gain in agreement, because the target's
+background was an industry survey and never ecoinvent's chain. Both variants are in the export;
+pick on that basis, not on the score.
+
+#### What is still impossible, and why
+
+Fifteen of the 37 have no rebuild, and the reasons are two.
+
+*Thirteen are products of a multi-output reactor whose allocation nothing in the bundle states*:
+eight steam-cracker and reformate products (toluene, propylene, butadiene, butene, pentane, hydrogen
+cracking APME, and the ethylene and propylene pipeline-system datasets) and five
+chloromethanes/chloroethylenes (carbon tetrachloride, dichloromethane, methyl chloride,
+tetrachloroethylene, trichloroethylene). The reports are
+explicit about it: *"Little is given on toluene production alone as most information pertains to
+benzene or BTX production plants"* (Althaus sec. 86.5.3); Tab. 86.1 prints the toluene yield of a
+reformate plant as *"0 – 0.3"* tons per ton of feedstock, a range that includes zero; *"There was no
+information in those cumulated inventory data about the share of the two processes considered. Also
+the used allocation method … was unclear"* (sec. 24.5.2); *"All these production routes can be found
+in Europe … but there is no information available how the distribution between these different
+processes is"* (sec. 84.5.1). This is the same wall that blocks `Ethylene, average` and
+`Pyrolysis gasoline`.
+
+*Two have a precursor BAFU-2026 does not contain*: nylon 6 (no caprolactam, and no adiponitrile or
+hexanedinitrile either) and polyvinylidene chloride (no vinylidene chloride). A third, nylon 66,
+has the same problem — BAFU has no hexamethylenediamine — but its spec is published anyway with
+56 % of the monomer mass and a prominent warning, because the adipic-acid half is exact and the
+missing half is named, quantified and one line away from being added.
+
+One more thing worth recording, because it cost time and will cost the next person time too: the
+report's own index is wrong. Althaus Tab. 1.1 lists `benzene, at plant`, `pentane, at plant` and
+`acetone cyanohydrin, at plant` as *"Reported in: Part II"*, and the 957-page report contains no
+chapter for any of the three. The pentane case even leaves a trace of the mix-up: sec. 84.5.3, in
+the *tetrachloromethane* chapter, reads *"Tab. 84.2 and Tab. 84.3 summarize the resulting data of
+the average pentane production in Europe"*, while those tables are captioned *"Input data of the
+dataset 'tetrachloromethane, at plant (RER)'"*.
 
 ---
 
