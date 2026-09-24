@@ -75,7 +75,7 @@ for case in cases:
            "scenarios": {}}
 
     for sc in SCEN:
-        direct = np.zeros(bench.sys.n_flows) if sc == "blind" else bench.direct_vector(case["direct"])
+        direct = np.zeros(bench.sys.n_flows) if sc.startswith("blind") else bench.direct_vector(case["direct"])
         keys = list(truth)
         if sc in ("oracle", "bounded"):
             cand = keys
@@ -85,8 +85,10 @@ for case in cases:
         elif sc == "distractors":  # consumes rng exactly as benchmark.run does
             pool = [k for k in bench.blind_pool if k not in truth and k != (db.INVENTORY_DB, case["code"])]
             cand = keys + rng.sample(pool, min(10, len(pool)))
-        else:  # blind: every process used >= 30 times, no direct flows
+        elif sc == "blind":  # every process used >= 30 times, no direct flows
             cand = [k for k in bench.blind_pool if k != (db.INVENTORY_DB, case["code"])]
+        else:  # blind-all: every dataset in the database, no direct flows
+            cand = [k for k in bench.all_pool if k != (db.INVENTORY_DB, case["code"])]
         n = len(cand)
         lo, hi = np.zeros(n), np.full(n, np.inf)
         if sc == "bounded":
@@ -107,8 +109,8 @@ for case in cases:
         rows = []
         for i, k in enumerate(cand):
             t = truth.get(k)
-            if sc == "blind" and t is None and x[i] <= 0:
-                continue   # ~600 of the ~675 blind candidates end at zero; storing them adds only size
+            if sc.startswith("blind") and t is None and x[i] <= 0:
+                continue   # most blind candidates end at zero (~600 of 675, ~11,900 of 11,946); storing them adds only size
             rows.append({**info(k),
                          "role": "true input" if k in truth else ("distractor" if sc == "distractors" else "candidate"),
                          "truth": t, "fitted": float(x[i]),

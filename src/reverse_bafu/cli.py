@@ -28,6 +28,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--n", type=int, default=30, help="benchmark: number of synthetic cases")
     p.add_argument("--seed", type=int, default=1)
     p.add_argument("--scenarios", default="oracle,bounded,partial,distractors,blind")
+    p.add_argument("--shard", default=None, help="benchmark: i/k runs every k-th case from i (merge with benchmark.merge_shards)")
     p.add_argument("--name", default=None, help="benchmark: output name (default n<N>-seed<S>)")
     p.add_argument("--mode", choices=["calibration", "extraction"], default="calibration",
                    help="benchmark: calibration (amounts from a given list) or extraction (the whole route incl. the PDF)")
@@ -46,7 +47,8 @@ def main(argv: list[str] | None = None) -> int:
             benchmark.run_extraction(args.n, args.seed, args.name or f"n{args.n}-seed{args.seed}", args.project, Path(args.ecospold),
                                      Path(args.reports), args.dry_run, args.by or "manual", only)
         else:
-            benchmark.run(args.n, args.seed, args.scenarios.split(","), args.name or f"n{args.n}-seed{args.seed}")
+            shard = tuple(map(int, args.shard.split("/"))) if args.shard else None
+            benchmark.run(args.n, args.seed, args.scenarios.split(","), args.name or f"n{args.n}-seed{args.seed}", shard=shard)
         return 0
     if args.command == "run-all":
         from . import runall

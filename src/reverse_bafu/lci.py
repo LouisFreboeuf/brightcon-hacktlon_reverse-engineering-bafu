@@ -96,10 +96,58 @@ def solve_weighted(A: np.ndarray, y: np.ndarray, lo: np.ndarray, hi: np.ndarray)
     cs[cs == 0] = 1.0
     rs = np.linalg.norm(y) or 1.0
     if np.all(lo == 0) and np.all(np.isinf(hi)):
-        x = so.nnls(A / cs, y / rs, maxiter=50 * A.shape[1] + 1000)[0]
+        x = nnls_any(A / cs, y / rs)
     else:
         x = so.lsq_linear(A / cs, y / rs, bounds=(lo * cs / rs, hi * cs / rs), method="bvls", max_iter=20000).x
     return x / cs * rs
+
+
+WIDE = 2000   # above this many columns, NNLS runs on a working set (nnls_working_set)
+
+
+def nnls_any(A: np.ndarray, b: np.ndarray) -> np.ndarray:
+    """min |A x - b| subject to x >= 0. Up to WIDE columns this is scipy's NNLS as it always was;
+    wider problems (the blind-all benchmark offers ~12,000 candidates for ~1,800 rows) go to
+    ``nnls_working_set``, where scipy's active-set method needs hours and can hit its iteration cap."""
+    if A.shape[1] <= WIDE:
+        return so.nnls(A, b, maxiter=50 * A.shape[1] + 1000)[0]
+    return nnls_working_set(A, b)
+
+
+def nnls_working_set(A: np.ndarray, b: np.ndarray, grow: int = 200, rounds: int = 500, tol: float = 1e-10) -> np.ndarray:
+    """NNLS for far more columns than rows, by column generation: solve on a working set of
+    columns, add the columns whose gradient says they would still lower the residual (the KKT
+    condition x_j = 0 => a_j·r <= 0 is violated), and repeat until none is left. Columns the last
+    solve set to zero leave the working set; the current solution stays feasible, so the residual
+    never increases, and the set stays at a few hundred columns. At the end the KKT conditions hold
+    on every column: the result minimises the same problem as NNLS on all columns (where the
+    minimiser is not unique, which it is not with more columns than rows, it may pick a different
+    one). On a 1,790 x 11,946 benchmark case: ~30 s for the three solves of a fit, against ~15 min."""
+    n = A.shape[1]
+    cn = np.linalg.norm(A, axis=0)
+    cn[cn == 0] = 1.0
+    thresh = tol * (np.linalg.norm(b) or 1.0) * cn
+    g = A.T @ b
+    top = np.argsort(-g)[:grow]
+    ws = np.sort(top[g[top] > 0])
+    x = np.zeros(n)
+    for _ in range(rounds):
+        if ws.size == 0:
+            break
+        sub = A[:, ws]
+        try:
+            xs = so.nnls(sub, b, maxiter=50 * ws.size + 1000)[0]
+        except RuntimeError:
+            xs = so.lsq_linear(sub, b, bounds=(0, np.inf), method="bvls", max_iter=20000).x
+        x[:] = 0.0
+        x[ws] = xs
+        g = A.T @ (b - A @ x)
+        g[ws] = -np.inf
+        viol = np.flatnonzero(g > thresh)
+        if viol.size == 0:
+            break
+        ws = np.union1d(ws[xs > 0], viol[np.argsort(-g[viol])[:grow]])
+    return x
 
 
 def relative_weights(target: np.ndarray, model: np.ndarray) -> np.ndarray:

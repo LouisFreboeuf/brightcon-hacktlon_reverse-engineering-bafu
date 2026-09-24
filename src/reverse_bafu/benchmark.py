@@ -10,8 +10,9 @@ much of the structure and the amounts it recovers under different evidence level
     partial      30 % of the inputs are missing from the list (a report that omits minor lines)
     distractors  list known plus 10 plausible wrong candidates (an LLM over-proposing inputs)
     blind        no list: every process used >= 30 times is a candidate (field-agnostic S4)
+    blind-all    no list: every dataset in the database is a candidate (~12,000)
 
-Direct elementary flows of the process are given in every scenario except ``blind``.
+Direct elementary flows of the process are given in every scenario except the two blind ones.
 Output: results/benchmark/<name>.csv (one row per case and scenario) and <name>.md (summary).
 """
 
@@ -30,9 +31,9 @@ import scipy.optimize as so
 import bw2data as bd
 
 from . import db
-from .lci import System, contribution_breadth, determined_flows, flow_agreement, solve_weighted
+from .lci import WIDE, System, contribution_breadth, determined_flows, flow_agreement, nnls_working_set, solve_weighted
 
-SCENARIOS = ("oracle", "bounded", "partial", "distractors", "blind")
+SCENARIOS = ("oracle", "bounded", "partial", "distractors", "blind", "blind-all")
 
 
 def pick_cases(n: int, seed: int, min_inputs: int = 3, max_inputs: int = 30) -> list[dict]:
@@ -84,6 +85,8 @@ class Bench:
         # guaranteed. Unsorted, rng.sample draws a different distractor set on every run and the
         # `distractors` scenario stops being reproducible (as pick_cases already guards against).
         self.blind_pool = sorted(k for k, n in used.items() if n >= 30)
+        # every dataset of the database that the factorised system holds (~12,000)
+        self.all_pool = sorted(k for k, i in ids.items() if i in sys_.lca.dicts.activity)
 
     def determined(self, code: str) -> np.ndarray:
         if code not in self._det:
@@ -95,6 +98,15 @@ class Bench:
             self._col[act_id] = self.sys.cumulative([act_id])[:, 0]
         return self._col[act_id]
 
+    def prefetch(self, act_ids: list[int], batch: int = 500) -> None:
+        """Compute missing cumulative columns in batches: one solve per column is slow for ~12,000."""
+        todo = [i for i in dict.fromkeys(act_ids) if i not in self._col]
+        for a in range(0, len(todo), batch):
+            chunk = todo[a:a + batch]
+            C = self.sys.cumulative(chunk)
+            for j, i in enumerate(chunk):
+                self._col[i] = C[:, j]
+
     def direct_vector(self, direct: dict) -> np.ndarray:
         v = np.zeros(self.sys.n_flows)
         for key, amt in direct.items():
@@ -105,12 +117,14 @@ class Bench:
 
     def fit(self, target: np.ndarray, cand: list[tuple], lo: np.ndarray, hi: np.ndarray, direct: np.ndarray,
             determined: np.ndarray | None = None) -> np.ndarray:
+        self.prefetch([self.ids[k] for k in cand])
         M = np.column_stack([self.col(self.ids[k]) for k in cand])
         # relative weights; the model side of the weight is first the unweighted NNLS solution, so
         # flows the target lacks but a candidate would bring count by their own size, then the fit
         # itself - two passes, as calibrate does
         scale = np.linalg.norm(M, axis=0); scale[scale == 0] = 1.0
-        x = so.nnls(M / scale, target - direct, maxiter=20000)[0] / scale
+        x = (so.nnls(M / scale, target - direct, maxiter=20000)[0] if M.shape[1] <= WIDE
+             else nnls_working_set(M / scale, target - direct)) / scale
         for _ in range(2):
             w = self.sys.fit_weights(target, M @ x + direct, determined)
             rows = np.where(w > 0)[0]
@@ -121,7 +135,7 @@ class Bench:
         truth = case["inputs"]
         keys = list(truth)
         target = self.sys.cumulative([self.ids[(db.INVENTORY_DB, case["code"])]])[:, 0]
-        direct = np.zeros(self.sys.n_flows) if scenario == "blind" else self.direct_vector(case["direct"])
+        direct = np.zeros(self.sys.n_flows) if scenario.startswith("blind") else self.direct_vector(case["direct"])
         det = self.determined(case["code"])
         if scenario == "oracle":
             cand = keys
@@ -136,8 +150,10 @@ class Bench:
         elif scenario == "distractors":
             pool = [k for k in self.blind_pool if k not in truth and k != (db.INVENTORY_DB, case["code"])]
             cand = keys + rng.sample(pool, min(10, len(pool)))
-        else:  # blind
+        elif scenario == "blind":
             cand = [k for k in self.blind_pool if k != (db.INVENTORY_DB, case["code"])]
+        else:  # blind-all
+            cand = [k for k in self.all_pool if k != (db.INVENTORY_DB, case["code"])]
         n = len(cand)
         lo, hi = np.zeros(n), np.full(n, np.inf)
         if scenario == "bounded":
@@ -176,9 +192,16 @@ class Bench:
         }
 
 
-def run(n: int, seed: int, scenarios: list[str], name: str, out_dir: Path = Path("results/benchmark")) -> Path:
+def run(n: int, seed: int, scenarios: list[str], name: str, out_dir: Path = Path("results/benchmark"),
+        shard: tuple[int, int] | None = None) -> Path:
+    """``shard=(i, k)`` runs every k-th case starting at i and writes only <name>.shard<i>of<k>.csv;
+    ``merge_shards`` then joins the k files into <name>.csv and writes the summary. For blind-all,
+    whose cases take minutes each."""
     rng = random.Random(seed)
     cases = pick_cases(n, seed)
+    if shard:
+        cases = cases[shard[0]::shard[1]]
+        name = f"{name}.shard{shard[0]}of{shard[1]}"
     print(f"{len(cases)} cases over {len(set(c['category'] for c in cases))} categories", file=sys.stderr)
     acts = bd.Database(db.INVENTORY_DB).load()
     ids = {k: bd.get_node(database=k[0], code=k[1]).id for k in acts}
@@ -190,17 +213,42 @@ def run(n: int, seed: int, scenarios: list[str], name: str, out_dir: Path = Path
     sys_ = System(bd.get_node(database=db.INVENTORY_DB, code=cases[0]["code"]))
     bench = Bench(sys_, ids, used)
     rows = []
+    out_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = out_dir / f"{name}.csv"
     for i, case in enumerate(cases, 1):
         for sc in scenarios:
             rows.append(bench.run_case(case, sc, rng))
-        print(f"  {i}/{len(cases)} {case['name'][:50]} [{case['category']}]", file=sys.stderr)
-    out_dir.mkdir(parents=True, exist_ok=True)
+        print(f"  {i}/{len(cases)} {case['name'][:50]} [{case['category']}] {sum(r['seconds'] for r in rows[-len(scenarios):]):.0f} s", file=sys.stderr)
+        # written after every case, so a long run (blind-all) keeps what it has if it stops
+        with csv_path.open("w", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+            w.writeheader(); w.writerows(rows)
+    if shard:
+        return csv_path
+    return write_summary(rows, len(cases), seed, scenarios, name, out_dir, csv_path)
+
+
+def merge_shards(n: int, seed: int, scenarios: list[str], name: str, k: int, out_dir: Path = Path("results/benchmark")) -> Path:
+    order = {c["code"]: i for i, c in enumerate(pick_cases(n, seed))}
+    rows = []
+    for i in range(k):
+        with (out_dir / f"{name}.shard{i}of{k}.csv").open() as fh:
+            rows += list(csv.DictReader(fh))
+    assert len({r["code"] for r in rows}) == n, "not every case is in the shards"
+    rows.sort(key=lambda r: (order[r["code"]], scenarios.index(r["scenario"])))
+    for r in rows:
+        for f, v in r.items():
+            if f not in ("code", "name", "category", "scenario", "amounts_within_20pct"):
+                r[f] = float(v) if v not in ("", "nan") else float("nan")
     csv_path = out_dir / f"{name}.csv"
     with csv_path.open("w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0]))
         w.writeheader(); w.writerows(rows)
-    # summary
-    L = [f"# Benchmark `{name}`: {len(cases)} synthetic aggregated datasets, seed {seed}", "",
+    return write_summary(rows, n, seed, scenarios, name, out_dir, csv_path)
+
+
+def write_summary(rows: list[dict], n_cases: int, seed: int, scenarios: list[str], name: str, out_dir: Path, csv_path: Path) -> Path:
+    L = [f"# Benchmark `{name}`: {n_cases} synthetic aggregated datasets, seed {seed}", "",
          "Ground truth = BAFU unit processes (3-30 inputs, stratified over categories); target = their cumulative inventory.", "",
          "| scenario | flows within ±10 % | median \\|Δ flow\\| | flows missing | material amounts within ±20 % | material inputs chosen / true | false pos. | false neg. |",
          "|---|---|---|---|---|---|---|---|"]
@@ -215,7 +263,7 @@ def run(n: int, seed: int, scenarios: list[str], name: str, out_dir: Path = Path
           "over the flows the solve determines (about 120 of ~1,790 per process come out of the sparse solve as round-off and are not scored; "
           "see lci.determined_flows). "
           "'Material' inputs are those whose true contribution reaches 1 % of the target amount of some determined flow (round-off flows are left out, as in the flow score). `partial` removes the 30 % of inputs that explain the fewest flows before fitting; "
-          "`distractors` adds 10 random frequently-used processes; `blind` offers every process used ≥ 30 times and no direct flows.", ""]
+          "`distractors` adds 10 random frequently-used processes; `blind` offers every process used ≥ 30 times and no direct flows; `blind-all` offers every dataset in the database and no direct flows.", ""]
     md_path = out_dir / f"{name}.md"
     md_path.write_text("\n".join(L) + "\n")
     print("\n".join(L[4:4 + 2 + len(scenarios)]))
