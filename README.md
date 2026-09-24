@@ -147,11 +147,13 @@ or, inside Claude Code with a subscription, `/draft-all` — the session answers
 and loops until nothing is pending ([.claude/commands/draft-all.md](.claude/commands/draft-all.md)).
 `--only <codes>` restricts the run. Nothing else is typed by hand: the report comes from the `pdf`
 column of `results/sources.csv`, the pages are located by the pipeline. The result is
-`results/drafting_status.csv` — one row per dataset with `status` = `drafted` (spec written),
-`pages-not-found` (the report has no inventory table for it, with the reason), `no-pdf` (no report
-in the bundle: the French, manufacturer and PlasticsEurope families) or `error` — and one
-`specs/<code>-<slug>.draft.json` per drafted dataset. Reruns are incremental: every response
-already on disk is reused, so a batch can be continued after an interruption or a fix.
+`results/drafting_status.csv` — one row per dataset with `status` = `drafted` (spec written; `route`
+says which of the three routes below produced it), `no-usable-evidence` (neither a report, a
+same-product unit process nor the metadata names the inputs), `pages-not-found` / `no-pdf` (only with
+`--no-fallback`: the report has no inventory table, or there is no report), a pending
+`prompt-<n>-written`, or `error` — and one `specs/<code>-<slug>.draft.json` per drafted dataset.
+Reruns are incremental: every response already on disk is reused, so a batch can be continued after
+an interruption or a fix. With `--only`, just those rows of the status file are replaced.
 
 ### How a spec is extracted, step by step
 
@@ -204,18 +206,54 @@ ingest). A claude.ai subscription is not an API key. Reproducible means: locate�
 candidates and assembly regenerate bit‑for‑bit, the prompts and the model are pinned, every number
 is auditable — not that the model returns identical JSON.
 
+### When no report prints the inventory: the template and metadata routes
+
+Most system processes have no report that prints their inventory. For those, `draft-all` hands over
+to two more routes, in this order, with the same audit trail; both leave their files in
+`specs/evidence/<code>/` next to the locate step:
+
+- **Template route (S2), prompt 3.** A deterministic name search lists the unit processes in BAFU of
+  the *same product* — the first segment of the product name must match exactly ("Benzene, at
+  refinery" for "Benzene, at plant", never "Ethyl benzene") — with all their inputs
+  (`candidates-3-template.json`). `prompt-3-template.md` ([prompts/draft_from_template.md](prompts/draft_from_template.md))
+  asks the model to pick one or none, to list the differences, to name the main inputs whose amounts
+  may differ, and whether to switch the electricity to the target's grid. `assemble_template` copies
+  the template's inputs and direct flows (each flow keeps its exact compartment path, so it resolves
+  to the template's own sub-compartment) and frees the named inputs within 0.5–2× of the template.
+- **Metadata route (S3), prompts 4 and 5.** When there is no template, `prompt-4-metadata.md`
+  ([prompts/draft_from_metadata.md](prompts/draft_from_metadata.md)) gives the model the dataset's own
+  ecoSpold metadata and name. Every input must quote the phrase that names it, and every amount has
+  one basis: `stoichiometry` (balanced equation with molar masses and the arithmetic written out),
+  `mass-balance` (an addition polymer carries 1 kg of monomer per kg), `composition-split` (named
+  components, shares fitted under a mass constraint), `named-only` (fitted) or `implied` (a reagent
+  the named process variant needs by definition, low confidence). Solvents, catalysts and yields
+  nobody states go into `gaps`; a multi-output process without an allocation (a steam cracker) gets
+  no inputs at all. `prompt-5-map.md` then maps the inputs with the same mapping prompt as the report
+  route. For a chemical, the code adds the five-line utility block every ecoinvent-v2 organic
+  chemical in BAFU carries (electricity, heat, rail and lorry per kg of precursor, a chemical-plant
+  share) as free inputs; that block is a template, not evidence, and is fitted.
+
+These two routes write down the recipes the specs made in interactive sessions used (below).
+Checked on two of them, answered by a Claude Code session: white packaging glass by the template
+route gives the same score as the interactive spec (53 of 1,146 flows within ±10 %, 7 instead of 4
+of the 50 largest kilogram flows), and polycarbonate by the metadata route reproduces the
+interactive spec's stoichiometric amounts to the last digit (0.89777 kg bisphenol A, 0.38897 kg
+phosgene, 0.31459 kg NaOH) and its utility block. Both drafts are in `specs/` with their evidence.
+
 The per‑dataset commands behind the batch — `reverse-bafu locate|evidence|draft|assemble <code>` —
 exist for debugging one dataset; `reverse-bafu draft <code> --dry-run` / `--from-response …` and
 `/draft-spec <code> --report … --pages …` are their manual forms.
 
-How the committed specs were made: `specs/*.draft.json` (burnt shale, cement ZN/D) are outputs of
-this route, the three model prompts answered by a Claude Code session and labelled so in their
-provenance; the drafted cement converges on the same calibrated composition as the hand‑written
-spec. `d8ec4be3-burnt-shale.json`, `c3490cfc-cement-zn-d.json` and `gypsum-fibre-board-de.json`
-were written by hand in a chat session before the route existed; their `evidence` and `note`
-fields record the sources, but they have no per‑input `derivation`. For the gypsum board the
-batch correctly stops at `pages-not-found`: the report keeps the board's production inventory in a
-confidential annex, so that dataset needs the S2 template route, for which there is no command yet.
+How the committed specs were made: `specs/*.draft.json` are outputs of these routes, their model
+prompts answered by a Claude Code session and labelled so in their provenance; the drafted cement
+converges on the same calibrated composition as the interactive spec. The specs without `.draft`
+(44 of the 51 counted rebuilds) were written by an LLM in interactive Claude sessions, guided by
+the team, before these routes existed — from the report, the dataset's own metadata, a
+same-product unit process or reaction stoichiometry. Their `strategy.note`, `evidence` and the
+per-dataset reports in `results/checks/` record the sources and the arithmetic, but they have no
+per-input `derivation`; the template and metadata routes above make the same recipes reproducible.
+The gypsum board's report keeps the production inventory in a confidential annex, so the report
+route stops at `pages-not-found` and the template route takes over.
 
 ## 5. Rebuild the datasets from the specs
 

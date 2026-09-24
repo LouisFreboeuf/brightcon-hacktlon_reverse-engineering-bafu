@@ -25,6 +25,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--datasets", default="results/system_terminated.csv",
                    help="draft-all: the CSV of aggregated datasets to work through (see scripts/find_system_processes.py)")
     p.add_argument("--by", default="", help="draft-all: author label for responses answered outside the API")
+    p.add_argument("--no-fallback", action="store_true",
+                   help="draft-all: stop at pages-not-found / no-pdf instead of trying the template and metadata routes")
     p.add_argument("--n", type=int, default=30, help="benchmark: number of synthetic cases")
     p.add_argument("--seed", type=int, default=1)
     p.add_argument("--scenarios", default="oracle,bounded,partial,distractors,blind")
@@ -59,7 +61,7 @@ def main(argv: list[str] | None = None) -> int:
         from . import draft as draft_mod
         only = {x.strip() for x in args.only.split(",") if x.strip()} or None
         draft_mod.draft_all(args.project, Path(args.ecospold), Path(args.reports), args.dry_run, only, args.by or "manual",
-                            datasets=Path(args.datasets))
+                            datasets=Path(args.datasets), fallbacks=not args.no_fallback)
         return 0
     if args.command in ("evidence", "draft", "assemble", "locate"):
         from pathlib import Path
