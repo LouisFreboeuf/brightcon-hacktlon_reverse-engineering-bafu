@@ -176,7 +176,7 @@
           "mapping_reason": "Benzene to air; ethyl benzene and benzenediamine are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9201-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9202-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -201,7 +201,7 @@
           "mapping_reason": "Benzo[a]pyrene to air, the compartment the table gives; the soil and water entries are other compartments.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9227-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9221-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -276,7 +276,7 @@
           "mapping_reason": "Elemental mercury to air; the divalent ion and the soil compartment are different.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a8ca-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-a8c4-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -351,7 +351,7 @@
           "mapping_reason": "Elemental cadmium to air; the ion and the oxide are speciated forms.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a292-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9674-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -401,7 +401,7 @@
           "mapping_reason": "Elemental chromium to air; Chromium-51 is a radionuclide and Chromium(3+) a speciated form.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9f75-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9acc-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -426,7 +426,7 @@
           "mapping_reason": "'Chromium(6+)' in the air compartment is hexavalent chromium released to air, the compartment the table gives; candidate 0 is a long-term groundwater flow and candidates 1-2 the soil and water compartments.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "4d9a8790-3ddd-11dd-9c1d-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-950b-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -476,7 +476,7 @@
           "mapping_reason": "Elemental selenium to air; the (IV) species and the gaseous entry are narrower forms.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-98d7-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-abf3-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {

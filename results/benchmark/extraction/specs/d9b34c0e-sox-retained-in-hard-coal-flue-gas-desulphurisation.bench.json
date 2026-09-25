@@ -299,7 +299,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "29055105-6556-11dd-ad8b-0800200c9a66",
+        "code": "29055100-6556-11dd-ad8b-0800200c9a66",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -374,7 +374,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "4d9a8790-3ddd-11dd-96ee-0050c2490048",
+        "code": "4d9a8790-3ddd-11dd-96ed-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -424,7 +424,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-aa31-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-96d7-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -449,7 +449,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-954a-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-a2a9-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -474,7 +474,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances. 'Fluoride Ion' is the dissolved species the analysis reports.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-93fd-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-93f7-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -524,7 +524,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances. The groundwater long-term entry is a landfill-type flow, so 'Biological Oxygen Demand' in the plain water compartment is preferred.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-97e1-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-97de-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -549,7 +549,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a8ca-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-a8c4-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -574,7 +574,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a292-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9674-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -599,7 +599,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "4d9a8790-3ddd-11dd-91e2-0050c2490048",
+        "code": "4d9a8790-3ddd-11dd-91dc-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -649,7 +649,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9f75-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9acc-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -749,7 +749,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9789-0050c2490048",
+        "code": "32ccd36e-6556-11dd-ad8b-0800200c9a66",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -774,7 +774,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances. The groundwater long-term entry is a landfill-type flow, so the plain water compartment is preferred.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-97c6-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-97c3-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -799,7 +799,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a72d-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-a72e-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -824,7 +824,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "29059f20-6556-11dd-ad8b-0800200c9a66",
+        "code": "08a91e70-3ddc-11dd-a0f7-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -849,7 +849,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9590-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9591-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -899,7 +899,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a75c-0050c2490048",
+        "code": "69528fd2-9cbe-458c-93c4-7766a5dc8472",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -924,7 +924,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "4d9a8790-3ddd-11dd-8dc0-0050c2490048",
+        "code": "4d9a8790-3ddd-11dd-8dba-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -949,7 +949,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9688-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9689-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -974,7 +974,7 @@
           "mapping_reason": "The plain element/ion in the water compartment is the FGD waste-water load; the capitalised 'Emissions / Emissions to water' entry is the EF 3.1 name and the lower-case duplicate the same flow, while the salt and isotope candidates are different substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-98d7-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-abf3-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {

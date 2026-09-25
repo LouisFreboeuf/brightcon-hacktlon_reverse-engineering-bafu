@@ -221,7 +221,7 @@
           "mapping_reason": "The table books the waste heat under 'emission air, high population density', so the air compartment of Waste Heat is required.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere"
       }
     ],

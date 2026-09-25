@@ -224,7 +224,7 @@
           "mapping_reason": "Waste heat released to air, the compartment the table gives.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -249,7 +249,7 @@
           "mapping_reason": "Ammonia to air; the acetaldehyde adduct is a different substance.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-954a-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-a2a9-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -274,7 +274,7 @@
           "mapping_reason": "Elemental cadmium to air; the divalent ion is a speciated form.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a292-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9674-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -324,7 +324,7 @@
           "mapping_reason": "HCl to air, the compartment the table gives.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-aaaf-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-aab0-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -499,7 +499,7 @@
           "mapping_reason": "'Hydrogen-3' to air in kilo Becquerel is tritium, matching the substance, compartment and unit; candidate 0 is elemental hydrogen in kilograms.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-94b8-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-94b2-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -524,7 +524,7 @@
           "mapping_reason": "The plain element/ion in the water compartment matches the substance and the compartment of the line; the lower-case duplicate is the same flow.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a72d-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-a72e-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -549,7 +549,7 @@
           "mapping_reason": "The plain element/ion in the water compartment matches the substance and the compartment of the line; the lower-case duplicate is the same flow.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a292-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9674-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -574,7 +574,7 @@
           "mapping_reason": "Exact name match in the water compartment, which the table's footer gives for this block; candidate 1 is the air compartment.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "e25a8300-765a-41d1-93f3-2f1c6dd4aa63",
+        "code": "dbe9c10a-fd18-42c9-bed5-aeb326c10002",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -599,7 +599,7 @@
           "mapping_reason": "'chromium (vi)' as an emission to water matches the substance and the compartment; candidate 0 is a long-term groundwater flow.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "4d9a8790-3ddd-11dd-8fd8-0050c2490048",
+        "code": "4d9a8790-3ddd-11dd-9c1e-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -624,7 +624,7 @@
           "mapping_reason": "The plain element/ion in the water compartment matches the substance and the compartment of the line; the lower-case duplicate is the same flow.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9f75-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9acc-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -649,7 +649,7 @@
           "mapping_reason": "The plain element/ion in the water compartment matches the substance and the compartment of the line; the lower-case duplicate is the same flow.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a4f0-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9283-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -699,7 +699,7 @@
           "mapping_reason": "Exact name match in the water compartment; the lower-case entry is the same flow.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-aaa8-0050c2490048",
+        "code": "d86b9e8a-6555-11dd-ad8b-0800200c9a66",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -724,7 +724,7 @@
           "mapping_reason": "The plain element/ion in the water compartment matches the substance and the compartment of the line; the lower-case duplicate is the same flow.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9590-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9591-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -774,7 +774,7 @@
           "mapping_reason": "Elemental mercury to water; the divalent ion is a speciated form.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "fe0acd60-3ddc-11dd-a8ca-0050c2490048",
+        "code": "fe0acd60-3ddc-11dd-a8c4-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -824,7 +824,7 @@
           "mapping_reason": "Exact name match in the water compartment and in kilo Becquerel; candidate 1 is the air compartment.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "6072dffe-f187-4233-a4dd-0eb212b91f81",
+        "code": "323cfab2-1ce7-4dcd-8db8-fbe1fb76496c",
         "database": "ef-3.1-biosphere"
       },
       {

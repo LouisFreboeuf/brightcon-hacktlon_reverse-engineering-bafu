@@ -10,22 +10,22 @@ target `bafu-2026` vs explicit model `d9b34c0e-fef5-3aba-adca-36022bd418c2-bench
 
 - the 50 largest kilogram flows: 19/50 within ±10 %, median |Δ| 26.6%
 - kilogram mass covered within ±10 %: 58.5% of the target's total kg mass
-- of the 1790 flows of the target, 1669 are determined by the solve (121 are round-off and are not scored; see lci.determined_flows)
-- 585 of those 1669 within ±10 % (35%), median |Δ| 14.7%, 1 missing from the model, 7 extra
+- of the 1786 flows of the target, 1670 are determined by the solve (116 are round-off and are not scored; see lci.determined_flows)
+- 586 of those 1670 within ±10 % (35%), median |Δ| 14.9%, 1 missing from the model, 2 extra
 - hybrid vs target: identical on every flow
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
-| ≤ 10 % | 589 | 33% |
-| 10–20 % | 309 | 17% |
-| 20–50 % | 237 | 13% |
-| 50–100 % | 297 | 17% |
-| > 100 % | 358 | 20% |
+| ≤ 10 % | 600 | 34% |
+| 10–20 % | 345 | 19% |
+| 20–50 % | 212 | 12% |
+| 50–100 % | 277 | 16% |
+| > 100 % | 352 | 20% |
 | missing (0 in model) | 1 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
 
-### kilogram (1475 flows)
+### kilogram (1470 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -70,7 +70,7 @@ target `bafu-2026` vs explicit model `d9b34c0e-fef5-3aba-adca-36022bd418c2-bench
 | From Arable, Non-irrigated [Land use/Land transformation] (square meter) | 4.96e-05 | 0.000145 | +192.2% | -9.53e-05 |
 | From Pasture/meadow [Land use/Land transformation] (square meter) | 4.28e-05 | 6.52e-05 | +52.4% | -2.24e-05 |
 
-### megajoule (27 flows)
+### megajoule (28 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -104,11 +104,11 @@ target `bafu-2026` vs explicit model `d9b34c0e-fef5-3aba-adca-36022bd418c2-bench
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Uranium alpha [emissions to water/river] (Becquerel) | 1.27e-19 | 2.71e-20 | -78.6% | +9.96e-20 |
-| Uranium alpha [emissions to water/lake] (Becquerel) | 5.94e-20 | 1.27e-20 | -78.6% | +4.67e-20 |
-| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 1.08e-20 | 2.31e-21 | -78.6% | +8.48e-21 |
-| Thorium-232 [emissions to water/river] (Becquerel) | 1.28e-22 | 2.74e-23 | -78.6% | +1.01e-22 |
-| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 3.79e-23 | 8.1e-24 | -78.6% | +2.98e-23 |
+| Uranium alpha [emissions to water/river] (Becquerel) | 6.81e-20 | 5.42e-20 | -20.4% | +1.39e-20 |
+| Uranium alpha [emissions to water/lake] (Becquerel) | 3.19e-20 | 2.54e-20 | -20.4% | +6.51e-21 |
+| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 5.8e-21 | 4.62e-21 | -20.4% | +1.18e-21 |
+| Thorium-232 [emissions to water/river] (Becquerel) | 6.89e-23 | 5.48e-23 | -20.4% | +1.41e-23 |
+| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 2.04e-23 | 1.62e-23 | -20.4% | +4.15e-24 |
 
 ### kilometer (2 flows)
 
@@ -128,8 +128,8 @@ target `bafu-2026` vs explicit model `d9b34c0e-fef5-3aba-adca-36022bd418c2-bench
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Noise, road, lorry, average [non material emissions/unspecified] (meter) | -3.89e-18 | 1.72e-18 | -144.3% | -5.61e-18 |
-| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 1.2e-20 | 2.56e-21 | -78.6% | +9.42e-21 |
+| Noise, road, lorry, average [non material emissions/unspecified] (meter) | -9.85e-18 | -5.4e-20 | -99.5% | -9.8e-18 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 6.44e-21 | 5.13e-21 | -20.4% | +1.31e-21 |
 
 ### cubic meter-year (1 flows)
 
@@ -162,11 +162,11 @@ target `bafu-2026` vs explicit model `d9b34c0e-fef5-3aba-adca-36022bd418c2-bench
 
 - ✓ 8 explicit input(s) over 1 node(s)
 - ✓ no decomposed grid mixes
-- ✓ no dependency on another aggregated dataset
+- ✓ no dependency on another system process
 - ✓ mass in: 21.6 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 188 flows under-explained, 1609 over-explained (negative residual)
+residual: 192 flows under-explained, 1596 over-explained (negative residual)
 
 ## Evidence
 

@@ -54,7 +54,7 @@
     "inputs": [
       {
         "name": "Hydrogen, gaseous, 25 bar, from electrolysis",
-        "amount": 0.0012600139239107148,
+        "amount": 0.0012599999999999998,
         "unit": "kilogram",
         "location": "CH",
         "note": "Figure 31: the hydrogen input is '1 MJ / 120 MJ/kg / thermal eff. * allocation factor'. With the 33.0 % heat conversion efficiency of Tab. 55 the unallocated need is 1/120/0.33 = 2.525E-2 kg H2 per MJ heat. The EXERGY ALLOCATION FACTOR is not in this excerpt (the SOFC counterpart of Tab. 50 is missing), so the point estimate assumes a heat share of about 10 % (33 % thermal against 47 % electrical efficiency, low-grade residential heat) and the bounds span a heat share of 5 % to 100 %.",
@@ -106,7 +106,7 @@
           "mapping_reason": "'Water' to air in cubic metres is the generic water-vapour release; the line item is water vapour formed from the hydrogen, not sea water, green water or an evapotranspiration flux, and the two long chemical names are unrelated substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "3960d174-95af-41ac-a7f3-a946cd237245",
+        "code": "0342f5e5-b53e-4cec-9e67-fb197f24fff0",
         "database": "ef-3.1-biosphere"
       }
     ],

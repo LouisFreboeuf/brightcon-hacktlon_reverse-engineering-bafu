@@ -500,8 +500,16 @@ Metrics:
 | `direct_flows_matched` | direct emissions and resources recovered (by substance and compartment) |
 | `top_flows_within_10pct`, `kg_mass_covered_pct`, `flows_within_10pct` | the rebuilt node against the real process |
 
-The run on 100 unit processes (seed 7) is in `results/benchmark/extraction-n100-seed7.md`. For 42
-of them the report prints no inventory table the locate step could find.
+Results on 100 unit processes (seed 7, `results/benchmark/extraction-n100-seed7.md`; the prompts
+were answered by a Claude Code session, labelled so in the provenance):
+
+- For 42 of the 100, the locate step found no inventory table in the report.
+- The other 58 were scored:
+  - true inputs recovered and mapped to the right dataset: 56 % (recall); 71 % of the drafted
+    inputs are true inputs (precision);
+  - of the matched inputs, 233 of 262 amounts are within ±20 % after calibration;
+  - direct flows recovered: 45 %;
+  - the rebuilt node against the real process: median 76 % of flows within ±10 %.
 
 ## 7. Share the rebuilds: export and import
 
