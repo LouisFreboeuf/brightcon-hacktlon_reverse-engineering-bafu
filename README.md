@@ -59,7 +59,10 @@ uv run sentier-brightway db --project reverse-bafu   # ~3-4 min; --overwrite rep
 (11,947 processes), `ef-3.1-biosphere` (EF 3.1 flows, BAFU emissions relinked: 95.8 % of flows),
 `bafu-2026-residual` (113 flows without EF counterpart) and the 25 methods
 `("sentier", "EF v3.1", <category>)`. Every command below takes `--project <name>` if you chose
-another name.
+another name. The methods are installed by the import and are handy for a smoke test, but the
+pipeline itself never uses them: every rebuild is judged against the original's elementary flows
+directly, so no characterisation method and no weighting between impact categories enters the
+result.
 
 Smoke test:
 
@@ -90,6 +93,44 @@ from the metadata. A 102nd flagged dataset has no exchanges and is skipped.
 `sources.csv`: the 129 distinct source citations, with the report PDF for 112 of them when the
 documentation bundle is present; `dois.csv`: the 36 DOIs embedded in dataset comments.
 
+### The 37 the flag misses
+
+```bash
+PYTHONPATH=$PWD/src python scripts/find_system_processes.py --project reverse-bafu   # -> results/system_terminated_extended.csv
+```
+
+The `type=2` flag is reliable but not complete. BAFU-2026 also carries the APME / PlasticsEurope
+era eco-profiles, which were never marked. They are found by structure instead — a dataset with no
+production input at all (its only technosphere exchanges are waste-treatment services) but a real
+elementary-flow vector — and there are **37**: benzene, toluene, styrene, propylene, butadiene,
+butene, pentane, acetone, hydrogen cyanide, the chloromethanes, epoxy resin, the nylons, ABS, SAN,
+GPPS, HIPS, polycarbonate, the PMMAs, polybutadiene, PVDC, polyols, MDI, TDI, methyl methacrylate,
+acetone cyanohydrin, naphtha APME mix and the ethylene/propylene pipeline-system datasets.
+
+All 37 confirm it in their own metadata, which the structural test never reads: *"Aggregated data
+for all processes from raw material extraction until delivery at plant"*, or *"The data source for
+this process is a system inventory from Boustead. Due to the cumulated form of this data only the
+ressources and emissions included in the data source were considered."*
+
+They matter because they are not at the edge of the database: **466 BAFU-2026 datasets consume at
+least one of the 37** (936 consume one of the 101). `Ethyl benzene, at plant` consumes `Benzene, at
+plant`; `Cumene, at plant` consumes benzene and propylene; `Glass fibre, at plant` consumes
+`Nylon 6, at plant`. Ordinary unit processes terminate on them, which is exactly what the flag-based
+survey could not see (`scripts/ecoprofile_consumers.py`). 22 of the 37 are rebuilt — 51 of the 138
+aggregated datasets we found (a lower bound: a partly aggregated dataset passes both tests unseen).
+
+`results/system_terminated_extended.csv` has the same schema as `system_terminated.csv` plus
+`detected_by` (flag | structure) and `n_flows`. `db.aggregated_codes_all()` is the union of the two
+and is what `resolve` and `check` use, so a rebuild terminating on one of these is now reported as
+the dependency it is; `db.aggregated_codes()` stays flag-based because `benchmark.py` uses it to
+choose synthetic test cases and widening it would move every published benchmark number.
+
+Step 4 works through them with `--datasets results/system_terminated_extended.csv`;
+`results/drafting_status_extended.csv` records where each one stands, and
+`scripts/ecoprofile_agreement.py` reports their agreement against the flows the eco-profile itself
+declares, which is the only denominator that means anything for them (see
+[exports/README.md](exports/README.md), *The APME eco-profiles the ecoSpold type=2 flag missed*).
+
 ## 4. Make the specs
 
 A spec is one JSON file per dataset holding the evidence-derived unit process — target, strategy,
@@ -106,11 +147,13 @@ or, inside Claude Code with a subscription, `/draft-all` — the session answers
 and loops until nothing is pending ([.claude/commands/draft-all.md](.claude/commands/draft-all.md)).
 `--only <codes>` restricts the run. Nothing else is typed by hand: the report comes from the `pdf`
 column of `results/sources.csv`, the pages are located by the pipeline. The result is
-`results/drafting_status.csv` — one row per dataset with `status` = `drafted` (spec written),
-`pages-not-found` (the report has no inventory table for it, with the reason), `no-pdf` (no report
-in the bundle: the French, manufacturer and PlasticsEurope families) or `error` — and one
-`specs/<code>-<slug>.draft.json` per drafted dataset. Reruns are incremental: every response
-already on disk is reused, so a batch can be continued after an interruption or a fix.
+`results/drafting_status.csv` — one row per dataset with `status` = `drafted` (spec written; `route`
+says which of the three routes below produced it), `no-usable-evidence` (neither a report, a
+same-product unit process nor the metadata names the inputs), `pages-not-found` / `no-pdf` (only with
+`--no-fallback`: the report has no inventory table, or there is no report), a pending
+`prompt-<n>-written`, or `error` — and one `specs/<code>-<slug>.draft.json` per drafted dataset.
+Reruns are incremental: every response already on disk is reused, so a batch can be continued after
+an interruption or a fix. With `--only`, just those rows of the status file are replaced.
 
 ### How a spec is extracted, step by step
 
@@ -163,18 +206,54 @@ ingest). A claude.ai subscription is not an API key. Reproducible means: locate�
 candidates and assembly regenerate bit‑for‑bit, the prompts and the model are pinned, every number
 is auditable — not that the model returns identical JSON.
 
+### When no report prints the inventory: the template and metadata routes
+
+Most system processes have no report that prints their inventory. For those, `draft-all` hands over
+to two more routes, in this order, with the same audit trail; both leave their files in
+`specs/evidence/<code>/` next to the locate step:
+
+- **Template route (S2), prompt 3.** A deterministic name search lists the unit processes in BAFU of
+  the *same product* — the first segment of the product name must match exactly ("Benzene, at
+  refinery" for "Benzene, at plant", never "Ethyl benzene") — with all their inputs
+  (`candidates-3-template.json`). `prompt-3-template.md` ([prompts/draft_from_template.md](prompts/draft_from_template.md))
+  asks the model to pick one or none, to list the differences, to name the main inputs whose amounts
+  may differ, and whether to switch the electricity to the target's grid. `assemble_template` copies
+  the template's inputs and direct flows (each flow keeps its exact compartment path, so it resolves
+  to the template's own sub-compartment) and frees the named inputs within 0.5–2× of the template.
+- **Metadata route (S3), prompts 4 and 5.** When there is no template, `prompt-4-metadata.md`
+  ([prompts/draft_from_metadata.md](prompts/draft_from_metadata.md)) gives the model the dataset's own
+  ecoSpold metadata and name. Every input must quote the phrase that names it, and every amount has
+  one basis: `stoichiometry` (balanced equation with molar masses and the arithmetic written out),
+  `mass-balance` (an addition polymer carries 1 kg of monomer per kg), `composition-split` (named
+  components, shares fitted under a mass constraint), `named-only` (fitted) or `implied` (a reagent
+  the named process variant needs by definition, low confidence). Solvents, catalysts and yields
+  nobody states go into `gaps`; a multi-output process without an allocation (a steam cracker) gets
+  no inputs at all. `prompt-5-map.md` then maps the inputs with the same mapping prompt as the report
+  route. For a chemical, the code adds the five-line utility block every ecoinvent-v2 organic
+  chemical in BAFU carries (electricity, heat, rail and lorry per kg of precursor, a chemical-plant
+  share) as free inputs; that block is a template, not evidence, and is fitted.
+
+These two routes write down the recipes the specs made in interactive sessions used (below).
+Checked on two of them, answered by a Claude Code session: white packaging glass by the template
+route gives the same score as the interactive spec (53 of 1,146 flows within ±10 %, 7 instead of 4
+of the 50 largest kilogram flows), and polycarbonate by the metadata route reproduces the
+interactive spec's stoichiometric amounts to the last digit (0.89777 kg bisphenol A, 0.38897 kg
+phosgene, 0.31459 kg NaOH) and its utility block. Both drafts are in `specs/` with their evidence.
+
 The per‑dataset commands behind the batch — `reverse-bafu locate|evidence|draft|assemble <code>` —
 exist for debugging one dataset; `reverse-bafu draft <code> --dry-run` / `--from-response …` and
 `/draft-spec <code> --report … --pages …` are their manual forms.
 
-How the committed specs were made: `specs/*.draft.json` (burnt shale, cement ZN/D) are outputs of
-this route, the three model prompts answered by a Claude Code session and labelled so in their
-provenance; the drafted cement converges on the same calibrated composition as the hand‑written
-spec. `d8ec4be3-burnt-shale.json`, `c3490cfc-cement-zn-d.json` and `gypsum-fibre-board-de.json`
-were written by hand in a chat session before the route existed; their `evidence` and `note`
-fields record the sources, but they have no per‑input `derivation`. For the gypsum board the
-batch correctly stops at `pages-not-found`: the report keeps the board's production inventory in a
-confidential annex, so that dataset needs the S2 template route, for which there is no command yet.
+How the committed specs were made: `specs/*.draft.json` are outputs of these routes, their model
+prompts answered by a Claude Code session and labelled so in their provenance; the drafted cement
+converges on the same calibrated composition as the interactive spec. The specs without `.draft`
+(44 of the 51 counted rebuilds) were written by an LLM in interactive Claude sessions, guided by
+the team, before these routes existed — from the report, the dataset's own metadata, a
+same-product unit process or reaction stoichiometry. Their `strategy.note`, `evidence` and the
+per-dataset reports in `results/checks/` record the sources and the arithmetic, but they have no
+per-input `derivation`; the template and metadata routes above make the same recipes reproducible.
+The gypsum board's report keeps the production inventory in a confidential annex, so the report
+route stops at `pages-not-found` and the template route takes over.
 
 ## 5. Rebuild the datasets from the specs
 
@@ -186,12 +265,12 @@ uv run python scripts/render_pages.py   # regenerate artifacts/rebuilt-inventori
 
 `run-all` orders the specs so that one linking a rebuilt node (an input with `"sandbox"`, e.g.
 cement → burnt shale) runs after the spec that builds it, and writes `results/rebuild_status.csv`:
-per spec the status (`rebuilt` / `unresolved` / `error`), the climate‑change deviation, the number
-of EF 3.1 categories within ±10 %, the worst category and the report path. A spec whose inputs do
+per spec the status (`rebuilt` / `unresolved` / `error`) and the flow‑by‑flow agreement with the
+original: how many of the 50 largest kilogram flows are within ±10 %, how much of the total
+kilogram mass is, how many of *all* flows are, the median deviation and the report path. A spec whose inputs do
 not all resolve is skipped with `unresolved` and does not stop the batch. The committed specs
 already carry their calibrated amounts, so `run-all` without `--apply` reproduces `results/checks/`;
-with `--apply` the amounts are re‑derived (they change only if the code or the category weighting
-changes). The nodes land in the Brightway database `reverse-bafu-sandbox`; the original datasets
+with `--apply` the amounts are re‑derived (they change only if the code changes). The nodes land in the Brightway database `reverse-bafu-sandbox`; the original datasets
 are never touched.
 
 The four steps, per spec (`uv run reverse-bafu run|resolve|calibrate|build|check specs/<spec>.json`
@@ -200,15 +279,15 @@ for one dataset):
 | Step | Does | Writes |
 |---|---|---|
 | resolve | maps every input name to a BAFU dataset: *unit* (link), *aggregated* (link, flag as dependency), *missing* (stop, suggest names); checks units | codes into the spec; exit 2 on anything missing |
-| calibrate | bounded least squares for the inputs marked `free`, input list held fixed | prints spec vs fitted amounts; `--apply` writes them into the spec |
+| calibrate | bounded least squares for the inputs marked `free`, input list held fixed; one equation per elementary flow, weighted by 1/max(\|target\|, \|model\|) — relative error — and by 1/√(flows in the group), so every (unit, compartment) group contributes its mean squared relative error and counts equally; round-off flows get weight 0; solved with an active-set solver (NNLS/BVLS) on the column-scaled system, run twice so the result does not depend on the spec's starting amounts | prints spec vs fitted amounts; `--apply` writes them into the spec |
 | build | the explicit node `<code>-disagg` and the hybrid `<code>-hybrid` (explicit + residual flows = original exactly) | `reverse-bafu-sandbox` |
-| check | 25‑category score diff, flow diff, residual share, structural checks | `results/checks/<code>.md` |
+| check | flow‑by‑flow agreement: deviation buckets, the largest flows per unit, the worst deviations, kilogram mass covered, structural checks | `results/checks/<code>.md` |
 
 ## 6. Benchmark: how well does the calibration recover a unit process?
 
 ```bash
-uv run reverse-bafu benchmark --n 40 --seed 7 --scenarios oracle,bounded,partial,distractors   # ~12 min -> results/benchmark/n40-seed7.{csv,md}
-uv run reverse-bafu benchmark --n 5 --seed 7 --scenarios blind --name blind-n5-seed7           # the no-list control, slow
+uv run reverse-bafu benchmark --project bafu-2026-bench --n 100 --seed 7 --scenarios oracle,bounded,partial,distractors --name flow-n100-seed7
+uv run reverse-bafu benchmark --project bafu-2026-bench --n 100 --seed 7 --scenarios blind --name blind-n100-seed7   # the no-list control
 ```
 
 **Two modes.** `--mode calibration` (the default, below) tests one step: step 5's `calibrate`, the
@@ -234,26 +313,50 @@ bundle; it needs the model for three prompts per case.
    |---|---|---|---|
    | `oracle` | exactly the true inputs, amounts unknown | 0…∞ | a complete, correct table |
    | `bounded` | the true inputs | 0.5×–2× the true amount | a table with ranges |
-   | `partial` | the true inputs minus the 30 % with the smallest climate contribution | 0…∞ | a report that omits minor lines |
+   | `partial` | the true inputs minus the 30 % that explain the fewest flows | 0…∞ | a report that omits minor lines |
    | `distractors` | the true inputs plus 10 random processes used ≥ 30 times in BAFU | 0…∞ | an over‑proposed list (an LLM guessing inputs) |
    | `blind` | every process used ≥ 30 times (~675), no direct flows | 0…∞ | no evidence at all (field‑agnostic fitting) |
 
-4. *Fit.* Exactly the pipeline's calibration: rows = characterised flows, each EF 3.1 category
-   weighted equally by the sum of its absolute contributions in the target, columns normalised;
-   NNLS when unbounded, BVLS when bounded (both run and the smaller residual kept when ≤ 150
-   columns).
-5. *Metrics per case and scenario* (`results/benchmark/<name>.csv`): score deviation over the 25
-   EF categories (median |Δ|, categories within ±10 %, climate Δ); amount recovery — the share of
-   *material* inputs (true contribution ≥ 1 % of some category score) fitted within ±20 %; structure —
-   false positives (candidates given a material amount that are not true inputs), false negatives
-   (material true inputs dropped); residual share; runtime. `<name>.md` holds the medians per scenario.
+4. *Fit.* Exactly the pipeline's calibration: one row per elementary flow, weighted by
+   1/max(|target|, |model|) so a kilogram of CO₂ and a microgram of a trace metal weigh the same,
+   and by 1/√(flows in the group), so every (unit, compartment) group — land use, water,
+   radioactivity, each emission compartment — contributes its mean squared relative error and
+   counts equally; the ~1,200 flows of "kilogram/emissions" do not outvote the rest. Round-off flows
+   (`lci.determined_flows`) get weight 0. The weights are computed against a first unweighted fit,
+   then once more against the weighted one. No impact assessment enters. Columns and right-hand side
+   scaled to unit norm; NNLS when unbounded, BVLS when bounded (`lci.solve_weighted`).
+5. *Metrics per case and scenario* (`results/benchmark/<name>.csv`): inventory agreement — the
+   share of the target's flows the fit reproduces within ±10 %, the median deviation, flows missing
+   and flows added; amount recovery — the share of *material* inputs (those supplying ≥ 1 % of some
+   determined flow of the target) fitted within ±20 %; structure — false positives (candidates given a material
+   amount that are not true inputs), false negatives (material true inputs dropped); runtime.
+   `<name>.md` holds the medians per scenario.
 
-**What the latest run says** (`results/benchmark/n40-seed7.md`): with the correct list, 37/40
-cases match all 25 categories and 92 % of material amounts come back within ±20 %; with ranges
-93 %; with 30 % of the inputs missing the headline scores hold (27/40) but small‑score categories
-drift; with 10 distractors the scores still match in 35/40 cases while **4 cases swap a true input
-for a wrong one** — the identifiability trap measured; with no list at all, nothing is recovered
-(0/5, 22–27 wrong inputs per case). Interpretation on the method explainer page, §7.
+**What the latest run says** (`results/benchmark/flow-n100-seed7.md` and
+`blind-n100-seed7.md`, the same 100 cases). Flows: median share of a case's determined flows within ±10 %.
+Amounts: material inputs within ±20 % of the true amount, pooled over all cases.
+
+| Scenario | Flows within ±10 % | Amounts within ±20 % | Wrong inputs used (median) |
+|---|---|---|---|
+| `oracle` | 100 % | 772 / 786 | 0 |
+| `bounded` | 100 % | 780 / 786 | 0 |
+| `partial` | 99 % | 538 / 596 | 0 (1 material input lost) |
+| `distractors` | 100 % | 770 / 786 | 0 |
+| `blind` | 97 % | 264 / 599 | 96 |
+
+With the right inputs on the list the fit recovers the amounts; the misses are mostly pairs of
+inputs whose cumulative inventories are (near-)identical, e.g. inert waste and gravel to the same
+landfill, where any split gives the same flows. Ten wrong candidates are set to zero — an optimistic
+result, since a synthetic target is reproduced exactly by its true inputs and a wrong one has
+nothing left to absorb; real originals were computed on older background data. With no list the fit
+reproduces 97 % of the flows with a made-up process of ~96 wrong inputs: **the identifiability
+trap, a near-perfect inventory fit with the wrong structure.**
+
+Earlier runs (before 2026-09-23) read much worse — 614/803 for `oracle`, 63 % of flows for
+`distractors`, 6 % for `blind` — because of two faults in the fit, not the method: `lsq_linear`'s
+trust-region solver stopped early on the badly scaled system, and the group normalisation (dividing
+by the group's sum of weights) weighted each group by its smallest flow, so "kilogram/emissions"
+counted 1e-58 of one land-use flow and the fit saw ~20 of ~1,670 flows.
 
 ### Extraction mode: the whole route, including the PDF
 
@@ -279,23 +382,56 @@ The drafted spec is then compared with the process's real exchanges:
 | `inputs_matched` / `inputs_missed` / `inputs_extra` | true inputs recovered *and mapped to the right dataset* (by code); true inputs absent; drafted inputs that are not in the process |
 | `input_amounts_within_20pct` | of the matched inputs, how many amounts (after calibration) are within ±20 % of the real ones |
 | `direct_flows_matched` | direct emissions/resources recovered (by substance and compartment) |
-| `climate_delta_pct`, `categories_within_10pct` | the harness's verdict on the rebuilt node vs the real process |
+| `top_flows_within_10pct`, `kg_mass_covered_pct`, `flows_within_10pct` | the harness's verdict on the rebuilt node vs the real process: the 50 largest kilogram flows, the share of kilogram mass, all flows |
 | `gaps_reported` | what the model said the excerpt did not cover |
 
 Model calls per case: three (locate, extract, map). The one case run so far, `CEM II, B‑LL
 cement` from the concrete 2020 report (answered by a Claude Code session, labelled so): 9/9 inputs
-found and mapped, 8/9 amounts within ±20 %, the direct flow matched, climate +0.6 %, 24/25
-categories within ±10 %. The one amount miss is a finding about the data, not the pipeline: the
+found and mapped, 8/9 amounts within ±20 %, the direct flow matched. The one amount miss is a finding about the data, not the pipeline: the
 report prints 2.0E‑2 tkm of lorry transport for that cement, the BAFU dataset carries 4.3E‑4.
+
+## 7. Share the rebuilds: export and import
+
+The rebuilt unit processes live in the Brightway sandbox of whoever ran `run-all`. To let someone
+else enrich *their* BAFU-2026 project with them:
+
+```bash
+PYTHONPATH=src python scripts/export_disaggregated.py --project bafu-2026   # -> exports/
+python scripts/import_disaggregated.py --project <their-project> --dry-run  # resolve, write nothing
+python scripts/import_disaggregated.py --project <their-project>            # add one new database
+PYTHONPATH=src python scripts/verify_import_roundtrip.py --source bafu-2026 --scratch import-test
+```
+
+The export is a plain documented JSON (plus a flat CSV of the explicit exchanges): per dataset the
+name, location, unit, reference product, the BAFU code it replaces, the strategy, every
+technosphere exchange with its supplier's BAFU code, every elementary flow with its EF 3.1 code and
+database, the residual block, and the provenance (report, page, quoted line) where the pipeline
+recorded it. The importer links by code, creates one new database and **refuses to write anything**
+if a referenced code is missing in the target project, naming every one.
+
+Format, flags, what the strategies mean and — importantly — the per-dataset quality limits are in
+[exports/README.md](exports/README.md). The short version: import the `*-hybrid` nodes if you need
+results that match BAFU-2026 (they reproduce the originals to 1e-8), the `*-disagg` nodes only if
+you want the evidence-only model, which reproduces between 0 % and 90 % of a dataset's flows. The
+spread is wide, the high end is not what it looks like and the low end is often not either — both
+traps are documented in [exports/README.md](exports/README.md), under *The PlasticsEurope family*
+and *The APME eco-profiles the ecoSpold type=2 flag missed*. The sharpest single illustration is in
+the second one: substituting BAFU's own disaggregated epoxy resin for BAFU's own aggregated epoxy
+resin, with no modelling at all, gets fossil CO₂ to +1.5 % and 75 % of the kilogram mass — and
+scores 0 % on "flows within ±10 %".
 
 ## Layout
 
 ```
 src/reverse_bafu/   pipeline: cli, spec, db, lci, resolve, calibrate, build, check, runall, draft, benchmark
-scripts/            list_system_terminated.py, list_sources.py, render_pages.py (+ templates/)
+scripts/            list_system_terminated.py, find_system_processes.py, list_sources.py,
+                    render_pages.py (+ templates/), ecoprofile_agreement.py, ecoprofile_consumers.py,
+                    transcription_vs_truth.py,
+                    export_disaggregated.py, import_disaggregated.py, verify_import_roundtrip.py
 prompts/            the three fixed LLM prompt templates (locate, extract, map)
 specs/              one JSON per rebuilt dataset; specs/evidence/<code>/ = drafting records
 results/            system_terminated.csv, sources.csv, dois.csv, drafting_status.csv, rebuild_status.csv, checks/, benchmark/
+exports/            the shareable export of the rebuilt datasets + its README (format, import, quality limits)
 artifacts/          the documentation: method-explainer, the-101, rebuilt-inventories, burnt-shale-rebuilt, code-walkthrough
 references.txt      the two papers referenced, with their role for this project
 .claude/commands/   /draft-all, /draft-spec, /benchmark-extraction

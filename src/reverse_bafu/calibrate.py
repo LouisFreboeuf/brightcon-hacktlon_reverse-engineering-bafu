@@ -1,16 +1,20 @@
-"""Step 2 - amounts for the inputs marked ``free``, by NNLS against the target's cumulative
-inventory, with every other input held at its spec amount. The input *list* is never changed
-here: with a free structure the fit reproduces the scores and invents the process (see the
-method explainer in artifacts/, §2 and §7); with the list fixed it recovers amounts to ~10 %."""
+"""Step 2 - amounts for the inputs marked ``free``, by bounded least squares against the target's
+cumulative inventory, flow by flow, with every other input held at its spec amount. The input
+*list* is never changed here: with a free structure the fit reproduces the inventory and invents
+the process (see the method explainer in artifacts/, §2 and §7); with the list fixed it recovers
+amounts to ~10 %.
+
+No impact assessment: every flow present in the target or the model is one equation, weighted by
+its relative error, with each (unit, compartment) group of flows counting equally and round-off
+flows left out (``lci.System.fit_weights``). There is no per-category emphasis to choose."""
 
 from __future__ import annotations
 
 import numpy as np
-import scipy.optimize as so
 import bw2data as bd
 
 from . import db
-from .lci import System
+from .lci import System, determined_flows, solve_weighted
 from .spec import Spec
 
 
@@ -32,36 +36,44 @@ def run(spec: Spec, apply: bool = False) -> None:
     sys_ = System(demand)
     ids = {i.code: bd.get_node(database=db.SANDBOX_DB if i.sandbox else db.INVENTORY_DB, code=i.code).id for i in inputs}
     b = sys_.cumulative([target.id])[:, 0]
+    det = determined_flows(sys_, target.id)
     M_fixed = sys_.cumulative([ids[i.code] for i in fixed]) if fixed else np.zeros((sys_.n_flows, 0))
     M_free = sys_.cumulative([ids[i.code] for i in free])
     # direct flows of the node itself are part of the fixed contribution too
     direct = np.zeros(sys_.n_flows)
     for f in node.emissions + node.resources:
         if f.code:
-            row = sys_.lca.dicts.biosphere.get(bd.get_node(database=f.database, code=f.code).id)
+            row = sys_.flow_row(f.database, f.code)
             if row is not None:
                 direct[row] += f.amount
-    residual_target = b - M_fixed @ np.array([i.amount for i in fixed]) - direct
-    w = sys_.flow_weights(b, node.category_weights)
-    rows = np.where(w > 0)[0]
-    A = w[rows, None] * M_free[rows]
-    y = w[rows] * residual_target[rows]
+    fixed_part = M_fixed @ np.array([i.amount for i in fixed]) + direct
+    residual_target = b - fixed_part
     lo = np.array([i.bounds[0] if i.bounds else 0.0 for i in free])
     hi = np.array([i.bounds[1] if i.bounds else np.inf for i in free])
-    if node.mass_sum is not None:
-        # one heavily weighted row: the free kilogram inputs add up to mass_sum
-        kg = np.array([1.0 if i.unit.startswith("kilo") else 0.0 for i in free])
-        wt = 1e3 * np.linalg.norm(y)
-        A = np.vstack([A, wt * kg])
-        y = np.append(y, wt * node.mass_sum)
-    # normalise columns (a "unit" of plant vs a kg of material differ by many orders of magnitude)
-    scale = np.linalg.norm(A, axis=0)
-    scale[scale == 0] = 1.0
-    res = so.lsq_linear(A / scale, y, bounds=(lo * scale, hi * scale), max_iter=20000)
-    x, rnorm = res.x / scale, float(np.linalg.norm(A @ (res.x / scale) - y))
-    print(f"fit over {len(rows)} characterised flows; {len(free)} free input(s)"
+    kg = np.array([1.0 if i.unit.startswith("kilo") else 0.0 for i in free])
+
+    def fit(model: np.ndarray) -> tuple[np.ndarray, float, int]:
+        """One weighted solve. The weights are relative to ``model``, so a flow the model brings in
+        that the target does not have counts by its own size rather than being divided by zero."""
+        w = sys_.fit_weights(b, model, det)
+        rows = np.where(w > 0)[0]
+        A = w[rows, None] * M_free[rows]
+        y = w[rows] * residual_target[rows]
+        if node.mass_sum is not None:
+            # one heavily weighted row: the free kilogram inputs add up to mass_sum
+            wt = 1e3 * np.linalg.norm(y)
+            A = np.vstack([A, wt * kg])
+            y = np.append(y, wt * node.mass_sum)
+        x = solve_weighted(A, y, lo, hi)
+        return x, float(np.linalg.norm(A @ x - y)), len(rows)
+
+    # two passes: the first weights against the spec's own amounts, the second against the fit, so
+    # the result does not depend on the amounts a draft happened to start from
+    x, rnorm, n_rows = fit(fixed_part + M_free @ np.array([i.amount for i in free]))
+    x, rnorm, n_rows = fit(fixed_part + M_free @ x)
+    print(f"fit over {n_rows} flows; {len(free)} free input(s)"
           f"{'; bounds from the report' if any(i.bounds for i in free) else ''}"
-          f"{f'; mass sum = {node.mass_sum}' if node.mass_sum is not None else ''}; residual norm {rnorm:.3g}\n")
+          f"{f'; mass sum = {node.mass_sum}' if node.mass_sum is not None else ''}; residual norm {rnorm:.3g}; two passes\n")
     print(f"{'spec amount':>12s} {'fitted':>12s} {'ratio':>7s}  input")
     for i, v in zip(free, x):
         ratio = v / i.amount if i.amount else float("inf")

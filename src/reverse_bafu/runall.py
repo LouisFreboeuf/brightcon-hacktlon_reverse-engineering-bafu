@@ -2,8 +2,8 @@
 
 Specs are ordered so that a spec linking a rebuilt node (an input with ``"sandbox"``) runs after
 the spec that builds that node. Per spec the outcome lands in results/rebuild_status.csv: status
-(rebuilt / unresolved / error), climate change deviation, categories within +-10 %, the worst
-category and the report path. ``--apply`` lets calibrate write the fitted amounts into the specs.
+(rebuilt / unresolved / error), flows within +-10 % of the target, the median flow deviation,
+flows missing from the model, a note and the report path. ``--apply`` lets calibrate write the fitted amounts into the specs.
 """
 
 from __future__ import annotations
@@ -44,17 +44,15 @@ def ordered(paths: list[Path]) -> list[spec_mod.Spec]:
 
 
 def _summary(report: Path) -> dict:
-    scores = []
-    for line in report.read_text().splitlines():
-        m = re.match(r"\| (.+?) \| ([-\d.e+]+) \| ([-\d.e+]+) \| ([-+\d.]+)% \| ([-+\d.]+)% \| ([-\d.—]+) \|", line)
-        if m:
-            scores.append((m.group(1), float(m.group(4))))
-    if not scores:
+    text = report.read_text()
+    top = re.search(r"the 50 largest kilogram flows: (\d+)/(\d+) within ±10 %, median \|Δ\| ([\d.]+)%", text)
+    mass = re.search(r"kilogram mass covered within ±10 %: ([\d.]+)% of", text)
+    allf = re.search(r"- (\d+) of those (\d+) within ±10 % \((\d+)%\), median \|Δ\| ([\d.]+)%, (\d+) missing", text)
+    if not (top and allf and mass):
         return {}
-    worst = max(scores, key=lambda t: abs(t[1]))
-    return {"climate_delta_pct": next((d for c, d in scores if c == "Climate change"), ""),
-            "within_10pct": f"{sum(1 for _, d in scores if abs(d) <= 10)}/{len(scores)}",
-            "worst_category": f"{worst[0]} ({worst[1]:+.1f} %)"}
+    return {"top_flows_within_10pct": f"{top.group(1)}/{top.group(2)}", "top_flow_median_abs_delta_pct": top.group(3), "kg_mass_covered_pct": mass.group(1),
+            "flows_within_10pct": f"{allf.group(1)}/{allf.group(2)}", "flows_within_10pct_share": f"{allf.group(3)}%",
+            "flow_median_abs_delta_pct": allf.group(4), "flows_missing": allf.group(5)}
 
 
 def run_all(project: str, apply: bool, status_path: Path = Path("results/rebuild_status.csv")) -> None:
@@ -67,7 +65,7 @@ def run_all(project: str, apply: bool, status_path: Path = Path("results/rebuild
     rows = []
     for sp in ordered(paths):
         rec = {"spec": str(sp.path), "code": sp.target_code, "name": sp.target_name, "variant": sp.variant or "",
-               "strategy": sp.strategy.get("code", ""), "status": "", "climate_delta_pct": "", "within_10pct": "", "worst_category": "", "report": ""}
+               "strategy": sp.strategy.get("code", ""), "status": "", "top_flows_within_10pct": "", "top_flow_median_abs_delta_pct": "", "kg_mass_covered_pct": "", "flows_within_10pct": "", "flows_within_10pct_share": "", "flow_median_abs_delta_pct": "", "flows_missing": "", "note": "", "report": ""}
         rows.append(rec)
         print(f"\n=== {sp.path} ===", file=sys.stderr)
         try:
@@ -80,10 +78,10 @@ def run_all(project: str, apply: bool, status_path: Path = Path("results/rebuild
             report = check.run(spec_mod.load(sp.path))
             rec.update(_summary(report)); rec["status"] = "rebuilt"; rec["report"] = str(report)
         except SystemExit as exc:
-            rec["status"], rec["worst_category"] = "error", str(exc)[:160]
+            rec["status"], rec["note"] = "error", str(exc)[:160]
     status_path.parent.mkdir(parents=True, exist_ok=True)
     with status_path.open("w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
     print(f"\n{len(rows)} specs -> {status_path}")
     for r in rows:
-        print(f"  {r['status']:10s} {r['name'][:32]:32s} {r['variant'] or '-':6s} climate {r['climate_delta_pct'] or '—':>7} within±10% {r['within_10pct'] or '—':6s} {r['worst_category'][:60]}")
+        print(f"  {r['status']:10s} {r['name'][:32]:32s} {r['variant'] or '-':6s} top flows ±10 % {r['top_flows_within_10pct'] or '—':>6} mass {r['kg_mass_covered_pct'] or '—':>5}% all {r['flows_within_10pct'] or '—':>10} ({r['flows_within_10pct_share'] or '—':>4}) median |Δ| {r['flow_median_abs_delta_pct'] or '—':>5}% {r['note'][:60]}")

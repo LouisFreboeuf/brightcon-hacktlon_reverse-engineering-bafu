@@ -61,7 +61,7 @@
       },
       {
         "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
-        "amount": 1.5000000000000002,
+        "amount": 1.5,
         "unit": "ton kilometer",
         "location": "CH",
         "note": "CH template x 10 kg/m2 = 3",
@@ -74,7 +74,7 @@
       },
       {
         "name": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
-        "amount": 5.95,
+        "amount": 7.912058470696621,
         "unit": "megajoule",
         "location": "RER",
         "note": "CH template x 10 kg/m2 = 11.9",
@@ -87,7 +87,7 @@
       },
       {
         "name": "Tap water, at user",
-        "amount": 6.3599999999998875,
+        "amount": 6.36,
         "unit": "kilogram",
         "location": "RER",
         "note": "CH template x 10 kg/m2 = 3.18",
@@ -100,7 +100,7 @@
       },
       {
         "name": "Stucco, at plant",
-        "amount": 12.909989712891605,
+        "amount": 3.5499999999999994,
         "unit": "kilogram",
         "location": "CH",
         "note": "CH template x 10 kg/m2 = 7.1",
@@ -113,7 +113,7 @@
       },
       {
         "name": "Electricity, medium voltage, at grid",
-        "amount": 0.5919388922180031,
+        "amount": 1.1434759143505249,
         "unit": "kilowatt hour",
         "location": "DE",
         "note": "CH template x 10 kg/m2 = 0.865; grid switched to DE",
@@ -126,7 +126,7 @@
       },
       {
         "name": "Waste paper, sorted, for further treatment",
-        "amount": 0.7500000000000001,
+        "amount": 0.75,
         "unit": "kilogram",
         "location": "RER",
         "note": "CH template x 10 kg/m2 = 1.5",

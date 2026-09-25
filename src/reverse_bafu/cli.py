@@ -22,14 +22,19 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--reports", default="BAFU-2026 v1_Documentation/BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports",
                    help="locate/draft-all: folder with the report PDFs")
     p.add_argument("--only", default="", help="draft-all: comma-separated dataset codes (or 8-char prefixes) to process")
+    p.add_argument("--datasets", default="results/system_terminated.csv",
+                   help="draft-all: the CSV of aggregated datasets to work through (see scripts/find_system_processes.py)")
     p.add_argument("--by", default="", help="draft-all: author label for responses answered outside the API")
+    p.add_argument("--no-fallback", action="store_true",
+                   help="draft-all: stop at pages-not-found / no-pdf instead of trying the template and metadata routes")
     p.add_argument("--n", type=int, default=30, help="benchmark: number of synthetic cases")
     p.add_argument("--seed", type=int, default=1)
     p.add_argument("--scenarios", default="oracle,bounded,partial,distractors,blind")
+    p.add_argument("--shard", default=None, help="benchmark: i/k runs every k-th case from i (merge with benchmark.merge_shards)")
     p.add_argument("--name", default=None, help="benchmark: output name (default n<N>-seed<S>)")
     p.add_argument("--mode", choices=["calibration", "extraction"], default="calibration",
                    help="benchmark: calibration (amounts from a given list) or extraction (the whole route incl. the PDF)")
-    p.add_argument("--project", default="reverse-bafu")
+    p.add_argument("--project", default="bafu-2026")
     p.add_argument("--apply", action="store_true", help="calibrate / run / run-all: write fitted amounts back into the spec")
     p.add_argument("--no-hybrid", action="store_true", help="build: skip the residual (hybrid) node")
     args = p.parse_args(argv)
@@ -44,7 +49,8 @@ def main(argv: list[str] | None = None) -> int:
             benchmark.run_extraction(args.n, args.seed, args.name or f"n{args.n}-seed{args.seed}", args.project, Path(args.ecospold),
                                      Path(args.reports), args.dry_run, args.by or "manual", only)
         else:
-            benchmark.run(args.n, args.seed, args.scenarios.split(","), args.name or f"n{args.n}-seed{args.seed}")
+            shard = tuple(map(int, args.shard.split("/"))) if args.shard else None
+            benchmark.run(args.n, args.seed, args.scenarios.split(","), args.name or f"n{args.n}-seed{args.seed}", shard=shard)
         return 0
     if args.command == "run-all":
         from . import runall
@@ -54,7 +60,8 @@ def main(argv: list[str] | None = None) -> int:
         from pathlib import Path
         from . import draft as draft_mod
         only = {x.strip() for x in args.only.split(",") if x.strip()} or None
-        draft_mod.draft_all(args.project, Path(args.ecospold), Path(args.reports), args.dry_run, only, args.by or "manual")
+        draft_mod.draft_all(args.project, Path(args.ecospold), Path(args.reports), args.dry_run, only, args.by or "manual",
+                            datasets=Path(args.datasets), fallbacks=not args.no_fallback)
         return 0
     if args.command in ("evidence", "draft", "assemble", "locate"):
         from pathlib import Path

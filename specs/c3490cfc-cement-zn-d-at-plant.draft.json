@@ -8,7 +8,7 @@
   "strategy": {
     "code": "S1",
     "label": "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)",
-    "note": "basis: per 1 kg cement ZN/D, ab Werk (Tab. 3.14, Werner 2018); the composition rows are percentage ranges of the kg; allocation: none stated for the cement itself; the burnt-shale input carries the economic allocation of section 3.6. Review every derivation; unreviewed entries have reviewed_by = null."
+    "note": "basis: per 1 kg cement ZN/D, ab Werk (Tab. 3.14, Werner 2018); the composition rows are percentage ranges of the kg; allocation: none stated for the cement itself; the burnt-shale input carries the economic allocation of section 3.6; 7 of 13 inputs carry a printed amount, 6 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null."
   },
   "evidence": [
     {
@@ -49,7 +49,7 @@
     "inputs": [
       {
         "name": "Clinker, at plant",
-        "amount": 0.4197564889986279,
+        "amount": 0.4000000000000001,
         "unit": "kilogram",
         "location": "CH",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range",
@@ -79,7 +79,7 @@
       },
       {
         "name": "Gypsum, mineral, at mine",
-        "amount": 0.09999999999999998,
+        "amount": 0.0,
         "unit": "kilogram",
         "location": "CH",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; '< 10 %'",
@@ -109,7 +109,7 @@
       },
       {
         "name": "Recycling aggregate from mixed demolition, dry, at plant",
-        "amount": 0.2046525816996887,
+        "amount": 0.29999999999999993,
         "unit": "kilogram",
         "location": "CH",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; recycled mixed construction rubble, dry",
@@ -139,7 +139,7 @@
       },
       {
         "name": "Burnt shale, at plant",
-        "amount": 0.16774531841329754,
+        "amount": 0.2995365980478916,
         "unit": "kilogram",
         "location": "DE",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; the burnt-shale dataset is itself aggregated in BAFU — link the rebuilt node if available",
@@ -171,7 +171,7 @@
       },
       {
         "name": "Iron sulphate, at plant",
-        "amount": 0.007845611182028459,
+        "amount": 0.0,
         "unit": "kilogram",
         "location": "RER",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; '< 1 %'",
@@ -201,7 +201,7 @@
       },
       {
         "name": "Limestone, milled, loose, at plant",
-        "amount": 0.09999999999999999,
+        "amount": 0.0004633534828007107,
         "unit": "kilogram",
         "location": "CH",
         "note": "range given as a share of the kg; point estimate = midpoint, bounds = the range; '< 10 %'; filter dust modelled as milled limestone",

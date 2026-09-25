@@ -1,0 +1,26 @@
+code,name,category,n_true_inputs,n_material_inputs,scenario,n_candidates,n_chosen,true_positives,false_positives,false_negatives,amounts_within_20pct,amount_ratio_median,n_target_flows,n_scored_flows,n_excluded_flows,flows_within_10pct,flows_within_10pct_share,flow_median_abs_delta_pct,flows_missing,flows_extra,seconds
+80edb9d9-1b57-3472-9388-1f6a3961b4c9,"Packing, clay products",Others,10,9,blind,675,98,8,90,1,6/9,0.8644032103869314,1790,1670,120,1613,0.9659,0.808,0,0,13.11
+392fbd86-4199-3fe3-ae9c-9f89182a06c7,"Green manure IP, until march",agricultural,13,13,blind,675,169,8,161,5,4/11,0.9257045849196911,1790,1670,120,1464,0.8766,0.493,0,0,0.97
+4290d583-d2ec-3572-b130-a8708c33f8b6,"Methyl ester, from biogenic oils, mix, at regional storage",biomass,4,4,blind,675,147,0,147,4,0/0,nan,1790,1669,121,1263,0.7567,1.021,0,0,0.81
+28d0e400-dfe2-3209-8f0e-849dbae9d0c6,"Panelling, aluminium, window frame cover, wall opening, at plant",building components,4,4,blind,675,28,2,26,2,2/3,0.9962944159216501,1790,1669,121,1668,0.9994,0.01,0,0,1.63
+ce890b07-c419-41bf-83b9-ff19734f38f6,"Petrol, burned in building machine, with particle filter",building processes,4,4,blind,674,153,1,152,3,0/3,0.0,1790,1668,122,1258,0.7542,1.677,0,0,0.78
+356388ef-8f73-3766-9eac-8ef6fdde9329,Ceramic plant,ceramics,3,3,blind,675,90,1,89,2,0/3,0.0,1790,1671,119,1631,0.9761,0.241,0,0,0.84
+87f791bb-fc12-31eb-ae1e-387398762a32,"Copper oxide, at plant",chemicals,8,8,blind,675,120,5,115,3,3/7,0.7704510004092733,1790,1669,121,1632,0.9778,0.167,0,0,1.11
+8afc0715-04a0-3089-8522-1515885eaeaf,"Compressed air, best generation, >30kW, 8 bar gauge, at compressor",compressed air,6,4,blind,675,36,1,34,3,0/3,0.0,1790,1667,123,1660,0.9958,0.052,0,0,1.03
+254903d1-d665-3454-a4c2-ae1b69bbb0e0,"Use, computer, laptop, standby/sleep mode",computers & network,4,4,blind,675,157,2,155,2,0/3,0.7068277003858946,1791,1671,120,1437,0.86,0.71,1,0,1.43
+541aeaab-2868-48d7-a530-1c762adc5e23,"Disposal, sewer system, vitrified clay pipe, DN 300, profile 2",construction,10,10,blind,675,9,7,2,3,5/10,0.9999655124653442,1790,1670,120,1670,1.0,0.0,0,0,1.92
+7622063d-6d0d-316d-8455-556556b1731a,"Ground granulated blast furnace slag, no burdens, at plant",construction materials,14,13,blind,675,136,6,129,7,2/10,0.4970945626509964,1790,1668,122,1514,0.9077,0.385,0,0,0.8
+22054091-22ea-3b0e-9b20-ef284f4dce61,"Bored pile wall, overlapped, strutted apart, Alterssiedlung Seefeldstrasse Zürich",construction processes,6,6,blind,675,61,6,55,0,4/6,0.9091939244422362,1790,1676,114,1666,0.994,0.037,0,0,1.08
+7e0b7397-b949-448e-ac9b-cad2f937100b,"Disposal, building, mineral plaster, to sorting plant",construction waste,5,5,blind,675,11,3,8,2,1/5,0.29923544909022703,1790,1670,120,1668,0.9988,0.014,0,0,0.94
+c392dd88-9aec-3f5b-98f9-9b6ba57c5e20,"Electricity, medium voltage, at grid",electricity,3,2,blind,675,124,1,122,1,0/1,0.385797861812428,1790,1668,122,1486,0.8909,1.053,0,0,0.9
+8b83697e-270a-36ef-bcd0-c913b8ee67be,"Electricity, hydropower, net, at reservoir power plant",electricity by fuel,3,2,blind,675,124,0,124,2,0/1,0.0,1790,1670,120,1426,0.8539,0.848,0,0,0.72
+7ba53be9-19cd-331a-b4e9-3a255a021254,"Battery-cooling-system, passive, at plant",electronics,17,17,blind,675,85,13,72,4,6/15,0.7868748053971244,1790,1669,121,1599,0.9581,0.122,0,0,1.03
+44164692-11a5-427f-8dbb-2f7695294930,"Dismantling, IT accessoires, mechanically, at plant",electronics waste,3,3,blind,675,85,1,84,2,0/1,0.17517154658600467,1790,1667,123,1606,0.9634,0.019,0,0,1.23
+02fd8be4-a33b-3cb5-a1ca-40bcbddb251a,"Electricity, low voltage, production from hard coal, at grid","energy supply, kbob recommendation",3,2,blind,675,61,1,59,1,1/1,0.9971710502591522,1790,1667,123,1660,0.9958,0.374,0,0,0.76
+0700f5ce-f370-3cd5-9297-71b217c0de7e,"Heat, residential, by transfer of geothermal heat using ground source heat pump using electricity from grid","energy, obsolete",9,7,blind,675,70,3,65,4,1/4,3.023895916597675,1790,1671,119,1638,0.9803,0.059,0,0,1.45
+3d0ac523-3be7-357d-86cd-37a27771840c,"Flooring, needle felt, at regional storage",flooring,11,11,blind,675,132,8,124,3,6/9,0.9680909871412432,1790,1669,121,1567,0.9389,0.269,0,0,1.28
+bcd8ea60-8d17-34e2-8e4b-300c20eaa2f4,Canning of legumes,food industry,3,3,blind,675,4,3,1,0,3/3,0.9998808434946092,1790,1670,120,1670,1.0,0.001,0,0,1.53
+e3ab46d3-e956-39a8-82a7-a3aadad346ff,"Transport, natural gas, offshore pipeline, long distance",fuels,5,4,blind,675,31,3,28,1,2/3,0.9964677358335601,1790,1668,122,1656,0.9928,0.038,0,0,0.96
+4bf4e6d8-2c49-3042-956a-5778edad98c8,"Tempering, flat glass",glass,4,4,blind,674,4,4,0,0,4/4,0.9992893499743208,1790,1668,122,1668,1.0,0.0,0,0,2.24
+405ca232-c566-37a2-98a7-913d686ea0e3,"Heat, residential, by conversion of hydrogen using fuel cell, SOFC, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from Solar PV + Wind (MA)",heat,4,3,blind,675,116,2,113,1,2/2,1.0130192818081547,1790,1671,119,1396,0.8354,1.173,0,0,0.69
+8fbb543c-4f07-3a5c-944c-1313990c05ba,"PIR insulation with PVC cladding, insulation thickness 40mm",heating,5,5,blind,675,14,5,9,0,4/5,0.9979875740051926,1790,1670,120,1670,1.0,0.0,0,0,2.4

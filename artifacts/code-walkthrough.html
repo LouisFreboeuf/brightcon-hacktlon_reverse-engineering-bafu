@@ -22,6 +22,16 @@ pre{font-family:"IBM Plex Mono",monospace;font-size:.8rem;line-height:1.5;backgr
 .state.ok{border-color:var(--good);color:var(--good)} .state.warn{border-color:var(--warn);color:var(--warn)} .state.bad{border-color:var(--bad);color:var(--bad)} .state.info{border-color:var(--blue);color:var(--blue)}
 .ladder li.head{background:transparent} .ladder li.head .if,.ladder li.head .then{font-family:"IBM Plex Sans",sans-serif;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:transparent;padding:6px 12px}
 .tbl{overflow-x:auto;margin-top:10px} table{border-collapse:collapse;width:100%;font-size:.86rem} th{text-align:left;font-weight:500;color:var(--ink2);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 8px;border-bottom:1px solid var(--rule);vertical-align:bottom} td{padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:top} td.mono{white-space:nowrap}
+.math{background:var(--bg2);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;margin:14px 0}
+.math .eq{font-family:Spectral,Georgia,serif;font-size:1.06rem;line-height:1.9;overflow-x:auto;white-space:nowrap;padding-bottom:2px}
+.math .eq.c{text-align:center} .math .eq .lbl{float:right;color:var(--ink2);font-family:"IBM Plex Sans",sans-serif;font-size:.74rem;font-style:normal}
+.math .where{font-size:.84rem;color:var(--ink2);margin:10px 0 0;line-height:1.65;max-width:none}
+.math .where b{color:var(--ink);font-weight:500}
+var,.v{font-family:Spectral,Georgia,serif;font-style:italic;font-size:1.04em}
+.sym{list-style:none;padding:0;margin:12px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px 18px;font-size:.86rem}
+.sym li{display:grid;grid-template-columns:62px 1fr;gap:8px;padding:3px 0;border-bottom:1px solid var(--rule)}
+.sym li span:first-child{font-family:Spectral,Georgia,serif;font-style:italic;font-size:1.02rem;text-align:right;color:var(--ink)}
+.sym li span:last-child{color:var(--ink2);font-size:.84rem;line-height:1.45}
 .note{border-left:3px solid var(--blue);padding:4px 14px;background:var(--bg2);border-radius:0 6px 6px 0;margin:14px 0;font-size:.9rem}
 .diagram{overflow-x:auto} svg{display:block;max-width:100%} svg text{font-family:"IBM Plex Sans",system-ui,sans-serif;fill:var(--ink);font-size:12px} svg .small{font-size:10.5px;fill:var(--ink2)} svg .mono{font-family:"IBM Plex Mono",monospace;font-size:10.5px}
 svg .box{fill:var(--card);stroke:var(--rule);stroke-width:1.2} svg .box.b{stroke:var(--blue);stroke-width:1.6} svg .box.o{stroke:var(--orange);stroke-width:1.6} svg .box.g{fill:var(--bg2)} svg .box.db{fill:var(--bg2);stroke:var(--ink2);stroke-dasharray:4 3}
@@ -73,8 +83,8 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
  <rect class="box b" x="250" y="90" width="110" height="44" rx="5"/><text x="305" y="117" text-anchor="middle" font-weight="500">calibrate</text>
  <rect class="box b" x="250" y="160" width="110" height="44" rx="5"/><text x="305" y="187" text-anchor="middle" font-weight="500">build</text>
  <rect class="box b" x="250" y="230" width="110" height="44" rx="5"/><text x="305" y="257" text-anchor="middle" font-weight="500">check</text>
- <rect class="box" x="450" y="90" width="130" height="114" rx="5"/><text x="515" y="112" text-anchor="middle" font-weight="500">lci.System</text><text x="515" y="130" text-anchor="middle" class="small">A = technosphere (LU)</text><text x="515" y="145" text-anchor="middle" class="small">B = biosphere</text><text x="515" y="160" text-anchor="middle" class="small">cumulative(ids) = B·A⁻¹·e</text><text x="515" y="175" text-anchor="middle" class="small">cf = 25 EF rows</text><text x="515" y="190" text-anchor="middle" class="small">flow_weights(target)</text>
- <rect class="box g" x="680" y="230" width="200" height="44" rx="5"/><text x="780" y="250" text-anchor="middle" font-weight="500">results/checks/&lt;code&gt;.md</text><text x="780" y="265" text-anchor="middle" class="small">scores · flow diff · residual · checks</text>
+ <rect class="box" x="450" y="90" width="130" height="114" rx="5"/><text x="515" y="112" text-anchor="middle" font-weight="500">lci.System</text><text x="515" y="130" text-anchor="middle" class="small">A = technosphere (LU)</text><text x="515" y="145" text-anchor="middle" class="small">B = biosphere</text><text x="515" y="160" text-anchor="middle" class="small">cumulative(ids) = B·A⁻¹·e</text><text x="515" y="175" text-anchor="middle" class="small">relative_weights(target)</text><text x="515" y="190" text-anchor="middle" class="small">flow_agreement(t, model)</text>
+ <rect class="box g" x="680" y="230" width="200" height="44" rx="5"/><text x="780" y="250" text-anchor="middle" font-weight="500">results/checks/&lt;code&gt;.md</text><text x="780" y="265" text-anchor="middle" class="small">flow agreement · residual · checks</text>
  <rect class="box g" x="680" y="20" width="200" height="44" rx="5"/><text x="780" y="40" text-anchor="middle" font-weight="500">results/system_terminated.csv</text><text x="780" y="55" text-anchor="middle" class="small">codes of the 101 → "aggregated" state</text>
  <g class="link"><path d="M160 42 L 248 42" marker-end="url(#ah)"/><path d="M160 147 C 200 147, 200 42, 248 42" marker-end="url(#ah)"/><path d="M680 42 C 620 42, 420 42, 362 42" marker-end="url(#ah)" stroke-dasharray="4 3"/></g>
  <g class="link"><path d="M360 42 C 400 42, 400 20, 240 20 C 190 20, 190 30, 162 30" marker-end="url(#ah)" stroke-dasharray="4 3"/></g>
@@ -93,7 +103,6 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
   <span class="k">"node"</span>: {
     "name", "unit", "location", "comment",
     <span class="k">"mass_sum"</span>: 1.0,                                 <span class="c">optional · free kg inputs must add up to this</span>
-    <span class="k">"category_weights"</span>: {"Climate change": 5},       <span class="c">optional · emphasis per EF category, default 1</span>
     <span class="k">"inputs"</span>: [
       {"name", "amount", "unit", "location",        <span class="c">location optional → resolver's preference order</span>
        <span class="s">"code"</span>: "…",                                 <span class="c">written back by resolve</span>
@@ -128,18 +137,106 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <p class="muted" style="font-size:.88rem">Resolve writes <code>code</code>/<code>location</code> (inputs) and <code>database</code>/<code>code</code> (flows) back into the spec, so later steps never search by name again.</p>
 
 <h2>5 · Step 2 — calibrate <span class="muted mono">calibrate.py · lci.py</span></h2>
-<p>Only the top node is calibrated; nested nodes keep their spec amounts. Let <em>b</em> be the target's cumulative inventory, <em>Mᶠ</em> the matrix whose columns are the cumulative inventories of the free inputs, <em>Mˣ</em> the same for fixed inputs, <em>d</em> the node's direct flows as a vector.</p>
+<p>Only the top node is calibrated; nested nodes keep their spec amounts. This step is a <b>bounded, weighted, linear least-squares problem</b> in the amounts of the inputs marked <code>free</code>, solved twice. The structure — which inputs exist at all — is never a variable here, and §5.7 derives why.</p>
+
+<h3>5.1 · Notation</h3>
+<p>Everything lives in flow space: <var>n</var> = 1,927 elementary-flow rows of the EF 3.1 biosphere, no characterisation anywhere. <code>lci.System.cumulative</code> returns <var>B</var><var>A</var><sup>−1</sup><var>e</var><sub>j</sub> — the cumulative inventory of one activity — as a column.</p>
+<ul class="sym">
+<li><span>b</span><span>cumulative inventory of the target, the aggregated dataset being rebuilt</span></li>
+<li><span>M<sup>f</sup></span><span><var>n</var>×<var>q</var>; columns are the cumulative inventories of the <var>q</var> <b>free</b> inputs</span></li>
+<li><span>M<sup>x</sup></span><span><var>n</var>×<var>p</var>; the same for the <b>fixed</b> inputs, held at their spec amounts <var>a</var><sup>x</sup></span></li>
+<li><span>d</span><span>the node's own direct elementary flows, as a vector</span></li>
+<li><span>a</span><span>the unknown: amounts of the free inputs, bounded by <var>lo</var> ≤ <var>a</var> ≤ <var>hi</var></span></li>
+<li><span>m(a)</span><span>the model inventory <var>M</var><sup>x</sup><var>a</var><sup>x</sup> + <var>d</var> + <var>M</var><sup>f</sup><var>a</var></span></li>
+<li><span>r</span><span>the <b>residual target</b> — what the free inputs have to explain</span></li>
+<li><span>w, W</span><span>row weights and <var>W</var> = diag(<var>w</var>); <var>R</var> = { <var>i</var> : <var>w</var><sub>i</sub> &gt; 0 }</span></li>
+<li><span>κ, μ</span><span>indicator of free inputs measured in kilograms; the node's <code>mass_sum</code></span></li>
+<li><span>Λ</span><span>diag of column norms, used to precondition the solve</span></li>
+</ul>
+
+<h3>5.2 · The residual least-squares problem</h3>
+<p>We want the model inventory to match the target, <var>m</var>(<var>a</var>) ≈ <var>b</var>. Everything that is not a free amount is known, so move it to the right-hand side — that subtraction is the whole of <code>residual_target</code>:</p>
+<div class="math">
+<div class="eq c"><var>r</var> &nbsp;=&nbsp; <var>b</var> &nbsp;−&nbsp; <var>M</var><sup>x</sup><var>a</var><sup>x</sup> &nbsp;−&nbsp; <var>d</var> <span class="lbl">residual target</span></div>
+<div class="eq c" style="margin-top:14px"><var>â</var> &nbsp;=&nbsp; arg min<sub>&thinsp;<var>lo</var> ≤ <var>a</var> ≤ <var>hi</var></sub> &nbsp; ‖&thinsp;<var>W</var>&thinsp;(<var>M</var><sup>f</sup><var>a</var> − <var>r</var>)&thinsp;‖<sub>2</sub><sup>2</sup> &nbsp;+&nbsp; 10<sup>6</sup>‖<var>y</var>‖<sup>2</sup> (<var>κ</var><sup>⊤</sup><var>a</var> − <var>μ</var>)<sup>2</sup></div>
+<p class="where">Written out over the rows that carry weight, with <var>y</var> = <var>W</var><var>r</var> restricted to <var>R</var>:</p>
+<div class="eq"><span style="padding-left:1.5em">Σ<sub><var>i</var>∈<var>R</var></sub> &nbsp; <var>w</var><sub>i</sub><sup>2</sup> &thinsp;[&thinsp;<var>m</var>(<var>a</var>)<sub>i</sub> − <var>b</var><sub>i</sub>&thinsp;]<sup>2</sup> &nbsp;+&nbsp; 10<sup>6</sup>‖<var>y</var>‖<sup>2</sup> (<var>κ</var><sup>⊤</sup><var>a</var> − <var>μ</var>)<sup>2</sup></span></div>
+<p class="where">because (<var>M</var><sup>f</sup><var>a</var> − <var>r</var>)<sub>i</sub> = <var>m</var>(<var>a</var>)<sub>i</sub> − <var>b</var><sub>i</sub> identically. <b>The residual of the fit is the flow-by-flow error of the rebuilt process against the original.</b> The mass term is dropped when <code>mass_sum</code> is <code>null</code>; the weights enter <b>squared</b>, since the code scales the rows of both <var>M</var><sup>f</sup> and <var>r</var> by <var>w</var> and hands the result to a plain least-squares solver.</p>
+</div>
+<p>This is a convex quadratic on a box — a unique minimum in <var>M</var><sup>f</sup><var>a</var>, though not necessarily in <var>a</var>: if two free inputs have near-parallel cumulative inventories, many <var>a</var> give the same fit. That degeneracy is the subject of §5.7.</p>
+
+<h3>5.3 · Why those weights</h3>
+<p><code>lci.relative_weights</code> then <code>lci.System.fit_weights</code> build <var>w</var> in two moves. First, per flow, against a <em>frozen</em> model <var>m̃</var> from the previous pass:</p>
+<div class="math">
+<div class="eq c">base<sub>i</sub> &nbsp;=&nbsp; 1 / max(&thinsp;|<var>b</var><sub>i</sub>|, |<var>m̃</var><sub>i</sub>|&thinsp;) &nbsp;&nbsp;&nbsp; (0 if both are 0)</div>
+<p class="where">The point of the <code>max</code> is asymmetry-avoidance: dividing by |<var>b</var><sub>i</sub>| alone would be a division by zero for any flow the model invents that the target does not have, so such a flow would be free. Here it counts by its own size. Substituting into §5.2, each term becomes a <b>squared relative deviation</b> — a kilogram of CO₂ and a microgram of a dioxin are the same equation, and no characterisation factor is involved.</p>
+<div class="eq c" style="margin-top:14px"><var>w</var><sub>i</sub> &nbsp;=&nbsp; base<sub>i</sub> &nbsp;/&nbsp; √<var>n</var><sub><var>g</var>(<var>i</var>)</sub> &nbsp;&nbsp;&nbsp;&nbsp; so the objective is &nbsp; Σ<sub><var>g</var></sub> (1/<var>n</var><sub><var>g</var></sub>) Σ<sub><var>i</var>∈<var>g</var></sub> (relative deviation<sub>i</sub>)<sup>2</sup></div>
+<p class="where">Second: the 29 groups <var>g</var> are the (unit, top-level compartment) pairs — kilogram/air (77 flows), square metre/land use (57), kilo Becquerel/water (51) — and <var>n</var><sub><var>g</var></sub> is the number of weighted flows in a group. Each group contributes its <b>mean</b> squared relative deviation, so the 1,294 flows of kilogram/emissions do not outvote the 57 of square metre/land use. The flip side is that a group of one flow — cubic metre-year/land use is exactly that — speaks as loudly as the entire emissions block. Flows that the sparse solve only produces as round-off (<code>lci.determined_flows</code>) get weight 0: their relative deviation is noise.</p>
+<p class="where"><b>What this replaced.</b> Until 2026-09-23 the second move divided by Σ<sub><var>j</var>∈<var>g</var></sub> base<sub>j</sub>, to make Σ<var>w</var> = 1 per group. But that sum is dominated by the group's <em>smallest</em> flow, so each group's relative deviations were scaled by roughly its smallest amount. On a typical target, kilogram/emissions (CO₂ and ~1,200 others) weighed 10<sup>−58</sup> of the single land-use flow, and the fit effectively saw about 20 of ~1,670 flows. On the calibration benchmark the change moves the complete-list row from 767 to 787 of 803 material amounts within ±20 %, and the no-list row from 64 % to 98 % of flows within ±10 %.</p>
+</div>
+
+<h3>5.4 · The mass-sum row, and why 10<sup>6</sup></h3>
+<p>When a spec sets <code>mass_sum</code> — the composition must add to 1 kg of product — one row is appended to the already-weighted system, with coefficient <var>κ</var><sub>j</sub> = 1 for free inputs whose unit starts with <code>kilo</code> and weight 10<sup>3</sup>‖<var>y</var>‖:</p>
+<div class="math">
+<div class="eq c">cost of missing the mass balance by <var>Δ</var> &nbsp;=&nbsp; 10<sup>6</sup>‖<var>y</var>‖<sup>2</sup><var>Δ</var><sup>2</sup> &nbsp;&nbsp;vs.&nbsp;&nbsp; whole flow-fit objective ≲ ‖<var>y</var>‖<sup>2</sup></div>
+<p class="where">Taking <var>a</var> = 0 gives objective exactly ‖<var>y</var>‖<sup>2</sup>, so the optimum is no worse than that. Any <var>Δ</var> ≳ 10<sup>−3</sup> therefore costs more than the entire rest of the fit is worth: the balance holds to about a part in 10<sup>3</sup> of <var>μ</var>. A penalty, not a hard constraint — but tight enough to act as one, and it keeps the problem a plain box-constrained least squares that NNLS or BVLS can take.</p>
+</div>
+
+<h3>5.5 · Column scaling is an exact reparametrisation, not a fudge</h3>
+<p>The columns of the weighted design matrix <var>A</var> differ by ten orders of magnitude, because a <em>unit</em> of manufacturing plant and a kilogram of tap water are both legitimate inputs. Measured on the CH gypsum fibre board template's ten inputs, ‖<var>c</var>‖ runs from 1.05×10<sup>10</sup> (wooden board manufacturing plant, <em>unit</em>) down to 0.12 (tap water, <em>kilogram</em>) — a spread of <b>8.7×10<sup>10</sup></b>. Left alone, a solver stalls. Scaling the columns is not enough for <code>lsq_linear</code>'s default trust-region method either: it tests an <em>absolute</em> tolerance, and on the benchmark it stopped early in 14 of 100 complete-list cases, at an objective 10<sup>2</sup>–10<sup>13</sup> above that of the true amounts. So <code>lci.solve_weighted</code> scales the right-hand side too and uses an active-set method — NNLS when the only bound is <var>a</var> ≥ 0, BVLS otherwise. With <var>Λ</var> = diag(‖<var>A</var><var>e</var><sub>j</sub>‖<sub>2</sub>):</p>
+<div class="math">
+<div class="eq c">(<var>A</var><var>Λ</var><sup>−1</sup>)(<var>Λ</var><var>a</var>) &nbsp;=&nbsp; <var>A</var><var>a</var> &nbsp;&nbsp;&nbsp;and&nbsp;&nbsp;&nbsp; <var>lo</var> ≤ <var>a</var> ≤ <var>hi</var> &nbsp;⟺&nbsp; <var>Λ</var><var>lo</var> ≤ <var>Λ</var><var>a</var> ≤ <var>Λ</var><var>hi</var></div>
+<p class="where">Since every <var>Λ</var><sub>jj</sub> &gt; 0, the substitution <var>z</var> = <var>Λ</var><var>a</var> is a bijection of the feasible box that leaves the objective value unchanged. The solved problem is therefore <b>the same problem</b>, not an approximation of it — only the conditioning differs, every column of <var>A</var><var>Λ</var><sup>−1</sup> now having unit norm. That is why rescaling the solution at the end is exact rather than a correction.</p>
+</div>
+
+<h3>5.6 · Two passes: truncated IRLS</h3>
+<p>The weights depend on the model, and the model depends on the amounts — so the honest problem, min <sub><var>a</var></sub> ‖<var>W</var>(<var>m</var>(<var>a</var>))(<var>M</var><sup>f</sup><var>a</var> − <var>r</var>)‖<sup>2</sup>, is <b>not</b> linear. The code runs iteratively reweighted least squares and stops at two:</p>
+<div class="math">
+<div class="eq"><span style="padding-left:1.5em"><var>a</var><sup>0</sup> = the spec's amounts &nbsp;&nbsp;→&nbsp;&nbsp; <var>a</var><sup>1</sup> = solve with <var>W</var>(<var>m</var>(<var>a</var><sup>0</sup>)) &nbsp;&nbsp;→&nbsp;&nbsp; <var>a</var><sup>2</sup> = solve with <var>W</var>(<var>m</var>(<var>a</var><sup>1</sup>)) &nbsp;&nbsp;→&nbsp;&nbsp; return <var>a</var><sup>2</sup></span></div>
+<p class="where">Two is a truncation chosen empirically, not a convergence result — there is no fixed-point test in the code, and the dependence on a draft's starting amounts is <b>attenuated rather than removed</b>: <var>a</var><sup>0</sup> still reaches the answer through <var>W</var>(<var>m</var>(<var>a</var><sup>1</sup>)). It is weak because the weight saturates: base<sub>i</sub> = 1/max(|<var>b</var><sub>i</sub>|, |<var>m̃</var><sub>i</sub>|) is <em>flat</em> in <var>m̃</var> wherever the model is below the target, so every flow the draft did not wildly overshoot contributes the identical weight in both passes.</p>
+</div>
+
+<h3>5.7 · Why the input list is never a variable</h3>
+<p>This is the mathematical core of the whole method, and it follows from one identity. Scale production to 1 on the diagonal and write <var>A</var> = <var>I</var> − <var>T</var>, with <var>T</var><sub>kj</sub> ≥ 0 the amount of <var>k</var> consumed per unit of <var>j</var>. Since (<var>I</var>−<var>T</var>)<sup>−1</sup> = <var>I</var> + <var>T</var> + <var>T</var><sup>2</sup> + …, the cumulative inventory <var>c</var><sub>j</sub> = <var>B</var><var>A</var><sup>−1</sup><var>e</var><sub>j</sub> of <em>every</em> activity satisfies</p>
+<div class="math">
+<div class="eq c"><var>c</var><sub>j</sub> &nbsp;=&nbsp; <var>d</var><sub>j</sub> &nbsp;+&nbsp; Σ<sub>k</sub> <var>T</var><sub>kj</sub> <var>c</var><sub>k</sub> <span class="lbl">Leontief</span></div>
+<p class="where">where <var>d</var><sub>j</sub> = <var>B</var><var>e</var><sub>j</sub> is the activity's <b>direct</b> flows alone. In words: <b>every candidate column is exactly a non-negative combination of its own suppliers' columns, plus its direct flows.</b> Checked numerically on 60 random bafu-2026 activities — maximum relative error 1.1×10<sup>−8</sup>, median 3.6×10<sup>−11</sup>, which is LU round-off. It is an identity, not an approximation.</p>
+</div>
+<p>Now the damage. <var>d</var><sub>j</sub> is <em>small</em>: over those 60 activities the median ‖<var>d</var><sub>j</sub>‖/‖<var>c</var><sub>j</sub>‖ is 1×10<sup>−4</sup>, and 80 % sit below 10<sup>−2</sup> — most of a product's burden comes from upstream, not from its own gate. So each candidate column lies within a relative distance ‖<var>d</var><sub>j</sub>‖/‖<var>c</var><sub>j</sub>‖ of the cone spanned by other candidates. When the input list is free and the candidate set is drawn from one database, those suppliers <em>are</em> in the set, and the objective of §5.2 has directions along which it changes by almost nothing. The minimiser is then picked by round-off and by which columns happen to be present — not by evidence.</p>
+<div class="math">
+<div class="eq"><span style="padding-left:1.5em">Stucco, at plant [CH]: &nbsp; ‖<var>d</var>‖/‖<var>c</var>‖ = 6.6×10<sup>−3</sup></span></div>
+<p class="where">So 99.3 % of stucco's cumulative inventory is reproduced exactly by 1.16 kg gypsum (at mine) + 0.70 MJ natural-gas heat + 0.175 MJ heavy-fuel-oil heat + 0.027 kWh electricity + 1.4×10<sup>−4</sup> industrial machine. That is the arithmetic behind the failure reported in §2 of the concept page: given a free structure, the solver reproduced a known process's whole cumulative inventory while choosing <b>116 inputs, of which 2 had the right amount</b>, and turned 0.71 kg of stucco into 4.7 kg of lime plus 0.8 kg of anhydrite. It did not malfunction — it walked down a flat direction that the supply chain guarantees exists.</p>
+</div>
+<p><b>Fixing the list removes the cone.</b> With <var>q</var> ≈ 10 named columns chosen from evidence rather than 2,965 drawn from a database, the substitutions above are no longer available, and the amounts come back to ~10 %. Bounds narrow what is left. This is why §5 fits amounts and never names, and why the benchmark's <em>blind</em> row is the number that matters: offered every frequently used process and no list, the fit reproduces 97 % of the flows within ±10 % with a process of ~96 wrong inputs.</p>
+
+<h3>5.8 · Amounts that land on a bound</h3>
+<p>At the optimum the KKT conditions on the box read, with gradient <var>∇</var> = 2(<var>M</var><sup>f</sup>)<sup>⊤</sup><var>W</var><sup>2</sup>(<var>M</var><sup>f</sup><var>â</var> − <var>r</var>):</p>
+<div class="math">
+<div class="eq"><span style="padding-left:1.5em"><var>lo</var><sub>j</sub> &lt; <var>â</var><sub>j</sub> &lt; <var>hi</var><sub>j</sub> ⟹ <var>∇</var><sub>j</sub> = 0 &nbsp;&nbsp;·&nbsp;&nbsp; <var>â</var><sub>j</sub> = <var>lo</var><sub>j</sub> ⟹ <var>∇</var><sub>j</sub> ≥ 0 &nbsp;&nbsp;·&nbsp;&nbsp; <var>â</var><sub>j</sub> = <var>hi</var><sub>j</sub> ⟹ <var>∇</var><sub>j</sub> ≤ 0</span></div>
+<p class="where">An amount pinned at a bound means the unconstrained best fit lies <em>outside</em> the range the report gives — the gradient is still pushing outward when it hits the wall. That is a substantive finding, not a numerical artefact: <b>the report and the original dataset disagree</b>. The harness prints these, and the inventories page tags them "calibrated · at upper bound". Three of gypsum fibre board's six fitted amounts sit on the 2× ceiling, which is the honest statement that the Swiss template does not describe the German plant.</p>
+</div>
+
+<h3>5.9 · Three different things are called "residual"</h3>
+<div class="tbl"><table><thead><tr><th>Name</th><th>Definition</th><th>Where</th></tr></thead><tbody>
+<tr><td><b>residual target</b></td><td class="mono"><var>r</var> = <var>b</var> − <var>M</var><sup>x</sup><var>a</var><sup>x</sup> − <var>d</var></td><td>§5.2 — what the free inputs must explain; the RHS of the fit</td></tr>
+<tr><td><b>fit residual</b></td><td class="mono"><var>M</var><sup>f</sup><var>â</var> − <var>r</var> = <var>m</var>(<var>â</var>) − <var>b</var></td><td>§5.2 — what the fit could not explain; its weighted norm is the <code>residual norm</code> printed by <code>calibrate</code></td></tr>
+<tr><td><b>build residual</b></td><td class="mono">cum(target) − cum(explicit)</td><td>§6 — carried as direct biosphere flows on the <code>-hybrid</code> node</td></tr>
+</tbody></table></div>
+<p>The last two are the same quantity with opposite sign. After <code>calibrate --apply</code>, the explicit node <em>is</em> the model, cum(explicit) = <var>m</var>(<var>â</var>), so the build residual equals −(fit residual) exactly — for a flat spec. With nested nodes the two part company, because calibrate only ever touches the top node's free inputs while build walks the whole tree.</p>
+
+<h3>5.10 · The same thing, as the code reads it</h3>
 <ul class="ladder">
  <li><div class="if">no input has free: true</div><div class="then">print "nothing to calibrate", return (this is S1 with a complete table)</div></li>
  <li><div class="if">any input has "sandbox"</div><div class="then">the LCA system is built with demand on that sandbox node so the matrices include the sandbox; otherwise demand on the target</div></li>
- <li><div class="if">always</div><div class="then">residual target <em>r = b − Mˣ·aˣ − d</em>; rows restricted to characterised flows (<em>w &gt; 0</em>)</div></li>
- <li><div class="if">row weights</div><div class="then"><em>wᵢ = Σₖ cwₖ · |cₖᵢ| / Σⱼ |cₖⱼ bⱼ|</em> over the 25 EF categories: each category normalised by its <b>sum of absolute contributions</b> in the target (not its net score — that explodes on cancellation), times the optional <code>category_weights</code>, default 1</div></li>
+ <li><div class="if">always</div><div class="then">residual target <em>r = b − Mˣ·aˣ − d</em>; one row per elementary flow, weighted <em>1/max(|target|, |model|)</em> — relative error, no characterisation</div></li>
+ <li><div class="if">row weights</div><div class="then"><em>wᵢ = 1 / max(|bᵢ|, |mᵢ|)</em>, where <em>m</em> is the model: every flow present in either inventory is one equation in <b>relative</b> error, so a kilogram of CO₂ and a microgram of a dioxin count alike and a flow the model invents counts by its own size. Then divided by √(flows in its <b>(unit, compartment) group</b>) — kilogram/air, square metre/land use, kilo Becquerel/water, 29 of them — so every group contributes its mean squared relative error and the 1,294 flows of kilogram/emissions do not outvote the rest; round-off flows (<code>lci.determined_flows</code>) get weight 0. No characterisation factors anywhere</div></li>
  <li><div class="if">input.bounds given</div><div class="then">lo, hi from the spec; else lo = 0, hi = ∞</div></li>
  <li><div class="if">node.mass_sum is not None</div><div class="then">one extra row appended: Σ (free inputs whose unit starts with "kilo") = mass_sum, weighted <em>10³ · ‖y‖</em> so it acts as a near‑hard constraint</div></li>
- <li><div class="if">always</div><div class="then">columns normalised to unit norm (bounds scaled with them); <code>scipy.optimize.lsq_linear(max_iter=20000)</code>; results rescaled</div></li>
+ <li><div class="if">always</div><div class="then">columns and right-hand side scaled to unit norm, bounds scaled with them — an exact reparametrisation, §5.5; <code>lci.solve_weighted</code>: <code>scipy.optimize.nnls</code> when every bound is [0, ∞), else <code>lsq_linear(method="bvls", max_iter=20000)</code>; results rescaled</div></li>
+ <li><div class="if">always</div><div class="then">the solve runs <b>twice</b> — truncated IRLS, §5.6. Pass 1 weights against the spec's own amounts, pass 2 against the fit of pass 1, so the result barely depends on the amounts a draft happened to start from</div></li>
  <li><div class="if">--apply (or run --apply)</div><div class="then">fitted amounts written into the spec; otherwise only printed as spec / fitted / ratio</div></li>
 </ul>
-<div class="note">Why the list is never changed here: with a free structure the same solver reproduced all 25 scores of a known process to 1.000 while choosing 116 wrong inputs. The benchmark's <em>distractors</em> row measures it — 4 of 40 cases swap a true input for a plausible wrong one with the scores still within tolerance.</div>
+<div class="note">Why the list is never changed here: with a free structure the same solver reproduced a known process's whole cumulative inventory while choosing 116 wrong inputs — §5.7 derives why that is guaranteed rather than unlucky. The benchmark's <em>blind</em> row measures it: with no list, 97 % of the flows match within ±10 % and the median case uses 96 inputs the real process does not have.</div>
 
 <h2>6 · Step 3 — build <span class="muted mono">build.py</span></h2>
 <ul class="ladder">
@@ -152,8 +249,9 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <h2>7 · Step 4 — check <span class="muted mono">check.py</span></h2>
 <p>Inputs: target, explicit node, hybrid node if present. One System with demand on the explicit node; three cumulative inventories in one solve.</p>
 <ul class="ladder">
- <li><div class="if">scores</div><div class="then">for each of the 25 methods: target, explicit, Δ = explicit/target − 1, residual share = score(r)/score(target), hybrid/target (must print 1.000000)</div></li>
- <li><div class="if">flow diff</div><div class="then">the 5 categories with the largest |Δ|; in each, the 8 flows with the largest |cₖ·(explicit − target)|, with their share of the target score</div></li>
+ <li><div class="if">flow agreement</div><div class="then">per elementary flow of the target: Δ = explicit/target − 1, bucketed (≤ 10 %, 10–20 %, 20–50 %, 50–100 %, &gt; 100 %, missing); three headline numbers — the 50 largest kilogram flows within ±10 %, the share of the target's kilogram mass within ±10 %, and all flows within ±10 %</div></li>
+ <li><div class="if">largest flows</div><div class="then">per unit (kg, MJ, kBq, m³ …) the largest flows of the target with their explicit value, Δ and residual; then the 10 worst deviations among the 50 largest kilogram flows — the diagnostic that turns "radon is −51 %" into "the grid electricity is too low"</div></li>
+ <li><div class="if">hybrid present</div><div class="then">flows where |hybrid − target| &gt; 1e‑6·|target| + 1e‑9·max|target| are counted; the number must be 0 — the hybrid equals the original flow for flow by construction</div></li>
  <li><div class="if">structural check 1</div><div class="then">✓ if total explicit inputs over all nodes ≤ 30</div></li>
  <li><div class="if">structural check 2</div><div class="then">✓ if no input name matches <code>/at power plant|power plant$|at run-of-river|at reservoir/i</code> (a decomposed grid mix)</div></li>
  <li><div class="if">structural check 3</div><div class="then">✓ if no input code ∈ the 101 (else lists them: "rebuild those first")</div></li>
@@ -168,11 +266,11 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
  <li><div class="if">target</div><div class="then">the case's cumulative inventory (what a type=2 export of it would contain); truth = its technosphere inputs and amounts; direct flows known except in blind</div></li>
  <li><div class="if">scenario oracle</div><div class="then">candidates = true input keys; lo 0, hi ∞</div></li>
  <li><div class="if">scenario bounded</div><div class="then">candidates = true keys; lo = 0.5·true, hi = 2·true</div></li>
- <li><div class="if">scenario partial</div><div class="then">candidates = the true keys ranked by |climate contribution|, keeping the top round(0.7·n) (at least 1)</div></li>
+ <li><div class="if">scenario partial</div><div class="then">candidates = the true keys ranked by how many of the target's flows they supply ≥ 1 % of, keeping the top round(0.7·n) (at least 1)</div></li>
  <li><div class="if">scenario distractors</div><div class="then">true keys + 10 sampled (shared <code>Random(seed)</code>) from the pool of processes used ≥ 30 times, excluding truth and the case</div></li>
- <li><div class="if">scenario blind</div><div class="then">the whole pool (~675), no direct flows; only the first <code>blind_cases</code> (10, CLI runs used 5) because of runtime</div></li>
- <li><div class="if">solver</div><div class="then">columns normalised; if unbounded → <code>nnls</code>; if ≤ 150 columns → also <code>lsq_linear(method="bvls")</code>; else <code>lsq_linear</code> (trf); keep the solution with the smaller residual</div></li>
- <li><div class="if">metrics · "material"</div><div class="then">an input is material when its true contribution reaches 1 % of the target score in some category; a candidate is "chosen" when its fitted contribution does. TP/FP/FN, amounts within ±20 % over material inputs, categories within ±10 %, residual share median</div></li>
+ <li><div class="if">scenario blind</div><div class="then">the whole pool (~675), no direct flows; run on the same 100 cases (<code>blind-n100-seed7</code>)</div></li>
+ <li><div class="if">solver</div><div class="then">first weights against an unweighted NNLS fit, then the same two weighted passes and the same <code>lci.solve_weighted</code> as <code>calibrate</code></div></li>
+ <li><div class="if">metrics · "material"</div><div class="then">an input is material when its true contribution reaches 1 % of the target amount of some determined flow (round-off flows are left out, as in the flow score); a candidate is "chosen" when its fitted contribution does. TP/FP/FN, amounts within ±20 % over material inputs, flows within ±10 %, median flow deviation</div></li>
  <li><div class="if">output</div><div class="then"><code>results/benchmark/&lt;name&gt;.csv</code> (one row per case × scenario) and <code>.md</code> (medians per scenario)</div></li>
 </ul>
 
@@ -214,8 +312,9 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <tr><td class="mono">db.py</td><td class="mono">LOCATION_PREFERENCE</td><td class="mono">RER, CH, DE, GLO, Europe</td><td>tie‑break when a name exists in several locations and the spec gives none</td></tr>
 <tr><td class="mono">db.py</td><td class="mono">get_close_matches cutoff</td><td class="mono">0.6</td><td>how loose the "close names" suggestions are (suggestions only, never auto‑linked — chemical names are too similar)</td></tr>
 <tr><td class="mono">calibrate.py</td><td class="mono">mass row weight</td><td class="mono">1e3 · ‖y‖</td><td>how hard the mass_sum constraint is</td></tr>
-<tr><td class="mono">calibrate.py</td><td class="mono">lsq_linear max_iter</td><td class="mono">20000</td><td>—</td></tr>
-<tr><td class="mono">lci.py</td><td class="mono">category normalisation</td><td class="mono">Σ|c·b| per category</td><td>equal weight per category; the earlier net‑score normalisation is the bug described in the docs</td></tr>
+<tr><td class="mono">lci.py</td><td class="mono">solve_weighted iterations</td><td class="mono">BVLS 20000; NNLS 50·n + 1000</td><td>—</td></tr>
+<tr><td class="mono">lci.py</td><td class="mono">row weight</td><td class="mono">1 / max(|target|, |model|) / √(flows in the group); round-off flows 0</td><td>every flow counts by relative error, every (unit, compartment) group of flows equally</td></tr>
+<tr><td class="mono">check.py</td><td class="mono">large‑flow headline</td><td class="mono">50 largest kg flows</td><td>the flows a report can name, separated from the background tail</td></tr>
 <tr><td class="mono">build.py</td><td class="mono">RESIDUAL_MIN</td><td class="mono">1e-15</td><td>residual entries below this are dropped as noise</td></tr>
 <tr><td class="mono">check.py</td><td class="mono">input count limit</td><td class="mono">30</td><td>structural check 1</td></tr>
 <tr><td class="mono">check.py</td><td class="mono">POWER_PLANT regex</td><td class="mono">at power plant|power plant$|at run-of-river|at reservoir</td><td>structural check 2</td></tr>

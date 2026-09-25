@@ -29,7 +29,7 @@
     "inputs": [
       {
         "name": "Clinker, at plant",
-        "amount": 0.41952290795034364,
+        "amount": 0.6702063190555884,
         "unit": "kilogram",
         "free": true,
         "note": "40-70 %",
@@ -42,7 +42,7 @@
       },
       {
         "name": "Gypsum, mineral, at mine",
-        "amount": 0.0999999999999995,
+        "amount": -6.938896565119426e-18,
         "unit": "kilogram",
         "free": true,
         "note": "< 10 %",
@@ -55,7 +55,7 @@
       },
       {
         "name": "Recycling aggregate from mixed demolition, dry, at plant",
-        "amount": 0.20459470928157078,
+        "amount": 0.1778137452753508,
         "unit": "kilogram",
         "free": true,
         "note": "Mischgranulat 15-30 %",
@@ -69,7 +69,7 @@
       {
         "name": "Burnt shale, at plant",
         "sandbox": "d8ec4be3-c410-3806-98f5-a2ec5a284fee-disagg",
-        "amount": 0.16835238094876306,
+        "amount": 0.15,
         "unit": "kilogram",
         "free": true,
         "note": "15-30 %; rebuilt node",
@@ -82,7 +82,7 @@
       },
       {
         "name": "Iron sulphate, at plant",
-        "amount": 0.0075300021130875255,
+        "amount": 0.0,
         "unit": "kilogram",
         "free": true,
         "note": "< 1 %",
@@ -95,7 +95,7 @@
       },
       {
         "name": "Limestone, milled, loose, at plant",
-        "amount": 0.09999999999899989,
+        "amount": 0.0019799357590367253,
         "unit": "kilogram",
         "free": true,
         "note": "filter dust / limestone < 10 %",

@@ -69,7 +69,6 @@ class Node:
     resources: list[Flow]
     comment: str = ""
     mass_sum: float | None = None  # if set: the free kilogram inputs must add up to this (per unit of product)
-    category_weights: dict[str, float] | None = None  # calibrate: emphasis per EF category, default 1 each
 
 
 @dataclass
@@ -102,7 +101,6 @@ def _node(d: dict) -> Node:
                         note=f.get("note", ""), raw=f) for f in d.get("resources", [])],
         comment=d.get("comment", ""),
         mass_sum=d.get("mass_sum"),
-        category_weights=d.get("category_weights"),
     )
 
 

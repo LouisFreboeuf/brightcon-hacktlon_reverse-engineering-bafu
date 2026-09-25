@@ -1,7 +1,8 @@
-"""Step 4 - the harness: score diff, flow diff, residual share and structural checks.
+"""Step 4 - the harness: flow-by-flow agreement, the largest flows, residual and structural checks.
 
-Score agreement is necessary, not sufficient (a 116-input fit matched all 25 scores to 1.000),
-so the structural section is not optional."""
+Inventory agreement is necessary, not sufficient (a 116-input fit matched the inventory and the
+wrong inputs), so the structural section is not optional. No impact assessment: the target and the
+rebuilt process are compared per elementary flow."""
 
 from __future__ import annotations
 
@@ -12,10 +13,19 @@ import numpy as np
 import bw2data as bd
 
 from . import db
-from .lci import System
+from .lci import System, determined_flows, flow_agreement, mass_coverage, top_flow_agreement
 from .spec import Spec, node_prefix, walk
 
 POWER_PLANT = re.compile(r"at power plant|power plant$|at run-of-river|at reservoir", re.I)
+BUCKETS = (("≤ 10 %", 0.10), ("10–20 %", 0.20), ("20–50 %", 0.50), ("50–100 %", 1.0), ("> 100 %", np.inf))
+
+
+def summary_line(ag: dict, top: dict, mass_cov: float) -> str:
+    return (f"flows: {top['within_10pct']}/{top['n']} of the largest kg flows within ±10 % (median |Δ| {top['median_abs_delta']:.1%}); "
+            f"{mass_cov:.0%} of the kg mass; "
+            f"{ag['within_10pct']}/{ag['n_scored']} of the determined flows within ±10 % ({ag['within_10pct'] / max(1, ag['n_scored']):.0%}"
+            + (f", {ag['n_excluded']} round-off excluded" if ag['n_excluded'] else "") + "), "
+            f"median |Δ| {ag['median_abs_delta']:.1%}, {ag['n_missing']} missing, {ag['n_extra']} extra")
 
 
 def run(spec: Spec, out_dir: Path = Path("results/checks")) -> Path:
@@ -29,10 +39,19 @@ def run(spec: Spec, out_dir: Path = Path("results/checks")) -> Path:
     ids = [target.id, explicit.id] + ([hybrid.id] if hybrid else [])
     inv = sys_.cumulative(ids)
     b_t, b_e = inv[:, 0], inv[:, 1]
-    s_t, s_e = sys_.scores(b_t), sys_.scores(b_e)
-    s_h = sys_.scores(inv[:, 2]) if hybrid else None
+    det = determined_flows(sys_, target.id)
+    ag = flow_agreement(b_t, b_e, det)
+    delta = ag["delta"]
     r = b_t - b_e
-    s_r = sys_.scores(r)
+    units: dict[str, list[int]] = {}
+    for row in np.where(b_t != 0)[0]:
+        units.setdefault(sys_.flow_node(int(row)).get("unit", ""), []).append(int(row))
+    top = top_flow_agreement(b_t, b_e, units.get("kilogram", []), 50)
+    mass_cov = mass_coverage(b_t, b_e, units.get("kilogram", []))
+    # the hybrid must reproduce the target flow for flow; the tolerance is float round-off in the
+    # solve, relative plus a floor (build drops residual entries below 1e-15, and flows absent from
+    # the target carry the explicit model's own round-off)
+    hyb_off = int((np.abs(inv[:, 2] - b_t) > 1e-6 * np.abs(b_t) + 1e-9 * np.abs(b_t).max()).sum()) if hybrid else None
 
     st = spec.strategy
     L = [f"# Check: {spec.target_name} ({spec.target_code})", "",
@@ -41,35 +60,40 @@ def run(spec: Spec, out_dir: Path = Path("results/checks")) -> Path:
          f"**Calibrated inputs:** " + (", ".join(f"{i.name}" + (f" [{i.bounds[0]:.3g}–{i.bounds[1]:.3g}]" if i.bounds else "") for n in walk(spec.node) for i in n.inputs if i.free) or "none")
          + (f"; mass sum {spec.node.mass_sum}" if spec.node.mass_sum is not None else ""),
          f"**Links to rebuilt nodes:** " + (", ".join(i.name for n in walk(spec.node) for i in n.inputs if i.sandbox) or "none"), "",
-         "## Scores (EF 3.1)", "",
-         "| category | target | explicit | Δ explicit | residual share | hybrid/target |", "|---|---|---|---|---|---|"]
-    worst = []
-    for k, m in enumerate(sys_.methods):
-        d = (s_e[k] / s_t[k] - 1) if s_t[k] else float("nan")
-        share = s_r[k] / s_t[k] if s_t[k] else float("nan")
-        hyb = f"{s_h[k] / s_t[k]:.6f}" if hybrid and s_t[k] else "—"
-        worst.append((abs(d), k))
-        L.append(f"| {m[2]} | {s_t[k]:.4g} | {s_e[k]:.4g} | {d:+.1%} | {share:+.1%} | {hyb} |")
+         "## Flow agreement (explicit vs target, per elementary flow)", "",
+         f"- the 50 largest kilogram flows: {top['within_10pct']}/{top['n']} within ±10 %, median |Δ| {top['median_abs_delta']:.1%}",
+         f"- kilogram mass covered within ±10 %: {mass_cov:.1%} of the target's total kg mass",
+         f"- of the {ag['n_target']} flows of the target, {ag['n_scored']} are determined by the solve "
+         f"({ag['n_excluded']} are round-off and are not scored; see lci.determined_flows)",
+         f"- {ag['within_10pct']} of those {ag['n_scored']} within ±10 % ({ag['within_10pct'] / max(1, ag['n_scored']):.0%}), median |Δ| {ag['median_abs_delta']:.1%}, {ag['n_missing']} missing from the model, {ag['n_extra']} extra",
+         f"- hybrid vs target: {'identical on every flow' if hyb_off == 0 else f'{hyb_off} flows differ'}" if hybrid else "- no hybrid node", "",
+         "| \\|Δ\\| bucket | flows | share of target flows |", "|---|---|---|"]
+    d = np.abs(delta[b_t != 0])
+    lo = 0.0
+    for label, hi in BUCKETS:
+        n = int(((d > lo) & (d <= hi)).sum()) if lo > 0 else int((d <= hi).sum())
+        L.append(f"| {label} | {n} | {n / max(1, ag['n_target']):.0%} |")
+        lo = hi
+    L.append(f"| missing (0 in model) | {ag['n_missing']} | {ag['n_missing'] / max(1, ag['n_target']):.0%} |")
 
-    L += ["", "## Flow diff — worst categories, flows driving the gap (explicit − target, characterised)", ""]
-    for _, k in sorted(worst, reverse=True)[:5]:
-        c = sys_.cf[k]
-        contrib = c * (b_e - b_t)
-        rows = np.argsort(-np.abs(contrib))[:8]
-        L.append(f"### {sys_.methods[k][2]} (Δ {worst[k][0]:+.1%})")
-        L.append("")
-        L.append("| flow | target | explicit | Δ impact | share of target score |")
-        L.append("|---|---|---|---|---|")
-        for row in rows:
-            if contrib[row] == 0:
-                continue
-            L.append(f"| {sys_.flow_label(int(row))} | {b_t[row]:.3g} | {b_e[row]:.3g} | {contrib[row]:+.3g} | {contrib[row] / s_t[k]:+.1%} |")
+    # the largest flows by amount, per unit: what a reader would look at first
+    L += ["", "## Largest target flows (by amount, per unit) and their agreement", ""]
+    for unit, rows in sorted(units.items(), key=lambda kv: -len(kv[1])):
+        largest = sorted(rows, key=lambda i: -abs(b_t[i]))[: 20 if unit == "kilogram" else 5]
+        L += [f"### {unit} ({len(rows)} flows)", "", "| flow | target | explicit | Δ | residual |", "|---|---|---|---|---|"]
+        for row in largest:
+            L.append(f"| {sys_.flow_label(row)} | {b_t[row]:.3g} | {b_e[row]:.3g} | {delta[row]:+.1%} | {r[row]:+.3g} |")
         L.append("")
 
-    L += ["## Structural checks", ""]
+    L += ["## Worst deviations among the 50 largest kilogram flows", "", "| flow | target | explicit | Δ |", "|---|---|---|---|"]
+    big = sorted(units.get("kilogram", []), key=lambda i: -abs(b_t[i]))[:50]
+    for row in sorted(big, key=lambda i: -abs(delta[i]))[:10]:
+        L.append(f"| {sys_.flow_label(row)} | {b_t[row]:.3g} | {b_e[row]:.3g} | {delta[row]:+.1%} |")
+
+    L += ["", "## Structural checks", ""]
     nodes = list(walk(spec.node))
     n_inputs = sum(len(n.inputs) for n in nodes)
-    agg = db.aggregated_codes()
+    agg = db.aggregated_codes_all()
     deps = [i.name for n in nodes for i in n.inputs if i.code in agg]
     plants = [i.name for n in nodes for i in n.inputs if POWER_PLANT.search(i.name)]
     kg_in = sum(i.amount for i in spec.node.inputs if i.unit.startswith("kilo") and not i.name.lower().startswith(("disposal", "transport")))
@@ -90,10 +114,7 @@ def run(spec: Spec, out_dir: Path = Path("results/checks")) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / f"{node_prefix(spec)}.md"
     out.write_text("\n".join(L) + "\n")
-    # console summary
-    med = float(np.nanmedian([abs(w) for w, _ in worst]))
-    print(f"scores: median |Δ| {med:.1%}, worst {sys_.methods[max(worst)[1]][2]} {max(worst)[0]:+.1%}; "
-          f"residual share median {float(np.nanmedian(np.abs(s_r / np.where(s_t == 0, np.nan, s_t)))):.1%}")
+    print(summary_line(ag, top, mass_cov))
     for ok, msg in checks:
         print(f"  {'✓' if ok else '✗'} {msg}")
     print(f"report -> {out}")
