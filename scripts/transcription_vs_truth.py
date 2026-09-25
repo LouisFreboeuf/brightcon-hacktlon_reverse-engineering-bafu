@@ -1,6 +1,6 @@
 """Score the LLM extraction route against a real answer key.
 
-    PYTHONPATH=$PWD/src python scripts/transcription_vs_truth.py [--project bafu-2026]
+    uv run python scripts/transcription_vs_truth.py [--project bafu-2026]
 
 ``specs/c80b8e9e-epoxy-resin-liquid-at-plant.draft.json`` is a transcription of Tab. 31.2 of
 ``2007 - LCI chemicals - Althaus.pdf`` produced by the locate -> extract -> map route. BAFU-2026

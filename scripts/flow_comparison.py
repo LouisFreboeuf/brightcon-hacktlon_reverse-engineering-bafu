@@ -1,6 +1,6 @@
 """Original vs rebuilt elementary flows for every rebuilt dataset, for the flow-parity page.
 
-    PYTHONPATH=$PWD/src ./.venv/bin/python scripts/flow_comparison.py [--project bafu-2026]
+    uv run python scripts/flow_comparison.py [--project bafu-2026]
 
 Writes results/flow_comparison.json with, per spec:
   * the headline emissions (fossil CO2, fossil CH4, N2O, SO2, NOx, PM2.5, NMVOC, fossil CO), each
@@ -9,12 +9,12 @@ Writes results/flow_comparison.json with, per spec:
     sub-compartments (burnt shale's NOx is the example: -95 % row by row, +-0 % summed)
   * every elementary flow, original vs rebuilt, for the parity plot
 
-"Rebuilt" is the explicit unit process (<prefix>-disagg), NOT the S5 hybrid: the hybrid carries
+"Rebuilt" is the explicit unit process (<prefix>-disagg), NOT the hybrid node: the hybrid carries
 the residual block and equals the original by construction, so comparing it would show nothing.
 Both sides are cumulative inventories (B A^-1 e) in today's BAFU-2026 background. Flows that the
 sparse solve only produces as round-off (lci.determined_flows) are dropped from the parity data.
 
-All 58 rebuilt nodes and their originals go into one demand, so the technosphere matrix is
+All rebuilt nodes and their originals go into one demand, so the technosphere matrix is
 factorised once instead of once per spec.
 """
 
@@ -50,17 +50,6 @@ HEADLINE = [  # (key, label, lower-cased flow names summed over all their compar
     ("co", "Fossil CO", {"carbon monoxide (fossil)"}),
 ]
 
-# Labels under the route definitions as aligned on 2026-09-23 (exports/README.md). The specs
-# still carry the interim label for these seven; the page marks every row where the two differ.
-ALIGNED = {
-    "c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e": "S3",  # Cement ZN/D: composition only as ranges
-    "bc92bf5a-94f5-3d3c-865f-278a6ba99440": "S3",  # TiO2 chloride: comparison data, not the inventory
-    "f29ea928-dad4-33fe-ac09-33391c25e0ae": "S3",  # TiO2 sulphate: idem, and ranges
-    "0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c": "S3",  # HCN: literature tables, dataset is cumulated
-    "6d36bf06": "S3", "a66b5e9d": "S3", "fdbb581d": "S3",  # glass at regional storage: at-plant node + transport
-}
-
-
 class MultiSystem(System):
     """System over a demand of many nodes - one factorisation for all of them."""
 
@@ -76,10 +65,6 @@ class MultiSystem(System):
 
 def sig(x: float) -> float:
     return float(f"{x:.4g}")
-
-
-def aligned(code: str, current: str) -> str:
-    return ALIGNED.get(code) or ALIGNED.get(code[:8]) or current
 
 
 def main() -> None:
@@ -131,7 +116,7 @@ def main() -> None:
             "spec": path, "code": code, "name": t["name"], "location": t.get("location", ""),
             "unit": t.get("unit", ""), "variant": sp.variant or "",
             "counted": counted[code][1] == path,
-            "strategy": current, "strategy_aligned": aligned(code, current),
+            "strategy": current,
             "detected_by": ext.get(code, {}).get("detected_by", ""),
             "headline": head,
             "flows": [[int(r), sig(bt[r]), sig(be[r])] for r in np.where(keep)[0]],

@@ -1,8 +1,8 @@
-"""Who inside BAFU-2026 consumes the aggregated datasets?
+"""Who inside BAFU-2026 consumes the system processes?
 
-    PYTHONPATH=$PWD/src python scripts/ecoprofile_consumers.py [--project bafu-2026]
+    uv run python scripts/ecoprofile_consumers.py [--project bafu-2026]
 
-The ecoSpold ``type=2`` flag finds 101 aggregated datasets; ``scripts/find_system_processes.py``
+The ecoSpold ``type=2`` flag finds 101 system processes; ``scripts/find_system_processes.py``
 finds 37 more by structure (the APME / PlasticsEurope eco-profiles). This script answers the
 question that decides how much the second set matters: how deep in the database are they?
 

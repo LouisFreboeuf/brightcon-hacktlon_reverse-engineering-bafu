@@ -1,15 +1,17 @@
 """Draft a spec from evidence, reproducibly.
 
-Three layers, each leaving files under ``specs/evidence/<code>/``:
+Four steps per dataset, each leaving files under ``specs/evidence/<code>/``:
 
-1. ``evidence``  deterministic: the report pages as text (pdftotext -layout), the target's
-                 ecoSpold metadata, its direct-resource candidates, and a manifest with SHA-256s.
-2. ``draft``     the LLM step, in two passes with fixed prompt templates (``prompts/``):
-                 extraction (report excerpt -> line items with quotes) and mapping (line items +
-                 keyword-search candidates -> BAFU dataset names). The rendered prompts, the raw
-                 responses, model, effort and hashes are all saved. ``--dry-run`` writes the prompts
-                 only, for running the model elsewhere; ``--from-response`` ingests such a response.
-3. ``assemble``  deterministic: line items + mapping -> ``specs/<code>-<slug>.json`` with a
+0. ``locate``    one model prompt: every table and figure caption of the cited report (with its
+                 PDF page) is listed; the model names the pages holding the dataset's inventory.
+1. ``evidence``  deterministic: those pages as text (pdftotext -layout), the target's ecoSpold
+                 metadata, its direct-resource candidates, and a manifest with SHA-256s.
+2. ``draft``     two model prompts with fixed templates (``prompts/``): extraction (report excerpt
+                 -> line items with quotes) and mapping (line items + keyword-search candidates ->
+                 BAFU dataset names). The rendered prompts, the raw responses, model, effort and
+                 hashes are all saved. ``--dry-run`` writes the prompts only, for running the model
+                 elsewhere; ``--from-response`` ingests such a response.
+3. ``assemble``  deterministic: line items + mapping -> ``specs/<code8>-<slug>.draft.json`` with a
                  ``derivation`` on every input and a ``provenance`` block.
 
 When no report prints the inventory, ``draft_all`` continues with two more routes (``fallback``):
@@ -431,6 +433,17 @@ def draft(code: str, dry_run: bool, from_response: dict[str, Path] | None, proje
 
 
 # ---------------------------------------------------------------- batch: every row of the CSV
+def _route_of(code: str) -> str:
+    """Which route produced the draft spec of `code`, read from the responses on disk."""
+    ev = EVIDENCE_ROOT / code
+    if (ev / "response-2-map.json").exists():
+        return "report"
+    r3 = ev / "response-3-template.json"
+    if r3.exists() and json.loads(r3.read_text()).get("chosen_code"):
+        return "template"
+    return "metadata" if (ev / "response-5-map.json").exists() else ""
+
+
 def advance(code: str, name: str, pdf: Path, ecospold_dir: Path, project: str, dry_run: bool, by: str,
             rec: dict, variant: str = "draft", fallbacks: bool = True) -> None:
     """Take one dataset as far as its on-disk state allows: locate -> evidence -> extract -> map ->
@@ -439,7 +452,7 @@ def advance(code: str, name: str, pdf: Path, ecospold_dir: Path, project: str, d
     existing = SPEC_ROOT / f"{code[:8]}-{slug(name)}.{variant}.json"
     ev = EVIDENCE_ROOT / code
     if existing.exists():
-        rec["status"], rec["note"] = "drafted", f"{existing} exists (kept; delete it to re-assemble)"
+        rec["status"], rec["route"], rec["note"] = "drafted", _route_of(code), f"{existing} exists (kept; delete it to re-assemble)"
         ev0 = ev / "response-0-locate.json"
         if ev0.exists():
             r0 = json.loads(ev0.read_text())
@@ -508,8 +521,8 @@ def cited_reports(code: str, csv_source: str, pdf_by_title: dict, ecospold_dir: 
 
 def draft_all(project: str, ecospold_dir: Path, reports: Path, dry_run: bool, only: set[str] | None, by: str,
               status_path: Path = Path("results/drafting_status.csv"),
-              datasets: Path = Path("results/system_terminated.csv"), fallbacks: bool = True) -> None:
-    """One entry point for all system-terminated datasets: find the report, locate the pages, extract,
+              datasets: Path = Path("results/system_terminated_extended.csv"), fallbacks: bool = True) -> None:
+    """One entry point for all system processes: find the report, locate the pages, extract,
     map, assemble - recording per dataset how far it got and why it stopped. Where no report prints
     the inventory, the template route and then the metadata route take over (``fallbacks``). With
     ``only``, just those rows of the status CSV are replaced."""
@@ -532,7 +545,7 @@ def draft_all(project: str, ecospold_dir: Path, reports: Path, dry_run: bool, on
             existing = SPEC_ROOT / f"{code[:8]}-{slug(name)}.draft.json"
             reason = f"no report in the documentation bundle for '{title or 'no source'}'"
             if existing.exists():
-                rec["status"], rec["note"] = "drafted", f"{existing} exists (kept; delete it to re-assemble)"
+                rec["status"], rec["route"], rec["note"] = "drafted", _route_of(code), f"{existing} exists (kept; delete it to re-assemble)"
             elif fallbacks:
                 rec["status"], rec["note"] = "no-pdf", reason
                 fallback(code, ecospold_dir, project, dry_run, by, rec, reason)
@@ -563,34 +576,47 @@ UNITS = {"kg": "kilogram", "MJ": "megajoule", "kWh": "kilowatt hour", "m3": "cub
 
 
 
+def _rebuilt_node(cands: dict, item: str, name: str, location: str) -> str:
+    """If the chosen dataset is itself a system process and a rebuilt node of it exists in the sandbox,
+    its code: "terminate on the database" prefers a unit process to a system process."""
+    import bw2data as bd
+    for e in cands.get(item, []):
+        if e.get("name") == name and e.get("aggregated") and (not location or e.get("location") == location):
+            for suffix in ("-disagg", "-draft-disagg"):
+                try:
+                    bd.get_node(database=db.SANDBOX_DB, code=e["code"] + suffix)
+                    return e["code"] + suffix
+                except Exception:
+                    continue
+    return ""
+
+
+def _write_spec(code: str, meta: dict, variant: str, spec: dict) -> Path:
+    SPEC_ROOT.mkdir(parents=True, exist_ok=True)
+    out = SPEC_ROOT / f"{code[:8]}-{slug(meta['name'])}.{variant}.json"
+    out.write_text(json.dumps(spec, indent=2, ensure_ascii=False) + "\n")
+    return out
+
+
 def drafted_strategy(inputs: list[dict], ext: dict) -> dict:
     """Classify a drafted spec by what the report actually gave, not by the fact that a report was read.
 
-    S1 is defined (exports/README.md) as "the report prints the dataset's inventory table - transcribed
-    line by line, each amount traceable to a quoted line". The test is therefore traceability, NOT whether
-    the calibrator ran: an input marked `free` because the report printed a *range* ("Sulphuric acid 2.4 -
-    3.5", "Mischgranulat 15-30 %") is still transcribed - the report constrains it, and the fit only picks a
-    point inside the printed interval. That is the hand-written Cement ZN pattern, and it is S1.
-
-    What breaks S1 is a free input whose quoted line carries no number at all - "an average European medium
-    voltage mix (UCTE-mix) is used", "the module 'chemical plant, organics (RER)' is used here". The report
-    names the input but gives no amount, so the amount comes from fitting against the target, not from the
-    page. That is S3: the input *list* is the report's, the *amounts* are the calibrator's.
-
-    So: S1 iff every free input's derivation quote contains a numeral; otherwise S3. S2 is template transfer
-    from an existing unit process and cannot arise here - the drafting pipeline always starts from a report.
-
-    Before this existed, `assemble` stamped "S1" as a literal on every drafted spec. Anthraquinone - 3 of 9
-    inputs quoted, and electricity and infrastructure named with no number anywhere in the report - was
-    published as a transcription. Five of the twelve drafts were mislabelled that way.
+    S1 (transcription, exports/README.md) means every input carries one printed number. A printed range
+    ("Mischgranulat 15-30 %") is not enough: the fit picks the amount inside it, so the input list is
+    the report's and some amounts are the calibrator's - that is S3, the same as an input the report
+    names without any number ("an average European medium voltage mix (UCTE-mix) is used"). S2 is
+    template transfer from an existing unit process and cannot arise here: this route starts from a
+    report. Whether a printed table is this dataset's inventory or only comparison data cannot be told
+    from the numbers; such drafts are relabelled S3 by hand (titanium dioxide, hydrogen cyanide).
     """
     fitted = [i for i in inputs if i.get("free")]
     untraceable = [i for i in fitted if not re.search(r"\d", ((i.get("derivation") or {}).get("quote") or ""))]
     counts = (f"{len(inputs) - len(fitted)} of {len(inputs)} inputs carry a printed amount, "
               f"{len(fitted) - len(untraceable)} a printed range, {len(untraceable)} no number in the report")
     if untraceable:
-        code, label = "S3", "top-down model drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)"
         counts += " (" + ", ".join(i["name"] for i in untraceable) + ")"
+    if fitted:
+        code, label = "S3", "top-down model drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)"
     else:
         code, label = "S1", "transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft)"
     return {"code": code, "label": label,
@@ -611,20 +637,6 @@ def assemble(code: str, project: str, variant: str = "draft") -> Path:
     cands = json.loads((ev / "candidates-2-map.json").read_text()) if (ev / "candidates-2-map.json").exists() else {}
     scale = 1.0 / float(ext["basis_amount"] or 1.0)  # per basis -> per 1 target unit
 
-    def rebuilt_node(item: str, name: str, location: str) -> str:
-        """If the chosen dataset is itself aggregated and a rebuilt node of it exists in the sandbox,
-        link that node ("terminate on the database" prefers a unit process over a sealed one)."""
-        import bw2data as bd
-        for e in cands.get(item, []):
-            if e.get("name") == name and e.get("aggregated") and (not location or e.get("location") == location):
-                for suffix in ("-disagg", "-draft-disagg"):
-                    try:
-                        bd.get_node(database=db.SANDBOX_DB, code=e["code"] + suffix)
-                        return e["code"] + suffix
-                    except Exception:
-                        continue
-        return ""
-
     inputs, emissions, resources, skipped = [], [], [], []
     for it in ext["items"]:
         amount = it["raw_value"] * it["factor"] * scale
@@ -639,7 +651,7 @@ def assemble(code: str, project: str, variant: str = "draft") -> Path:
                 continue
             entry = {"name": m["chosen"], "amount": amount, "unit": unit, "location": m["location"], "note": it["note"],
                      "derivation": {**deriv, "search": it["search"], "mapping_reason": m["reason"], "mapping_by": prov2.get("by", "llm")}}
-            sb = rebuilt_node(it["name"], m["chosen"], m["location"]) if m.get("dependency") else ""
+            sb = _rebuilt_node(cands, it["name"], m["chosen"], m["location"]) if m.get("dependency") else ""
             if sb:
                 entry["sandbox"] = sb
                 entry["derivation"]["linked_rebuilt_node"] = sb
@@ -671,9 +683,7 @@ def assemble(code: str, project: str, variant: str = "draft") -> Path:
                  **({"mass_sum": ext["mass_sum"] * scale} if ext.get("mass_sum") else {}),
                  "inputs": inputs, "emissions": emissions, "resources": resources},
     }
-    SPEC_ROOT.mkdir(parents=True, exist_ok=True)
-    out = SPEC_ROOT / f"{code[:8]}-{slug(meta['name'])}.{variant}.json"
-    out.write_text(json.dumps(spec, indent=2, ensure_ascii=False) + "\n")
+    out = _write_spec(code, meta, variant, spec)
     print(f"assembled -> {out}: {len(inputs)} inputs, {len(emissions)} emissions, {len(resources)} resources; skipped {len(skipped)}; gaps: {len(ext['gaps'])}")
     for s in skipped:
         print("  skipped:", s)
@@ -870,27 +880,6 @@ def fallback(code: str, ecospold_dir: Path, project: str, dry_run: bool, by: str
         rec["status"], rec["route"], rec["note"] = "drafted", "metadata", str(out)
     except SystemExit as exc:
         rec["status"], rec["note"] = "error", str(exc)[:200]
-
-
-def _rebuilt_node(cands: dict, item: str, name: str, location: str) -> str:
-    """The sandbox code of a rebuilt node for a chosen aggregated dataset, if one exists."""
-    import bw2data as bd
-    for e in cands.get(item, []):
-        if e.get("name") == name and e.get("aggregated") and (not location or e.get("location") == location):
-            for suffix in ("-disagg", "-draft-disagg"):
-                try:
-                    bd.get_node(database=db.SANDBOX_DB, code=e["code"] + suffix)
-                    return e["code"] + suffix
-                except Exception:
-                    continue
-    return ""
-
-
-def _write_spec(code: str, meta: dict, variant: str, spec: dict) -> Path:
-    SPEC_ROOT.mkdir(parents=True, exist_ok=True)
-    out = SPEC_ROOT / f"{code[:8]}-{slug(meta['name'])}.{variant}.json"
-    out.write_text(json.dumps(spec, indent=2, ensure_ascii=False) + "\n")
-    return out
 
 
 def assemble_template(code: str, project: str, variant: str = "draft") -> Path:

@@ -14,7 +14,7 @@ nothing to disaggregate.
 
 Usage:
     uv run python scripts/list_system_terminated.py [--ecospold data/ecospold]
-        [--project reverse-bafu] [--out results/system_terminated.csv]
+        [--project bafu-2026] [--out results/system_terminated.csv]
 """
 
 from __future__ import annotations
@@ -146,7 +146,7 @@ def add_brightway_usage(flagged: dict[str, dict], project: str, database: str) -
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--ecospold", default="data/ecospold", help="unzipped BAFU XML folder")
-    p.add_argument("--project", default="reverse-bafu", help="Brightway project with the BAFU import")
+    p.add_argument("--project", default="bafu-2026", help="Brightway project with the BAFU import")
     p.add_argument("--database", default="bafu-2026")
     p.add_argument("--out", default="results/system_terminated.csv")
     args = p.parse_args()

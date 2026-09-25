@@ -22,7 +22,7 @@ What lands in the database (``--include``)
   explicit  only the ``*-disagg`` nodes: the evidence-based model, and nothing else. Its
             cumulative inventory is NOT equal to the original - see exports/README.md.
   hybrid    the ``*-hybrid`` nodes: the same exchanges plus the residual elementary flows, so the
-            cumulative inventory reproduces the original aggregated dataset exactly. Any explicit
+            cumulative inventory reproduces the original system process exactly. Any explicit
             node another node links to is imported too, because it is needed as a link target.
   both      (default) both, so you can compare them.
 """
@@ -159,8 +159,8 @@ def plan(payload: dict, target_db: str, bafu_db: str, biosphere_dbs: list[str], 
             data[(target_db, res["node_code"])] = {
                 "name": res["name"], "unit": res["unit"], "location": res["location"], "type": "process",
                 "reference product": res["name"],
-                "comment": base_comment + " HYBRID (S5): " + res["note"],
-                "reverse_bafu": {"bafu_code": d["bafu_code"], "strategy": "S5", "kind": "hybrid",
+                "comment": base_comment + " HYBRID: " + res["note"],
+                "reverse_bafu": {"bafu_code": d["bafu_code"], "strategy": d["strategy"].get("code", ""), "kind": "hybrid",
                                  "quality": d["quality"]},
                 "exchanges": ex,
             }

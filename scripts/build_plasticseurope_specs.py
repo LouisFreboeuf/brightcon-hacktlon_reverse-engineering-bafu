@@ -1,6 +1,11 @@
-"""Write the hand-drafted S2/S3 specs for the PlasticsEurope family of BAFU-2026.
+"""Write the S2/S3 specs for the PlasticsEurope family of BAFU-2026 (their starting amounts).
 
-Run:  PYTHONPATH=src python scripts/build_plasticseurope_specs.py
+Run:  uv run python scripts/build_plasticseurope_specs.py [--force]
+
+The committed specs were written by this script and then resolved and calibrated by
+``reverse-bafu run-all --apply``, which wrote codes and fitted amounts into them. Re-running the
+script therefore skips every spec that already exists; ``--force`` overwrites them with the
+starting values (run ``run-all --apply`` again afterwards).
 
 Why a script and not 11 JSON files typed out: every amount in these specs is derived from one of a
 small number of quoted lines (a stoichiometric equation, a yield range, an allocation factor, the
@@ -14,6 +19,7 @@ Emulsion polymerisation) - never the target.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 OUT = Path("specs")
@@ -88,6 +94,9 @@ def free(name, unit, location, note, start=0.1, bounds=None):
 
 def write(code, slug, spec):
     p = OUT / f"{code[:8]}-{slug}.json"
+    if p.exists() and "--force" not in sys.argv:
+        print("exists, kept", p)
+        return
     p.write_text(json.dumps(spec, indent=2, ensure_ascii=False) + "\n")
     print("wrote", p)
 

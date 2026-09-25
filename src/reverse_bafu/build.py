@@ -3,7 +3,7 @@
 Two nodes per spec end up in the sandbox:
   <code>-disagg   explicit inputs + direct flows only (the model)
   <code>-hybrid   the same plus a residual block of elementary flows so that the cumulative
-                  inventory equals the original aggregated dataset exactly (S5)
+                  inventory equals the original system process exactly
 """
 
 from __future__ import annotations

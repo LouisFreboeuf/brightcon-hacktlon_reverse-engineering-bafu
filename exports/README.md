@@ -1,8 +1,10 @@
-# Disaggregated BAFU-2026 datasets — export and import
+# Dis-aggregated BAFU-2026 system processes — export and import
 
 This folder holds a machine-readable export of the unit processes the `reverse-bafu` project
-rebuilt for BAFU-2026's **aggregated ("system terminated") datasets** — the 101 datasets that ship
-with no technosphere inputs, only a cumulative vector of elementary flows on the product.
+rebuilt for BAFU-2026's **system processes**: datasets that ship with no production inputs, only
+the cumulative elementary flows of their whole supply chain on the product. We found 138 (101
+carry the ecoSpold `type=2` flag, 37 were found by structure) and dis-aggregated 51; the export
+holds those 51, plus the alternative variants of some of them (`"variant"`, see below).
 
 The point of the export is that you can enrich **your own** Brightway project with them: the
 rebuilt processes are added as a new database whose exchanges link, by code, to the BAFU-2026 and
@@ -18,13 +20,13 @@ EF 3.1 biosphere databases you already have.
 | file | what it is |
 |---|---|
 | `disaggregated_bafu2026.json` | the export. Plain, documented JSON — one object per rebuilt dataset, with every exchange, its supplier's BAFU code, every elementary flow with its EF 3.1 code **and** database, the residual block, and the provenance (report, page, quoted line) wherever the pipeline recorded it. |
-| `disaggregated_bafu2026_exchanges.csv` | the **explicit** exchanges flattened to one row each, for reading in a spreadsheet. It is a *view*; the JSON is the source of truth (the CSV drops the derivation detail, the gaps, the evidence list and the ~49,000 residual rows, which would bury the 451 explicit ones). |
+| `disaggregated_bafu2026_exchanges.csv` | the **explicit** exchanges flattened to one row each, for reading in a spreadsheet. It is a *view*; the JSON is the source of truth (the CSV drops the derivation detail, the gaps, the evidence list and the residual rows, which outnumber the explicit ones more than a hundred to one). |
 | `README.md` | this file. |
 
 Both files are generated — never hand-edited — by:
 
 ```bash
-PYTHONPATH=src python scripts/export_disaggregated.py --project bafu-2026
+uv run python scripts/export_disaggregated.py
 ```
 
 which reads `results/rebuild_status.csv`, the specs under `specs/`, and the Brightway sandbox
@@ -35,11 +37,11 @@ which reads `results/rebuild_status.csv`, the specs under `specs/`, and the Brig
 ## Importing into your project
 
 ```bash
-python scripts/import_disaggregated.py --project <your-project>
+uv run python scripts/import_disaggregated.py --project <your-project>
 ```
 
 That creates one new database, `bafu-2026-disaggregated`, and touches nothing else. Your
-aggregated BAFU datasets stay exactly as they are; the new unit processes link *to* them for their
+BAFU system processes stay exactly as they are; the new unit processes link *to* them for their
 supply chain.
 
 Useful flags:
@@ -65,12 +67,12 @@ Each rebuilt dataset produces up to two nodes:
 
 * **`<bafu-code>-disagg`, "… , disaggregated"** — the *explicit* model: only the exchanges the
   evidence supports. Transparent, but incomplete: its cumulative inventory does **not** equal the
-  original aggregated dataset.
+  original system process.
 * **`<bafu-code>-hybrid`, "… , hybrid"** — the same exchanges **plus a residual block** of
   elementary flows equal to *(original cumulative inventory − explicit cumulative inventory)*,
   flow by flow. By construction the hybrid reproduces the original dataset **exactly**, while the
-  part that is explained by a real supply chain is visible as named technosphere exchanges. This
-  is strategy **S5** and it is what you want if you care about not changing your results.
+  part that is explained by a real supply chain is visible as named technosphere exchanges. It
+  is what you want if you care about not changing your results.
 
 Use the **hybrid** if you need results that match BAFU-2026. Use the **explicit** node only when
 you deliberately want the incomplete, evidence-only model — for example to substitute a different
@@ -99,35 +101,35 @@ is expected and is what makes the hybrid exact.
 the claims above are measured rather than asserted:
 
 ```bash
-PYTHONPATH=src python scripts/verify_import_roundtrip.py --source bafu-2026 --scratch import-test
+uv run python scripts/verify_import_roundtrip.py --source bafu-2026 --scratch import-test
 ```
 
-The run behind the numbers in this file (`--source bafu-2026-t1 --scratch import-test-t1`):
+The run behind the numbers in this file:
 
 ```
 STEP 1  refuse to import into a project that has no BAFU-2026
-        OK   refused with: database 'bafu-2026' not found in project 'import-test-t1-empty'
+        OK   refused with: database 'bafu-2026' not found in project 'import-test-empty'
 
-STEP 2  scratch project 'import-test-t1', copied from 'bafu-2026-t1'
+STEP 2  scratch project 'import-test', copied from 'bafu-2026'
         databases: ['bafu-2026', 'bafu-2026-residual', 'ef-3.1-biosphere']   (build sandbox removed)
 
-STEP 3  dry run:  resolved every reference: 40 nodes, 31692 exchanges
-STEP 4  import:   wrote 40 nodes to 'bafu-2026-disaggregated'
+STEP 3  dry run:  resolved every reference: 120 nodes, 92034 exchanges
+STEP 4  import:   wrote 120 nodes to 'bafu-2026-disaggregated'
 
-STEP 5  technosphere exchanges: 442 (of which 432 link into bafu-2026)
-        biosphere exchanges:  31210 (of which residual: 30988)
+STEP 5  technosphere exchanges: 986 (of which 972 link into bafu-2026)
+        biosphere exchanges:  90928 (of which residual: 90478)
         dangling references:      0
 
 STEP 6  LCA per imported dataset, cumulative inventory compared flow by flow with the original:
-        20 datasets checked
-        worst hybrid deviation:   8.905e-08        <- numerical noise
-        explicit deviation range: 8.2 % to 155.4 %
+        60 datasets checked
+        worst hybrid deviation:   4.277e-07        <- numerical noise
+        explicit deviation range: 8.7 % to 1611.5 %
 
 RESULT: PASS
 ```
 
 That last block is the whole story in two numbers: **the hybrid nodes reproduce the originals; the
-explicit nodes do not.** If your own run shows a hybrid deviation that is not ~1e-8, your BAFU-2026
+explicit nodes do not.** If your own run shows a hybrid deviation well above 1e-6, your BAFU-2026
 release is not the one this export was generated against.
 
 ---
@@ -139,8 +141,10 @@ release is not the one this export was generated against.
 | **S1** | **transcription** — the report prints *this dataset's own* inventory, and every technosphere input carries one printed number. We copy it; the only arithmetic we add is unit conversion (litres to MJ, distances to tkm). A printed range is not enough, and neither is a table the report itself calls comparison data or literature |
 | **S2** | **template transfer** — no usable inventory, but a *unit process of the same product* already exists: at another site, in another grade, as an older ecoinvent version, or as BAFU's own dis-aggregated twin. Its input structure is reused, site-specific inputs such as the electricity grid are switched, and the amounts are calibrated, usually within 0.5–2× of the template |
 | **S3** | **top-down model** — something names the inputs, but not every amount: the dataset's own process description, a partial table, printed ranges, or published comparison data. The main feedstock comes from the reaction equation or a mass balance, utilities from BAFU's generic chemicals module, and the calibration sets whatever the evidence leaves open |
-| **S4** | **inventory fitting alone** — nothing but the aggregated vector. Used on none of the real datasets, only in the benchmark: fitting an input list with no evidence produces a good-looking inventory with the wrong structure (see the `blind` row of the benchmark in the project README §6) |
-| **S5** | hybrid: whatever S1–S3 produced, plus the residual block. Always built, so every rebuild can reproduce the original exactly |
+
+Fitting the flow vector alone is never a route: without evidence for the input list it produces a
+good-looking inventory with the wrong structure (the no-list rows of the benchmark in the project
+README §6). Every rebuild, whatever its route, also has the hybrid node described above.
 
 "Calibrated" amounts are fitted by bounded least squares against the dataset's own aggregated flow
 vector, with the input list held fixed. The export marks them: every technosphere exchange carries
@@ -164,10 +168,12 @@ amount was read off the report.
   "citation": "...",
   "datasets": [
     {
-      "bafu_code": "<uuid>",             // the aggregated dataset this replaces
+      "bafu_code": "<uuid>",             // the system process this replaces
       "bafu_name": "...",
       "replaces": {"database": "bafu-2026", "code": "<uuid>", "name": "..."},
-      "variant": "" | "draft",           // "draft" = produced by the LLM drafting pipeline
+      "variant": "" | "draft" | "chained", // "" = the spec written in an interactive session; "draft" =
+                                         // produced by the automated drafting routes; "chained" = links a
+                                         // rebuilt node instead of a system process
       "spec": "specs/....json",          // the spec it was generated from, in this repo
       "strategy": {"code": "S1", "label": "...", "note": "..."},
       "evidence": [{"source": "<report pdf>", "where": "pages 845-847 -> report-p845-847.txt"}],
@@ -216,7 +222,7 @@ amount was read off the report.
       "residual": {                      // null if no hybrid was built
         "node_code": "<uuid>-hybrid",
         "name": "..., hybrid", "n_flows": 1289,
-        "note": "S5 hybrid: ... reproduces the original exactly ...",
+        "note": "Hybrid node: ... equals the original BAFU system process exactly ...",
         "flows": [{"flow_code": "...", "flow_database": "...", "flow_name": "...",
                    "categories": [...], "amount": -1.2e-3, "unit": "kilogram"}]
       }
@@ -244,7 +250,8 @@ Conventions worth knowing:
 
 These are reconstructions, not the original data. The headline number per dataset is **what share
 of the original's elementary flows the explicit model reproduces within ±10 %**, and for many of
-them it is small.
+them it is small. The route is the one the spec carries (S1 transcription, S2 template transfer,
+S3 top-down model).
 
 | BAFU dataset | strategy | flows within +-10 % | of the 50 largest kg flows | kg mass covered | median deviation |
 |---|---|---|---|---|---|
@@ -255,34 +262,37 @@ them it is small.
 | Polyethylene, LDPE, granulate, at plant | S3 | 1259/1667 (76%) | 23/50 | 6.5 % | 2.2 % |
 | Polypropylene, granulate, at plant | S3 | 1245/1667 (75%) | 21/50 | 6.3 % | 3.9 % |
 | Polyvinylchloride, emulsion polymerised, at plant | S3 | 268/1667 (16%) | 14/50 | 25.9 % | 79.6 % |
-| Cement ZN, D, at plant | S1 | 213/1326 (16%) | 11/50 | 5.3 % | 27.9 % |
-| Cement ZN, D, at plant (draft) | S1 | 192/1326 (14%) | 16/50 | 4.0 % | 25.8 % |
+| Cement ZN, D, at plant | S3 | 213/1326 (16%) | 11/50 | 5.3 % | 27.9 % |
+| Cement ZN, D, at plant (draft) | S3 | 192/1326 (14%) | 16/50 | 4.0 % | 25.8 % |
 | Particle board, cement bonded, at plant (draft) | S3 | 140/1149 (12%) | 8/50 | 42.7 % | 63.0 % |
 | Polyethylene terephthalate, granulate, bottle grade, at plant | S2 | 127/1679 (8%) | 9/50 | 4.7 % | 69.6 % |
-| Titanium dioxide at plant, sulphate process, at plant (draft) | S1 | 117/1148 (10%) | 11/50 | 13.3 % | 75.2 % |
+| Titanium dioxide at plant, sulphate process, at plant (draft) | S3 | 117/1148 (10%) | 11/50 | 13.3 % | 75.2 % |
 | xxx Wood wool boards, cement bonded, at plant (draft) | S3 | 111/1149 (10%) | 7/50 | 30.6 % | 63.0 % |
 | Ethylene glycol, at plant | S2 | 105/1668 (6%) | 8/50 | 4.6 % | 180.3 % |
 | Burnt shale, at plant | S1 | 97/1326 (7%) | 5/50 | 99.5 % | 66.1 % |
 | Burnt shale, at plant (draft) | S1 | 81/1326 (6%) | 3/50 | 30.4 % | 144.5 % |
-| xx Packaging glass, white, at regional storage | S2 | 76/1146 (7%) | 5/50 | 0.1 % | 88.5 % |
-| xx Packaging glass, green, at regional storage | S2 | 74/1146 (6%) | 4/50 | 0.1 % | 90.0 % |
-| xx Packaging glass, brown, at regional storage | S2 | 73/1146 (6%) | 3/50 | 0.1 % | 86.5 % |
+| xx Packaging glass, white, at regional storage | S3 | 76/1146 (7%) | 5/50 | 0.1 % | 88.5 % |
+| xx Packaging glass, green, at regional storage | S3 | 74/1146 (6%) | 4/50 | 0.1 % | 90.0 % |
+| xx Packaging glass, brown, at regional storage | S3 | 73/1146 (6%) | 3/50 | 0.1 % | 86.5 % |
 | Anthraquinone, at plant (draft) | S3 | 64/1149 (6%) | 4/50 | 7.7 % | 78.5 % |
 | Gypsum plaster board, at plant | S2 | 64/1171 (5%) | 2/50 | 1.0 % | 99.9 % |
 | Xylene, at plant | S3 | 60/1664 (4%) | 2/50 | 0.6 % | 120.7 % |
 | xx Packaging glass, brown, at plant | S2 | 54/1146 (5%) | 3/50 | 0.1 % | 130.7 % |
 | xx Packaging glass, white, at plant | S2 | 53/1146 (5%) | 4/50 | 0.2 % | 152.3 % |
+| xx Packaging glass, white, at plant (draft) | S2 | 53/1146 (5%) | 7/50 | 10.6 % | 173.4 % |
 | Gypsum fibre board, at plant | S2 | 52/1172 (4%) | 4/50 | 1.4 % | 86.3 % |
 | xx Packaging glass, green, at plant | S2 | 45/1146 (4%) | 4/50 | 0.6 % | 177.8 % |
-| Titanium dioxide, chloride process, at plant (draft) | S1 | 42/1147 (4%) | 5/50 | 38.2 % | 70.7 % |
+| Titanium dioxide, chloride process, at plant (draft) | S3 | 42/1147 (4%) | 5/50 | 38.2 % | 70.7 % |
 | Vinyl chloride, at plant | S3 | 32/1665 (2%) | 0/50 | 0.0 % | 191.2 % |
 | Wood preservative, inorganic salt, containing Cr, at plant (draft) | S3 | 31/1148 (3%) | 1/50 | 0.0 % | 89.2 % |
 | xxx Wood wool boards, cement bonded, at plant | S2 | 25/1149 (2%) | 2/50 | 0.0 % | 70.3 % |
+| Polystyrene, expandable, at plant (chained) | S3 | 24/1670 (1%) | 0/50 | 0.0 % | 103.0 % |
 | Wood preservative, organic salt, Cr-free, at plant (draft) | S3 | 18/1149 (2%) | 0/50 | 0.0 % | 91.8 % |
 | Polystyrene, expandable, at plant | S3 | 17/1670 (1%) | 0/50 | 0.0 % | 100.0 % |
 
-Sorted best-first. "flows within ±10 %" counts the elementary flows of the original aggregated
-dataset that the **explicit** node reproduces within ±10 %, out of the flows the solve determines.
+Sorted best-first; `(draft)` is the spec the automated route produced, `(chained)` a variant that
+links a rebuilt node instead of a system process. "flows within ±10 %" counts the elementary flows of the original aggregated
+system process that the **explicit** node reproduces within ±10 %, out of the flows the solve determines.
 Source: `results/rebuild_status.csv`, and the per-dataset report named in each dataset's
 `quality.report`.
 
@@ -290,21 +300,20 @@ This table is the 29 datasets of the flag-based survey. A second family — the 
 eco-profiles the `type=2` flag never marked — is rebuilt too and has its own table below, under
 *The APME eco-profiles the ecoSpold type=2 flag missed*; `results/rebuild_status.csv` holds both.
 
-Two caveats about the `strategy` column:
+Two notes on the rows:
 
-* Every spec produced by the drafting pipeline is labelled **S1**, because that is what the
-  assembler writes. Several of them are in truth **S3**: the report named the inputs but printed
-  `confidential` instead of the amounts, so the list is evidence and the amounts are a fit. You can
-  tell them apart from the data: an S3-in-practice dataset has `"calibrated": true` on most of its
-  technosphere exchanges. The two wood preservatives, the wood wool board, the particle board and
-  (partly) anthraquinone are of that kind.
-* Rows appearing twice (burnt shale, cement ZN D, wood wool board) are the same BAFU dataset
-  rebuilt two ways — by hand and by the drafting pipeline (`"variant": "draft"`). They have
-  different node codes and both are importable; pick one.
-
+* The route follows what the evidence gave, not the fact that a report was read: a report that
+  prints ranges, or only comparison data, makes an S3 model, not an S1 transcription (cement ZN/D,
+  both titanium dioxides). For the drafted specs the rule is applied in code: S1 only if no input
+  had to be fitted. An S3 dataset carries `"calibrated": true` on most of its technosphere
+  exchanges.
+* Rows appearing twice (burnt shale, cement ZN/D, wood wool board, white packaging glass at plant)
+  are the same BAFU dataset rebuilt two ways: in an interactive session and by the automated drafting
+  routes (`"variant": "draft"`). They have different node codes and both are importable; pick one.
+  The interactive one is the one counted in the project's totals.
 
 Read that column as: *the explicit node is a partial model.* The S2 rebuilds in particular — the
-packaging glass family, the gypsum boards, the wood wool board — reproduce only a few per cent of
+packaging glass at plant, the gypsum boards, the wood wool board — reproduce only a few per cent of
 the original's flows, because the template unit process they borrow their structure from is a
 different plant with a different supply chain, and calibration can only move amounts, not add or
 remove inputs. The `kg_mass_covered` column shows the same thing from the mass side: for several
@@ -357,22 +366,24 @@ Specific things to keep in mind:
    improvement in accuracy — it is the part of the supply chain the rebuild does not yet cover
    going missing. Use `-hybrid` unless you know exactly why you want otherwise.
 2. **A good flow agreement does not prove a correct structure.** The project's calibration
-   benchmark (project README §6) shows it explicitly: offered every frequently used process and no
-   input list, the fit reproduces 97 % of the flows within ±10 % with a process made of ~96 inputs
+   benchmark (project README §6) shows it explicitly: offered every dataset in the database and no
+   input list, the fit reproduces 100 % of the flows within ±10 % with a process made of ~71 inputs
    that are not in the real one. Inventory agreement and structural correctness are different things.
 3. **Calibrated amounts are fits, not measurements.** Where a report printed "confidential", the
    input is in the list because the report names it, and the amount comes from the least-squares
    fit within the stated bounds. Those entries carry `"calibrated": true` and, usually,
    `"confidence": "low"` in their provenance. Several of them sit *on* their bound after the fit,
    which means the data wanted to go further and the bound stopped it.
-4. **The drafted (`"variant": "draft"`) datasets were produced by an LLM pipeline** — locate the
-   table in the PDF, transcribe it, map each line to a dataset or flow — with every step recorded
-   and every number quoted, but **not** reviewed by a person. `reviewed_by` is `null` throughout.
-5. **Coverage is limited by the documentation bundle.** Of the 101 aggregated datasets, only 34
-   cite a report that is actually in the BAFU-2026 documentation bundle, and of those 34 most of
-   the reports state outright that the unit-process data are confidential. The rest cannot be
-   rebuilt from public evidence at all, and are deliberately absent from this export rather than
-   invented. `results/drafting_status.csv` records the reason for each one.
+4. **Nothing here has been reviewed by a person.** The drafted (`"variant": "draft"`) datasets
+   come from the automated routes — locate the table in the PDF, transcribe it, map each line to a
+   dataset or flow — with every step recorded and every number quoted; `reviewed_by` is `null`
+   throughout. The other specs were written by an LLM in interactive sessions guided by the team,
+   with their sources and arithmetic in `strategy.note`.
+5. **Coverage is limited by the evidence.** Of the 138 system processes, 51 are rebuilt. For the
+   other 87 we found too little: no report in the documentation bundle (53), or a report that
+   prints no usable inventory — often it says outright that the unit-process data are
+   confidential. They are deliberately absent from this export rather than invented;
+   `results/usable_information.csv` gives the reason for each one.
 
 ### The APME eco-profiles the ecoSpold type=2 flag missed
 
@@ -385,8 +396,8 @@ polybutadiene, PVDC, polyols, MDI, TDI, methyl methacrylate, acetone cyanohydrin
 and the ethylene and propylene pipeline-system datasets.
 
 These are not a curiosity at the edge of the database. **466 BAFU-2026 datasets consume at least
-one of the 37** — against 936 that consume one of the 101 flagged ones — so the unflagged black
-boxes sit inside the database's own unit processes, not only at the top of a survey: `Ethyl
+one of the 37** — against 936 that consume one of the 101 flagged ones — so the unflagged system
+processes sit inside the database's own unit processes, not only at the top of a survey: `Ethyl
 benzene, at plant` consumes `Benzene, at plant`, `Cumene, at plant` consumes benzene and propylene,
 `Acrylonitrile from Sohio process` consumes propylene, and `Glass fibre, at plant` consumes
 `Nylon 6, at plant`. The most-consumed are epoxy resin (82 consumers), ABS (68), toluene and
@@ -401,15 +412,16 @@ data source were considered."* Their own chapters in ecoinvent report No. 8 say 
 *"Due to the fact that this dataset is cumulated it was not possible to use the other processes
 modelled in econvent to obtain a transparent process chain."*
 
-**22 of the 37 are rebuilt** (24 specs — acetone and epoxy resin each have two — plus two
-`-chained` variants that re-point an existing rebuild at the rebuilt styrene). The remaining 15 are
-recorded with a quoted reason in `results/drafting_status_extended.csv`.
+**22 of the 37 are rebuilt** (25 specs — acetone, epoxy resin and polycarbonate each have an
+interactive and a drafted one — plus two `-chained` variants that re-point an existing rebuild at
+the rebuilt styrene). The remaining 15 are listed with a reason in `results/usable_information.csv`.
 
-One warning about that file: it records the *report* route, so it reads `pages-not-found` for 34 of
-the 37 — only acetone, hydrogen cyanide and epoxy resin have a report that prints unit-process data.
-That is not the same as "not rebuilt". The other 19 rebuilds are S3 models written from the
-dataset's own ecoSpold `technology` field plus reaction stoichiometry, and S2 transfers from a
-sibling unit process BAFU already contains; their evidence is in the spec, not in a PDF page range.
+Only acetone, hydrogen cyanide and epoxy resin have a report that prints unit-process data, so
+`results/drafting_status.csv` reads `pages-not-found` for most of the 37 (the report route, run
+with `--no-fallback`). That is not the same as "not rebuilt". The other rebuilds are S3 models
+written from the dataset's own ecoSpold `technology` field plus reaction stoichiometry, and S2
+transfers from a sibling unit process BAFU already contains; their evidence is in the spec, not in
+a PDF page range. The drafted polycarbonate shows the metadata route doing the same automatically.
 
 | BAFU dataset | route | flows within ±10 % | of the 50 largest kg flows | kg mass | median \|Δ\| | of the flows the eco-profile itself declares |
 |---|---|---|---|---|---|---|
@@ -430,10 +442,11 @@ sibling unit process BAFU already contains; their evidence is in the spec, not i
 | Polystyrene, general purpose, GPPS, at plant (chained) | S3 | 8/1668 (0%) | 0/50 | 0.0 % | 10123.3 % | — |
 | Polyols, at plant | S3 | 7/1666 (0%) | 0/50 | 0.0 % | 8640.6 % | 5/137 (3.6 %) |
 | Epoxy resin, liquid, at plant | S2 | 6/1667 (0%) | 3/50 | 75.0 % | 105836.1 % | 4/102 (3.9 %) |
-| Hydrogen cyanide, at plant (draft) | S1 | 6/1678 (0%) | 1/50 | 0.1 % | 11380.3 % | 4/131 (3.1 %) |
+| Hydrogen cyanide, at plant (draft) | S3 | 6/1678 (0%) | 1/50 | 0.1 % | 11380.3 % | 4/131 (3.1 %) |
 | Methylene diphenyl diisocyanate, at plant | S3 | 6/1668 (0%) | 2/50 | 12.6 % | 38831.4 % | 4/135 (3.0 %) |
 | Toluene diisocyanate, at plant | S3 | 6/1678 (0%) | 0/50 | 0.0 % | 24967.9 % | 6/134 (4.5 %) |
 | Naphtha, APME mix, at refinery | S2 | 4/1679 (0%) | 0/50 | 0.0 % | 30857.6 % | 4/110 (3.6 %) |
+| Polycarbonate, at plant (draft) | S3 | 4/1665 (0%) | 0/50 | 0.0 % | 30649.3 % | — |
 | Styrene-acrylonitrile copolymer, SAN, at plant | S3 | 3/1668 (0%) | 2/50 | 1.1 % | 132.9 % | 3/135 (2.2 %) |
 | Acetone, liquid, at plant (draft) | S1 | 1/1666 (0%) | 1/50 | 0.0 % | 36139.8 % | 1/132 (0.8 %) |
 | Benzene, at plant | S2 | 1/1664 (0%) | 0/50 | 0.0 % | 9145.4 % | 0/133 (0.0 %) |
@@ -446,9 +459,9 @@ that links a rebuilt node instead of an aggregated one. The last column comes fr
 #### The three numbers disagree, and the disagreement is the finding
 
 Read the table with the last column next to the third, because they say opposite things. ABS
-reproduces **73 %** of the target's determined flows — the best in the family — and **12 %** of the
-flows the eco-profile itself declares, with 0 % of the declared kilogram mass. Polymethyl
-methacrylate beads reproduce 46 % of all flows, 18 % of the declared flows, and **97 %** of the
+reproduces **90 %** of the target's determined flows — the best in the family — and **9.5 %** of
+the flows the eco-profile itself declares, with 0 % of the declared kilogram mass. Polymethyl
+methacrylate beads reproduce 64 % of all flows, 19 % of the declared flows, and **97.5 %** of the
 declared kilogram mass. Those are not small differences in emphasis; they are three different
 questions.
 
@@ -468,9 +481,10 @@ itself declares only 78 to 139 substances, 4 to 8 % of the total. So:
   emissions in *Emissions to fresh water*, while `resolve` maps a spec's flow by name and
   top-level compartment only and prefers the *unspecified* sub-compartment, so a substance total
   that is exactly right can still be counted as two large deviations.
-* **The kilogram-mass columns are the ones to quote** when the question is "does this node carry
-  the right burden?": 97 % (PMMA beads), 96 % (acetone cyanohydrin), 89 and 85 % (the glass-filled
-  nylons), 75 % (epoxy resin).
+* **The declared kilogram mass is the number to quote** when the question is "does this node carry
+  the right burden?" (`kg_mass_declared_pct` in `results/ecoprofile_agreement.csv`): 97.5 % (PMMA
+  beads), 95.8 % (acetone cyanohydrin), 90.0 and 86.9 % (the glass-filled nylons), 76.3 % (epoxy
+  resin).
 
 The control that fixes the scale is **epoxy resin**, the one dataset of the family where BAFU ships
 both versions. Chapter 31 of `2007 - LCI chemicals - Althaus.pdf` prints Tab. 31.1 (the cumulative
@@ -525,7 +539,7 @@ the fit produced a composition that is chemically impossible:
 
 The mechanism is not random. Under a mass constraint, when one candidate is another dataset of the
 same APME family and the other is an ecoinvent unit process, the fit empties the ecoinvent one:
-it drags a ~1670-flow background into a target that reports 83-146 substances, and every extra flow
+it drags a ~1670-flow background into a target that reports 78–139 substances, and every extra flow
 counts against it. Among same-family candidates the fit then follows the waste-treatment exchanges
 rather than the chemistry — which is why it prefers polybutadiene (0.0078 kg hazardous waste) to
 styrene (0.5615) in HIPS. **The amounts of those five nodes reproduce the target's inventory and
@@ -557,29 +571,6 @@ exchange:
 So on the one case in this batch where the answer is knowable: the reading of the PDF is exact, and
 everything that is lost is lost in the mapping from a report's substance name to an EF 3.1 flow.
 (`scripts/transcription_vs_truth.py` reproduces this comparison.)
-
-#### A reproducibility bug this family exposed, now fixed
-
-Running the same spec twice gave two different answers. The drafted epoxy-resin spec covered 75 %
-of the target's kilogram mass on one run and 57 % on the next, with no change to the spec, because
-its 1.8 kg of rock salt resolved to `resources / in ground` the first time and to
-`resources / in water` the second.
-
-The cause is in `db.resolve_flow`, which scores a candidate flow on three things — does the
-top-level compartment match the hint, is the sub-compartment "unspecified", is it the EF 3.1
-database — and then takes `max()`. "Sodium chloride" exists in `in ground` and `in water`, both
-score identically, and `max()` returns whichever the index happened to list first; the index was
-built from `Database.load()`, whose dict order is not stable between processes. `activity_index`
-had the same weakness on its fallback path. Both indexes are now sorted before use, so the
-tie-break is deterministic (and on that case it also picks the right compartment). This is the same
-class of defect as the unsorted `Bench.blind_pool` recorded in
-`HANDOVER-flow-agreement-metric.md`.
-
-What it cost the numbers already published: re-running `run-all` over the 32 previously committed
-spec rows moved 11 of them, every one by **1 to 3 flows out of ~1670**, with the 50-largest-flows
-column and the kilogram-mass column unchanged in all 32. So the fix is a reproducibility fix, not a
-correction — except on the drafted epoxy spec, where the tie was on a flow carrying 1.8 kg and the
-effect was 18 points of kilogram mass.
 
 #### Three measurements of how far two databases are apart
 

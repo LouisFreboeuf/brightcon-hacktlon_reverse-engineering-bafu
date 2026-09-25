@@ -2,7 +2,7 @@
 
 target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft-disagg` and hybrid `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft-hybrid`
 
-**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per kg of hydrogen cyanide, Tab. 43.2 / 43.3 / 43.4 of chapter 43 of ecoinvent report No. 8 (Althaus et al. 2007), all printed per kg or per kg in grams; allocation: None stated. The chapter reports three co-products per kg HCN - 0.23 kg hydrogen (BMA route, if not burnt), 0.34 kg ammonium sulfate sold as fertiliser and 0.02 kg sodium cyanide - but gives no allocation factor, so every burden below stays with the HCN.; 3 of 4 inputs carry a printed amount, 1 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null.
+**Strategy:** S3 — top-down model drafted from the report excerpt by the LLM pipeline (reverse-bafu draft); the report's tables are literature data, the dataset itself is a cumulated inventory. basis: per kg of hydrogen cyanide, Tab. 43.2 / 43.3 / 43.4 of chapter 43 of ecoinvent report No. 8 (Althaus et al. 2007), all printed per kg or per kg in grams; allocation: None stated. The chapter reports three co-products per kg HCN - 0.23 kg hydrogen (BMA route, if not burnt), 0.34 kg ammonium sulfate sold as fertiliser and 0.02 kg sodium cyanide - but gives no allocation factor, so every burden below stays with the HCN.; 3 of 4 inputs carry a printed amount, 1 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null.
 **Calibrated inputs:** Heat, natural gas, at industrial furnace 1MW [23.2–35.4]
 **Links to rebuilt nodes:** none
 
@@ -162,7 +162,7 @@ target `bafu-2026` vs explicit model `0f667d2d-2007-3185-8aeb-0b8e6fbdfb5c-draft
 
 - ✓ 4 explicit input(s) over 1 node(s)
 - ✓ no decomposed grid mixes
-- ✓ no dependency on another aggregated dataset
+- ✓ no dependency on another system process
 - ✓ mass in: 1.02 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 

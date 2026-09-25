@@ -2,7 +2,7 @@
 
 target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft-disagg` and hybrid `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft-hybrid`
 
-**Strategy:** S1 — transcription drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per 1 kg cement ZN/D, ab Werk (Tab. 3.14, Werner 2018); the composition rows are percentage ranges of the kg; allocation: none stated for the cement itself; the burnt-shale input carries the economic allocation of section 3.6; 7 of 13 inputs carry a printed amount, 6 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null.
+**Strategy:** S3 — top-down model drafted from the report excerpt by the LLM pipeline (reverse-bafu draft). basis: per 1 kg cement ZN/D, ab Werk (Tab. 3.14, Werner 2018); the composition rows are percentage ranges of the kg; allocation: none stated for the cement itself; the burnt-shale input carries the economic allocation of section 3.6; 7 of 13 inputs carry a printed amount, 6 a printed range, 0 no number in the report. Review every derivation; unreviewed entries have reviewed_by = null.
 **Calibrated inputs:** Clinker, at plant [0.4–0.7], Gypsum, mineral, at mine [0–0.1], Recycling aggregate from mixed demolition, dry, at plant [0.15–0.3], Burnt shale, at plant [0.15–0.3], Iron sulphate, at plant [0–0.01], Limestone, milled, loose, at plant [0–0.1]; mass sum 1.0
 **Links to rebuilt nodes:** Burnt shale, at plant
 
@@ -145,7 +145,7 @@ target `bafu-2026` vs explicit model `c3490cfc-bcf2-38a2-a8c1-2d50ba65c83e-draft
 
 - ✓ 13 explicit input(s) over 1 node(s)
 - ✓ no decomposed grid mixes
-- ✗ depends on aggregated datasets (rebuild those first): ['Ethylene glycol, at plant']
+- ✗ depends on system processes (rebuild those first): ['Ethylene glycol, at plant']
 - ✓ mass in: 1.05 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 

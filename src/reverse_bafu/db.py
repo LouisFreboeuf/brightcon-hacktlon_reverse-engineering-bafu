@@ -34,7 +34,7 @@ def aggregated_codes() -> frozenset[str]:
     Flag-based and deliberately unchanged: ``benchmark.py`` uses this set to decide which BAFU unit
     processes may be drawn as synthetic test cases, so widening it would move every published
     benchmark number. Use :func:`aggregated_codes_all` wherever the question is "is this input a
-    sealed inventory?".
+    system process?".
     """
     if not SYSTEM_TERMINATED_CSV.exists():
         return frozenset()
@@ -43,13 +43,13 @@ def aggregated_codes() -> frozenset[str]:
 
 @lru_cache(maxsize=1)
 def aggregated_codes_all() -> frozenset[str]:
-    """Every dataset that is a sealed inventory: the ecoSpold type=2 flag *plus* the ones the flag
+    """Every system process: the ecoSpold type=2 flag *plus* the ones the flag
     missed, found by structure (``scripts/find_system_processes.py`` -> the extended CSV).
 
     This is what resolve and check must use. The flag is incomplete: the APME / PlasticsEurope era
     eco-profiles (styrene, benzene, propylene, butadiene, the nylons, ABS, polycarbonate, PMMA, ...)
     were never marked, so a rebuild that links one of them used to be reported as "no dependency on
-    another aggregated dataset" when it had in fact terminated on a black box. Falls back to the
+    another system process" when it had in fact terminated on one. Falls back to the
     flag-based set when the extended CSV has not been generated.
     """
     if not SYSTEM_TERMINATED_EXTENDED_CSV.exists():

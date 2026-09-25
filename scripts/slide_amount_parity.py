@@ -1,11 +1,11 @@
 """Render one input-amount parity plot per benchmark row (fitted vs true amount) as PNGs for the deck.
 
-    python scripts/slide_amount_parity.py     # needs the three detail files below and google-chrome
+    uv run python scripts/slide_amount_parity.py     # needs the two detail files below and google-chrome
 
-Reads results/benchmark/flow-n100-seed7-detail.json (complete, ranges, missing minor lines, padded)
-results/benchmark/blind-n100-seed7-detail.json (none at all, ~675 candidates) and
-results/benchmark/blind-all-n100-seed7-detail.json (none at all, every dataset a candidate), and writes
-artifacts/presentation/screenshots/amount-parity-<scenario>.png, all on the same log axes.
+Reads results/benchmark/flow-n100-seed7-detail.json (complete list, ranges, padded list) and
+results/benchmark/blind-all-n100-seed7-detail.json (no list, every dataset a candidate), and writes
+artifacts/presentation/screenshots/amount-parity-<scenario>.png for the four panels of the deck's
+benchmark slide, all on the same log axes.
 
 Each dot is one input of one synthetic case. The dots are the inputs the benchmark scores: true
 inputs that supply >= 1 % of some flow of the target ("material"). A material true input that ends at
@@ -25,8 +25,7 @@ from slide_pooled_parity import crop_rows
 S = 640
 OUT = Path("artifacts/presentation/screenshots")
 SOURCES = [("oracle", "results/benchmark/flow-n100-seed7-detail.json"), ("bounded", "results/benchmark/flow-n100-seed7-detail.json"),
-           ("partial", "results/benchmark/flow-n100-seed7-detail.json"), ("distractors", "results/benchmark/flow-n100-seed7-detail.json"),
-           ("blind", "results/benchmark/blind-n100-seed7-detail.json"), ("blind-all", "results/benchmark/blind-all-n100-seed7-detail.json")]
+           ("distractors", "results/benchmark/flow-n100-seed7-detail.json"), ("blind-all", "results/benchmark/blind-all-n100-seed7-detail.json")]
 LO, HI = -19, 10          # decades on both axes, the same for every panel
 
 PAGE = """<!doctype html><html><head><meta charset="utf-8">

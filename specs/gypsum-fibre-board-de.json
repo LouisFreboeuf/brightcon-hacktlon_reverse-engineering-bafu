@@ -7,7 +7,7 @@
   "strategy": {
     "code": "S2",
     "label": "template transfer from the CH unit process of the same product, main amounts calibrated within 0.5-2x",
-    "note": "The DE board inventory sits in a confidential annex of the KBOB 2016 report, so the structure of BAFU's own CH unit process (10 inputs) is reused, scaled to 10 kg/m2, with the grid switched to DE. Six main amounts are fitted within bounds; three land on the 2x ceiling, i.e. the German plant is more energy-intensive than the template allows. S5 hybrid built on top."
+    "note": "The DE board inventory sits in a confidential annex of the KBOB 2016 report, so the structure of BAFU's own CH unit process (10 inputs) is reused, scaled to 10 kg/m2, with the grid switched to DE. Six main amounts are fitted within bounds; three land on the 2x ceiling, i.e. the German plant is more energy-intensive than the template allows. Hybrid node built on top."
   },
   "evidence": [
     {

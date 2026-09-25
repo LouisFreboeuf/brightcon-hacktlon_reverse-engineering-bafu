@@ -5,9 +5,9 @@
     "location": "CH"
   },
   "strategy": {
-    "code": "S1",
-    "label": "transcription from the report table, composition calibrated within the report's ranges",
-    "note": "Energies, grinding aid, infrastructure, steel and transport are exact in Tab. 3.14; the six composition shares are given as ranges, so they are fitted by bounded least squares with a 1 kg mass constraint. The burnt-shale input links to the node rebuilt by specs/d8ec4be3-burnt-shale.json (dependency chain). S5 hybrid built on top."
+    "code": "S3",
+    "label": "top-down model: the report's input list; energies, grinding aid, infrastructure, steel and transport as printed, the composition calibrated within the report's ranges",
+    "note": "Energies, grinding aid, infrastructure, steel and transport are exact in Tab. 3.14; the six composition shares are given as ranges, so they are fitted by bounded least squares with a 1 kg mass constraint. The burnt-shale input links to the node rebuilt by specs/d8ec4be3-burnt-shale.json (dependency chain). Hybrid node built on top."
   },
   "evidence": [
     {

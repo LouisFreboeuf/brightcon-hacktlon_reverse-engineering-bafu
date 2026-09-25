@@ -1,4 +1,4 @@
-"""The spec: one JSON file per aggregated dataset, holding the evidence-derived unit process.
+"""The spec: one JSON file per system process, holding the evidence-derived unit process.
 
 Minimal example::
 
@@ -21,6 +21,12 @@ dataset), or ``"free": true`` with optional ``"bounds": [lo, hi]`` (its amount m
 ``calibrate`` within the report's range). A node-level ``"mass_sum": 1.0`` constrains the free
 kilogram inputs to add up to that mass. ``resolve`` writes back
 ``code``/``location`` for every matched input and flow.
+
+``strategy.code`` is the route (S1 transcription, S2 template transfer, S3 top-down model; see
+exports/README.md). Specs made by ``reverse-bafu draft-all`` also carry ``"variant": "draft"`` (their
+sandbox nodes get a ``-draft`` infix, so they never collide with an interactive spec of the same
+dataset), a ``derivation`` on every input (quote, raw value, factor, mapping reason, author,
+``reviewed_by``) and a top-level ``provenance`` block (model, prompt hashes, gaps the model reported).
 """
 
 from __future__ import annotations

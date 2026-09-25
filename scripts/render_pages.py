@@ -1,6 +1,6 @@
 """Regenerate the artifact pages under artifacts/ from the specs, the sandbox and the check reports.
 
-    uv run python scripts/render_pages.py [--project reverse-bafu]
+    uv run python scripts/render_pages.py [--project bafu-2026]
 
 Writes artifacts/rebuilt-inventories.html (one tab per spec). The page is static HTML; publish it
 with the Artifact tool or open it locally.
@@ -21,7 +21,7 @@ import numpy as np
 import bw2data as bd
 
 from reverse_bafu import db, spec as spec_mod
-from reverse_bafu.lci import System, contribution_breadth, flow_agreement, mass_coverage, top_flow_agreement
+from reverse_bafu.lci import System, contribution_breadth
 
 esc = html.escape
 
@@ -35,6 +35,22 @@ def fmt(x: float) -> str:
     if ax >= 1e-3:
         return f"{x:.3g}"
     return f"{x:.2e}"
+
+
+HEADLINE = {  # the check report's headline, so the page shows the numbers results/ and the exports quote
+    "top": re.compile(r"the 50 largest kilogram flows: (\d+)/(\d+) within ±10 %"),
+    "mass": re.compile(r"kilogram mass covered within ±10 %: ([\d.]+)% of"),
+    "scored": re.compile(r"of the (\d+) flows of the target, (\d+) are determined by the solve \((\d+) are round-off"),
+    "all": re.compile(r"- (\d+) of those \d+ within ±10 % \(\d+%\), median \|Δ\| ([\d.]+)%, (\d+) missing from the model, (\d+) extra"),
+}
+
+
+def headline(md: str) -> dict:
+    m = {k: rx.search(md) for k, rx in HEADLINE.items()}
+    return dict(top_within10=int(m["top"].group(1)), top_n=int(m["top"].group(2)), mass_cov=float(m["mass"].group(1)) / 100,
+                n_flows=int(m["scored"].group(2)), n_excluded=int(m["scored"].group(3)), within10=int(m["all"].group(1)),
+                within10_share=int(m["all"].group(1)) / max(1, int(m["scored"].group(2))), median_delta=float(m["all"].group(2)),
+                n_missing=int(m["all"].group(3)), n_extra=int(m["all"].group(4)))
 
 
 def collect(project: str) -> list[dict]:
@@ -61,12 +77,10 @@ def collect(project: str) -> list[dict]:
         ex_in = list(e.technosphere())
         inv = sys_.cumulative([t.id, e.id] + [x.input.id for x in ex_in])
         b_t, b_e = inv[:, 0], inv[:, 1]
-        ag = flow_agreement(b_t, b_e)
         rows_by_unit: dict[str, list[int]] = {}
         for row in np.where(b_t != 0)[0]:
             rows_by_unit.setdefault(sys_.flow_node(int(row)).get("unit", ""), []).append(int(row))
         kg_rows = rows_by_unit.get("kilogram", [])
-        top = top_flow_agreement(b_t, b_e, kg_rows, 50)
         kg_mass = float(sum(abs(b_t[r]) for r in kg_rows))
 
         inputs = []
@@ -95,9 +109,7 @@ def collect(project: str) -> list[dict]:
                                         cat="/".join(map(str, x.input["categories"][:2]))) for x in tb[:6]],
                         strategy=f"{st.get('code', '?')} · {st.get('label', '')}", strategy_note=st.get("note", ""),
                         inputs=inputs, direct=direct, flows=flows, checks=checks, kg_mass=kg_mass,
-                        n_flows=ag["n_target"], within10=ag["within_10pct"], within10_share=ag["within_10pct"] / max(1, ag["n_target"]),
-                        median_delta=100 * ag["median_abs_delta"], n_missing=ag["n_missing"], n_extra=ag["n_extra"],
-                        top_within10=top["within_10pct"], top_n=top["n"], mass_cov=mass_coverage(b_t, b_e, kg_rows),
+                        **headline(md),
                         n_residual=len(hb), n_residual_neg=sum(1 for x in hb if x["amount"] < 0),
                         evidence=raw.get("evidence", [])))
     return out
@@ -113,7 +125,7 @@ def render(inv: list[dict]) -> str:
                f'<td class="num">{o["n_techno"]} → {len(o["inputs"])}</td><td class="num">{o["n_bio"]:,} → {len(o["direct"])}</td><td class="num">{n_free}</td>'
                f'<td class="num">{o["top_within10"]} / {o["top_n"]}</td><td class="num">{o["mass_cov"]:.0%}</td>'
                f'<td class="num">{o["within10"]} / {o["n_flows"]:,}</td><td class="num">{o["n_residual_neg"]} / {o["n_residual"]}</td>'
-               f'<td>{"—" if not deps else "depends on aggregated: " + esc(", ".join(deps))}</td></tr>')
+               f'<td>{"—" if not deps else "depends on system processes: " + esc(", ".join(deps))}</td></tr>')
     panels = ""
     for i, o in enumerate(inv):
         mx = max(x["mass"] for x in o["inputs"]) or 1
@@ -123,7 +135,7 @@ def render(inv: list[dict]) -> str:
             if x["sandbox"]:
                 flags += '<span class="tag blue">rebuilt node</span>'
             if x["aggregated"]:
-                flags += '<span class="tag warn">aggregated dataset</span>'
+                flags += '<span class="tag warn">system process</span>'
             if x["free"]:
                 b = x["bounds"]; at = ""
                 if b:
@@ -148,7 +160,7 @@ def render(inv: list[dict]) -> str:
  <div class="arrow">→</div>
  <div class="box new"><div class="eyebrow">Rebuilt · {esc(o["strategy"].split(" ")[0])}</div><div class="big">{len(o["inputs"])} inputs<br>{len(o["direct"])} direct flows</div><div class="muted">{esc(o["strategy_note"])}</div></div>
  <div class="arrow">→</div>
- <div class="box"><div class="eyebrow">Hybrid · S5</div><div class="big">+ {o["n_residual"]:,} residual</div><div class="muted">{o["n_residual_neg"]} negative (over‑explained), {o["n_residual"] - o["n_residual_neg"]} positive; every flow equals the original by construction</div></div>
+ <div class="box"><div class="eyebrow">Hybrid</div><div class="big">+ {o["n_residual"]:,} residual</div><div class="muted">{o["n_residual_neg"]} negative (over‑explained), {o["n_residual"] - o["n_residual_neg"]} positive; every flow equals the original by construction</div></div>
 </div>
 <h3>Technosphere inputs <span class="muted">· per 1 {esc(o["unit"])} · “covers” = share of the original’s flows this input supplies ≥ 1 % of · bar = kilogram mass it brings in</span></h3>
 <div class="tbl"><table><thead><tr><th>Input</th><th style="text-align:right">Amount</th><th>Unit</th><th style="text-align:right">Covers</th><th>kg in the inventory</th></tr></thead><tbody>{rows}</tbody></table></div>
@@ -156,7 +168,7 @@ def render(inv: list[dict]) -> str:
 <h3>Direct elementary flows</h3>
 <div class="tbl"><table><thead><tr><th>Flow</th><th style="text-align:right">Amount</th><th>Unit</th></tr></thead><tbody>{drows}</tbody></table></div>
 <h3>Deviation from the original <span class="muted">· explicit model, per elementary flow — the 24 largest kilogram flows · symmetric‑log axis · band ±10 %</span></h3>
-<p class="muted small">Over all {o["n_flows"]:,} flows of the original: {o["within10"]} within ±10 % ({o["within10_share"]:.0%}), median |Δ| {o["median_delta"]:.0f} %, {o["n_extra"]:,} flows the model adds that the original does not have. The large flows are the ones a report can name; the long tail comes from background chains the rebuilt process does not carry.</p>
+<p class="muted small">Over the {o["n_flows"]:,} flows of the original the solve determines ({o["n_excluded"]:,} round-off flows are not scored): {o["within10"]} within ±10 % ({o["within10_share"]:.0%}), median |Δ| {o["median_delta"]:.0f} %, {o["n_extra"]:,} flows the model adds that the original does not have. The large flows are the ones a report can name; the long tail comes from background chains the rebuilt process does not carry.</p>
 <div class="chart" data-k="{o["key"]}"></div>
 <h3>Structural checks</h3><ul class="checks">{checks}</ul>
 <h3>Evidence</h3><ul class="ev">{ev}</ul>
