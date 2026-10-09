@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "Brightcon 2026 hackathon: dis-aggregate BAFU-2026 system processes into unit processes"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = [
     # installs BAFU-2026 v1 + EF 3.1 biosphere/methods into a Brightway project
     "sentier-brightway",

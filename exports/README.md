@@ -647,3 +647,10 @@ The underlying data are BAFU's. Anything derived from them must carry:
 
 The disaggregation is a reconstruction by this project from the public LCI reports; it is not part
 of BAFU-2026 and carries no endorsement by BAFU. Please say so when you pass these datasets on.
+
+The export is *modified data* in the sense of the
+[BAFU:2026 Terms of Use](https://www.bafu.admin.ch/dam/en/sd-web/-9ZObeMCZy8A/BAFU_2025_TermOfUse_EN_Webpage.pdf),
+and it is shared on the same terms (their section 3.4). You may use, process and analyse it freely,
+e.g. in LCA studies. You may not sell or resell it, or distribute it separately or as part of
+another database. Pass it on only under these same terms, together with this file, which documents
+the changes (section 3.2). The code that produced it is MIT-licensed; see the project README.
