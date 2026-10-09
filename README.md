@@ -613,12 +613,37 @@ results/            system_terminated.csv (101), system_terminated_extended.csv 
 exports/            the shareable export of the rebuilds + its README (format, import, quality limits)
 artifacts/          the documentation pages (see "Where to read what") and presentation/, the deck
 references.txt      the two papers referenced, with their role for this project
+LICENSE             MIT, for the code (see Licence and citation)
 .claude/commands/   /draft-all, /draft-spec, /benchmark-extraction
 ```
 
-## Data licence and citation
+## Licence and citation
 
-Both BAFU files stay out of the repository (`.gitignore`: `*.zip`, `data/`,
-`BAFU-2026 v1_Documentation/`). Citation required for anything derived from the installed data:
+The repository holds four kinds of material, under different terms:
+
+| What | Where | Terms |
+|---|---|---|
+| Code | `src/`, `scripts/`, `prompts/`, `.claude/commands/` | [MIT](LICENSE) |
+| Text written by the contributors: this README, the documentation pages, the presentation | `*.md`, `artifacts/` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
+| BAFU-2026 data and data derived from it: the export, the results, the numbers in the specs and those shown in the pages | `exports/`, `results/`, `specs/`, `artifacts/` | the [BAFU:2026 Terms of Use](https://www.bafu.admin.ch/dam/en/sd-web/-9ZObeMCZy8A/BAFU_2025_TermOfUse_EN_Webpage.pdf) |
+| Quotations from the BAFU documentation reports: page excerpts, quoted lines, table and figure captions, the report screenshots in the deck | `specs/evidence/`, `results/benchmark/extraction/evidence/`, `artifacts/presentation/screenshots/` | the copyright of the reports' authors |
+
+**BAFU-2026 data.** The rebuilt unit processes are *modified data* in the sense of the BAFU Terms
+of Use, so they are shared on the same terms (section 3.4):
+
+- free to use, process and analyse, e.g. in LCA studies;
+- not to be sold, resold, or distributed separately or as part of another database;
+- labelled as modified, never presented as the original datasets;
+- not presented as endorsed by BAFU.
+
+The changes are documented dataset by dataset in [exports/README.md](exports/README.md) and the
+specs, as section 3.2 requires. Any use must credit the source:
 
 > Source: Life Cycle Inventory database of the Swiss Federal Administration, BAFU:2026.
+
+**Report quotations.** The excerpts of the reports are included so that every number can be traced
+to the line it came from, each with its source (report, page, table). They remain the work of the
+reports' authors. The MIT and CC BY licences above do not cover them.
+
+**What is not here.** The BAFU files themselves stay out of the repository (`.gitignore`: `*.zip`,
+`data/`, `BAFU-2026 v1_Documentation/`); download them from openLCA Nexus as described in step 1.
