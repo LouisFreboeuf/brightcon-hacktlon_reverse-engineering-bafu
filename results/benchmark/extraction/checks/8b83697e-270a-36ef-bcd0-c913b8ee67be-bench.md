@@ -10,22 +10,22 @@ target `bafu-2026` vs explicit model `8b83697e-270a-36ef-bcd0-c913b8ee67be-bench
 
 - the 50 largest kilogram flows: 49/50 within ±10 %, median |Δ| 0.1%
 - kilogram mass covered within ±10 %: 98.3% of the target's total kg mass
-- of the 1788 flows of the target, 1669 are determined by the solve (119 are round-off and are not scored; see lci.determined_flows)
-- 1648 of those 1669 within ±10 % (99%), median |Δ| 0.1%, 0 missing from the model, 1 extra
-- hybrid vs target: identical on every flow
+- of the 1787 flows of the target, 1668 are determined by the solve (119 are round-off and are not scored; see lci.determined_flows)
+- 1648 of those 1668 within ±10 % (99%), median |Δ| 0.1%, 0 missing from the model, 1 extra
+- hybrid vs target: 2 flows differ
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
-| ≤ 10 % | 1656 | 93% |
-| 10–20 % | 4 | 0% |
-| 20–50 % | 42 | 2% |
-| 50–100 % | 40 | 2% |
-| > 100 % | 46 | 3% |
+| ≤ 10 % | 1658 | 93% |
+| 10–20 % | 0 | 0% |
+| 20–50 % | 65 | 4% |
+| 50–100 % | 33 | 2% |
+| > 100 % | 31 | 2% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
 
-### kilogram (1472 flows)
+### kilogram (1471 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -76,7 +76,7 @@ target `bafu-2026` vs explicit model `8b83697e-270a-36ef-bcd0-c913b8ee67be-bench
 |---|---|---|---|---|
 | Energy, Potential (in Hydropower Reservoir), Converted [natural resource] (megajoule) | 3.79 | 3.79 | +0.0% | -2.87e-06 |
 | Waste Heat [air] (megajoule) | 0.17 | 0.0117 | -93.1% | +0.158 |
-| Waste Heat [air] (megajoule) | 0.017 | 0.175 | +930.6% | -0.158 |
+| Waste Heat [air] (megajoule) | 0.017 | 0.017 | +0.1% | -1.52e-05 |
 | Uranium [Resources/Resources from ground] (megajoule) | 0.0092 | 0.00921 | +0.1% | -8.22e-06 |
 | Crude Oil [Resources/Resources from ground] (megajoule) | 0.0088 | 0.00881 | +0.1% | -7.85e-06 |
 
@@ -96,7 +96,7 @@ target `bafu-2026` vs explicit model `8b83697e-270a-36ef-bcd0-c913b8ee67be-bench
 |---|---|---|---|---|
 | Water [Emissions/Emissions to water] (cubic meter) | 1.43 | 0.0229 | -98.4% | +1.4 |
 | Water to turbine [Resources/Resources from water] (cubic meter) | 1.43 | 0.0229 | -98.4% | +1.4 |
-| Water [air] (cubic meter) | 0.00175 | 9.23e-07 | -99.9% | +0.00175 |
+| Water [air] (cubic meter) | 0.00175 | 1.75 | +99735.2% | -1.75 |
 | Water, salt, ocean [resources/in water] (cubic meter) | 0.000309 | 0.000309 | +0.1% | -2.76e-07 |
 | Water [water] (cubic meter) | 0.000308 | 0.000308 | +0.1% | -2.75e-07 |
 
@@ -104,11 +104,11 @@ target `bafu-2026` vs explicit model `8b83697e-270a-36ef-bcd0-c913b8ee67be-bench
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Uranium alpha [emissions to water/river] (Becquerel) | 6.88e-22 | 3.98e-33 | -100.0% | +6.88e-22 |
-| Uranium alpha [emissions to water/lake] (Becquerel) | 3.22e-22 | 1.86e-33 | -100.0% | +3.22e-22 |
-| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 5.86e-23 | 3.44e-34 | -100.0% | +5.86e-23 |
-| Thorium-232 [emissions to water/river] (Becquerel) | 6.96e-25 | 4.08e-36 | -100.0% | +6.96e-25 |
-| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 2.06e-25 | 1.21e-36 | -100.0% | +2.06e-25 |
+| Uranium alpha [emissions to water/river] (Becquerel) | 3.66e-21 | -1.42e-21 | -138.7% | +5.08e-21 |
+| Uranium alpha [emissions to water/lake] (Becquerel) | 1.72e-21 | -6.65e-22 | -138.7% | +2.38e-21 |
+| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 3.12e-22 | -1.21e-22 | -138.7% | +4.33e-22 |
+| Thorium-232 [emissions to water/river] (Becquerel) | 3.71e-24 | -1.44e-24 | -138.7% | +5.14e-24 |
+| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 1.1e-24 | -4.24e-25 | -138.7% | +1.52e-24 |
 
 ### kilometer (2 flows)
 
@@ -128,8 +128,8 @@ target `bafu-2026` vs explicit model `8b83697e-270a-36ef-bcd0-c913b8ee67be-bench
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Noise, road, lorry, average [non material emissions/unspecified] (meter) | 2.54e-20 | 1.19e-21 | -95.3% | +2.42e-20 |
-| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 6.51e-23 | 3.82e-34 | -100.0% | +6.51e-23 |
+| Noise, road, lorry, average [non material emissions/unspecified] (meter) | 7.69e-20 | -1.02e-19 | -232.2% | +1.79e-19 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 3.47e-22 | -1.34e-22 | -138.7% | +4.81e-22 |
 
 ### cubic meter-year (1 flows)
 
@@ -151,8 +151,8 @@ target `bafu-2026` vs explicit model `8b83697e-270a-36ef-bcd0-c913b8ee67be-bench
 | Waste mass, total, placed in landfill [resources/in ground] (kilogram) | 0.0315 | 0.0315 | +0.1% |
 | Organic carbon, placed in landfill [resources/in ground] (kilogram) | 3.89e-05 | 3.89e-05 | +0.1% |
 | calcium [Emissions/Emissions to water] (kilogram) | 0.00428 | 0.00428 | +0.1% |
-| COD, Chemical Oxygen Demand [emissions to water/groundwater, long-term] (kilogram) | 0.000175 | 0.000175 | +0.1% |
 | Gravel [soil] (kilogram) | 0.0333 | 0.0333 | +0.1% |
+| COD, Chemical Oxygen Demand [emissions to water/groundwater, long-term] (kilogram) | 0.000175 | 0.000175 | +0.1% |
 | Calcite [resources/in ground] (kilogram) | 0.00438 | 0.00438 | +0.1% |
 | BOD5, Biological Oxygen Demand [emissions to water/groundwater, long-term] (kilogram) | 2.46e-05 | 2.46e-05 | +0.1% |
 | DOC, Dissolved Organic Carbon [emissions to water/groundwater, long-term] (kilogram) | 3.98e-05 | 3.98e-05 | +0.1% |
@@ -162,11 +162,11 @@ target `bafu-2026` vs explicit model `8b83697e-270a-36ef-bcd0-c913b8ee67be-bench
 
 - ✓ 3 explicit input(s) over 1 node(s)
 - ✗ inputs are individual power plants: ['Reservoir hydropower plant']
-- ✓ no dependency on another aggregated dataset
+- ✓ no dependency on another system process
 - ✓ mass in: 3.27e-08 kg technosphere + 0 kg resources per 1 kWh product (informational)
 - ✓ all inputs resolved
 
-residual: 98 flows under-explained, 1691 over-explained (negative residual)
+residual: 116 flows under-explained, 1672 over-explained (negative residual)
 
 ## Evidence
 

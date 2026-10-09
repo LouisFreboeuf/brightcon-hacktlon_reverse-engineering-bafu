@@ -1,1 +1,1 @@
-"""Rebuild aggregated BAFU datasets as unit processes: resolve -> calibrate -> build -> check."""
+"""Dis-aggregate BAFU-2026 system processes into unit processes: resolve -> calibrate -> build -> check."""

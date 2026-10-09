@@ -10,22 +10,22 @@ target `bafu-2026` vs explicit model `00ff4acd-7e82-3d59-abc6-768375eba3ba-bench
 
 - the 50 largest kilogram flows: 22/50 within ±10 %, median |Δ| 13.7%
 - kilogram mass covered within ±10 %: 67.5% of the target's total kg mass
-- of the 1789 flows of the target, 1666 are determined by the solve (123 are round-off and are not scored; see lci.determined_flows)
-- 825 of those 1666 within ±10 % (50%), median |Δ| 10.3%, 0 missing from the model, 1 extra
+- of the 1786 flows of the target, 1666 are determined by the solve (120 are round-off and are not scored; see lci.determined_flows)
+- 823 of those 1666 within ±10 % (49%), median |Δ| 10.4%, 0 missing from the model, 0 extra
 - hybrid vs target: identical on every flow
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
-| ≤ 10 % | 837 | 47% |
-| 10–20 % | 265 | 15% |
-| 20–50 % | 531 | 30% |
-| 50–100 % | 106 | 6% |
-| > 100 % | 50 | 3% |
+| ≤ 10 % | 830 | 46% |
+| 10–20 % | 267 | 15% |
+| 20–50 % | 499 | 28% |
+| 50–100 % | 104 | 6% |
+| > 100 % | 86 | 5% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
 
-### kilogram (1474 flows)
+### kilogram (1471 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -75,7 +75,7 @@ target `bafu-2026` vs explicit model `00ff4acd-7e82-3d59-abc6-768375eba3ba-bench
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
 | Waste Heat [air] (megajoule) | 24.6 | 28.9 | +17.3% | -4.26 |
-| Waste Heat [air] (megajoule) | 18.5 | 20.1 | +8.8% | -1.62 |
+| Waste Heat [air] (megajoule) | 18.5 | 10.7 | -42.4% | +7.85 |
 | Uranium [Resources/Resources from ground] (megajoule) | 13.1 | 16.3 | +24.5% | -3.21 |
 | Energy, Potential (in Hydropower Reservoir), Converted [natural resource] (megajoule) | 10.1 | 9.49 | -6.3% | +0.643 |
 | Natural Gas [Resources/Resources from ground] (megajoule) | 5.82 | 7.05 | +21.0% | -1.23 |
@@ -104,11 +104,11 @@ target `bafu-2026` vs explicit model `00ff4acd-7e82-3d59-abc6-768375eba3ba-bench
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Uranium alpha [emissions to water/river] (Becquerel) | -7.97e-19 | -1.27e-18 | +58.8% | +4.69e-19 |
-| Uranium alpha [emissions to water/lake] (Becquerel) | -3.73e-19 | -5.93e-19 | +58.8% | +2.2e-19 |
-| Uranium alpha [emissions to air/low. pop.] (Becquerel) | -6.79e-20 | -1.08e-19 | +58.8% | +3.99e-20 |
-| Thorium-232 [emissions to water/river] (Becquerel) | -8.06e-22 | -1.28e-21 | +58.8% | +4.74e-22 |
-| Thorium-232 [emissions to air/low. pop.] (Becquerel) | -2.38e-22 | -3.78e-22 | +58.8% | +1.4e-22 |
+| Uranium alpha [emissions to water/river] (Becquerel) | 3.52e-20 | -4.34e-19 | -1330.8% | +4.69e-19 |
+| Uranium alpha [emissions to water/lake] (Becquerel) | 1.65e-20 | -2.03e-19 | -1330.8% | +2.2e-19 |
+| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 3e-21 | -3.69e-20 | -1330.8% | +3.99e-20 |
+| Thorium-232 [emissions to water/river] (Becquerel) | 3.56e-23 | -4.39e-22 | -1330.8% | +4.74e-22 |
+| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 1.05e-23 | -1.3e-22 | -1330.8% | +1.4e-22 |
 
 ### kilometer (2 flows)
 
@@ -128,8 +128,8 @@ target `bafu-2026` vs explicit model `00ff4acd-7e82-3d59-abc6-768375eba3ba-bench
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Noise, road, lorry, average [non material emissions/unspecified] (meter) | -3.16e-17 | -4.92e-17 | +56.0% | +1.77e-17 |
-| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | -7.54e-20 | -1.2e-19 | +58.8% | +4.44e-20 |
+| Noise, road, lorry, average [non material emissions/unspecified] (meter) | -1.49e-18 | -1.73e-17 | +1057.0% | +1.58e-17 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 3.33e-21 | -4.1e-20 | -1330.8% | +4.44e-20 |
 
 ### cubic meter-year (1 flows)
 
@@ -162,11 +162,11 @@ target `bafu-2026` vs explicit model `00ff4acd-7e82-3d59-abc6-768375eba3ba-bench
 
 - ✓ 4 explicit input(s) over 1 node(s)
 - ✓ no decomposed grid mixes
-- ✓ no dependency on another aggregated dataset
+- ✓ no dependency on another system process
 - ✓ mass in: 4.82 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 
-residual: 976 flows under-explained, 814 over-explained (negative residual)
+residual: 926 flows under-explained, 860 over-explained (negative residual)
 
 ## Evidence
 

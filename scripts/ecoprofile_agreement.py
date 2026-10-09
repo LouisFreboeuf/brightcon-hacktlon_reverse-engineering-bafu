@@ -1,10 +1,10 @@
 """Agreement restricted to the flows an eco-profile itself declares.
 
-    PYTHONPATH=$PWD/src python scripts/ecoprofile_agreement.py --project bafu-2026-t3
+    uv run python scripts/ecoprofile_agreement.py [--project bafu-2026]
 
 Why this exists
 ---------------
-The 39 datasets `scripts/find_system_processes.py` finds by structure are APME /
+The 37 datasets `scripts/find_system_processes.py` finds by structure are APME /
 PlasticsEurope era eco-profiles. Two facts make the usual headline number - the share
 of *all* the target's flows a rebuild reproduces within +-10 % - close to meaningless
 for them.
@@ -49,7 +49,7 @@ from reverse_bafu import db, lci  # noqa: E402
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--project", default="bafu-2026-t3")
+    ap.add_argument("--project", default="bafu-2026")
     ap.add_argument("--datasets", default="results/system_terminated_extended.csv")
     ap.add_argument("--out", default="results/ecoprofile_agreement.csv")
     a = ap.parse_args()

@@ -10,22 +10,22 @@ target `bafu-2026` vs explicit model `f3f28c27-d1a8-3ac8-b40f-2c66bc92c83a-bench
 
 - the 50 largest kilogram flows: 0/50 within ±10 %, median |Δ| 81.2%
 - kilogram mass covered within ±10 %: 0.0% of the target's total kg mass
-- of the 1789 flows of the target, 1666 are determined by the solve (123 are round-off and are not scored; see lci.determined_flows)
-- 0 of those 1666 within ±10 % (0%), median |Δ| 81.8%, 0 missing from the model, 1 extra
+- of the 1787 flows of the target, 1669 are determined by the solve (118 are round-off and are not scored; see lci.determined_flows)
+- 0 of those 1669 within ±10 % (0%), median |Δ| 81.8%, 0 missing from the model, 0 extra
 - hybrid vs target: identical on every flow
 
 | \|Δ\| bucket | flows | share of target flows |
 |---|---|---|
-| ≤ 10 % | 3 | 0% |
-| 10–20 % | 10 | 1% |
-| 20–50 % | 2 | 0% |
-| 50–100 % | 1659 | 93% |
-| > 100 % | 115 | 6% |
+| ≤ 10 % | 0 | 0% |
+| 10–20 % | 1 | 0% |
+| 20–50 % | 0 | 0% |
+| 50–100 % | 1658 | 93% |
+| > 100 % | 128 | 7% |
 | missing (0 in model) | 0 | 0% |
 
 ## Largest target flows (by amount, per unit) and their agreement
 
-### kilogram (1474 flows)
+### kilogram (1472 flows)
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
@@ -104,11 +104,11 @@ target `bafu-2026` vs explicit model `f3f28c27-d1a8-3ac8-b40f-2c66bc92c83a-bench
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Uranium alpha [emissions to water/river] (Becquerel) | -2.4e-15 | 8.66e-16 | -136.1% | -3.26e-15 |
-| Uranium alpha [emissions to water/lake] (Becquerel) | -1.12e-15 | 4.06e-16 | -136.1% | -1.53e-15 |
-| Uranium alpha [emissions to air/low. pop.] (Becquerel) | -2.04e-16 | 7.38e-17 | -136.1% | -2.78e-16 |
-| Thorium-232 [emissions to water/river] (Becquerel) | -2.43e-18 | 8.76e-19 | -136.1% | -3.3e-18 |
-| Thorium-232 [emissions to air/low. pop.] (Becquerel) | -7.17e-19 | 2.59e-19 | -136.1% | -9.76e-19 |
+| Uranium alpha [emissions to water/river] (Becquerel) | 8.66e-16 | -1.82e-15 | -310.3% | +2.69e-15 |
+| Uranium alpha [emissions to water/lake] (Becquerel) | 4.06e-16 | -8.53e-16 | -310.3% | +1.26e-15 |
+| Uranium alpha [emissions to air/low. pop.] (Becquerel) | 7.38e-17 | -1.55e-16 | -310.3% | +2.29e-16 |
+| Thorium-232 [emissions to water/river] (Becquerel) | 8.76e-19 | -1.84e-18 | -310.3% | +2.72e-18 |
+| Thorium-232 [emissions to air/low. pop.] (Becquerel) | 2.59e-19 | -5.44e-19 | -310.3% | +8.03e-19 |
 
 ### kilometer (2 flows)
 
@@ -128,8 +128,8 @@ target `bafu-2026` vs explicit model `f3f28c27-d1a8-3ac8-b40f-2c66bc92c83a-bench
 
 | flow | target | explicit | Δ | residual |
 |---|---|---|---|---|
-| Noise, road, lorry, average [non material emissions/unspecified] (meter) | -8.1e-14 | 3.63e-14 | -144.8% | -1.17e-13 |
-| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | -2.27e-16 | 8.19e-17 | -136.1% | -3.09e-16 |
+| Noise, road, lorry, average [non material emissions/unspecified] (meter) | 2.25e-14 | -7.83e-14 | -447.2% | +1.01e-13 |
+| Noise, road, passenger car, average [non material emissions/unspecified] (meter) | 8.19e-17 | -1.72e-16 | -310.3% | +2.54e-16 |
 
 ### cubic meter-year (1 flows)
 
@@ -162,11 +162,11 @@ target `bafu-2026` vs explicit model `f3f28c27-d1a8-3ac8-b40f-2c66bc92c83a-bench
 
 - ✓ 5 explicit input(s) over 1 node(s)
 - ✓ no decomposed grid mixes
-- ✓ no dependency on another aggregated dataset
+- ✓ no dependency on another system process
 - ✓ mass in: 31.3 kg technosphere + 0 kg resources per 1 m2 product (informational)
 - ✓ all inputs resolved
 
-residual: 45 flows under-explained, 1745 over-explained (negative residual)
+residual: 27 flows under-explained, 1760 over-explained (negative residual)
 
 ## Evidence
 

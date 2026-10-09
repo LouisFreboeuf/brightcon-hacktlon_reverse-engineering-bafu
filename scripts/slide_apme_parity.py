@@ -1,6 +1,6 @@
 """Render the flow-parity plot of the 12 worst-matching rebuilds, the APME eco-profiles, as a PNG for the deck.
 
-    PYTHONPATH=$PWD/src python scripts/slide_apme_parity.py   # needs results/flow_comparison.json, the bafu-2026 project and google-chrome
+    uv run python scripts/slide_apme_parity.py [--project bafu-2026]   # needs results/flow_comparison.json and google-chrome
 
 The 12 are picked as in `slide_pooled_parity.py --drop-worst 12`: the counted rebuilds with the
 largest median |log10(rebuilt / original)| over the flows both sides have. Every flow of the 12 is
@@ -17,6 +17,7 @@ of link-only flows above the line: the numbers the slide quotes. Writes
 artifacts/presentation/screenshots/apme-parity.png.
 """
 
+import argparse
 import glob
 import json
 import statistics
@@ -92,11 +93,14 @@ Promise.all([document.fonts.load('500 30px "Quicksand"'), document.fonts.load('6
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--project", default="bafu-2026")
+    a = ap.parse_args()
     doc = json.loads(Path("results/flow_comparison.json").read_text())
     labels = [tuple(f) for f in doc["flows"]]                       # row -> (name, compartment, unit)
     counted = [s for s in doc["specs"] if s["counted"]]
     worst = sorted(counted, key=median_miss, reverse=True)[:12]
-    db.set_project("bafu-2026")
+    db.set_project(a.project)
     # the rows of flow_comparison.json are the rows of its MultiSystem; rebuild it from the same nodes
     # (every spec's original and its -disagg rebuild, in spec order) to map rows to flow ids exactly -
     # several rows can share a (name, compartment, unit) label
@@ -121,7 +125,7 @@ def main() -> None:
             if o > 0 and m > 0:
                 (dec_off if is_dec else link_off).append(log10(m / o))
         above = sum(x > 0 for x in link_off) / len(link_off) if link_off else float("nan")
-        rows_out.append((s["name"], s["strategy_aligned"], s["detected_by"], len(dec_off), len(link_off),
+        rows_out.append((s["name"], s["strategy"], s["detected_by"], len(dec_off), len(link_off),
                          statistics.median(dec_off) if dec_off else float("nan"), statistics.median(link_off), above))
     print(f"{'dataset':45s} route detected  declared  link-only  median offset (decades) declared / link-only  link-only above line")
     for n, route, det, nd, nl, md, ml, ab in rows_out:

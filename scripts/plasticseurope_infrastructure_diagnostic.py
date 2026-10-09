@@ -14,7 +14,7 @@ doubles ~1300 of the 1790 flows. On HDPE that alone moved the harness from 4 % t
 within +-10 %. It is why every spec in this family carries the infrastructure as a free input
 bounded by [0, 4.0E-10] instead of fixing it at the report's number.
 
-    PYTHONPATH=src python scripts/plasticseurope_infrastructure_diagnostic.py --project bafu-2026-t1
+    uv run python scripts/plasticseurope_infrastructure_diagnostic.py [--project bafu-2026]
 """
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ STANDARD_AMOUNT = 4.0e-10                              # Rajabihamedani 2025, se
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--project", default="bafu-2026-t1")
+    ap.add_argument("--project", default="bafu-2026")
     a = ap.parse_args()
     db.set_project(a.project)
     rows = [r for r in csv.DictReader(open(db.SYSTEM_TERMINATED_CSV)) if r["family"] == "plasticseurope"]

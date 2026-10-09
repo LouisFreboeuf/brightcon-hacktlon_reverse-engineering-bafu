@@ -5,7 +5,7 @@
     "location": "CH"
   },
   "strategy": {
-    "code": "S2",
+    "code": "S3",
     "label": "structural model: the rebuilt 'at plant' node plus distribution transport, distances calibrated",
     "note": "An 'at regional storage' dataset is its 'at plant' product plus the transport to the regional store - the shape every non-aggregated 'at regional storage' unit process in BAFU has. One kilogram of the rebuilt green packaging glass node is taken as the input and the two transport distances are fitted against the aggregated vector."
   },

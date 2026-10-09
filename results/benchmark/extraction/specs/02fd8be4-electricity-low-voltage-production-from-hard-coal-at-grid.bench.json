@@ -170,7 +170,7 @@
           "mapping_reason": "Waste Heat is the right substance and megajoule unit. The two waste-heat lines of this dataset (25 % to air, 75 % to soil per the footnote of Tab. 4.24) carry the same flow name, so the compartment is left to each line item rather than fixed here.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {

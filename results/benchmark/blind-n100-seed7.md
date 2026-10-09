@@ -1,4 +1,4 @@
-# Benchmark `blind-n100-seed7`: 100 synthetic aggregated datasets, seed 7
+# Benchmark `blind-n100-seed7`: 100 synthetic system processes, seed 7
 
 Ground truth = BAFU unit processes (3-30 inputs, stratified over categories); target = their cumulative inventory.
 

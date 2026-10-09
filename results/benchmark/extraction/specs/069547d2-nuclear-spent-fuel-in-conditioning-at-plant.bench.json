@@ -223,7 +223,7 @@
       },
       {
         "name": "Radioactive waste, in final repository for nuclear waste SF, HLW, and ILW",
-        "amount": 0.0023752665023414454,
+        "amount": 0.002407365442053948,
         "unit": "cubic meter",
         "location": "CH",
         "note": "Footnote 76 states that this line as printed is WRONG: 'Die Bilanzierung von \"radioactive waste, in final repository for nuclear waste, SF, HLW and ILW\" ist nicht korrekt, der richtige Wert betraegt 2.4 m3/kg.' The printed 2.30E-03 m3/kg is kept as the point estimate and the corrected 2.4 m3/kg as the upper bound, a factor of ~1000 apart.",

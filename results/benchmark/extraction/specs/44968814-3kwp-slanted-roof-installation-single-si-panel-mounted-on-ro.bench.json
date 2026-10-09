@@ -51,7 +51,7 @@
     "inputs": [
       {
         "name": "Aluminium, production mix, wrought alloy, at plant",
-        "amount": 76.60849029433774,
+        "amount": 76.6084902943379,
         "unit": "kilogram",
         "location": "RER",
         "note": "slanted-roof, mounted column",
@@ -81,7 +81,7 @@
       },
       {
         "name": "Corrugated board, mixed fibre, single wall, at plant",
-        "amount": 3.5904229787070494,
+        "amount": 3.590422978707064,
         "unit": "kilogram",
         "location": "RER",
         "note": "packaging",
@@ -111,7 +111,7 @@
       },
       {
         "name": "Polyethylene, HDPE, granulate, at plant",
-        "amount": 0.03782424207514927,
+        "amount": 0.037824242075149284,
         "unit": "kilogram",
         "location": "RER",
         "note": "",
@@ -141,7 +141,7 @@
       },
       {
         "name": "Polystyrene, high impact, HIPS, at plant",
-        "amount": 0.18931321160455397,
+        "amount": 0.1893132116045543,
         "unit": "kilogram",
         "location": "RER",
         "note": "",
@@ -171,7 +171,7 @@
       },
       {
         "name": "Steel, low-alloyed, at plant",
-        "amount": 40.512259278459105,
+        "amount": 40.51225927845938,
         "unit": "kilogram",
         "location": "RER",
         "note": "",
@@ -201,7 +201,7 @@
       },
       {
         "name": "Section bar extrusion, aluminium",
-        "amount": 76.60849029433726,
+        "amount": 76.6084902943379,
         "unit": "kilogram",
         "location": "RER",
         "note": "forming of the aluminium",
@@ -231,7 +231,7 @@
       },
       {
         "name": "Sheet rolling, steel",
-        "amount": 40.51225927845916,
+        "amount": 40.51225927845938,
         "unit": "kilogram",
         "location": "RER",
         "note": "",
@@ -261,7 +261,7 @@
       },
       {
         "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
-        "amount": 6.067238830328498,
+        "amount": 6.067238830328514,
         "unit": "ton kilometer",
         "location": "RER",
         "note": "",
@@ -291,7 +291,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 40.5122592784592,
+        "amount": 40.51225927845939,
         "unit": "ton kilometer",
         "location": "RER",
         "note": "",
@@ -321,7 +321,7 @@
       },
       {
         "name": "Disposal, packaging cardboard, 19.6% water, to municipal incineration",
-        "amount": 3.590422978707063,
+        "amount": 3.5904229787070636,
         "unit": "kilogram",
         "location": "CH",
         "note": "",
@@ -351,7 +351,7 @@
       },
       {
         "name": "Disposal, building, polyethylene/polypropylene products, to final disposal",
-        "amount": 0.03782424207514928,
+        "amount": 0.03782424207514929,
         "unit": "kilogram",
         "location": "CH",
         "note": "",
@@ -381,7 +381,7 @@
       },
       {
         "name": "Disposal, building, polystyrene isolation, flame-retardant, to final disposal",
-        "amount": 0.18931321160455428,
+        "amount": 0.1893132116045543,
         "unit": "kilogram",
         "location": "CH",
         "note": "",

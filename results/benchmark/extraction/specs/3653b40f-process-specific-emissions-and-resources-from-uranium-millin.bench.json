@@ -53,7 +53,7 @@
     "inputs": [
       {
         "name": "Diesel, burned in diesel-electric generating set",
-        "amount": 904.9532325725462,
+        "amount": 700.0,
         "unit": "megajoule",
         "location": "GLO",
         "note": "Production-weighted world average computed from the country rows of Tab. 12 with the 2009 production volumes (AU 7424, CA 10174, MW 670, NA 4625, NE 3242, RU 3004, UA 850, BR 345 t Unat; total 30'334 t Unat, matching the TOTAL row of Tab. 13): thermal 417 MJ/kg Unat, electric 59.6 kWh/kg Unat. Footnote 42: 'wird der elektrische Energiebedarf umgerechnet in Dieselverbrauch als \"Diesel, burned in diesel-electric generating set\" (Wirkungsgrad: 36 %) bilanziert, der Verbrauch an fossilen Energietraegern fuer thermische und Prozessenergie je zur Haelfte als \"Heavy fuel oil, burned in industrial furnace 1MW, non-modulating\" und \"diesel, burned in building machine\".' 59.56 kWh x 3.6 MJ/kWh / 0.36 = 595.6 MJ of diesel input. Bounds span the country range (Brazil 7 kWh to Russia 120 kWh per kg Unat).",
@@ -83,7 +83,7 @@
       },
       {
         "name": "Heavy fuel oil, burned in industrial furnace 1MW, non-modulating",
-        "amount": 374.49999999999994,
+        "amount": 374.5,
         "unit": "megajoule",
         "location": "RER",
         "note": "Production-weighted world average computed from the country rows of Tab. 12 with the 2009 production volumes (AU 7424, CA 10174, MW 670, NA 4625, NE 3242, RU 3004, UA 850, BR 345 t Unat; total 30'334 t Unat, matching the TOTAL row of Tab. 13): thermal 417 MJ/kg Unat, electric 59.6 kWh/kg Unat. Footnote 42: 'wird der elektrische Energiebedarf umgerechnet in Dieselverbrauch als \"Diesel, burned in diesel-electric generating set\" (Wirkungsgrad: 36 %) bilanziert, der Verbrauch an fossilen Energietraegern fuer thermische und Prozessenergie je zur Haelfte als \"Heavy fuel oil, burned in industrial furnace 1MW, non-modulating\" und \"diesel, burned in building machine\".' Half of the thermal demand: 417.3 / 2 = 208.7 MJ. Bounds span the country range (Brazil 131 to Russia 1498 MJ/kg Unat thermal).",
@@ -113,7 +113,7 @@
       },
       {
         "name": "Diesel, burned in building machine, average",
-        "amount": 374.4999999999999,
+        "amount": 32.75,
         "unit": "megajoule",
         "location": "CH",
         "note": "Production-weighted world average computed from the country rows of Tab. 12 with the 2009 production volumes (AU 7424, CA 10174, MW 670, NA 4625, NE 3242, RU 3004, UA 850, BR 345 t Unat; total 30'334 t Unat, matching the TOTAL row of Tab. 13): thermal 417 MJ/kg Unat, electric 59.6 kWh/kg Unat. Footnote 42: 'wird der elektrische Energiebedarf umgerechnet in Dieselverbrauch als \"Diesel, burned in diesel-electric generating set\" (Wirkungsgrad: 36 %) bilanziert, der Verbrauch an fossilen Energietraegern fuer thermische und Prozessenergie je zur Haelfte als \"Heavy fuel oil, burned in industrial furnace 1MW, non-modulating\" und \"diesel, burned in building machine\".' The other half of the thermal demand: 208.7 MJ.",

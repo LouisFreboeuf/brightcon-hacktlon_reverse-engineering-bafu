@@ -1,6 +1,6 @@
-"""Benchmark the reconstruction on synthetic aggregated datasets with known ground truth.
+"""Benchmark the reconstruction on synthetic system processes with known ground truth.
 
-Every BAFU unit process can be turned into a "system terminated" lookalike: its cumulative
+Every BAFU unit process can be turned into a system-process lookalike: its cumulative
 inventory B·A⁻¹·e is exactly what an ecoSpold type=2 export of it would contain. The real
 inputs are then the ground truth, and the pipeline's calibration step can be scored on how
 much of the structure and the amounts it recovers under different evidence levels:
@@ -9,7 +9,7 @@ much of the structure and the amounts it recovers under different evidence level
     bounded      list known, amounts known to a factor of 2 (report ranges)
     partial      30 % of the inputs are missing from the list (a report that omits minor lines)
     distractors  list known plus 10 plausible wrong candidates (an LLM over-proposing inputs)
-    blind        no list: every process used >= 30 times is a candidate (field-agnostic S4)
+    blind        no list: every process used >= 30 times is a candidate (~675)
     blind-all    no list: every dataset in the database is a candidate (~12,000)
 
 Direct elementary flows of the process are given in every scenario except the two blind ones.
@@ -116,7 +116,7 @@ class Bench:
         return v
 
     def fit(self, target: np.ndarray, cand: list[tuple], lo: np.ndarray, hi: np.ndarray, direct: np.ndarray,
-            determined: np.ndarray | None = None) -> np.ndarray:
+            determined: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray]:
         self.prefetch([self.ids[k] for k in cand])
         M = np.column_stack([self.col(self.ids[k]) for k in cand])
         # relative weights; the model side of the weight is first the unweighted NNLS solution, so
@@ -137,9 +137,7 @@ class Bench:
         target = self.sys.cumulative([self.ids[(db.INVENTORY_DB, case["code"])]])[:, 0]
         direct = np.zeros(self.sys.n_flows) if scenario.startswith("blind") else self.direct_vector(case["direct"])
         det = self.determined(case["code"])
-        if scenario == "oracle":
-            cand = keys
-        elif scenario == "bounded":
+        if scenario in ("oracle", "bounded"):
             cand = keys
         elif scenario == "partial":
             # drop the 30 % of inputs that explain the least of the inventory (what a report omits):
@@ -248,7 +246,7 @@ def merge_shards(n: int, seed: int, scenarios: list[str], name: str, k: int, out
 
 
 def write_summary(rows: list[dict], n_cases: int, seed: int, scenarios: list[str], name: str, out_dir: Path, csv_path: Path) -> Path:
-    L = [f"# Benchmark `{name}`: {n_cases} synthetic aggregated datasets, seed {seed}", "",
+    L = [f"# Benchmark `{name}`: {n_cases} synthetic system processes, seed {seed}", "",
          "Ground truth = BAFU unit processes (3-30 inputs, stratified over categories); target = their cumulative inventory.", "",
          "| scenario | flows within ±10 % | median \\|Δ flow\\| | flows missing | material amounts within ±20 % | material inputs chosen / true | false pos. | false neg. |",
          "|---|---|---|---|---|---|---|---|"]
@@ -294,7 +292,7 @@ def pick_extraction_cases(n: int, seed: int, ecospold_dir: Path, reports: Path, 
     return out
 
 
-def score_extraction(case: dict, spec_path: Path, project: str) -> dict:
+def score_extraction(case: dict, spec_path: Path) -> dict:
     """Compare the drafted (and resolved, calibrated) spec with the unit process's real exchanges."""
     from . import spec as spec_mod
     from .spec import walk
@@ -361,7 +359,7 @@ def run_extraction(n: int, seed: int, name: str, project: str, ecospold_dir: Pat
         rec = {"code": case["code"], "name": case["name"], "category": case["category"], "pdf": case["pdf"], "pages": "",
                "status": "", "note": "", "flows_within_10pct": "", "flows_within_10pct_share": "", "flow_median_abs_delta_pct": "", "flows_missing": ""}
         rows.append(rec)
-        draft_mod.advance(case["code"], case["name"], reports / case["pdf"], ecospold_dir, project, dry_run, by, rec, variant="bench")
+        draft_mod.advance(case["code"], case["name"], reports / case["pdf"], ecospold_dir, project, dry_run, by, rec, variant="bench", fallbacks=False)
         print(f"  {i}/{len(cases)} {case['name'][:50]} -> {rec['status']}", file=sys.stderr)
         if rec["status"] != "drafted":
             continue
@@ -378,7 +376,7 @@ def run_extraction(n: int, seed: int, name: str, project: str, ecospold_dir: Pat
             report = check.run(spec_mod.load(spec_path), out_dir=root / "checks")
             from .runall import _summary
             rec.update(_summary(report))
-            rec.update(score_extraction(case, spec_path, project))
+            rec.update(score_extraction(case, spec_path))
             rec["status"] = "scored"
         except SystemExit as exc:
             rec["status"], rec["note"] = "error", str(exc)[:200]
@@ -389,7 +387,7 @@ def run_extraction(n: int, seed: int, name: str, project: str, ecospold_dir: Pat
               "true_inputs", "drafted_inputs", "inputs_matched", "inputs_missed", "inputs_extra", "input_amounts_within_20pct",
               "input_amount_ratio_median", "true_direct_flows", "drafted_direct_flows", "direct_flows_matched", "direct_amounts_within_20pct", "gaps_reported"]
     with csv_path.open("w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=fields, restval=""); w.writeheader(); w.writerows(rows)
+        w = csv.DictWriter(fh, fieldnames=fields, restval="", extrasaction="ignore"); w.writeheader(); w.writerows(rows)
     scored = [r for r in rows if r["status"] == "scored"]
     L = [f"# Extraction benchmark `{name}`: {len(cases)} unit processes with a report, seed {seed}", "",
          "The whole route (locate → evidence → extract → map → assemble → resolve → calibrate → build → check) on unit processes whose "

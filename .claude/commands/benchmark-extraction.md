@@ -3,7 +3,7 @@ description: Run the extraction benchmark (the whole reverse-bafu route on unit 
 argument-hint: --n <cases> [--seed <s>] [--name <run>] [--project <name>]
 ---
 
-Run `reverse-bafu benchmark --mode extraction` with this session answering the prompts. `$ARGUMENTS` carries `--n`, `--seed`, `--name`, `--project`; pass them through unchanged. The cases are BAFU *unit processes* with a known answer: never look up their exchanges, their names in `data/ecospold`, or Brightway while answering — the answers must come from the report excerpts alone, exactly as for a real aggregated dataset.
+Run `reverse-bafu benchmark --mode extraction` with this session answering the prompts. `$ARGUMENTS` carries `--n`, `--seed`, `--name`, `--project`; pass them through unchanged. The cases are BAFU *unit processes* with a known answer: never look up their exchanges, their names in `data/ecospold`, or Brightway while answering — the answers must come from the report excerpts alone, exactly as for a real system process.
 
 1. `uv run reverse-bafu benchmark --mode extraction --dry-run --by "claude-code:<the model you are running as>" $ARGUMENTS`. It writes `results/benchmark/extraction-<name>.csv`; each row's `status` says how far that case got. Prompts and responses live under `results/benchmark/extraction/evidence/<code>/`.
 2. For every row with status `prompt-0-written`: read `prompt-0-locate.md` in full and answer it (one JSON object per `schema-0-locate.json`); write `response-0-locate.json`.

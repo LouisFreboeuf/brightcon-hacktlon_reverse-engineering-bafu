@@ -171,7 +171,7 @@
           "mapping_reason": "Ammonia released to air - the NH3 slip; candidate 1 is an acetaldehyde adduct and candidate 2 the soil compartment.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-954a-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-a2a9-0050c2490048",
         "database": "ef-3.1-biosphere"
       }
     ],

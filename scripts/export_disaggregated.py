@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Export every rebuilt unit process to a self-describing, version-controlled JSON (+ a flat CSV).
 
-    PYTHONPATH=src python scripts/export_disaggregated.py --project bafu-2026 [--out exports]
+    uv run python scripts/export_disaggregated.py --project bafu-2026 [--out exports]
 
 What it writes
 --------------
@@ -17,8 +17,8 @@ flow, and the calibrated amounts - plus, for specs produced by the drafting pipe
 
 Two things the spec does not hold and that are read from the Brightway sandbox instead:
 
-* the residual block of the hybrid (S5) node - the flow-by-flow difference between the original
-  aggregated dataset and the explicit model, which is what makes the hybrid reproduce the original
+* the residual block of the hybrid node - the flow-by-flow difference between the original
+  system process and the explicit model, which is what makes the hybrid reproduce the original
   exactly. It exists only as exchanges on ``<prefix>-hybrid``.
 * the ``categories`` of each elementary flow, for readability.
 
@@ -169,8 +169,8 @@ def _residual(prefix: str) -> dict | None:
         "unit": hyb.get("unit", ""),
         "location": hyb.get("location", ""),
         "n_flows": len(flows),
-        "note": ("S5 hybrid: the explicit exchanges above plus these residual elementary flows, so that the "
-                 "cumulative inventory of the hybrid node equals the original aggregated BAFU dataset exactly. "
+        "note": ("Hybrid node: the explicit exchanges above plus these residual elementary flows, so that the "
+                 "cumulative inventory of the hybrid node equals the original BAFU system process exactly. "
                  "The residual is what the explicit model does NOT yet explain."),
         "flows": flows,
     }
@@ -244,8 +244,6 @@ def export(project: str, out_dir: Path, status_csv: Path, with_residual: bool = 
             "S1": "transcription - the report prints this dataset's own inventory, one printed number per technosphere input",
             "S2": "template transfer - a unit process of the same product exists (another site, grade or version); its structure reused, amounts calibrated",
             "S3": "top-down model - the evidence names the inputs but not every amount; feedstock from the reaction equation, the rest calibrated",
-            "S4": "inventory fitting alone - nothing but the aggregated vector; benchmark only, never used on a real dataset",
-            "S5": "hybrid: the explicit exchanges plus a residual block, so the rebuild reproduces the original exactly",
         },
         "citation": CITATION,
         "n_datasets": len(datasets),

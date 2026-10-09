@@ -1,6 +1,6 @@
 """Find aggregated (system) processes by STRUCTURE, not by the ecoSpold type=2 flag.
 
-    PYTHONPATH=$PWD/src ./.venv/bin/python scripts/find_system_processes.py [--project bafu-2026]
+    uv run python scripts/find_system_processes.py [--project bafu-2026]
 
 Writes results/system_terminated_extended.csv in the same schema as results/system_terminated.csv,
 with two extra columns: `detected_by` (flag | structure) and `n_flows`.
@@ -41,10 +41,10 @@ name and both carry a qualifier after a comma. They are emission-only by design,
 
 NOTE: ``db.aggregated_codes()`` still reads the flag-based CSV and is used only by ``benchmark.py``
 to choose synthetic test cases - switching that over would move every published benchmark number, so
-it is left alone (see HANDOVER-flow-agreement-metric.md). ``db.aggregated_codes_all()`` reads the
+it is left alone. ``db.aggregated_codes_all()`` reads the
 flag-based CSV *plus* this one, and is what ``resolve`` and ``check`` use, so a rebuild that links
 one of the unflagged eco-profiles is now reported as the dependency it is. Before that split, a spec
-terminating on "Styrene, at plant" was ticked "no dependency on another aggregated dataset".
+terminating on "Styrene, at plant" was ticked "no dependency on another system process".
 """
 
 from __future__ import annotations
@@ -143,7 +143,7 @@ def main() -> None:
         w = csv.DictWriter(fh, fieldnames=list(rows[0]))
         w.writeheader()
         w.writerows(rows)
-    print(f"{len(rows)} aggregated datasets -> {out}")
+    print(f"{len(rows)} system processes -> {out}")
     print(f"   {len(rows) - found} carry the ecoSpold type=2 flag")
     print(f"   {found} found only by structure (no production input, >{a.min_flows} elementary flows)")
     with_report = sum(1 for r in rows if r["detected_by"] == "structure" and r["reports"])

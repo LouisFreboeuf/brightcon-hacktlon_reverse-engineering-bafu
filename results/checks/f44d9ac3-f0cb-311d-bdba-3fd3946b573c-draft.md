@@ -162,7 +162,7 @@ target `bafu-2026` vs explicit model `f44d9ac3-f0cb-311d-bdba-3fd3946b573c-draft
 
 - ✓ 1 explicit input(s) over 1 node(s)
 - ✓ no decomposed grid mixes
-- ✓ no dependency on another aggregated dataset
+- ✓ no dependency on another system process
 - ✓ mass in: 2.3 kg technosphere + 0 kg resources per 1 kg product (informational)
 - ✓ all inputs resolved
 

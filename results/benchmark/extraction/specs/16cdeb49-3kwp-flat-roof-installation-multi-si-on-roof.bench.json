@@ -81,7 +81,7 @@
       },
       {
         "name": "Corrugated board, mixed fibre, single wall, at plant",
-        "amount": 0.5112918917799995,
+        "amount": 0.5112918917799996,
         "unit": "kilogram",
         "location": "RER",
         "note": "packaging",
@@ -141,7 +141,7 @@
       },
       {
         "name": "Polystyrene, high impact, HIPS, at plant",
-        "amount": 0.2318408578111738,
+        "amount": 0.23184085781117386,
         "unit": "kilogram",
         "location": "RER",
         "note": "",
@@ -171,7 +171,7 @@
       },
       {
         "name": "Steel, low-alloyed, at plant",
-        "amount": 7.4520275725020175,
+        "amount": 7.452027572502019,
         "unit": "kilogram",
         "location": "RER",
         "note": "",
@@ -231,7 +231,7 @@
       },
       {
         "name": "Sheet rolling, steel",
-        "amount": 7.452027572502017,
+        "amount": 7.452027572502019,
         "unit": "kilogram",
         "location": "RER",
         "note": "",
@@ -261,7 +261,7 @@
       },
       {
         "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
-        "amount": 7.16222650023805,
+        "amount": 7.1622265002380505,
         "unit": "ton kilometer",
         "location": "RER",
         "note": "",
@@ -291,7 +291,7 @@
       },
       {
         "name": "Transport, freight, rail",
-        "amount": 29.3941087582024,
+        "amount": 29.394108758202407,
         "unit": "ton kilometer",
         "location": "RER",
         "note": "",
@@ -351,7 +351,7 @@
       },
       {
         "name": "Disposal, building, polyethylene/polypropylene products, to final disposal",
-        "amount": 53.613198368833956,
+        "amount": 53.61319836883396,
         "unit": "kilogram",
         "location": "CH",
         "note": "",
@@ -381,7 +381,7 @@
       },
       {
         "name": "Disposal, building, polystyrene isolation, flame-retardant, to final disposal",
-        "amount": 0.23184085781117383,
+        "amount": 0.23184085781117386,
         "unit": "kilogram",
         "location": "CH",
         "note": "",

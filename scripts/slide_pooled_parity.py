@@ -134,7 +134,7 @@ def main() -> None:
     dropped = sorted(counted, key=median_miss, reverse=True)[: a.drop_worst]
     out = SHOTS / (f"pooled-parity-without-worst-{a.drop_worst}.png" if a.drop_worst else "pooled-parity.png")
     for s in dropped:
-        print(f"  drop  {median_miss(s):.2f} decades  {s['name']}  [{s['strategy_aligned']}, {s['detected_by']}]")
+        print(f"  drop  {median_miss(s):.2f} decades  {s['name']}  [{s['strategy']}, {s['detected_by']}]")
     print("all     :", summary(counted))
     if dropped:
         print("plotted :", summary([s for s in counted if s not in dropped]))

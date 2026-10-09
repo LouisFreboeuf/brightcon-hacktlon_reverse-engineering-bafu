@@ -1,8 +1,8 @@
 """Step 2 - amounts for the inputs marked ``free``, by bounded least squares against the target's
 cumulative inventory, flow by flow, with every other input held at its spec amount. The input
 *list* is never changed here: with a free structure the fit reproduces the inventory and invents
-the process (see the method explainer in artifacts/, §2 and §7); with the list fixed it recovers
-amounts to ~10 %.
+the process (see the method explainer in artifacts/, §2 and §7); with the right list it recovers
+the input amounts (benchmark: 772 of 786 within ±20 %).
 
 No impact assessment: every flow present in the target or the model is one equation, weighted by
 its relative error, with each (unit, compartment) group of flows counting equally and round-off

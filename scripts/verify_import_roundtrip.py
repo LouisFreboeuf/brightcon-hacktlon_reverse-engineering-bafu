@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """End-to-end check of the export/import pair: does an arbitrary project really get usable datasets?
 
-    python scripts/verify_import_roundtrip.py [--source bafu-2026] [--scratch import-test]
+    uv run python scripts/verify_import_roundtrip.py [--source bafu-2026] [--scratch import-test]
 
 It (1) proves the importer refuses a project without BAFU-2026, (2) copies the source project to a
 scratch project and removes the build sandbox so nothing of the rebuild is already there,

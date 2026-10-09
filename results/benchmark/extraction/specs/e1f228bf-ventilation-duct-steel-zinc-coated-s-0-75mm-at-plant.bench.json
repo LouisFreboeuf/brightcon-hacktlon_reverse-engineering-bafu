@@ -174,7 +174,7 @@
       },
       {
         "name": "Section bar rolling, steel",
-        "amount": 3.0669369272995395,
+        "amount": 7.65,
         "unit": "kilogram",
         "location": "RER",
         "note": "The extracted row reads '2.50E-1  7.65E+0  8.88E+0  1.02E+1  1.28E+1  1.53E+1', but columns 2-6 of it are identical to the 'metal working factory operation' row, i.e. the text extraction has shifted a column. In the stainless-steel counterpart (Tabelle 43) section bar rolling is 2.50E-1 in every column, so 2.50E-1 is taken here; the bounds span the two readings.",

@@ -175,7 +175,7 @@
       },
       {
         "name": "Electricity, low voltage, at grid",
-        "amount": 0.0690049793800945,
+        "amount": 0.0690019861987474,
         "unit": "kilowatt hour",
         "location": "CH",
         "note": "Cement-plant column of Tab. 59. NOTE the inconsistency with Tab. 58, which gives 0.07 MWh per ton CO2 captured = 0.07 kWh/kg, ten times more; bounds span the two readings.",

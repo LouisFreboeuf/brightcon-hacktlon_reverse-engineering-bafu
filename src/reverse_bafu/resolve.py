@@ -2,7 +2,8 @@
 
 An input resolves to one of three states:
   unit        an existing unit process - link and stop
-  aggregated  an existing dataset that is itself ecoSpold type=2 - link, but flag the dependency
+  aggregated  an existing dataset that is itself a system process (type=2 flag or found by
+              structure, db.aggregated_codes_all) - link, but flag the dependency
   missing     nothing in BAFU - needs a nested ``node`` in the spec (or a different name)
 """
 
@@ -40,7 +41,7 @@ def resolve_node(node: Node, prefer_location: str, report: list[str], depth: int
             report.append(f"{pad}  ✗ {i.amount:.4g} {i.unit:9s} {i.name}  -> MISSING; close names: {sugg}")
             continue
         i.code, i.location = hit["code"], hit["location"]
-        state = "aggregated (type=2!)" if hit["aggregated"] else f"unit ({hit['n_inputs']} inputs)"
+        state = "system process!" if hit["aggregated"] else f"unit ({hit['n_inputs']} inputs)"
         unit_warn = "" if hit["unit"].startswith(i.unit[:4]) else f"  UNIT MISMATCH spec={i.unit} db={hit['unit']}"
         report.append(f"{pad}  ✓ {i.amount:.4g} {i.unit:9s} {i.name} [{hit['location']}] -> {state}{unit_warn}")
     for flows, kind in ((node.emissions, "emission"), (node.resources, "resource")):
@@ -57,7 +58,6 @@ def resolve_node(node: Node, prefer_location: str, report: list[str], depth: int
 
 
 def run(spec: Spec) -> bool:
-    target, _ = db.resolve_activity(spec.target_name) if not spec.target_code else (None, None)
     report: list[str] = []
     ok = resolve_node(spec.node, spec.node.location, report)
     print("\n".join(report))

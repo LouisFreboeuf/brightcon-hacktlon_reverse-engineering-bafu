@@ -228,7 +228,7 @@
           "mapping_reason": "Waste heat released to air, the compartment the table gives (no sub-compartment stated).",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {
@@ -253,7 +253,7 @@
           "mapping_reason": "'Water' to air in cubic metres is the evaporation from the reservoir the table describes; sea water, green water, water vapour in kilograms and the evapotranspiration flux are narrower or differently defined, and the two long chemical names are unrelated substances.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "3960d174-95af-41ac-a7f3-a946cd237245",
+        "code": "0342f5e5-b53e-4cec-9e67-fb197f24fff0",
         "database": "ef-3.1-biosphere"
       },
       {

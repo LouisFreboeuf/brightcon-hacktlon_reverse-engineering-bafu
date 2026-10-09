@@ -1,8 +1,8 @@
 """Rank the aggregated system processes by how much of BAFU's impact passes through them.
 
-    PYTHONPATH=$PWD/src ./.venv/bin/python scripts/replacement_priority.py [--project bafu-2026]
+    uv run python scripts/replacement_priority.py [--project bafu-2026]
 
-The question is which aggregated datasets are worth replacing first, by our algorithm or by a domain expert.
+The question is which system processes are worth replacing first.
 A system process matters in proportion to how much of the rest of the database depends on it, so
 the score is:
 
@@ -21,8 +21,9 @@ Every dataset counts once - how often a dataset is used in real studies is not k
 Next to the score, a recommendation from what we already know about each system process:
   rebuilt, fossil CO2 of the explicit rebuild within +-25 % of the original  -> review and adopt
   rebuilt, further off                                                     -> expert revision
-  not rebuilt, the dataset cites a report we have                          -> algorithm next
-  not rebuilt, no report                                                   -> domain expert
+  not rebuilt, its report is in the bundle but prints no usable inventory  -> expert, with report
+  not rebuilt, no report                                                   -> expert, no report
+(results/usable_information.csv: for all 87 not rebuilt we found too little for the algorithm.)
 plus how many of our rebuilds terminate on it (the dependency the rebuild could not open).
 
 Writes results/replacement_priority.csv and results/replacement_priority.md.
@@ -62,7 +63,7 @@ def recommendation(rebuilt: dict | None, evidence: str) -> str:
     if rebuilt:
         o, m = rebuilt["co2"]
         return "rebuilt: review and adopt" if o and abs(m / o - 1) <= 0.25 else "rebuilt: expert revision"
-    return "domain expert" if evidence == "no-pdf" else "algorithm next"
+    return "expert, no report" if evidence == "no-pdf" else "expert, with report"
 
 
 def main() -> None:
@@ -73,10 +74,9 @@ def main() -> None:
     db.set_project(a.project)
 
     sysp = list(csv.DictReader(open("results/system_terminated_extended.csv")))
-    evidence = {r["code"]: r["status"] for f in ("results/drafting_status.csv", "results/drafting_status_extended.csv")
-                for r in csv.DictReader(open(f))}
+    evidence = {r["code"]: r["status"] for r in csv.DictReader(open("results/drafting_status.csv"))}
     fc = json.load(open("results/flow_comparison.json"))
-    rebuilt = {s["code"]: {"route": s["strategy_aligned"], "co2": s["headline"]["co2"]} for s in fc["specs"] if s["counted"]}
+    rebuilt = {s["code"]: {"route": s["strategy"], "co2": s["headline"]["co2"]} for s in fc["specs"] if s["counted"]}
     agg = {r["code"] for r in sysp}
     blocks = collections.Counter()
     for s in fc["specs"]:
@@ -174,7 +174,7 @@ def main() -> None:
 
     rec = collections.Counter(x["recommendation"] for x in rows)
     md = ["# Which system processes to open first", "",
-          f"{len(rows)} aggregated datasets, ranked by the share of BAFU's impact that passes through them "
+          f"{len(rows)} system processes, ranked by the share of BAFU's impact that passes through them "
           "(dataset-equivalents, mean over the 16 EF 3.1 categories). See the docstring of "
           "`scripts/replacement_priority.py` for the definition.", "",
           "Recommendations: " + ", ".join(f"{k} {v}" for k, v in rec.most_common()), "",

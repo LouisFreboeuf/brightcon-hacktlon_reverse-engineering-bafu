@@ -224,7 +224,7 @@
           "mapping_reason": "Waste heat released to air; section 3.10 says 100 % of the electricity is converted to waste heat and released to the air.",
           "mapping_by": "claude-code:claude-opus-5"
         },
-        "code": "08a91e70-3ddc-11dd-9138-0050c2490048",
+        "code": "08a91e70-3ddc-11dd-9136-0050c2490048",
         "database": "ef-3.1-biosphere"
       },
       {

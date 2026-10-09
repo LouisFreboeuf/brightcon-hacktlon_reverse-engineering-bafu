@@ -4,10 +4,12 @@ Re-runs the same fits as `benchmark.run` (same rng stream, so `distractors` draw
 candidates) and stores, per case and scenario, every candidate with its truth/fitted amount plus
 the largest flows of the target. Usage:
 
-    python scripts/dump_calibration_detail.py [-n N] [--seed S] [--project P] [-o OUT]
-                                              [--top-flows K] [--scenarios a,b,c]
+    uv run python scripts/dump_calibration_detail.py [-n N] [--seed S] [--project P] [-o OUT]
+                                                     [--top-flows K] [--scenarios a,b,c]
 
-Defaults reproduce results/benchmark/flow-n10-seed7-detail.json. The file grows roughly linearly
+Defaults reproduce results/benchmark/flow-n100-seed7-detail.json (the four panels of the deck's
+benchmark slide and artifacts/calibration-benchmark.html); the no-list panel comes from
+``--scenarios blind-all -o results/benchmark/blind-all-n100-seed7-detail.json``. The file grows roughly linearly
 with N (~45 kB per case at --top-flows 40); lower --top-flows if it gets unwieldy.
 """
 
@@ -23,9 +25,9 @@ from reverse_bafu.benchmark import Bench, pick_cases
 from reverse_bafu.lci import System, determined_flows, flow_agreement, contribution_breadth
 
 ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-ap.add_argument("-n", "--n", type=int, default=10, help="number of synthetic cases (default 10)")
+ap.add_argument("-n", "--n", type=int, default=100, help="number of synthetic cases (default 100)")
 ap.add_argument("--seed", type=int, default=7, help="same seed as the benchmark run (default 7)")
-ap.add_argument("--project", default="bafu-2026-bench", help="Brightway project (default bafu-2026-bench)")
+ap.add_argument("--project", default="bafu-2026", help="Brightway project (default bafu-2026)")
 ap.add_argument("--scenarios", default="oracle,bounded,partial,distractors",
                 help="comma-separated; must match the benchmark run so the rng stream lines up")
 ap.add_argument("--top-flows", type=int, default=40, help="largest target flows stored per scenario (default 40)")

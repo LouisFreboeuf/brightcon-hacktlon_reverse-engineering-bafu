@@ -1,16 +1,23 @@
-"""``reverse-bafu resolve|calibrate|build|check|run <spec.json>``"""
+"""reverse-bafu: dis-aggregate BAFU-2026 system processes into unit processes.
+
+  one spec:      resolve | calibrate | build | check | run  <spec.json>
+  every spec:    run-all
+  make specs:    draft-all, or per dataset locate | evidence | draft | assemble  <code>
+  benchmark:     benchmark --mode calibration|extraction
+"""
 
 from __future__ import annotations
 
 import argparse
 import sys
 import warnings
+from pathlib import Path
 
 from . import db, spec as spec_mod
 
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(prog="reverse-bafu", description=__doc__)
+    p = argparse.ArgumentParser(prog="reverse-bafu", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("command", choices=["resolve", "calibrate", "build", "check", "run", "benchmark", "evidence", "draft", "assemble", "locate", "draft-all", "run-all"])
     p.add_argument("spec", nargs="?", help="spec JSON (see src/reverse_bafu/spec.py); for evidence/draft/assemble: the target code")
     p.add_argument("--report", help="evidence: the report PDF")
@@ -22,8 +29,8 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--reports", default="BAFU-2026 v1_Documentation/BAFU-2026 v1_Documentation/BAFU-2026 v1 LCI Reports",
                    help="locate/draft-all: folder with the report PDFs")
     p.add_argument("--only", default="", help="draft-all: comma-separated dataset codes (or 8-char prefixes) to process")
-    p.add_argument("--datasets", default="results/system_terminated.csv",
-                   help="draft-all: the CSV of aggregated datasets to work through (see scripts/find_system_processes.py)")
+    p.add_argument("--datasets", default="results/system_terminated_extended.csv",
+                   help="draft-all: the CSV of system processes to work through (default: all 138, see scripts/find_system_processes.py)")
     p.add_argument("--by", default="", help="draft-all: author label for responses answered outside the API")
     p.add_argument("--no-fallback", action="store_true",
                    help="draft-all: stop at pages-not-found / no-pdf instead of trying the template and metadata routes")
@@ -42,7 +49,6 @@ def main(argv: list[str] | None = None) -> int:
     warnings.filterwarnings("ignore", message=".*pypardiso.*")
     db.set_project(args.project)
     if args.command == "benchmark":
-        from pathlib import Path
         from . import benchmark
         if args.mode == "extraction":
             only = {x.strip() for x in args.only.split(",") if x.strip()} or None
@@ -50,6 +56,9 @@ def main(argv: list[str] | None = None) -> int:
                                      Path(args.reports), args.dry_run, args.by or "manual", only)
         else:
             shard = tuple(map(int, args.shard.split("/"))) if args.shard else None
+            unknown = set(args.scenarios.split(",")) - set(benchmark.SCENARIOS)
+            if unknown:
+                p.error(f"unknown scenario(s) {', '.join(sorted(unknown))}; choose from {', '.join(benchmark.SCENARIOS)}")
             benchmark.run(args.n, args.seed, args.scenarios.split(","), args.name or f"n{args.n}-seed{args.seed}", shard=shard)
         return 0
     if args.command == "run-all":
@@ -57,14 +66,12 @@ def main(argv: list[str] | None = None) -> int:
         runall.run_all(args.project, args.apply)
         return 0
     if args.command == "draft-all":
-        from pathlib import Path
         from . import draft as draft_mod
         only = {x.strip() for x in args.only.split(",") if x.strip()} or None
         draft_mod.draft_all(args.project, Path(args.ecospold), Path(args.reports), args.dry_run, only, args.by or "manual",
                             datasets=Path(args.datasets), fallbacks=not args.no_fallback)
         return 0
     if args.command in ("evidence", "draft", "assemble", "locate"):
-        from pathlib import Path
         from . import draft as draft_mod
         if not args.spec:
             p.error("the target code is required")

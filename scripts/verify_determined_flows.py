@@ -1,9 +1,9 @@
 """Re-derive every claim behind lci.determined_flows, from scratch.
 
-Companion to HANDOVER-flow-agreement-metric.md. Nothing here is imported by the pipeline; it
+Backs README §6, "What the flow score counts". Nothing here is imported by the pipeline; it
 exists so a reviewer can check the argument instead of trusting it.
 
-    PYTHONPATH=$PWD/src ./.venv/bin/python scripts/verify_determined_flows.py [--project bafu-2026-bench]
+    uv run python scripts/verify_determined_flows.py [--project bafu-2026]
 
 Prints, in order:
   1. why some flows are not determined  - the range of the scaling vector vs the solve's error floor
@@ -62,7 +62,7 @@ def truth(acts, case):
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--project", default="bafu-2026-bench")
+    p.add_argument("--project", default="bafu-2026")
     args = p.parse_args()
     cases, acts, bench = build(args.project)
     sys_ = bench.sys

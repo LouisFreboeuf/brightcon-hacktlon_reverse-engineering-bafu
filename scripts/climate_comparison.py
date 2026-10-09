@@ -1,10 +1,10 @@
 """EF 3.1 Climate change of every rebuilt dataset against its original, for the results slide.
 
-    PYTHONPATH=$PWD/src ./.venv/bin/python scripts/climate_comparison.py [--project bafu-2026]
+    uv run python scripts/climate_comparison.py [--project bafu-2026]
 
 The fit and the flow comparison stay impact-free; this is an evaluation only. Same nodes and the
 same counting rule as flow_comparison.py: the original (aggregated) dataset against the explicit
-rebuild (<prefix>-disagg), not the S5 hybrid, which equals the original by construction. All nodes
+rebuild (<prefix>-disagg), not the hybrid node, which equals the original by construction. All nodes
 go into one demand, so the technosphere matrix is factorised once.
 
 Writes results/climate_comparison.csv (one row per spec) and prints the median deviation per route
@@ -25,7 +25,7 @@ warnings.filterwarnings("ignore")
 import bw2calc as bc  # noqa: E402
 import bw2data as bd  # noqa: E402
 
-from flow_comparison import MultiSystem, aligned  # noqa: E402
+from flow_comparison import MultiSystem  # noqa: E402
 from reverse_bafu import db  # noqa: E402
 from reverse_bafu import spec as spec_mod  # noqa: E402
 
@@ -70,9 +70,8 @@ def main() -> None:
     for j, (path, sp, t, e) in enumerate(specs):
         o, m = float(scores[2 * j]), float(scores[2 * j + 1])
         code = sp.target_code
-        current = sp.raw.get("strategy", {}).get("code", "?")
         rows.append({"spec": path, "code": code, "name": t["name"], "variant": sp.variant or "",
-                     "counted": counted[code][1] == path, "route": aligned(code, current),
+                     "counted": counted[code][1] == path, "route": sp.raw.get("strategy", {}).get("code", "?"),
                      "original_kg_co2eq": f"{o:.5g}", "rebuilt_kg_co2eq": f"{m:.5g}",
                      "deviation_pct": f"{100 * (m / o - 1):.1f}" if o else ""})
     with open(a.out, "w", newline="") as fh:

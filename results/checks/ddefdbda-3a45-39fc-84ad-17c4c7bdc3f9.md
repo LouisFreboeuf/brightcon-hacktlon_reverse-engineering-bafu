@@ -125,7 +125,7 @@ target `bafu-2026` vs explicit model `ddefdbda-3a45-39fc-84ad-17c4c7bdc3f9-disag
 
 - ✓ 21 explicit input(s) over 1 node(s)
 - ✓ no decomposed grid mixes
-- ✗ depends on aggregated datasets (rebuild those first): ['Polyethylene, HDPE, granulate, at plant', 'Feldspar, at plant']
+- ✗ depends on system processes (rebuild those first): ['Polyethylene, HDPE, granulate, at plant', 'Feldspar, at plant']
 - ✓ mass in: 0.783 kg technosphere + 0 kg resources per 1 kilogram product (informational)
 - ✓ all inputs resolved
 

@@ -39,7 +39,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 @media (max-width:640px){h1{font-size:1.7rem} .ladder li{grid-template-columns:1fr} .ladder .if{border-bottom:1px dashed var(--rule)}}
 </style>
 <main>
-<div class="eyebrow">reverse‑bafu · developer walkthrough · branch disaggregation-pipeline</div>
+<div class="eyebrow">reverse‑bafu · developer walkthrough</div>
 <h1>How the code is organised and where it decides things</h1>
 <p class="lede">The concept page says <em>what</em> the pipeline does. This one says where each decision is made in the code, under exactly which condition, with which constants — so you can change a threshold, add a strategy, or debug a spec without reading every module first.</p>
 
@@ -54,21 +54,30 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
   build.py        step 3 · explicit + hybrid nodes into the sandbox
   check.py        step 4 · harness → results/checks/&lt;code&gt;.md
   runall.py       run-all: every specs/*.json in dependency order → results/rebuild_status.csv
-  benchmark.py    synthetic aggregated datasets with known answers → results/benchmark/
-  draft.py        evidence → draft (two pinned prompts) → assemble: a spec from a report, with provenance
-<b>prompts/</b>                  locate_pages.md, draft_spec.md (extraction), map_inputs.md (mapping) — the fixed LLM prompt templates
+  benchmark.py    synthetic system processes with known answers → results/benchmark/
+  draft.py        locate → evidence → extract → map → assemble: a spec from a report, with provenance;
+                  the template and metadata routes when no report prints the inventory
+<b>prompts/</b>                  locate_pages.md, draft_spec.md (extraction), map_inputs.md (mapping), draft_from_template.md,
+                          draft_from_metadata.md — the fixed LLM prompt templates
 <b>specs/</b>                    one JSON per rebuilt dataset (the unit of work); specs/evidence/&lt;code&gt;/ = drafting records
 <b>scripts/</b>
-  list_system_terminated.py   the 101: ecoSpold type=2 from the XML, joined with Brightway usage
+  list_system_terminated.py   the 101 flagged: ecoSpold type=2 from the XML, joined with Brightway usage
+  find_system_processes.py    the 37 the flag misses, found by structure → all 138
   list_sources.py             source citations, DOIs, report PDFs of the documentation bundle
   render_pages.py             specs + sandbox + check reports → artifacts/rebuilt-inventories.html (template in templates/)
+  flow_comparison.py          original vs rebuilt elementary flows → results/flow_comparison.json → build_flow_parity.py
+  replacement_priority.py     the 138 ranked by what depends on them → build_replacement_page.py
+  export_ / import_disaggregated.py   share the rebuilds with another Brightway project
+  slide_*.py                  the deck's plots and PDF
 <b>results/</b>
-  system_terminated.csv       the 101 with family, sibling, people, representativeness
+  system_terminated.csv       the 101 flagged, with family, sibling, people, representativeness
+  system_terminated_extended.csv   all 138, with how each was found
   sources.csv · dois.csv      the bibliography behind the database
   drafting_status.csv · rebuild_status.csv   where each dataset / spec stands after draft-all / run-all
   checks/&lt;code&gt;.md            one harness report per spec
   benchmark/&lt;name&gt;.{csv,md}  per case × scenario rows, and the summary
-<b>artifacts/</b>                the documentation: method explainer, the 101 (evidence), rebuilt inventories, burnt shale, this page
+<b>artifacts/</b>                the documentation pages (method explainer, system processes, rebuilt inventories, flow parity,
+                          calibration benchmark, replacement priority, this page) and the presentation
 <b>.claude/commands/</b>          /draft-all (the batch), /draft-spec (one dataset) — the drafting chain inside a Claude Code session
 <i>data/, BAFU-2026 v1_Documentation/   gitignored: the ecoSpold XML and the report PDFs</i></div>
 
@@ -85,7 +94,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
  <rect class="box b" x="250" y="230" width="110" height="44" rx="5"/><text x="305" y="257" text-anchor="middle" font-weight="500">check</text>
  <rect class="box" x="450" y="90" width="130" height="114" rx="5"/><text x="515" y="112" text-anchor="middle" font-weight="500">lci.System</text><text x="515" y="130" text-anchor="middle" class="small">A = technosphere (LU)</text><text x="515" y="145" text-anchor="middle" class="small">B = biosphere</text><text x="515" y="160" text-anchor="middle" class="small">cumulative(ids) = B·A⁻¹·e</text><text x="515" y="175" text-anchor="middle" class="small">relative_weights(target)</text><text x="515" y="190" text-anchor="middle" class="small">flow_agreement(t, model)</text>
  <rect class="box g" x="680" y="230" width="200" height="44" rx="5"/><text x="780" y="250" text-anchor="middle" font-weight="500">results/checks/&lt;code&gt;.md</text><text x="780" y="265" text-anchor="middle" class="small">flow agreement · residual · checks</text>
- <rect class="box g" x="680" y="20" width="200" height="44" rx="5"/><text x="780" y="40" text-anchor="middle" font-weight="500">results/system_terminated.csv</text><text x="780" y="55" text-anchor="middle" class="small">codes of the 101 → "aggregated" state</text>
+ <rect class="box g" x="680" y="20" width="200" height="44" rx="5"/><text x="780" y="40" text-anchor="middle" font-weight="500">system_terminated_extended.csv</text><text x="780" y="55" text-anchor="middle" class="small">codes of the 138 → "aggregated" state</text>
  <g class="link"><path d="M160 42 L 248 42" marker-end="url(#ah)"/><path d="M160 147 C 200 147, 200 42, 248 42" marker-end="url(#ah)"/><path d="M680 42 C 620 42, 420 42, 362 42" marker-end="url(#ah)" stroke-dasharray="4 3"/></g>
  <g class="link"><path d="M360 42 C 400 42, 400 20, 240 20 C 190 20, 190 30, 162 30" marker-end="url(#ah)" stroke-dasharray="4 3"/></g>
  <g class="link"><path d="M160 112 L 248 112" marker-end="url(#ah)"/><path d="M360 112 L 448 112" marker-end="url(#ah)"/><path d="M360 100 C 400 100, 400 60, 162 60" marker-end="url(#ah)" stroke-dasharray="4 3"/></g>
@@ -97,7 +106,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 
 <h2>3 · The spec, field by field</h2>
 <pre>{
-  <span class="k">"target"</span>:   {"code": "…", "name": "…", "location": "…"},      <span class="c">the aggregated dataset in bafu-2026</span>
+  <span class="k">"target"</span>:   {"code": "…", "name": "…", "location": "…"},      <span class="c">the system process in bafu-2026</span>
   <span class="k">"strategy"</span>: {"code": "S1", "label": "…", "note": "…"},      <span class="c">printed in the check report</span>
   <span class="k">"evidence"</span>: [{"source": "…pdf", "where": "Tab. 3.9", "note": "…"}],
   <span class="k">"node"</span>: {
@@ -126,7 +135,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
  <li><div class="if">no exact normalised name match in bafu-2026</div><div class="then"><span class="state bad">MISSING</span>up to 5 <code>difflib.get_close_matches(cutoff=0.6)</code> suggestions printed; resolve returns False → <code>run</code> exits 2</div></li>
  <li><div class="if">match, and input.location given<br>and a candidate has that location</div><div class="then">that candidate</div></li>
  <li><div class="if">match, otherwise</div><div class="then">first candidate whose location is, in order: the node's location, then <code>RER, CH, DE, GLO, Europe</code>; else the first match</div></li>
- <li><div class="if">chosen candidate's code ∈ results/system_terminated.csv</div><div class="then"><span class="state warn">aggregated (type=2!)</span>linked anyway, flagged; check will list it as a dependency to rebuild first</div></li>
+ <li><div class="if">chosen candidate's code ∈ the 138 (results/system_terminated_extended.csv)</div><div class="then"><span class="state warn">system process!</span>linked anyway, flagged; check will list it as a dependency to rebuild first</div></li>
  <li><div class="if">not db_unit.startswith(spec_unit[:4])</div><div class="then"><span class="state warn">UNIT MISMATCH</span>printed, not fatal (this caught kg vs m² on the gypsum board)</div></li>
 </ul>
 <h3>Elementary flows (emissions, resources)</h3>
@@ -142,7 +151,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <h3>5.1 · Notation</h3>
 <p>Everything lives in flow space: <var>n</var> = 1,927 elementary-flow rows of the EF 3.1 biosphere, no characterisation anywhere. <code>lci.System.cumulative</code> returns <var>B</var><var>A</var><sup>−1</sup><var>e</var><sub>j</sub> — the cumulative inventory of one activity — as a column.</p>
 <ul class="sym">
-<li><span>b</span><span>cumulative inventory of the target, the aggregated dataset being rebuilt</span></li>
+<li><span>b</span><span>cumulative inventory of the target, the system process being rebuilt</span></li>
 <li><span>M<sup>f</sup></span><span><var>n</var>×<var>q</var>; columns are the cumulative inventories of the <var>q</var> <b>free</b> inputs</span></li>
 <li><span>M<sup>x</sup></span><span><var>n</var>×<var>p</var>; the same for the <b>fixed</b> inputs, held at their spec amounts <var>a</var><sup>x</sup></span></li>
 <li><span>d</span><span>the node's own direct elementary flows, as a vector</span></li>
@@ -207,7 +216,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <div class="eq"><span style="padding-left:1.5em">Stucco, at plant [CH]: &nbsp; ‖<var>d</var>‖/‖<var>c</var>‖ = 6.6×10<sup>−3</sup></span></div>
 <p class="where">So 99.3 % of stucco's cumulative inventory is reproduced exactly by 1.16 kg gypsum (at mine) + 0.70 MJ natural-gas heat + 0.175 MJ heavy-fuel-oil heat + 0.027 kWh electricity + 1.4×10<sup>−4</sup> industrial machine. That is the arithmetic behind the failure reported in §2 of the concept page: given a free structure, the solver reproduced a known process's whole cumulative inventory while choosing <b>116 inputs, of which 2 had the right amount</b>, and turned 0.71 kg of stucco into 4.7 kg of lime plus 0.8 kg of anhydrite. It did not malfunction — it walked down a flat direction that the supply chain guarantees exists.</p>
 </div>
-<p><b>Fixing the list removes the cone.</b> With <var>q</var> ≈ 10 named columns chosen from evidence rather than 2,965 drawn from a database, the substitutions above are no longer available, and the amounts come back to ~10 %. Bounds narrow what is left. This is why §5 fits amounts and never names, and why the benchmark's <em>blind</em> row is the number that matters: offered every frequently used process and no list, the fit reproduces 97 % of the flows within ±10 % with a process of ~96 wrong inputs.</p>
+<p><b>Fixing the list removes the cone.</b> With <var>q</var> ≈ 10 named columns chosen from evidence rather than 2,965 drawn from a database, the substitutions above are no longer available, and the amounts come back to ~10 %. Bounds narrow what is left. This is why §5 fits amounts and never names, and why the benchmark's no‑list rows are the numbers that matter: offered every dataset in the database and no list (<em>blind‑all</em>), the fit reproduces 100 % of the flows within ±10 % with a process of ~71 wrong inputs.</p>
 
 <h3>5.8 · Amounts that land on a bound</h3>
 <p>At the optimum the KKT conditions on the box read, with gradient <var>∇</var> = 2(<var>M</var><sup>f</sup>)<sup>⊤</sup><var>W</var><sup>2</sup>(<var>M</var><sup>f</sup><var>â</var> − <var>r</var>):</p>
@@ -236,7 +245,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
  <li><div class="if">always</div><div class="then">the solve runs <b>twice</b> — truncated IRLS, §5.6. Pass 1 weights against the spec's own amounts, pass 2 against the fit of pass 1, so the result barely depends on the amounts a draft happened to start from</div></li>
  <li><div class="if">--apply (or run --apply)</div><div class="then">fitted amounts written into the spec; otherwise only printed as spec / fitted / ratio</div></li>
 </ul>
-<div class="note">Why the list is never changed here: with a free structure the same solver reproduced a known process's whole cumulative inventory while choosing 116 wrong inputs — §5.7 derives why that is guaranteed rather than unlucky. The benchmark's <em>blind</em> row measures it: with no list, 97 % of the flows match within ±10 % and the median case uses 96 inputs the real process does not have.</div>
+<div class="note">Why the list is never changed here: with a free structure the same solver reproduced a known process's whole cumulative inventory while choosing 116 wrong inputs — §5.7 derives why that is guaranteed rather than unlucky. The benchmark's no‑list rows measure it: with no list, 97–100 % of the flows match within ±10 % and the median case uses 71–96 inputs the real process does not have.</div>
 
 <h2>6 · Step 3 — build <span class="muted mono">build.py</span></h2>
 <ul class="ladder">
@@ -254,7 +263,7 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
  <li><div class="if">hybrid present</div><div class="then">flows where |hybrid − target| &gt; 1e‑6·|target| + 1e‑9·max|target| are counted; the number must be 0 — the hybrid equals the original flow for flow by construction</div></li>
  <li><div class="if">structural check 1</div><div class="then">✓ if total explicit inputs over all nodes ≤ 30</div></li>
  <li><div class="if">structural check 2</div><div class="then">✓ if no input name matches <code>/at power plant|power plant$|at run-of-river|at reservoir/i</code> (a decomposed grid mix)</div></li>
- <li><div class="if">structural check 3</div><div class="then">✓ if no input code ∈ the 101 (else lists them: "rebuild those first")</div></li>
+ <li><div class="if">structural check 3</div><div class="then">✓ if no input code ∈ the 138 (else lists them: "rebuild those first")</div></li>
  <li><div class="if">structural check 4</div><div class="then">informational: Σ kg inputs excluding names starting with "disposal"/"transport", plus Σ kg direct resources, per unit of product</div></li>
  <li><div class="if">structural check 5</div><div class="then">✓ if every input has a code or a nested node</div></li>
  <li><div class="if">output</div><div class="then"><code>results/checks/&lt;code&gt;.md</code> with the strategy block from the spec, calibrated inputs and their bounds, links to rebuilt nodes; console: median |Δ|, worst category, residual share median, the five checks</div></li>
@@ -262,20 +271,21 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 
 <h2>8 · Benchmark <span class="muted mono">benchmark.py</span></h2>
 <ul class="ladder">
- <li><div class="if">case selection · pick_cases(n, seed)</div><div class="then">unit processes with 3 ≤ technosphere inputs ≤ 30, not in the 101, name not starting with "xx"; grouped by BAFU top‑level category, each group sorted by code then shuffled with <code>Random(seed)</code>; round‑robin over categories until n</div></li>
- <li><div class="if">target</div><div class="then">the case's cumulative inventory (what a type=2 export of it would contain); truth = its technosphere inputs and amounts; direct flows known except in blind</div></li>
+ <li><div class="if">case selection · pick_cases(n, seed)</div><div class="then">unit processes with 3 ≤ technosphere inputs ≤ 30, not among the 101 flagged (<code>db.aggregated_codes</code>, kept flag‑only so the published numbers stay fixed), name not starting with "xx"; grouped by BAFU top‑level category, each group sorted by code then shuffled with <code>Random(seed)</code>; round‑robin over categories until n</div></li>
+ <li><div class="if">target</div><div class="then">the case's cumulative inventory (what a type=2 export of it would contain); truth = its technosphere inputs and amounts; direct flows known except in the two blind scenarios</div></li>
  <li><div class="if">scenario oracle</div><div class="then">candidates = true input keys; lo 0, hi ∞</div></li>
  <li><div class="if">scenario bounded</div><div class="then">candidates = true keys; lo = 0.5·true, hi = 2·true</div></li>
  <li><div class="if">scenario partial</div><div class="then">candidates = the true keys ranked by how many of the target's flows they supply ≥ 1 % of, keeping the top round(0.7·n) (at least 1)</div></li>
  <li><div class="if">scenario distractors</div><div class="then">true keys + 10 sampled (shared <code>Random(seed)</code>) from the pool of processes used ≥ 30 times, excluding truth and the case</div></li>
  <li><div class="if">scenario blind</div><div class="then">the whole pool (~675), no direct flows; run on the same 100 cases (<code>blind-n100-seed7</code>)</div></li>
+ <li><div class="if">scenario blind-all</div><div class="then">every dataset in the database (~12,000), no direct flows (<code>blind-all-n100-seed7</code>); above <code>lci.WIDE</code> = 2,000 columns the NNLS runs on a working set (<code>lci.nnls_working_set</code>), ~30 s per case</div></li>
  <li><div class="if">solver</div><div class="then">first weights against an unweighted NNLS fit, then the same two weighted passes and the same <code>lci.solve_weighted</code> as <code>calibrate</code></div></li>
  <li><div class="if">metrics · "material"</div><div class="then">an input is material when its true contribution reaches 1 % of the target amount of some determined flow (round-off flows are left out, as in the flow score); a candidate is "chosen" when its fitted contribution does. TP/FP/FN, amounts within ±20 % over material inputs, flows within ±10 %, median flow deviation</div></li>
  <li><div class="if">output</div><div class="then"><code>results/benchmark/&lt;name&gt;.csv</code> (one row per case × scenario) and <code>.md</code> (medians per scenario)</div></li>
 </ul>
 
 <h2>8b · Drafting a spec <span class="muted mono">draft.py · prompts/</span></h2>
-<p>The specs are the evidence step, so their provenance matters most. <code>draft-all</code> runs the layers below for every row of <code>results/system_terminated.csv</code> (report from <code>sources.csv</code>, no arguments typed by hand) and records per dataset how far it got in <code>results/drafting_status.csv</code>: <code>drafted</code>, <code>pages-not-found</code>, <code>no-pdf</code>, <code>prompt-N-written</code> (dry run), <code>error</code>. Each layer leaves files under <code>specs/evidence/&lt;code&gt;/</code>:</p>
+<p>The specs are the evidence step, so their provenance matters most. <code>draft-all</code> runs the layers below for every row of <code>results/system_terminated_extended.csv</code> (all 138; report from <code>sources.csv</code>, no arguments typed by hand) and records per dataset how far it got in <code>results/drafting_status.csv</code>: <code>drafted</code> (with the <code>route</code> that made it), <code>no-usable-evidence</code>, <code>pages-not-found</code> / <code>no-pdf</code> (with <code>--no-fallback</code>), <code>prompt-N-written</code> (dry run), <code>error</code>. Each layer leaves files under <code>specs/evidence/&lt;code&gt;/</code>:</p>
 <ul class="ladder">
  <li class="head"><div class="if">layer · condition</div><div class="then">outcome</div></li>
  <li><div class="if">locate CODE --report PDF (layer 0)</div><div class="then"><span class="state ok">deterministic</span>every caption matching <code>Tab./Table/Tabelle/Tableau/Fig./Figure/Abb. N…</code> with its PDF page → <code>captions-0-locate.json</code>; then <span class="state info">one prompt</span> (<code>prompts/locate_pages.md</code>): the model names the inventory table(s) and returns <code>first_page</code>–<code>last_page</code> (≤ 4 pages) or <code>found: false</code> with a reason. A model step because the reports are German/French and the names English</div></li>
@@ -287,8 +297,10 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
  <li><div class="if">--dry-run</div><div class="then">writes the prompts and schemas only, stops. For any other model, or a person</div></li>
  <li><div class="if">--from-response extract=F / map=F / by=who</div><div class="then">ingests a response obtained elsewhere; <span class="state warn">validated</span> with jsonschema against the same schema (rejected with the failing path); provenance records <code>model: manual</code> and <code>by</code>. <code>/draft-spec</code> in Claude Code runs this whole loop with the session as the model</div></li>
  <li><div class="if">assemble</div><div class="then"><span class="state ok">deterministic</span>amount = raw_value × factor × (1 / basis_amount); unit names normalised; an aggregated dependency is linked to its rebuilt sandbox node when one exists (<code>&lt;code&gt;-disagg</code> or <code>-draft-disagg</code>); <code>mass_sum</code> carried over when the excerpt states one; inputs mapped to <code>chosen</code>, emissions / resources to the chosen flow and compartment; a range (<code>raw_min ≠ raw_max</code>) becomes <code>free</code> + <code>bounds</code>; every entry gets a <code>derivation</code> (quote, raw value, factor with source, search, mapping reason, author, <code>reviewed_by: null</code>); the spec gets <code>variant: "draft"</code> (sandbox nodes <code>&lt;code&gt;-draft-…</code>) and a <code>provenance</code> block with both passes, the model's <code>gaps</code> and the skipped items → <code>specs/&lt;code&gt;-&lt;slug&gt;.draft.json</code></div></li>
+ <li><div class="if">no report prints the inventory · template route</div><div class="then"><span class="state ok">deterministic</span>unit processes whose name starts with the same product → <code>candidates-3-template.json</code>; <span class="state info">one prompt</span> (<code>prompts/draft_from_template.md</code>): pick one or none, the inputs whose amounts may differ, the grid to switch to; <code>assemble_template</code> copies the template's inputs and direct flows and frees the named inputs within 0.5–2×</div></li>
+ <li><div class="if">no template · metadata route</div><div class="then"><span class="state info">two prompts</span> (<code>prompts/draft_from_metadata.md</code>, then the mapping prompt): inputs the metadata names, each with one amount basis (stoichiometry, mass balance, composition split, named only, implied); <code>assemble_metadata</code> adds the ecoinvent‑v2 utility block for chemicals as free inputs</div></li>
 </ul>
-<p class="muted" style="font-size:.88rem">Reproducible means: evidence and candidates regenerate bit‑for‑bit, prompt and model are pinned, every number is auditable to a quoted line — not that the model returns identical JSON. First run on burnt shale (the session answering its own prompts, labelled so): identical to the hand‑written spec on all 12 inputs and 6 emissions; electricity left at the table's gross value (flagged), the raw‑shale flows reported as gaps.</p>
+<p class="muted" style="font-size:.88rem">Reproducible means: evidence and candidates regenerate bit‑for‑bit, prompt and model are pinned, every number is auditable to a quoted line — not that the model returns identical JSON. First run on burnt shale (the session answering its own prompts, labelled so): identical to the interactive spec on all 12 inputs and 6 emissions; electricity left at the table's gross value (flagged), the raw‑shale flows reported as gaps.</p>
 
 <h2>9 · CLI</h2>
 <div class="tbl"><table><thead><tr><th>Command</th><th>Does</th><th>Exit / side effects</th></tr></thead><tbody>
@@ -297,14 +309,14 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <tr><td class="mono">reverse-bafu build SPEC [--no-hybrid]</td><td>ladder §6</td><td>writes nodes into reverse-bafu-sandbox</td></tr>
 <tr><td class="mono">reverse-bafu check SPEC</td><td>ladder §7</td><td>writes results/checks/&lt;code&gt;.md</td></tr>
 <tr><td class="mono">reverse-bafu run SPEC [--apply]</td><td>resolve → calibrate → build → check</td><td>stops after resolve on MISSING; calibrated amounts applied only with <code>--apply</code></td></tr>
-<tr><td class="mono">reverse-bafu run-all [--apply]</td><td>the same for every specs/*.json, ordered so that a spec with a <code>sandbox</code> link runs after the spec building that node; an unresolved spec is recorded and skipped</td><td>writes results/rebuild_status.csv (status, climate Δ, categories within ±10 %, worst category, report)</td></tr>
-<tr><td class="mono">reverse-bafu benchmark --n 40 --seed 7 [--scenarios …] [--name …]</td><td>§8</td><td>writes results/benchmark/&lt;name&gt;.{csv,md}</td></tr>
-<tr><td class="mono">reverse-bafu draft-all [--dry-run] [--only CODES] [--by WHO]</td><td>§8b, for every row of results/system_terminated.csv: report from sources.csv, locate → evidence → draft → assemble; incremental</td><td>writes results/drafting_status.csv and specs/*.draft.json</td></tr>
+<tr><td class="mono">reverse-bafu run-all [--apply]</td><td>the same for every specs/*.json, ordered so that a spec with a <code>sandbox</code> link runs after the spec building that node; an unresolved spec is recorded and skipped</td><td>writes results/rebuild_status.csv (status, the 50 largest kg flows within ±10 %, kg mass covered, all flows within ±10 %, median deviation, report)</td></tr>
+<tr><td class="mono">reverse-bafu benchmark --n 100 --seed 7 [--scenarios …] [--name …] [--mode extraction]</td><td>§8</td><td>writes results/benchmark/&lt;name&gt;.{csv,md}</td></tr>
+<tr><td class="mono">reverse-bafu draft-all [--dry-run] [--only CODES] [--by WHO] [--no-fallback]</td><td>§8b, for every row of results/system_terminated_extended.csv: report from sources.csv, locate → evidence → draft → assemble, then the template and metadata routes; incremental</td><td>writes results/drafting_status.csv and specs/*.draft.json</td></tr>
 <tr><td class="mono">reverse-bafu locate CODE --report PDF [--dry-run | --from-response locate=F]</td><td>§8b layer 0: caption index (deterministic, cached in .cache/pdftext/) + one prompt → page range or found=false</td><td>writes prompt-0-locate.md, captions-0-locate.json, response-0-locate.json</td></tr>
 <tr><td class="mono">reverse-bafu evidence CODE --report PDF --pages a-b</td><td>§8b layer 1</td><td>writes specs/evidence/CODE/</td></tr>
 <tr><td class="mono">reverse-bafu draft CODE [--dry-run | --from-response …]</td><td>§8b layers 2–3</td><td>prompts, responses, provenance; assembles when both passes are in</td></tr>
 <tr><td class="mono">reverse-bafu assemble CODE</td><td>§8b layer 3</td><td>writes specs/CODE-slug.draft.json</td></tr>
-<tr><td class="mono">--project</td><td colspan="2">Brightway project, default <code>reverse-bafu</code> (the team's name; this machine used <code>bafu-2026</code>)</td></tr>
+<tr><td class="mono">--project</td><td colspan="2">Brightway project, default <code>bafu-2026</code></td></tr>
 </tbody></table></div>
 
 <h2>10 · Constants you may want to change</h2>
@@ -313,13 +325,14 @@ svg .link{stroke:var(--ink2);stroke-width:1.3;fill:none} svg .link.b{stroke:var(
 <tr><td class="mono">db.py</td><td class="mono">get_close_matches cutoff</td><td class="mono">0.6</td><td>how loose the "close names" suggestions are (suggestions only, never auto‑linked — chemical names are too similar)</td></tr>
 <tr><td class="mono">calibrate.py</td><td class="mono">mass row weight</td><td class="mono">1e3 · ‖y‖</td><td>how hard the mass_sum constraint is</td></tr>
 <tr><td class="mono">lci.py</td><td class="mono">solve_weighted iterations</td><td class="mono">BVLS 20000; NNLS 50·n + 1000</td><td>—</td></tr>
+<tr><td class="mono">lci.py</td><td class="mono">WIDE</td><td class="mono">2000</td><td>above this many candidate columns, NNLS runs on a working set (blind-all)</td></tr>
 <tr><td class="mono">lci.py</td><td class="mono">row weight</td><td class="mono">1 / max(|target|, |model|) / √(flows in the group); round-off flows 0</td><td>every flow counts by relative error, every (unit, compartment) group of flows equally</td></tr>
 <tr><td class="mono">check.py</td><td class="mono">large‑flow headline</td><td class="mono">50 largest kg flows</td><td>the flows a report can name, separated from the background tail</td></tr>
 <tr><td class="mono">build.py</td><td class="mono">RESIDUAL_MIN</td><td class="mono">1e-15</td><td>residual entries below this are dropped as noise</td></tr>
 <tr><td class="mono">check.py</td><td class="mono">input count limit</td><td class="mono">30</td><td>structural check 1</td></tr>
 <tr><td class="mono">check.py</td><td class="mono">POWER_PLANT regex</td><td class="mono">at power plant|power plant$|at run-of-river|at reservoir</td><td>structural check 2</td></tr>
 <tr><td class="mono">check.py</td><td class="mono">flow diff depth</td><td class="mono">5 categories × 8 flows</td><td>report length</td></tr>
-<tr><td class="mono">benchmark.py</td><td class="mono">min/max inputs, pool threshold, partial share, distractors, material share, BVLS column cap</td><td class="mono">3 / 30, used ≥ 30, 0.7, 10, 1 %, 150</td><td>test‑set shape and metrics</td></tr>
+<tr><td class="mono">benchmark.py</td><td class="mono">min/max inputs, pool threshold, partial share, distractors, material share</td><td class="mono">3 / 30, used ≥ 30, 0.7, 10, 1 %</td><td>test‑set shape and metrics</td></tr>
 </tbody></table></div>
 
 <h2>11 · Adding things</h2>

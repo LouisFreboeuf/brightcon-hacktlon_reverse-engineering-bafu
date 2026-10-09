@@ -1,7 +1,7 @@
 """Step 4 - the harness: flow-by-flow agreement, the largest flows, residual and structural checks.
 
-Inventory agreement is necessary, not sufficient (a 116-input fit matched the inventory and the
-wrong inputs), so the structural section is not optional. No impact assessment: the target and the
+Inventory agreement is necessary, not sufficient (with every dataset as a candidate the benchmark
+fit matches 100 % of the flows with mostly wrong inputs), so the structural section is not optional. No impact assessment: the target and the
 rebuilt process are compared per elementary flow."""
 
 from __future__ import annotations
@@ -101,7 +101,7 @@ def run(spec: Spec, out_dir: Path = Path("results/checks")) -> Path:
     checks = [
         (n_inputs <= 30, f"{n_inputs} explicit input(s) over {len(nodes)} node(s)"),
         (not plants, "no decomposed grid mixes" if not plants else f"inputs are individual power plants: {plants}"),
-        (not deps, "no dependency on another aggregated dataset" if not deps else f"depends on aggregated datasets (rebuild those first): {deps}"),
+        (not deps, "no dependency on another system process" if not deps else f"depends on system processes (rebuild those first): {deps}"),
         (True, f"mass in: {kg_in:.3g} kg technosphere + {kg_res:.3g} kg resources per 1 {spec.node.unit} product (informational)"),
         (all(i.code or i.node for n in nodes for i in n.inputs), "all inputs resolved"),
     ]

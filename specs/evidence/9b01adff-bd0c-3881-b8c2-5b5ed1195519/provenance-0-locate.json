@@ -1,7 +1,0 @@
-{
- "model": "manual",
- "by": "claude-code:claude-opus-5",
- "prompt_sha256": "4e5103b4e9934ff9238df2d1f80f386ddf8864a252e430a0a712e7b6e306ab75",
- "at": "2026-09-22T23:28:32+00:00",
- "note": "answered by a Claude Code session following .claude/commands/draft-all.md; the reason field records which other bundled reports were searched"
-}
