@@ -653,4 +653,4 @@ The export is *modified data* in the sense of the
 and it is shared on the same terms (their section 3.4). You may use, process and analyse it freely,
 e.g. in LCA studies. You may not sell or resell it, or distribute it separately or as part of
 another database. Pass it on only under these same terms, together with this file, which documents
-the changes (section 3.2). The code that produced it is MIT-licensed; see the project README.
+the changes (section 3.2). The code that produced it is licensed under Apache-2.0; see the project README.
